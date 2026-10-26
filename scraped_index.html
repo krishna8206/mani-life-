@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mani Lifestyle | Skincare Manufacturing</title>
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Shared Styles (for header, footer, etc.) -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Link to your external CSS file -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- ======================================================= -->
+    <!-- === FINAL RESPONSIVE & COMPATIBLE SLIDER CSS ========== -->
+    <!-- ======================================================= -->
+    <style>
+        /* Basic styling for the slider container */
+        .slider-container {
+            position: relative;
+            max-width: 100%; 
+            max-height: 100%;
+            margin: auto;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        /* Styling for the slider wrappers */
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* The slide is a simple, flexible container */
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* --- THIS IS THE KEY RULE FOR RESPONSIVE BANNERS --- */
+        .slide img {
+            display: block; /* Removes extra space below the image */
+            /* These two lines ensure the image scales perfectly without cropping */
+            width: 100%;
+            height: auto;
+        }
+        
+        /* --- VIEW TOGGLING LOGIC --- */
+        /* By default, desktop is visible and mobile is hidden */
+        #desktop-banners { display: flex; }
+        #mobile-banners { display: none; }
+
+        /* Control Button Styles */
+        .control-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 18px;
+            user-select: none;
+        }
+        
+        .control-btn:hover { background-color: rgba(0, 0, 0, 0.7); }
+        #prevBtn { left: 20px; }
+        #nextBtn { right: 20px; }
+
+        /* Dots navigation styling */
+        .slider-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color: 0.6s ease;
+        }
+
+        .dot.active { background-color: #717171; }
+
+        /* --- MEDIA QUERY for Mobile and Tablet Devices --- */
+        @media (max-width: 768px) {
+            /* On smaller screens, HIDE desktop banners... */
+            #desktop-banners { display: none; }
+            /* ...and SHOW mobile banners. */
+            #mobile-banners { display: flex; }
+        }
+    </style>
+
+</head>
+<body>
+    <!-- (Your body content from <div id="announcement-bar-placeholder"> to </footer> remains the same) -->
+     <!-- Placeholders for components that will be loaded by loader.js -->
+    <div id="announcement-bar-placeholder"></div>
+    <div id="header-placeholder"></div>
+
+    <!-- Mobile Navigation Overlay (Stays in the main file) -->
+    <div id="mobileNavOverlay" class="mobile-nav-overlay">
+        <div class="mobile-nav-header">
+            <button class="close-menu" aria-label="Close navigation menu">X</button>
+            <div class="mobile-logo"> 
+                <img src="assets/images/header_logo.png" alt="Mani Lifestyle Logo">
+            </div>
+            <div class="mobile-header-right"></div> <!-- For layout balance -->
+        </div>
+        <nav class="mobile-nav-links">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="certificates.html">Certificate & Awards</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="all-product-range.html">Product Range</a></li>
+                <li><a href="faqs.html">FAQs</a></li> 
+                <li><a href="contact-us.html">Contact Us</a></li> 
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Image Slider Section -->
+         <div class="slider-container" id="slider-container">
+            <!-- Desktop Banners -->
+            <div class="slider-wrapper" id="desktop-banners">
+               <div class="slide"><img src="assets/images/home_banner_1.png" alt="Skincare products on display"></div>
+               <div class="slide"><img src="assets/images/banner2.jpg" alt="Natural ingredients for skincare"></div>
+               <div class="slide"><img src="assets/images/banner3.jpg" alt="Scientist in a lab"></div>
+            </div>
+
+            <!-- Mobile Banners -->
+            <div class="slider-wrapper" id="mobile-banners">
+               <div class="slide"><img src="assets/images/mobile_banner1.png" alt="Mobile skincare banner"></div>
+                <div class="slide"><img src="assets/images/mobile_banner2.png" alt="Mobile natural banner"></div>
+                <div class="slide"><img src="assets/images/mobile_banner3.png" alt="Mobile lab banner"></div>
+            </div>
+            
+            <button class="control-btn" id="prevBtn" aria-label="Previous slide">&#10094;</button>
+            <button class="control-btn" id="nextBtn" aria-label="Next slide">&#10095;</button>
+
+            <!-- Dots will be generated by JavaScript -->
+            <div class="slider-dots"></div>
+        </div>
+
+        <!-- Call to Action Banner Section and other content... -->
+        <section class="cta-banner" id="cta-banner">
+            <div class="container">
+                <h2>Let's Build Your Dream Personal Care Brand Together!</h2>
+                <p class="description">Mani Lifestyle is a certified cosmetics manufacturer specializing in private label, OEM, and contract manufacturing of custom skincare and haircare formulations. We are your expert partner in creating high-quality, market-ready products with comprehensive support in formulation, packaging, and compliance.</p>
+                <p class="description">We provide complete end-to-end brand launch services—from initial concept to final product on the shelf. Our mission is to help startups, salons, and established brands turn their unique vision into a tangible reality, guiding every step of the production process.</p>
+                <div class="button-group">
+                    <a href="#contact-form-section" class="button-primary">SUBMIT ENQUIRY</a>
+                    <a href="tel:+919724681096" class="button-secondary">CALL NOW</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="our-services-section" class="our-services-section">
+            <div class="container">
+                <h2>Our Services</h2>
+                <p class="subtitle">Crafting your brand's future with custom, innovative solutions</p>
+                <div class="services-grid">
+                    <div class="service-card"><img src="assets/images/service1.jpg" alt="Private Label Skincare Products"><h3>Private Label</h3></div>
+                    <div class="service-card"><img src="assets/images/service2.jpg" alt="Skincare Manufacturing Line"><h3>Contract Manufacturing</h3></div>
+                    <div class="service-card"><img src="assets/images/service3.jpg" alt="Scientist doing custom formulation"><h3>Custom Formulations</h3></div>
+                    <div class="service-card"><img src="assets/images/service4.jpg" alt="Branded Bottle in Packaging"><h3>End To End Brand Launching Service</h3></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reason-to-trust-section" class="reason-to-trust-section">
+            <div class="container">
+                <h2>Reason to Trust</h2>
+                <p class="subtitle">Discover why brands choose Mani Lifestyle for their success.</p>
+                <div class="reason-grid">
+                    <div class="reason-card">
+                        <div class="icon"><img src="assets/images/reason-low-moq.png" alt="Low MOQ Icon"></div>
+                        <h3>Low Minimum Order Quantity</h3>
+                        <p>Start your brand with confidence — we support small batches to make it easy and affordable for startups.</p>
+                    </div>
+                    <div class="reason-card">
+                        <div class="icon"><img src="assets/images/reason-transparent-pricing.png" alt="Transparent Pricing Icon"></div>
+                        <h3>Transparent Pricing</h3>
+                        <p>Clear, upfront pricing with no hidden costs — so you can plan and budget with full confidence.</p>
+                    </div>
+                    <div class="reason-card">
+                        <div class="icon"><img src="assets/images/reason-wide-range.png" alt="Wide Product Range Icon"></div>
+                        <h3>Wide Product Range</h3>
+                        <p>From skincare to haircare, we offer a vast range of personal care and beauty products to meet diverse market demands.</p>
+                    </div>
+                    <div class="reason-card">
+                        <div class="icon"><img src="assets/images/reason-rd-quality.png" alt="In-house R&D and Quality Team Icon"></div>
+                        <h3>In-house R&D and Quality Team</h3>
+                        <p>Our expert team works in-house to develop new formulas and maintain strict quality control at every stage.</p>
+                    </div>
+                    <div class="reason-card">
+                        <div class="icon"><img src="assets/images/reason-gmp-facility.png" alt="GMP Certified Facility Icon"></div>
+                        <h3>GMP Certified Facility</h3>
+                        <p>Our manufacturing units meet strict GMP standards, ensuring safe, clean, and quality production every step of the way.</p>
+                    </div>
+                    <div class="reason-card">
+                        <div class="icon"><img src="assets/images/reason-customer-support.png" alt="Dedicated Customer Support Icon"></div>
+                        <h3>Dedicated Customer Support</h3>
+                        <p>Our team is here to help — from your first inquiry to final delivery, we offer reliable, responsive support.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="idea-to-reality-section" class="idea-to-reality-section">
+            <div class="container">
+                <h2>From Idea to Reality</h2>
+                <p class="subtitle">From vision to finished formula — we create custom skincare products that embody your brand's identity. Your ideas, tailored to perfection and transformed into market-ready products.</p>
+                <div class="steps-grid">
+                    <div class="step-item"><span class="step-label">STEP 1</span><div class="step-number"><img src="assets/images/step1-discussion.png" alt="Requirement Discussion Icon"></div><h3>Requirement Discussion</h3></div>
+                    <div class="step-item"><span class="step-label">STEP 2</span><div class="step-number"><img src="assets/images/step2-formula.png" alt="Formula Modulation Icon"></div><h3>Formula Modulation</h3></div>
+                    <div class="step-item"><span class="step-label">STEP 3</span><div class="step-number"><img src="assets/images/step3-packaging.png" alt="Packaging Design Icon"></div><h3>Packaging Design</h3></div>
+                    <div class="step-item"><span class="step-label">STEP 4</span><div class="step-number"><img src="assets/images/step4-confirmation.png" alt="Product Confirmation Icon"></div><h3>Product Confirmation</h3></div>
+                    <div class="step-item"><span class="step-label">STEP 5</span><div class="step-number"><img src="assets/images/step5-manufacturing.png" alt="Manufacturing Icon"></div><h3>Manufacturing</h3></div>
+                    <div class="step-item"><span class="step-label">STEP 6</span><div class="step-number"><img src="assets/images/step6-inspection.png" alt="Packaging Inspection Icon"></div><h3>Packaging Inspection</h3></div>
+                    <div class="step-item"><span class="step-label">STEP 7</span><div class="step-number"><img src="assets/images/step7-delivery.png" alt="Verify & Delivery Icon"></div><h3>Verify & Delivery</h3></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="product-categories-section" class="product-categories-section">
+            <div class="container">
+                <h2>Product Categories</h2>
+                <p class="subtitle">We are proud to collaborate with industry-leading partners to create an extensive range of trusted products:</p>
+                <div class="category-content">
+                    <ol>
+                        <li><a href="facewash.html">Face Washes</a></li>
+                        <li><a href="serum.html">Serums</a></li>
+                        <li><a href="hair-oil.html">Hair Oil</a></li>
+                        <li><a href="skin-cream.html">Skin Cream</a></li>
+                        <li><a href="essential-oil.html">Essential Oil</a></li>
+                        <li><a href="sheet-masks.html">Face Sheet Mask</a></li>
+                    </ol>
+                    <div class="category-image">
+                        <img src="assets/images/product-category.jpg" alt="Assortment of product categories">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-form-section" class="contact-form-section">
+            <div class="container">
+                <div class="contact-card-wrapper">
+                    <h2>Ready to discuss your project?</h2>
+                    <form id="project-form">
+                        <div class="form-group"><label for="name">Your Name/Company Name</label><input type="text" id="name" name="Full Name" placeholder="Enter Your Name" required></div>
+                        <div class="form-group"><label for="contact-number">Your Contact Number</label><input type="tel" id="contact-number" name="Contact Number" placeholder="Enter Your Contact Number" required></div>
+                        <div class="form-group"><label for="email">Your Email</label><input type="email" id="email" name="Email Address" placeholder="Enter Your Email" required></div>
+                        <div class="form-group"><label for="message">Message</label><textarea id="message" name="Message" placeholder="Tell Us About Your Project" required></textarea></div>
+                        <div class="form-group">
+                            <label>I Need</label>
+                            <div class="query-options">
+                                <button type="button" class="query-option-button" data-value="Private Label">Private Label</button>
+                                <button type="button" class="query-option-button" data-value="Contract Manufacturing">Contract Manufacturing</button>
+                                <button type="button" class="query-option-button" data-value="Custom Formulation">Custom Formulation</button>
+                                <button type="button" class="query-option-button" data-value="Brand Launch Services">Brand Launch Services</button>
+                                <button type="button" class="query-option-button" data-value="General Inquiry">General Inquiry</button>
+                            </div>
+                            <input type="hidden" id="selected-queries" name="Inquiry Type">
+                        </div>
+                        <input type="hidden" name="Source Form" value="Project Inquiry Form">
+                        <button type="submit">Submit Your Query</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    
+    <script src="assets/js/loader.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/navigation.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const queryOptions = document.querySelectorAll('.query-option-button');
+            const hiddenInput = document.getElementById('selected-queries');
+            queryOptions.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    hiddenInput.value = this.dataset.value;
+                    queryOptions.forEach(function(btn) { btn.classList.remove('selected'); });
+                    this.classList.add('selected');
+                });
+            });
+        });
+        const projectForm = document.getElementById('project-form');
+        projectForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitButton = projectForm.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            fetch('https://script.google.com/macros/s/AKfycbzWRCmWe0G4_I7MpDhdwo_Tm_Vokm2g6BiR14bvRpTPaPDo_deU_wSh99iGSfnSZZGhtA/exec', {
+                method: 'POST',
+                body: new FormData(projectForm)
+            })
+            .then(function(response) { return response.json(); })
+            .then(function() {
+                alert('Success! Your query has been submitted.');
+                projectForm.reset();
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Your Query';
+                document.querySelectorAll('.query-option-button').forEach(function(btn) { btn.classList.remove('selected'); });
+            })
+            .catch(function(error) {
+                console.error('Error!', error.message);
+                alert('An error occurred. Please try again.');
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Your Query';
+            });
+        });
+    </script>
+    
+    <script type="importmap">
+    {
+      "imports": {
+        "react": "https://aistudiocdn.com/react@^19.1.1",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+        "react/": "https://aistudiocdn.com/react@^19.1.1/"
+      }
+    }
+    </script>
+
+    <!-- ROBUST, MAX-COMPATIBILITY SLIDER SCRIPT -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var desktopSlider = document.getElementById('desktop-banners');
+            var mobileSlider = document.getElementById('mobile-banners');
+            var slides = desktopSlider.querySelectorAll('.slide');
+            var slideCount = slides.length;
+            var dotsContainer = document.querySelector(".slider-dots");
+            var nextBtn = document.getElementById("nextBtn");
+            var prevBtn = document.getElementById("prevBtn");
+            var currentIndex = 0;
+            var autoPlayTimer;
+            var autoPlayInterval = 5000;
+
+            function updateSliderPosition() {
+                var offset = -currentIndex * 100;
+                desktopSlider.style.transform = 'translateX(' + offset + '%)';
+                mobileSlider.style.transform = 'translateX(' + offset + '%)';
+
+                for (var i = 0; i < dots.length; i++) {
+                    if (i === currentIndex) {
+                        dots[i].classList.add("active");
+                    } else {
+                        dots[i].classList.remove("active");
+                    }
+                }
+            }
+
+            function goToSlide(index) {
+                currentIndex = (index + slideCount) % slideCount;
+                updateSliderPosition();
+                resetAutoPlay();
+            }
+
+            function startAutoPlay() {
+                if (slideCount > 1) {
+                   autoPlayTimer = setInterval(function() {
+                       goToSlide(currentIndex + 1);
+                   }, autoPlayInterval);
+                }
+            }
+
+            function resetAutoPlay() {
+                clearInterval(autoPlayTimer);
+                startAutoPlay();
+            }
+            
+            if (slideCount <= 1) {
+                if (nextBtn) nextBtn.style.display = 'none';
+                if (prevBtn) prevBtn.style.display = 'none';
+                if (dotsContainer) dotsContainer.style.display = 'none';
+                return;
+            }
+
+            dotsContainer.innerHTML = '';
+            for (var i = 0; i < slideCount; i++) {
+                var dot = document.createElement("span");
+                dot.classList.add("dot");
+                (function(index) {
+                    dot.addEventListener("click", function() {
+                        goToSlide(index);
+                    });
+                })(i);
+                dotsContainer.appendChild(dot);
+            }
+            var dots = dotsContainer.querySelectorAll(".dot");
+
+            nextBtn.addEventListener("click", function() {
+                goToSlide(currentIndex + 1);
+            });
+
+            prevBtn.addEventListener("click", function() {
+                goToSlide(currentIndex - 1);
+            });
+            
+            updateSliderPosition();
+            startAutoPlay();
+        });
+    </script>
+
+</body>
+</html>

@@ -29,6 +29,10 @@ import {
   CircleDollarSign,
   Microscope,
   Headphones,
+  ClipboardCheck,
+  Factory,
+  Truck,
+  ChevronRight,
 } from "lucide-react";
 import { productCategories, sampleProducts } from "@/data/products";
 import { certificationsData } from "@/data/certifications";
@@ -162,39 +166,38 @@ export default function HomePage() {
   const processSteps = [
     {
       step: 1,
+      label: "STEP 1",
       title: "Requirement Discussion",
-      desc: "We analyze your benchmark texture, desired actives (Vit C, Niacinamide, Salicylic), target retail pricing, and packaging concepts.",
-      time: "Days 1 - 3",
     },
     {
       step: 2,
-      title: "Formula Modulation & Bench Sampling",
-      desc: "Our Ahmedabad R&D laboratory compounds 3 prototype test batches delivered to your doorstep for sensory and skin-feel approval.",
-      time: "Days 4 - 10",
+      label: "STEP 2",
+      title: "Formula Modulation",
     },
     {
       step: 3,
-      title: "Stability & Compatibility Chamber Tests",
-      desc: "Accelerated thermal stress incubations (40°C / 75% RH) guarantee 24 to 36 months of formulation shelf stability.",
-      time: "Days 11 - 18",
+      label: "STEP 3",
+      title: "Packaging Design",
     },
     {
       step: 4,
-      title: "Packaging Sourcing & Label Compliance",
-      desc: "Container selection (amber droppers, airless pumps, tubes) and legal INCI ingredient disclosures for domestic and export compliance.",
-      time: "Days 15 - 22",
+      label: "STEP 4",
+      title: "Product Confirmation",
     },
     {
       step: 5,
-      title: "Cleanroom Compounding & Filling",
-      desc: "High-shear vacuum homogenization, nitrogen-purged rotary filling, ultrasonic tube sealing, and induction capping in Class 100K cleanrooms.",
-      time: "Days 20 - 28",
+      label: "STEP 5",
+      title: "Manufacturing",
     },
     {
       step: 6,
-      title: "Verify, COA Release & Doorstep Delivery",
-      desc: "Heavy metal, microbiological, and viscosity assays with official Certificate of Analysis (COA) release and palletized dispatch.",
-      time: "Days 25 - 32",
+      label: "STEP 6",
+      title: "Packaging Inspection",
+    },
+    {
+      step: 7,
+      label: "STEP 7",
+      title: "Verify & Delivery",
     },
   ];
 
@@ -202,23 +205,21 @@ export default function HomePage() {
     {
       num: "01",
       title: "Private Label",
-      tagline: "Turnkey Formulation Portfolio",
-      description: "Fast-track product launch using 500+ clinically tested, pre-stabilized stock formulas ready for custom branding and quick packaging rollout.",
+      tagline: "Proven Indian Formulations",
+      description: "Fast-track your brand launch using 500+ clinically verified stock formulas optimized for Indian skin & hair, with custom packaging and startup-friendly Low MOQs.",
       image: "/images/mani-raw/service1.jpg",
       badge: "Flexible Low MOQ",
-      badgeColor: "text-emerald-700 border-emerald-200/80 bg-emerald-50/90",
-      tags: ["500+ Stock Formulas", "Fast 21-Day Launch", "Custom Branding"],
+      tags: ["500+ Proven Formulas", "Fast 21-Day Launch", "Low Startup MOQ"],
       link: "/services/private-label",
     },
     {
       num: "02",
       title: "Contract Manufacturing",
-      tagline: "Class 100K High-Volume Filling",
-      description: "High-capacity automated rotary tube filling, vacuum homogenization, and batch COA analytical release engineered for commercial scale.",
+      tagline: "Commercial Scale Compounding",
+      description: "High-capacity automated rotary tube filling, vacuum homogenization, and batch COA analytical release from our Ahmedabad manufacturing facility.",
       image: "/images/mani-raw/service2.jpg",
-      badge: "ISO & GMP Certified",
-      badgeColor: "text-sky-800 border-sky-200/80 bg-sky-50/90",
-      tags: ["50,000kg/mo Scale", "Rotary Filling", "Microbial Lab"],
+      badge: "GMP & ISO 22716",
+      tags: ["50,000kg/mo Scale", "Rotary Filling", "Class 100K Cleanrooms"],
       link: "/services/contract-manufacturing",
     },
     {
@@ -227,20 +228,18 @@ export default function HomePage() {
       tagline: "Bespoke Cosmetic Science & R&D",
       description: "Novel active chemistry tailored to your brief with in-house bench sampling, thermal stability testing, and 100% intellectual property ownership.",
       image: "/images/mani-raw/service3.jpg",
-      badge: "100% IP Ownership",
-      badgeColor: "text-amber-800 border-amber-200/80 bg-amber-50/90",
-      tags: ["Bespoke Chemistry", "Lab Bench Trials", "100% IP Transfer"],
+      badge: "100% IP Transfer",
+      tags: ["Bespoke Active R&D", "3 Lab Bench Trials", "Full Formulation IP"],
       link: "/services/custom-formulation",
     },
     {
       num: "04",
       title: "End To End Brand Launching Service",
-      tagline: "From Concept to Doorstep Delivery",
-      description: "Full-spectrum concierge service: packaging engineering, legal INCI artwork disclosures, regulatory dossier filing, and Pan-India doorstep delivery.",
+      tagline: "Concept to Pan-India Delivery",
+      description: "Complete launch support: primary packaging sourcing, legal CDSCO & INCI artwork clearance, stability testing, and secure doorstep logistics across India.",
       image: "/images/mani-raw/service4.jpg",
-      badge: "360° Concierge",
-      badgeColor: "text-indigo-800 border-indigo-200/80 bg-indigo-50/90",
-      tags: ["Packaging Sourcing", "Label Dossier", "Pan-India Logistics"],
+      badge: "Complete Brand Concierge",
+      tags: ["Packaging Sourcing", "CDSCO & INCI Dossier", "Pan-India Logistics"],
       link: "/services",
     },
   ];
@@ -438,105 +437,262 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2.5 OUR SERVICES SECTION (Premium Editorial B2B Showcase) */}
-      <section id="services" className="py-24 sm:py-28 lg:py-32 bg-[#0c1a27] relative overflow-hidden">
-        {/* Atmospheric Background Elements */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(27,98,139,0.15)_0%,_transparent_60%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(22,70,102,0.12)_0%,_transparent_55%)] pointer-events-none" />
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#1b628b]/30 to-transparent" />
-        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#1b628b]/30 to-transparent" />
+      {/* 2.2 CERTIFIED FOR QUALITY AND RELIABILITY (Authentic Regulatory Logos Showcase) */}
+      <section id="certifications" className="relative py-16 sm:py-20 lg:py-24 bg-white border-b border-slate-200/80 overflow-hidden">
+        {/* Soft Ambient Radial Lights */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[350px] bg-sky-100/30 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Header — Premium Dark Theme */}
-          <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <span className="w-10 h-[1px] bg-gradient-to-r from-transparent to-[#1b628b]/60" />
-              <span className="text-[11px] sm:text-xs uppercase tracking-[0.3em] font-semibold text-[#5a9abb]">
-                What We Offer
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+            <div className="flex items-center justify-center gap-2.5 mb-2.5">
+              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="text-[11px] sm:text-xs uppercase tracking-[0.22em] font-semibold text-[#4a728e]">
+                Accredited Quality Standards
               </span>
-              <span className="w-10 h-[1px] bg-gradient-to-l from-transparent to-[#1b628b]/60" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-serif text-white font-normal leading-[1.12] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif text-[#0f172a] font-normal leading-[1.15] tracking-tight">
+              Certified for Quality and{" "}
+              <span className="font-serif italic font-light text-[#1b628b]">
+                Reliability.
+              </span>
+            </h2>
+
+            {/* Signature Underline Accent */}
+            <div className="w-16 h-1 bg-[#1b628b] rounded-full mx-auto mt-3 mb-3" />
+
+            <p className="text-sm sm:text-[15px] text-[#64748b] max-w-2xl mx-auto leading-relaxed font-normal">
+              Our dedication to high standards is recognized by industry-leading bodies, ensuring every product meets rigorous quality and safety benchmarks.
+            </p>
+          </div>
+
+          {/* 5 Original Logo Badges Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 lg:gap-6 items-stretch max-w-6xl mx-auto">
+            {/* 1. GMP Quality */}
+            <div className="group bg-[#f8fafc] hover:bg-white rounded-2xl p-5 border border-slate-200/90 hover:border-[#164666] shadow-2xs hover:shadow-xl hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between items-center text-center">
+              <div className="w-full flex flex-col items-center">
+                <div className="relative w-full h-20 sm:h-24 flex items-center justify-center p-2 mb-3 bg-white/60 rounded-xl group-hover:bg-white transition-colors">
+                  <Image
+                    src="/images/certifications/gmp.png"
+                    alt="GMP Quality Certification"
+                    width={110}
+                    height={110}
+                    className="max-h-16 sm:max-h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="text-sm sm:text-[15px] font-bold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug tracking-tight mb-1">
+                  GMP Certified
+                </h3>
+                <span className="text-[10.5px] font-semibold text-[#1b628b] uppercase tracking-wider mb-1 block">
+                  Cleanroom Standards
+                </span>
+                <p className="text-[11.5px] text-slate-500 leading-relaxed font-normal">
+                  Good Manufacturing Practice for cosmetic compounding & safety.
+                </p>
+              </div>
+              <div className="pt-2.5 border-t border-slate-200/60 w-full flex items-center justify-center gap-1.5 text-[10px] font-semibold text-emerald-700 mt-3">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span>Verified Facility</span>
+              </div>
+            </div>
+
+            {/* 2. ISO 9001:2015 */}
+            <div className="group bg-[#f8fafc] hover:bg-white rounded-2xl p-5 border border-slate-200/90 hover:border-[#164666] shadow-2xs hover:shadow-xl hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between items-center text-center">
+              <div className="w-full flex flex-col items-center">
+                <div className="relative w-full h-20 sm:h-24 flex items-center justify-center p-2 mb-3 bg-white/60 rounded-xl group-hover:bg-white transition-colors">
+                  <Image
+                    src="/images/certifications/iso.png"
+                    alt="ISO 9001:2015 Certification"
+                    width={120}
+                    height={100}
+                    className="max-h-16 sm:max-h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="text-sm sm:text-[15px] font-bold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug tracking-tight mb-1">
+                  ISO 9001:2015
+                </h3>
+                <span className="text-[10.5px] font-semibold text-[#1b628b] uppercase tracking-wider mb-1 block">
+                  QMS Accredited
+                </span>
+                <p className="text-[11.5px] text-slate-500 leading-relaxed font-normal">
+                  Standardized batch repeatability & quality management systems.
+                </p>
+              </div>
+              <div className="pt-2.5 border-t border-slate-200/60 w-full flex items-center justify-center gap-1.5 text-[10px] font-semibold text-emerald-700 mt-3">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span>Verified Facility</span>
+              </div>
+            </div>
+
+            {/* 3. Ministry of AYUSH */}
+            <div className="group bg-[#f8fafc] hover:bg-white rounded-2xl p-5 border border-slate-200/90 hover:border-[#164666] shadow-2xs hover:shadow-xl hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between items-center text-center">
+              <div className="w-full flex flex-col items-center">
+                <div className="relative w-full h-20 sm:h-24 flex items-center justify-center p-2 mb-3 bg-white/60 rounded-xl group-hover:bg-white transition-colors">
+                  <Image
+                    src="/images/certifications/ministry.png"
+                    alt="Ministry of Ayush Certification"
+                    width={140}
+                    height={90}
+                    className="max-h-16 sm:max-h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="text-sm sm:text-[15px] font-bold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug tracking-tight mb-1">
+                  Ministry of AYUSH
+                </h3>
+                <span className="text-[10.5px] font-semibold text-[#1b628b] uppercase tracking-wider mb-1 block">
+                  Govt. of India License
+                </span>
+                <p className="text-[11.5px] text-slate-500 leading-relaxed font-normal">
+                  Certified Ayurvedic, herbal, and natural cosmetic drug approval.
+                </p>
+              </div>
+              <div className="pt-2.5 border-t border-slate-200/60 w-full flex items-center justify-center gap-1.5 text-[10px] font-semibold text-emerald-700 mt-3">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span>Verified Facility</span>
+              </div>
+            </div>
+
+            {/* 4. Animal Test-Free (PETA) */}
+            <div className="group bg-[#f8fafc] hover:bg-white rounded-2xl p-5 border border-slate-200/90 hover:border-[#164666] shadow-2xs hover:shadow-xl hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between items-center text-center">
+              <div className="w-full flex flex-col items-center">
+                <div className="relative w-full h-20 sm:h-24 flex items-center justify-center p-2 mb-3 bg-white/60 rounded-xl group-hover:bg-white transition-colors">
+                  <Image
+                    src="/images/certifications/peta.png"
+                    alt="PETA Animal Test-Free Certification"
+                    width={140}
+                    height={80}
+                    className="max-h-16 sm:max-h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="text-sm sm:text-[15px] font-bold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug tracking-tight mb-1">
+                  Animal Test-Free
+                </h3>
+                <span className="text-[10.5px] font-semibold text-[#1b628b] uppercase tracking-wider mb-1 block">
+                  PETA Certified
+                </span>
+                <p className="text-[11.5px] text-slate-500 leading-relaxed font-normal">
+                  100% cruelty-free cosmetic formulations and ethical raw sourcing.
+                </p>
+              </div>
+              <div className="pt-2.5 border-t border-slate-200/60 w-full flex items-center justify-center gap-1.5 text-[10px] font-semibold text-emerald-700 mt-3">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span>Verified Facility</span>
+              </div>
+            </div>
+
+            {/* 5. US FDA Registered */}
+            <div className="group bg-[#f8fafc] hover:bg-white rounded-2xl p-5 border border-slate-200/90 hover:border-[#164666] shadow-2xs hover:shadow-xl hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between items-center text-center">
+              <div className="w-full flex flex-col items-center">
+                <div className="relative w-full h-20 sm:h-24 flex items-center justify-center p-2 mb-3 bg-white/60 rounded-xl group-hover:bg-white transition-colors">
+                  <Image
+                    src="/images/certifications/fda.png"
+                    alt="US FDA Registered Facility"
+                    width={130}
+                    height={90}
+                    className="max-h-16 sm:max-h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="text-sm sm:text-[15px] font-bold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug tracking-tight mb-1">
+                  US FDA Registered
+                </h3>
+                <span className="text-[10.5px] font-semibold text-[#1b628b] uppercase tracking-wider mb-1 block">
+                  Global Export
+                </span>
+                <p className="text-[11.5px] text-slate-500 leading-relaxed font-normal">
+                  Facility establishment registered for seamless international trade.
+                </p>
+              </div>
+              <div className="pt-2.5 border-t border-slate-200/60 w-full flex items-center justify-center gap-1.5 text-[10px] font-semibold text-emerald-700 mt-3">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span>Verified Facility</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2.5 OUR SERVICES SECTION (4-Column Premium Editorial Showcase) */}
+      <section id="services" className="relative pt-16 sm:pt-20 lg:pt-24 pb-10 sm:pb-12 lg:pb-14 bg-[#f8fafc] overflow-hidden">
+        {/* Soft Ambient Radial Lights */}
+        <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-sky-100/30 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-[#164666]/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+            <div className="flex items-center justify-center gap-2.5 mb-2">
+              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
+                Certified Cosmetics Manufacturer • Ahmedabad, India
+              </span>
+              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif text-[#0f172a] font-normal leading-[1.15] tracking-tight">
               Our{" "}
-              <span className="font-serif italic font-light text-[#5aadda]">
+              <span className="font-serif italic font-light text-[#1b628b]">
                 Services.
               </span>
             </h2>
 
-            <div className="w-16 h-[2px] bg-gradient-to-r from-[#1b628b] to-[#5aadda] rounded-full mx-auto mt-5 mb-5" />
+            {/* Signature Underline Accent */}
+            <div className="w-16 h-1 bg-[#1b628b] rounded-full mx-auto mt-3 mb-3" />
 
-            <p className="text-sm sm:text-[15px] text-[#8ba4b8] max-w-xl mx-auto leading-relaxed font-normal">
-              End-to-end cosmetic manufacturing solutions — from custom R&D formulation to Pan-India doorstep delivery.
+            <p className="text-sm sm:text-[15px] text-[#64748b] max-w-2xl mx-auto leading-relaxed font-normal">
+              Crafting your brand&apos;s future with custom, innovative cosmetic solutions — tailored specifically for Indian skincare, haircare, and personal care brands.
             </p>
           </div>
 
-          {/* Premium 2×2 Service Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-7 max-w-6xl mx-auto">
-            {servicesList.map((service, idx) => (
+          {/* 4 Cards Grid (4 columns on desktop, 2 on tablet, 1 on mobile) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 items-stretch">
+            {servicesList.map((service) => (
               <Link
                 key={service.num}
                 href={service.link}
-                className="service-card-premium group relative bg-[#111f2e]/80 backdrop-blur-sm rounded-2xl overflow-hidden flex flex-col border border-white/[0.06] hover:border-[#1b628b]/40 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_60px_-15px_rgba(27,98,139,0.25)]"
+                className="group relative bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 hover:border-[#164666] shadow-xs hover:shadow-xl hover:shadow-slate-200/90 transition-all duration-500 hover:-translate-y-1.5 overflow-hidden flex flex-col justify-between"
               >
-                {/* Shimmer overlay */}
-                <div className="shimmer-overlay rounded-2xl z-30 pointer-events-none" />
-
-                {/* Image Area — Cinematic Widescreen */}
-                <div className="relative w-full h-52 sm:h-56 lg:h-64 overflow-hidden">
+                {/* Image Area with 4:3 Aspect Ratio — Clean & Uncluttered */}
+                <div className="relative w-full aspect-[4/3] overflow-hidden bg-slate-100">
                   <Image
                     src={service.image}
                     alt={service.title}
                     fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-[900ms] ease-out"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
 
-                  {/* Cinematic Gradient Layers */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c1a27] via-[#0c1a27]/40 to-transparent" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#0c1a27]/50 to-transparent opacity-60" />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-[#1b628b]/15 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-                  {/* Floating Number Badge — Glassmorphic */}
-                  <div className="absolute top-4 left-4 w-10 h-10 rounded-xl bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-sm font-bold text-white/90 shadow-lg group-hover:bg-[#1b628b]/70 group-hover:border-[#1b628b]/50 transition-all duration-500">
+                  {/* Single Clean Necessary Number Badge */}
+                  <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-lg bg-white/95 backdrop-blur-md border border-white/80 text-[#164666] font-mono font-bold text-xs shadow-xs group-hover:bg-[#164666] group-hover:text-white transition-colors duration-300">
                     {service.num}
-                  </div>
-
-                  {/* Service Badge — Top Right */}
-                  <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-xl border border-white/15 text-[10.5px] font-semibold text-white/85 tracking-wide shadow-lg group-hover:bg-white/15 group-hover:text-white transition-all duration-400">
-                    {service.badge}
-                  </div>
-
-                  {/* Tagline Over Image — Bottom */}
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#5aadda] group-hover:bg-[#7ec8f0] transition-colors shadow-[0_0_8px_rgba(90,173,218,0.5)]" />
-                      <span className="text-[10.5px] font-semibold tracking-[0.15em] text-[#a8d4ef] uppercase">
-                        {service.tagline}
-                      </span>
-                    </div>
                   </div>
                 </div>
 
-                {/* Card Content */}
-                <div className="p-6 sm:p-7 flex flex-col justify-between flex-1">
-                  <div>
-                    {/* Service Title */}
-                    <h3 className="text-xl sm:text-[1.35rem] font-semibold text-white group-hover:text-[#7ec8f0] transition-colors leading-snug tracking-tight mb-3">
+                {/* Card Content with Strict Baseline Alignment & Perfect Modern Typography */}
+                <div className="p-5 flex flex-col justify-between flex-1">
+                  <div className="flex-1 flex flex-col">
+                    {/* Micro Tagline */}
+                    <span className="text-[10.5px] font-bold tracking-[0.14em] text-[#1b628b] uppercase mb-1.5 block">
+                      {service.tagline}
+                    </span>
+
+                    {/* Service Title — Bold, Crisp Sans-Serif */}
+                    <h3 className="text-lg sm:text-[1.18rem] font-bold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug tracking-tight min-h-[46px] flex items-center mb-2.5">
                       {service.title}
                     </h3>
 
-                    {/* Description */}
-                    <p className="text-[13px] sm:text-sm text-[#8ba4b8] leading-relaxed font-normal mb-5">
+                    {/* Description — Readable, Comfortable Typography */}
+                    <p className="text-[13px] text-slate-500 leading-relaxed font-normal mb-4 flex-1">
                       {service.description}
                     </p>
 
-                    {/* Premium Pill Tags */}
-                    <div className="flex flex-wrap gap-2">
+                    {/* Feature Tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
                       {service.tags.map((tag, tIdx) => (
                         <span
                           key={tIdx}
-                          className="text-[10.5px] font-medium px-3 py-1.5 rounded-lg bg-white/[0.06] text-[#8bb8d4] border border-white/[0.08] group-hover:bg-[#1b628b]/25 group-hover:text-[#a8d4ef] group-hover:border-[#1b628b]/30 transition-all duration-400"
+                          className="text-[10px] sm:text-[10.5px] font-medium px-2 py-0.5 rounded-md bg-[#f0f7fb] text-[#164666] border border-[#d9ecf7] group-hover:bg-sky-50 transition-colors"
                         >
                           {tag}
                         </span>
@@ -544,13 +700,13 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  {/* Bottom CTA */}
-                  <div className="pt-5 mt-5 border-t border-white/[0.06] flex items-center justify-between">
-                    <span className="text-xs font-semibold text-[#5a9abb] group-hover:text-[#7ec8f0] transition-colors tracking-wide">
-                      Explore Service
+                  {/* Bottom Action Row */}
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
+                    <span className="text-xs font-semibold text-[#164666] group-hover:text-[#0f172a] transition-colors tracking-wide">
+                      Explore Capabilities
                     </span>
-                    <div className="w-9 h-9 rounded-full bg-white/[0.06] group-hover:bg-[#1b628b] text-[#5a9abb] group-hover:text-white flex items-center justify-center transition-all duration-400 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(27,98,139,0.4)]">
-                      <ArrowRight className="w-4 h-4 transition-transform duration-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:-rotate-45" />
+                    <div className="w-7 h-7 rounded-full bg-[#f0f7fb] text-[#164666] group-hover:bg-[#164666] group-hover:text-white flex items-center justify-center transition-all duration-300 group-hover:translate-x-1 shadow-2xs">
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </div>
                   </div>
                 </div>
@@ -558,300 +714,404 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Bottom Section CTA */}
-          <div className="text-center mt-14 sm:mt-16">
-            <p className="text-sm text-[#6b8fa8] mb-5 font-normal">
-              Not sure which service fits your brand? Let&apos;s find the perfect solution together.
-            </p>
+          {/* Bottom Indian Manufacturing Trust Bar */}
+          <div className="mt-12 sm:mt-14 bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4 max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 text-center sm:text-left">
+              <div className="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200 text-[#164666] flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-5 h-5 text-[#164666]" />
+              </div>
+              <div>
+                <h4 className="text-xs sm:text-sm font-semibold text-[#0f172a]">
+                  State-of-the-Art Compounding Campus • Ahmedabad, Gujarat
+                </h4>
+                <p className="text-[11px] text-slate-500">
+                  WHO-GMP & ISO 22716 accredited cleanrooms with CDSCO legal formulation clearance for Indian brands.
+                </p>
+              </div>
+            </div>
             <button
               onClick={() => setIsQuoteModalOpen(true)}
-              className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-gradient-to-r from-[#1b628b] to-[#164666] hover:from-[#2478a5] hover:to-[#1b628b] text-white font-semibold text-sm rounded-xl shadow-lg shadow-[#1b628b]/20 hover:shadow-xl hover:shadow-[#1b628b]/30 transition-all duration-400 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#164666] hover:bg-[#10364f] text-white font-medium text-xs rounded-xl shadow-md shadow-[#164666]/15 hover:scale-[1.02] active:scale-[0.98] transition-all shrink-0 cursor-pointer"
             >
-              <Send className="w-4 h-4" />
-              <span>Get a Free Consultation</span>
+              <Send className="w-3.5 h-3.5" />
+              <span>Get Custom Quote</span>
             </button>
           </div>
         </div>
       </section>
 
-      {/* 3. PRODUCT CATEGORIES - IN YOUR BRAND (Interactive 6-Vertical Showcase) */}
-      <section id="categories" className="py-24 sm:py-28 bg-[#f8fafc] border-b border-slate-200/80 relative overflow-hidden">
+      {/* 3. PRODUCT CATEGORIES - IN YOUR BRAND (Seamlessly Merged & Symmetrically Aligned) */}
+      <section id="categories" className="relative pt-6 sm:pt-8 lg:pt-10 pb-16 sm:py-20 lg:py-24 bg-[#f8fafc] border-b border-slate-200/80 overflow-hidden">
         {/* Soft Ambient Radial Lights */}
         <div className="absolute top-10 right-0 w-96 h-96 bg-[#164666]/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-10 left-0 w-96 h-96 bg-sky-200/20 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Section Header (Exact copy from manilifestyle.com) */}
-          <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase text-[#164666] bg-white border border-[#cbe4f4] shadow-2xs mb-3.5">
-              <span className="w-2 h-2 rounded-full bg-[#1b628b] animate-pulse" />
-              <span>Core Formulation Verticals</span>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header (Harmonized with Our Services) */}
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+            <div className="flex items-center justify-center gap-2.5 mb-2">
+              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
+                Core Formulation Verticals • Spec-To-Shelf
+              </span>
+              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-serif text-[#0f172a] font-normal tracking-tight leading-tight">
+
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif text-[#0f172a] font-normal leading-[1.15] tracking-tight">
               Product Categories{" "}
               <span className="font-serif italic font-light text-[#1b628b]">
                 in Your Brand.
               </span>
             </h2>
-            <p className="text-sm sm:text-base text-[#475569] mt-3.5 leading-relaxed max-w-2xl mx-auto">
-              We are proud to collaborate with industry-leading partners to create an extensive range of trusted products:
+
+            {/* Signature Underline Accent */}
+            <div className="w-16 h-1 bg-[#1b628b] rounded-full mx-auto mt-3 mb-3" />
+
+            <p className="text-sm sm:text-[15px] text-[#64748b] max-w-2xl mx-auto leading-relaxed font-normal">
+              We are proud to collaborate with industry-leading partners to create an extensive range of trusted products — formulated and packaged to your brand&apos;s exact specifications.
             </p>
           </div>
 
-          {/* Symmetrical 6-Card Grid: Perfectly Aligned with Real Product Photography */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {coreCategories.map((cat) => {
+          {/* Symmetrical 6-Card Grid: Synchronized Baseline Height & Matched to Services Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7 items-stretch">
+            {coreCategories.map((cat) => (
+              <Link
+                key={cat.num}
+                href={`/products/${cat.slug}`}
+                className="group relative bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 hover:border-[#164666] shadow-xs hover:shadow-xl hover:shadow-slate-200/90 transition-all duration-500 hover:-translate-y-1.5 overflow-hidden flex flex-col justify-between"
+              >
+                {/* Product Photography Stage — Clean 4:3 Aspect Ratio with Only Necessary Number Pill */}
+                <div className="relative w-full aspect-[4/3] overflow-hidden bg-slate-100">
+                  <Image
+                    src={cat.image}
+                    alt={cat.name}
+                    fill
+                    className="object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+
+                  {/* Single Clean Necessary Number Badge */}
+                  <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-lg bg-white/95 backdrop-blur-md border border-white/80 text-[#164666] font-mono font-bold text-xs shadow-xs group-hover:bg-[#164666] group-hover:text-white transition-colors duration-300">
+                    {cat.num}
+                  </div>
+                </div>
+
+                {/* Minimal & Elegant Content — Strict Baseline Alignment Identical to Services */}
+                <div className="p-5 flex flex-col justify-between flex-1">
+                  <div className="flex-1 flex flex-col">
+                    {/* Micro Tagline */}
+                    <span className="text-[10.5px] font-bold tracking-[0.14em] text-[#1b628b] uppercase mb-1.5 block">
+                      {cat.tagline}
+                    </span>
+
+                    {/* Category Title — Bold, Crisp Sans-Serif with Fixed Minimum Height */}
+                    <h3 className="text-lg sm:text-[1.18rem] font-bold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug tracking-tight min-h-[32px] sm:min-h-[36px] flex items-center mb-2.5">
+                      {cat.name}
+                    </h3>
+
+                    {/* Description with Uniform Baseline */}
+                    <p className="text-[13px] text-slate-500 leading-relaxed font-normal min-h-[58px] sm:min-h-[62px] mb-4 flex-1">
+                      {cat.description}
+                    </p>
+
+                    {/* Clean Active Ingredient Tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-4 min-h-[56px] sm:min-h-[58px] content-start">
+                      {cat.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[10px] sm:text-[10.5px] font-medium px-2 py-0.5 rounded-md bg-[#f0f7fb] text-[#164666] border border-[#d9ecf7] group-hover:bg-sky-50 transition-colors"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Bottom Action Row Matching Services Exactly */}
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
+                    <span className="text-xs font-semibold text-[#164666] group-hover:text-[#0f172a] transition-colors tracking-wide">
+                      Inspect Formulations
+                    </span>
+                    <div className="w-7 h-7 rounded-full bg-[#f0f7fb] text-[#164666] group-hover:bg-[#164666] group-hover:text-white flex items-center justify-center transition-all duration-300 group-hover:translate-x-1 shadow-2xs">
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* 5. FROM IDEA TO REALITY (Properly Aligned 7-Step Process Pipeline) */}
+      <section className="relative py-14 sm:py-16 lg:py-20 bg-gradient-to-b from-[#f8fafc] via-[#f0f7fb]/70 to-[#f8fafc] border-b border-slate-200/80 overflow-hidden">
+        {/* Soft Ambient Radial Highlight */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[450px] bg-sky-100/40 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+            <div className="flex items-center justify-center gap-2.5 mb-2">
+              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
+                Spec-To-Shelf Journey • 7 Sequential Steps
+              </span>
+              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif text-[#0f172a] font-normal leading-[1.15] tracking-tight">
+              From Idea{" "}
+              <span className="font-serif italic font-light text-[#1b628b]">
+                to Reality.
+              </span>
+            </h2>
+
+            {/* Signature Underline Accent */}
+            <div className="w-16 h-1 bg-[#1b628b] rounded-full mx-auto mt-3 mb-3" />
+
+            <p className="text-sm sm:text-[15px] text-[#64748b] max-w-2xl mx-auto leading-relaxed font-normal">
+              From vision to finished formula — we create custom skincare products that embody your brand&apos;s identity. Your ideas, tailored to perfection and transformed into market-ready products.
+            </p>
+          </div>
+
+          {/* 7 Aligned Process Cards Pipeline */}
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-3.5 lg:gap-2.5 xl:gap-3.5 items-stretch">
+            {processSteps.map((step, idx) => (
+              <div
+                key={step.step}
+                className="group relative flex flex-col items-center text-center bg-white rounded-2xl p-4 sm:p-5 lg:px-2.5 lg:py-4 xl:p-5 border border-slate-200/90 hover:border-[#164666]/40 shadow-xs hover:shadow-lg hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1 w-[calc(50%-0.4rem)] sm:w-[calc(33.333%-0.6rem)] md:w-[calc(25%-0.6rem)] lg:flex-1 shrink-0"
+              >
+                {/* Connecting Chevron (Desktop Only) */}
+                {idx < processSteps.length - 1 && (
+                  <div className="hidden lg:flex absolute -right-2 top-1/2 -translate-y-1/2 z-20 w-4 h-4 rounded-full bg-white border border-slate-200 text-[#1b628b] items-center justify-center shadow-2xs pointer-events-none">
+                    <ChevronRight className="w-2.5 h-2.5 text-[#1b628b]" strokeWidth={2.5} />
+                  </div>
+                )}
+
+                {/* STEP NUMBER BADGE */}
+                <span className="text-[10px] sm:text-[10.5px] font-bold tracking-[0.16em] text-[#164666] bg-sky-50 px-2 py-0.5 rounded-full border border-sky-200/80 uppercase mb-3 group-hover:bg-[#164666] group-hover:text-white group-hover:border-[#164666] transition-colors duration-300">
+                  {step.label}
+                </span>
+
+                {/* ICON CONTAINER */}
+                <div className="w-12 h-12 rounded-xl bg-[#f0f7fb] border border-[#d9ecf7] text-[#164666] flex items-center justify-center mb-3 group-hover:bg-[#164666] group-hover:text-white group-hover:border-[#164666] group-hover:scale-105 group-hover:shadow-sm transition-all duration-300">
+                  {step.step === 1 && (
+                    <svg className="w-6 h-6" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M10 12h7a3.5 3.5 0 0 1 3.5 3.5v2a3.5 3.5 0 0 1-3.5 3.5H15l-3.5 3v-3H10a3.5 3.5 0 0 1-3.5-3.5v-2A3.5 3.5 0 0 1 10 12z" />
+                      <path d="M28 8h7a3.5 3.5 0 0 1 3.5 3.5v2a3.5 3.5 0 0 1-3.5 3.5h-1v3l-3.5-3H28a3.5 3.5 0 0 1-3.5-3.5v-2A3.5 3.5 0 0 1 28 8z" />
+                      <circle cx="15.5" cy="30" r="4" />
+                      <path d="M8 41v-2a6 6 0 0 1 12 0v2" />
+                      <circle cx="32.5" cy="30" r="4" />
+                      <path d="M26 41v-2a6 6 0 0 1 12 0v2" />
+                    </svg>
+                  )}
+                  {step.step === 2 && (
+                    <svg className="w-6 h-6" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 7h8" />
+                      <path d="M21 7v9l-11 19a4 4 0 0 0 3.5 6h21a4 4 0 0 0 3.5-6L27 16V7" />
+                      <path d="M15 28c3 2 6-1 9 1s6-1 9 1" />
+                      <circle cx="37" cy="31" r="2.8" />
+                      <circle cx="41" cy="37" r="2.2" />
+                      <circle cx="36" cy="39" r="2.2" />
+                    </svg>
+                  )}
+                  {step.step === 3 && (
+                    <svg className="w-6 h-6" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M24 7l15 8.5v17L24 41l-15-8.5v-17L24 7z" />
+                      <path d="M24 7v17m0 0l15-8.5m-15 8.5l-15-8.5" />
+                      <path d="M20 9.2l8 4.5m-8 4.3l8 4.5" />
+                    </svg>
+                  )}
+                  {step.step === 4 && (
+                    <svg className="w-6 h-6" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 7h18l9 9v23a3 3 0 0 1-3 3H12a3 3 0 0 1-3-3V10a3 3 0 0 1 3-3z" />
+                      <path d="M30 7v9h9" />
+                      <path d="M15 17h8m-8 6h12m-12 6h8" />
+                      <circle cx="33" cy="33" r="6" />
+                      <path d="M30.5 33l2 2 3.5-4" />
+                    </svg>
+                  )}
+                  {step.step === 5 && (
+                    <svg className="w-6 h-6" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="28" cy="18" r="5" />
+                      <path d="M28 9v2.5m0 13v2.5M19 18h2.5m13 0H37m-11.4-6.4l1.8 1.8m6.4 6.4l1.8 1.8m-10 0l1.8-1.8m6.4-6.4l1.8-1.8" />
+                      <path d="M8 35c4-1 9-2 15-2 3.5 0 6 1 9 1l7-1a3 3 0 0 1 3.5 3.5l-1 2.5a5 5 0 0 1-4.5 3.5H23l-7-3-8-1" />
+                    </svg>
+                  )}
+                  {step.step === 6 && (
+                    <svg className="w-6 h-6" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 7h12v4H18z" />
+                      <rect x="11" y="9" width="26" height="32" rx="3" />
+                      <path d="M16 19h3m-3 6h3m-3 6h3" />
+                      <path d="M22 19h9m-9 6h9m-9 6h5" />
+                      <path d="M34 22l6-6a2 2 0 0 0-2.8-2.8l-6 6 1.4 1.4 1.4 1.4z" />
+                      <path d="M31.2 20.6l-1.2 3.8 3.8-1.2" />
+                    </svg>
+                  )}
+                  {step.step === 7 && (
+                    <svg className="w-6 h-6" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 8l13 7.5v15l-13 7.5-13-7.5v-15L22 8z" />
+                      <path d="M22 8v15m0 0l13-7.5m-13 7.5l-13-7.5" />
+                      <circle cx="35" cy="33" r="6.5" />
+                      <path d="M32 33l2 2 4-4" />
+                    </svg>
+                  )}
+                </div>
+
+                {/* STEP TITLE */}
+                <h3 className="text-xs sm:text-[13px] xl:text-[14px] font-semibold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug tracking-tight min-h-[36px] flex items-center justify-center text-center">
+                  {step.title}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* 7. FREQUENTLY ASKED QUESTIONS */}
+      <section id="faqs" className="relative py-16 sm:py-20 lg:py-24 bg-[#f8fafc] border-b border-slate-200/80 overflow-hidden">
+        {/* Soft Ambient Radial Lights */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-sky-100/30 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+            <div className="flex items-center justify-center gap-2.5 mb-2.5">
+              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="text-[11px] sm:text-xs uppercase tracking-[0.22em] font-semibold text-[#4a728e]">
+                Technical & Commercial Guidance
+              </span>
+              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif text-[#0f172a] font-normal leading-[1.15] tracking-tight">
+              Frequently Asked{" "}
+              <span className="font-serif italic font-light text-[#1b628b]">
+                Questions.
+              </span>
+            </h2>
+
+            {/* Signature Underline Accent */}
+            <div className="w-16 h-1 bg-[#1b628b] rounded-full mx-auto mt-3.5 mb-3.5" />
+
+            <p className="text-sm sm:text-[15px] text-[#64748b] max-w-xl mx-auto leading-relaxed font-normal">
+              Clear, transparent answers about our cosmetic formulation capabilities, cleanroom compounding, low startup MOQs, and regulatory compliance.
+            </p>
+          </div>
+
+          {/* FAQ Accordion List with Modern Sans-Serif Typography */}
+          <div className="space-y-3.5">
+            {faqsData.map((faq, index) => {
+              const isOpen = activeFaqIndex === index;
               return (
-                <Link
-                  key={cat.num}
-                  href={`/products/${cat.slug}`}
-                  className="group relative bg-white rounded-3xl border border-slate-200/90 hover:border-[#164666]/40 shadow-xs hover:shadow-2xl hover:shadow-[#164666]/10 transition-all duration-300 hover:-translate-y-1.5 overflow-hidden flex flex-col justify-between"
+                <div
+                  key={faq.question}
+                  className={`rounded-2xl transition-all duration-300 overflow-hidden border ${isOpen
+                      ? "bg-white border-[#164666]/50 shadow-md shadow-sky-950/5 ring-1 ring-[#164666]/10"
+                      : "bg-white border-slate-200/90 hover:border-slate-300 shadow-2xs hover:shadow-xs"
+                    }`}
                 >
-                  {/* Product Photography Stage */}
-                  <div className="relative w-full h-56 sm:h-60 bg-slate-100 overflow-hidden">
-                    <Image
-                      src={cat.image}
-                      alt={cat.name}
-                      fill
-                      className="object-cover group-hover:scale-106 transition-transform duration-700 ease-out"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <button
+                    onClick={() => setActiveFaqIndex(isOpen ? null : index)}
+                    className="w-full p-4 sm:p-5 text-left flex items-center justify-between gap-3.5 sm:gap-4 transition-colors group cursor-pointer"
+                  >
+                    <div className="flex items-center gap-3 sm:gap-3.5 flex-1 pr-2">
+                      {/* Numeric Index Pill */}
+                      <span
+                        className={`w-7 h-7 rounded-lg text-xs font-mono font-bold flex items-center justify-center shrink-0 transition-colors ${isOpen
+                            ? "bg-[#164666] text-white"
+                            : "bg-[#f0f7fb] text-[#164666] border border-[#d9ecf7] group-hover:bg-[#e1f0fa]"
+                          }`}
+                      >
+                        0{index + 1}
+                      </span>
 
-                    {/* Floating Badges */}
-                    <div className="absolute top-3.5 left-3.5 px-2.5 py-1 rounded-lg bg-white/95 backdrop-blur-md text-xs font-bold text-[#164666] border border-slate-200/80 shadow-xs">
-                      {cat.num}
-                    </div>
-                    <div className="absolute top-3.5 right-3.5 px-2.5 py-1 rounded-lg bg-white/95 backdrop-blur-md text-[11px] font-semibold text-emerald-700 border border-emerald-200/60 shadow-xs">
-                      {cat.moq}
-                    </div>
-                  </div>
-
-                  {/* Minimal & Elegant Content */}
-                  <div className="p-6 flex flex-col justify-between flex-1">
-                    <div>
-                      <div className="text-[10px] font-semibold tracking-wider text-[#1b628b] uppercase mb-1">
-                        {cat.tagline}
-                      </div>
-                      <h3 className="text-xl font-serif font-bold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-tight">
-                        {cat.name}
-                      </h3>
-                      <p className="text-xs text-[#64748b] mt-2 leading-relaxed">
-                        {cat.description}
-                      </p>
-
-                      {/* Clean Active Ingredient Tags */}
-                      <div className="flex flex-wrap gap-1.5 mt-3.5 pt-3 border-t border-slate-100">
-                        {cat.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2 py-0.5 rounded-md bg-sky-50 text-[10px] font-medium text-[#164666] border border-[#cbe4f4]/60"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+                      {/* Question — Crisp Modern Sans-Serif */}
+                      <span
+                        className={`text-sm sm:text-[15.5px] font-semibold leading-snug tracking-tight transition-colors ${isOpen ? "text-[#164666]" : "text-[#0f172a] group-hover:text-[#164666]"
+                          }`}
+                      >
+                        {faq.question}
+                      </span>
                     </div>
 
-                    {/* Inspect Formulations CTA */}
-                    <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#164666] group-hover:text-[#10364f]">
-                      <span>Inspect Formulations</span>
-                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    {/* Circular Indicator */}
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen
+                          ? "bg-[#164666] text-white rotate-180 shadow-xs"
+                          : "bg-[#f0f7fb] text-[#164666] border border-[#d9ecf7] group-hover:bg-[#164666] group-hover:text-white"
+                        }`}
+                    >
+                      <ChevronDown className="w-4 h-4" />
                     </div>
-                  </div>
-                </Link>
+                  </button>
+
+                  {/* Answer Box */}
+                  {isOpen && (
+                    <div className="pl-13 sm:pl-15 pr-5 sm:pr-6 pb-5 pt-1 text-[13px] sm:text-[13.5px] text-slate-600 leading-relaxed font-normal border-t border-slate-100 bg-[#fbfcfd]">
+                      {faq.answer}
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>
         </div>
       </section>
 
+      {/* 8. DIRECT FACTORY CONSULTATION CTA BANNER (Aligned Light Luxury Showcase) */}
+      <section className="relative py-16 sm:py-20 lg:py-24 bg-white border-b border-slate-200/80 overflow-hidden">
+        {/* Soft Ambient Radial Lights */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[350px] bg-sky-100/30 rounded-full blur-3xl pointer-events-none" />
 
-
-      {/* 5. FROM IDEA TO REALITY (6-Stage Spec-to-Shelf Journey) */}
-      <section className="py-20 bg-[#f8fafc] border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#164666] bg-sky-50 px-3.5 py-1 rounded-full border border-sky-200">
-              From Idea to Reality
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* Eyebrow Line */}
+          <div className="flex items-center justify-center gap-2.5 mb-2.5">
+            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+            <span className="text-[11px] sm:text-xs uppercase tracking-[0.22em] font-semibold text-[#4a728e]">
+              Ready To Formulate Your Next Bestselling Line?
             </span>
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#0f172a] mt-3">
-              The 6-Step Manufacturing Process
-            </h2>
-            <p className="text-sm text-[#475569] mt-2">
-              Our transparent contract compounding pipeline guarantees quality verification, benchmark matching, and doorstep delivery in 21–30 days.
-            </p>
+            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {processSteps.map((step) => (
-              <div
-                key={step.step}
-                className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs hover:border-[#164666] transition-all space-y-3 relative group"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="w-8 h-8 rounded-xl bg-sky-50 text-[#164666] border border-sky-200 font-bold text-xs flex items-center justify-center font-serif group-hover:bg-[#164666] group-hover:text-white transition-colors">
-                    0{step.step}
-                  </span>
-                  <span className="text-[11px] font-semibold text-[#164666] bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200">
-                    {step.time}
-                  </span>
-                </div>
-
-                <h3 className="text-base font-serif font-bold text-[#0f172a]">
-                  {step.title}
-                </h3>
-                <p className="text-xs text-[#64748b] leading-relaxed">
-                  {step.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link
-              href="/process"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-800 hover:text-[#164666] font-bold rounded-xl border border-slate-200 text-xs transition-colors shadow-xs"
-            >
-              <span>Explore Detailed Cleanroom Protocols</span>
-              <ArrowRight className="w-4 h-4 text-[#164666]" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. CLIENT & SALON TESTIMONIALS */}
-      <section className="py-20 bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#164666] bg-sky-50 px-3.5 py-1 rounded-full border border-sky-200">
-              Verified Partner Feedback
+          {/* Heading */}
+          <h2 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif text-[#0f172a] font-normal leading-[1.15] tracking-tight">
+            Schedule a Direct Consultation{" "}
+            <span className="font-serif italic font-light text-[#1b628b]">
+              With Our Senior Team.
             </span>
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#0f172a] mt-3">
-              Trusted by Salon Chains & D2C Beauty Brands
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-3xl bg-[#f8fafc] border border-slate-200 shadow-xs space-y-4">
-              <div className="flex text-amber-500 gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <p className="text-xs text-[#334155] leading-relaxed italic">
-                &ldquo;Mani Lifestyle formulated our 10% Niacinamide and 2% Salicylic serums with bench samples delivered in just 7 days. Their 500-unit starting MOQ allowed us to test and sell out our first batch within 3 weeks.&rdquo;
-              </p>
-              <div className="pt-2 border-t border-slate-200">
-                <div className="text-xs font-bold text-[#0f172a]">Aarav Mehta</div>
-                <div className="text-[11px] text-[#64748b]">Founder, D2C Active Skincare Brand</div>
-              </div>
-            </div>
-
-            <div className="p-6 rounded-3xl bg-[#f8fafc] border border-slate-200 shadow-xs space-y-4">
-              <div className="flex text-amber-500 gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <p className="text-xs text-[#334155] leading-relaxed italic">
-                &ldquo;Their Brazilian stripless hot film wax beads and 6-step professional facial kits are staples across our 18 salon outlets. The low melting point and skin comfort are consistently outstanding.&rdquo;
-              </p>
-              <div className="pt-2 border-t border-slate-200">
-                <div className="text-xs font-bold text-[#0f172a]">Meera Kapoor</div>
-                <div className="text-[11px] text-[#64748b]">Managing Director, Luxury Salon Chain</div>
-              </div>
-            </div>
-
-            <div className="p-6 rounded-3xl bg-[#f8fafc] border border-slate-200 shadow-xs space-y-4">
-              <div className="flex text-amber-500 gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <p className="text-xs text-[#334155] leading-relaxed italic">
-                &ldquo;The WHO-GMP and ISO 22716 export documentation provided by Mani Lifestyle made our overseas retail registration completely seamless. Truly exceptional manufacturing partners.&rdquo;
-              </p>
-              <div className="pt-2 border-t border-slate-200">
-                <div className="text-xs font-bold text-[#0f172a]">Rohit Singhania</div>
-                <div className="text-[11px] text-[#64748b]">Cosmetic Brand Director, UAE & India</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. FREQUENTLY ASKED QUESTIONS */}
-      <section id="faqs" className="py-20 bg-[#f8fafc] border-b border-slate-200">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#164666] bg-sky-50 px-3.5 py-1 rounded-full border border-sky-200">
-              Clear Technical Answers
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#0f172a] mt-3">
-              Frequently Asked Questions
-            </h2>
-          </div>
-
-          <div className="space-y-3">
-            {faqsData.map((faq, index) => (
-              <div
-                key={faq.question}
-                className="rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-xs transition-colors"
-              >
-                <button
-                  onClick={() => setActiveFaqIndex(activeFaqIndex === index ? null : index)}
-                  className="w-full p-5 text-left flex items-center justify-between gap-4 font-serif font-bold text-[#0f172a] text-sm sm:text-base hover:text-[#164666] transition-colors"
-                >
-                  <span>{faq.question}</span>
-                  <ChevronDown
-                    className={`w-4 h-4 text-[#164666] shrink-0 transition-transform duration-200 ${
-                      activeFaqIndex === index ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-                {activeFaqIndex === index && (
-                  <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-[#475569] leading-relaxed border-t border-slate-100 bg-[#f8fafc]">
-                    {faq.answer}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 8. DIRECT FACTORY CONSULTATION CTA BANNER */}
-      <section className="py-20 bg-gradient-to-r from-[#0c2436] via-[#091b29] to-[#0c2436] text-white">
-        <div className="max-w-5xl mx-auto px-4 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-sky-200 text-xs font-semibold border border-white/20 shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-sky-300" />
-            <span>Ready to formulate your next bestselling cosmetic line?</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-white tracking-tight">
-            Schedule a Direct Consultation With Our Senior Compounding Team
           </h2>
 
-          <p className="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+          {/* Signature Underline Accent */}
+          <div className="w-16 h-1 bg-[#1b628b] rounded-full mx-auto mt-3.5 mb-3.5" />
+
+          {/* Description */}
+          <p className="text-sm sm:text-[15px] text-[#64748b] max-w-2xl mx-auto leading-relaxed font-normal mb-8">
             Visit our state-of-the-art cleanroom manufacturing campus in Ahmedabad or request customized bench formulation prototypes dispatched directly to your desk.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 pt-1">
             <button
               onClick={() => setIsQuoteModalOpen(true)}
-              className="px-8 py-3.5 bg-[#164666] hover:bg-[#10364f] text-white text-xs sm:text-sm font-bold rounded-xl shadow-lg transition-transform hover:scale-105 border border-sky-400/30"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-[#164666] hover:bg-[#10364f] text-white text-xs sm:text-sm font-semibold rounded-xl shadow-md shadow-[#164666]/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
-              Request Custom Quote & Formulation Samples
+              <Send className="w-4 h-4" />
+              <span>Request Custom Quote & Formulation Samples</span>
             </button>
 
             <a
               href="https://wa.me/919724681096?text=Hello%20Mani%20Lifestyle,%20I%20am%20interested%20in%20visiting%20your%20Ahmedabad%20cosmetic%20plant."
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl border border-white/20 text-xs sm:text-sm flex items-center gap-2 shadow-xs transition-colors"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-white hover:bg-[#f8fafc] text-[#164666] border border-slate-200/90 hover:border-[#164666]/40 text-xs sm:text-sm font-semibold rounded-xl shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
-              <Phone className="w-4 h-4 text-sky-300" />
-              Schedule Plant Tour (+91 97246 81096)
+              <Phone className="w-4 h-4 text-[#164666]" />
+              <span>Schedule Plant Tour (+91 97246 81096)</span>
             </a>
           </div>
         </div>

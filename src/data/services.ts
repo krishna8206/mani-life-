@@ -9,6 +9,7 @@ export interface ServiceDetail {
   suitableFor: string[];
   timeline: string;
   moq: string;
+  image: string;
 }
 
 export const servicesData: ServiceDetail[] = [
@@ -39,6 +40,7 @@ export const servicesData: ServiceDetail[] = [
     ],
     timeline: "Initial samples in 7-10 days; Mass production in 30 days",
     moq: "1,000 - 2,500 Units",
+    image: "/images/services/formulation.png",
   },
   {
     slug: "private-label",
@@ -56,7 +58,7 @@ export const servicesData: ServiceDetail[] = [
     ],
     deliverables: [
       "Pre-tested bulk formulation with certified shelf life",
-      "Turnkey filled, capped, labeled, and shrink-banded finished units",
+      "Fully filled, capped, labeled, and shrink-banded finished units",
       "Batch COA and safety documentation for retail listing",
       "Export ready master outer cartons with barcode labeling",
     ],
@@ -67,6 +69,7 @@ export const servicesData: ServiceDetail[] = [
     ],
     timeline: "21 - 25 Business Days",
     moq: "From 500 Units",
+    image: "/images/services/private-label.png",
   },
   {
     slug: "contract-manufacturing",
@@ -79,7 +82,7 @@ export const servicesData: ServiceDetail[] = [
       "High-speed automated tube filling with hot-air crimping & coding",
       "Pharmaceutical-grade Class 100,000 cleanroom manufacturing suites",
       "Reverse Osmosis (RO) electro-deionized high-purity water plant",
-      "Flexible raw material sourcing: Turnkey or customer-consigned materials",
+      "Flexible raw material sourcing: In-house sourced or customer-consigned materials",
       "Batch-to-batch consistency with computerized PLC process controls",
     ],
     deliverables: [
@@ -95,6 +98,7 @@ export const servicesData: ServiceDetail[] = [
     ],
     timeline: "Scheduled recurring production runs (14-21 day cycles)",
     moq: "5,000 - 50,000+ Units",
+    image: "/images/services/contract-manufacturing.png",
   },
   {
     slug: "packaging-solutions",
@@ -123,5 +127,112 @@ export const servicesData: ServiceDetail[] = [
     ],
     timeline: "Integrated concurrently with formulation timeline",
     moq: "Aligned with product MOQ",
+    image: "/images/services/custom-packaging.png",
+  },
+];
+
+export interface ProcessStage {
+  step: string;
+  title: string;
+  description: string;
+  image: string;
+  highlights: string[];
+}
+
+export const oemProcessStages: ProcessStage[] = [
+  {
+    step: "01",
+    title: "Requirement Gathering",
+    description: "We understand your brand vision, target demographic, active ingredient preferences, and benchmark product profiling.",
+    image: "/images/services/requirement-gathering.png",
+    highlights: ["Target Skin Types", "Key Active Preferences", "Budget & Unit Projections"],
+  },
+  {
+    step: "02",
+    title: "Formula Modulation",
+    description: "Our cosmetic laboratory compounds active formulations, balances pH & viscosity, and carries out accelerated stability testing.",
+    image: "/images/services/formulation_new.png",
+    highlights: ["Custom Chemistry", "Viscosity Calibration", "Sensory Optimization"],
+  },
+  {
+    step: "03",
+    title: "Choose Your Product",
+    description: "Select from clinically tested skincare, haircare, body care, and specialty salon formulations crafted for peak performance.",
+    image: "/images/services/choose-your-product.png",
+    highlights: ["Clinical Serums", "Botanical Creams", "Professional Salon Formulations"],
+  },
+  {
+    step: "04",
+    title: "Choose Your Packaging",
+    description: "Pair with airless bottles, dropper bottles, squeeze tubes, or luxury jars with complete container compatibility verification.",
+    image: "/images/services/custom-packaging.png",
+    highlights: ["Airless Pumps & Droppers", "Recyclable Glass & PCR", "Hot-Stamping & Silk Screen"],
+  },
+  {
+    step: "05",
+    title: "Confirm Product & Packaging",
+    description: "Review physical bench prototypes, inspect regulatory artwork proofs, and approve final pilot batch formulations.",
+    image: "/images/services/modulation.jpg",
+    highlights: ["Physical Prototype Sign-off", "Legal INCI Artwork Check", "Pilot Batch Validation"],
+  },
+  {
+    step: "06",
+    title: "Manufacturing & Inspection",
+    description: "Automated Class 100,000 cleanroom production, inline QA checks, batch microbiology release testing, and pan-India dispatch.",
+    image: "/images/services/inspection.jpg",
+    highlights: ["Class 100,000 Suites", "Microbiology Testing", "Pan-India Secure Logistics"],
+  },
+];
+
+export interface ModulationStep {
+  stepNumber: string;
+  stepLabel: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export const formulaModulationSteps: ModulationStep[] = [
+  {
+    stepNumber: "01",
+    stepLabel: "STEP 1",
+    title: "Clarify Customer Demand",
+    description: "Deep-dive discovery to analyze your target active percentages, sensory texture profile, and market price targets.",
+    icon: "/images/services/services_icon_01.png",
+  },
+  {
+    stepNumber: "02",
+    stepLabel: "STEP 2",
+    title: "Fill in Detailed Proofing Form",
+    description: "Structured proofing submission specifying fragrance notes, packaging container dimensions, and regulatory benchmarks.",
+    icon: "/images/services/services_icon_02.png",
+  },
+  {
+    stepNumber: "03",
+    stepLabel: "STEP 3",
+    title: "Provide Proofing Sample",
+    description: "Laboratory bench compounding and rapid courier dispatch of sealed 50g-100ml prototypes within 7-10 working days.",
+    icon: "/images/services/services_icon_05.png",
+  },
+  {
+    stepNumber: "04",
+    stepLabel: "STEP 4",
+    title: "Sample Feedback & Confirmation",
+    description: "Structured client evaluation covering absorption velocity, skin-feel, scent longevity, and initial packaging fit.",
+    icon: "/images/services/services_icon_06.png",
+  },
+  {
+    stepNumber: "05",
+    stepLabel: "STEP 5",
+    title: "Sample Adjustment",
+    description: "Iterative bench modifications, emulsion stability adjustments, and texture recalibrations until 100% satisfaction.",
+    icon: "/images/services/services_icon_04.png",
+  },
+  {
+    stepNumber: "06",
+    stepLabel: "STEP 6",
+    title: "Quotation & Place Order",
+    description: "Clear tier pricing, commercial batch schedule lock-in, raw material reservation, and production launch.",
+    icon: "/images/services/services_icon_03.png",
   },
 ];

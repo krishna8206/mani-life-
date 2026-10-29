@@ -1,16 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
+import Image from "next/image";
 import {
   ShieldCheck,
-  CheckCircle2,
-  FileText,
-  Sparkles,
   Award,
   Globe2,
-  Microscope,
-  ArrowRight,
+  Leaf,
 } from "lucide-react";
 import { certificationsData } from "@/data/certifications";
 import QuoteModal from "@/components/QuoteModal";
@@ -18,185 +14,296 @@ import QuoteModal from "@/components/QuoteModal";
 export default function CertificationsPage() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
 
-  const testingProtocols = [
+  // 3 Quality Assurance Pillars
+  const qualityPillars = [
     {
-      title: "Physicochemical Assay Suite",
-      items: [
-        "Active ingredient assay via HPLC & UV-Vis spectrophotometry",
-        "Viscosity profiling using Brookfield digital viscometers",
-        "pH measurement with multi-point automated temperature calibration",
-        "Specific gravity and refractive index tracking per batch",
-      ],
+      step: "01",
+      title: "Raw Material Sourcing & Quarantine",
+      desc: "Every active compound, botanical extract, and packaging component undergoes analytical identity verification and certificate of analysis (COA) cross-checking before release to compounding.",
     },
     {
-      title: "Microbiological Safety Limits",
-      items: [
-        "Total Aerobic Microbial Count (TAMC < 100 CFU/g)",
-        "Total Combined Yeasts and Molds Count (TYMC < 10 CFU/g)",
-        "Absence of specified pathogens: Pseudomonas, Staph, Candida, E. coli",
-        "Bioburden monitoring of purified RO water lines every 24 hours",
-      ],
+      step: "02",
+      title: "In-Process Cleanroom Validation",
+      desc: "Continuous monitoring of batch temperature, mixing shear, and viscosity profiling within WHO-GMP compliant, HEPA-filtered compounding suites.",
     },
     {
-      title: "Heavy Metal Screening",
-      items: [
-        "Lead (Pb) < 10 ppm (Strictly below US/EU safety limits)",
-        "Arsenic (As) < 2 ppm",
-        "Mercury (Hg) < 1 ppm",
-        "Cadmium (Cd) < 0.5 ppm tested via Atomic Absorption Spectrometry",
-      ],
-    },
-    {
-      title: "Environmental Stability Chambers",
-      items: [
-        "Accelerated stability testing at 40°C ± 2°C / 75% RH ± 5% RH (90 days)",
-        "Real-time long term stability at 25°C / 60% RH (36 months)",
-        "Freeze-thaw thermal cycle testing (-5°C to 45°C)",
-        "Photostability exposure testing under high-intensity UV lamps",
-      ],
+      step: "03",
+      title: "Comprehensive Final Release Testing",
+      desc: "Multi-parameter laboratory clearance including microbial assays, pH verification, and stability checks before sealing and issuing batch documentation.",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-[#fdfcf7] text-[#0f172a]">
-      {/* Header */}
-      <section className="py-20 bg-gradient-to-b from-[#f8fafc] via-white to-[#f0f7fb] border-b border-slate-200 text-center">
-        <div className="max-w-4xl mx-auto px-4 space-y-3.5 sm:space-y-4">
-          {/* Brand Micro-header */}
-          <div className="flex items-center justify-center gap-2.5 mb-2">
-            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
-            <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
-              Certified Cosmetics Manufacturer • Ahmedabad, India
-            </span>
-            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
-          </div>
+    <div className="min-h-screen bg-[#f8fafc] text-[#0f172a] selection:bg-[#164666] selection:text-white font-sans antialiased">
+      {/* 1. HERO SECTION */}
+      <section className="relative w-full py-16 sm:py-20 lg:py-24 bg-[#f0f7fb] border-b border-slate-200 overflow-hidden">
+        {/* Soft Ambient Radial Lights */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-sky-100/40 rounded-full blur-3xl pointer-events-none" />
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif text-[#0f172a] font-normal leading-[1.12] tracking-tight">
-            International Standards &{" "}
-            <span className="font-serif italic font-light text-[#1b628b]">
-              Quality Accreditations.
-            </span>
-          </h1>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl space-y-4">
+            {/* Brand Micro-header */}
+            <p className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#1b628b]">
+              Quality Accreditations • Ahmedabad, Gujarat
+            </p>
 
-          <p className="text-xs sm:text-sm lg:text-[15px] text-[#475569] leading-relaxed font-normal max-w-2xl mx-auto">
-            Mani Lifestyle is a certified cosmetics manufacturing company based in Ahmedabad, India. We specialize in developing custom and white-label skincare and haircare products for startups, salons, and brands across India.
-          </p>
-        </div>
-      </section>
+            {/* Signature Title with Italic Accent */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[#0f172a] font-normal leading-[1.15] tracking-tight">
+              Trusted &{" "}
+              <span className="font-serif italic font-light text-[#1b628b]">
+                Certified
+              </span>
+            </h1>
 
-      {/* Certifications Detailed Grid */}
-      <section className="py-20 max-w-7xl mx-auto px-4">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs uppercase font-extrabold tracking-widest text-[#1b628b] bg-[#e0f2fe] px-3 py-1 rounded-full border border-[#bae6fd]">
-            Certified Facilities
-          </span>
-          <h2 className="text-3xl font-serif font-bold text-[#0f172a] mt-3">
-            Global Accreditations & Compliance
-          </h2>
-        </div>
+            <p className="text-sm sm:text-base text-[#64748b] leading-relaxed max-w-2xl font-normal pt-1">
+              Our commitment to excellence is backed by prestigious national and international quality accreditations, ensuring that every cosmetic formulation meets rigorous safety, purity, and clinical dermal benchmarks.
+            </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {certificationsData.map((cert) => (
-            <div
-              key={cert.id}
-              className="p-8 bg-white border border-[#e2e8f0] rounded-3xl flex flex-col justify-between space-y-6 shadow-xs hover:border-[#164666] hover:shadow-xl transition-all group"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#164666] bg-[#f0f7fb] px-3 py-1 rounded-full border border-[#bae6fd]">
-                    {cert.badgeCode}
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center">
-                    <CheckCircle2 className="w-5 h-5" />
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-3.5 pt-2">
+              <button
+                onClick={() => setIsQuoteOpen(true)}
+                className="px-7 py-3.5 bg-[#164666] hover:bg-[#10364f] text-white text-xs sm:text-sm font-semibold rounded-xl shadow-md shadow-[#164666]/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              >
+                Request Compliance Dossiers
+              </button>
+
+              <a
+                href="https://wa.me/919724681096?text=Hello%20Mani%20Lifestyle,%20I%20would%20like%20to%20learn%20more%20about%20your%20regulatory%20certifications."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3.5 bg-white hover:bg-slate-50 text-[#164666] border border-slate-200/90 hover:border-[#164666]/40 text-xs sm:text-sm font-semibold rounded-xl shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98]"
+              >
+                Contact Regulatory Plant (+91 97246 81096)
+              </a>
+            </div>
+
+            {/* 4 Trust Highlights Card Strip */}
+            <div className="pt-4 mt-2">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-white/70 backdrop-blur-xs p-3 rounded-2xl border border-[#d9ecf7] max-w-2xl shadow-xs">
+                <div className="flex items-center gap-2.5 py-1 px-2.5">
+                  <ShieldCheck className="w-4 h-4 text-[#164666] shrink-0" strokeWidth={1.8} />
+                  <div>
+                    <div className="text-[11px] sm:text-xs font-semibold text-[#0f172a] leading-tight">
+                      WHO-GMP &
+                    </div>
+                    <div className="text-[10px] text-[#64748b] leading-tight">
+                      ISO 9001:2015
+                    </div>
                   </div>
                 </div>
 
-                <div>
-                  <h3 className="text-xl font-serif font-bold text-[#0f172a] group-hover:text-[#1b628b] transition-colors">
-                    {cert.name}
-                  </h3>
-                  <div className="text-xs font-semibold text-[#736d62] mt-1">
-                    {cert.authority}
+                <div className="flex items-center gap-2.5 py-1 px-2.5">
+                  <Award className="w-4 h-4 text-[#164666] shrink-0" strokeWidth={1.8} />
+                  <div>
+                    <div className="text-[11px] sm:text-xs font-semibold text-[#0f172a] leading-tight">
+                      Ministry of
+                    </div>
+                    <div className="text-[10px] text-[#64748b] leading-tight">
+                      AYUSH Licensed
+                    </div>
                   </div>
                 </div>
 
-                <div className="text-xs text-[#524d45]">
-                  <strong className="text-[#0f172a] block mb-0.5">Scope of Certification:</strong>
-                  {cert.scope}
+                <div className="flex items-center gap-2.5 py-1 px-2.5">
+                  <Globe2 className="w-4 h-4 text-[#164666] shrink-0" strokeWidth={1.8} />
+                  <div>
+                    <div className="text-[11px] sm:text-xs font-semibold text-[#0f172a] leading-tight">
+                      FDA & FDCA
+                    </div>
+                    <div className="text-[10px] text-[#64748b] leading-tight">
+                      Export Ready
+                    </div>
+                  </div>
                 </div>
 
-                <p className="text-xs text-[#6e685f] leading-relaxed pt-2 border-t border-[#ece6d9]">
-                  {cert.importance}
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-[#ece6d9] flex items-center justify-between text-xs">
-                <span className="text-emerald-700 font-semibold flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5" /> Active Validated Audit
-                </span>
+                <div className="flex items-center gap-2.5 py-1 px-2.5">
+                  <Leaf className="w-4 h-4 text-[#164666] shrink-0" strokeWidth={1.8} />
+                  <div>
+                    <div className="text-[11px] sm:text-xs font-semibold text-[#0f172a] leading-tight">
+                      100% PETA
+                    </div>
+                    <div className="text-[10px] text-[#64748b] leading-tight">
+                      Animal Test-Free
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
-      {/* Analytical Testing Suite */}
-      <section className="py-20 bg-[#f7f4ec] border-y border-[#e2e8f0]">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs uppercase font-extrabold tracking-widest text-[#1b628b] bg-[#e0f2fe] px-3 py-1 rounded-full border border-[#bae6fd]">
-              Analytical Laboratory
-            </span>
-            <h2 className="text-3xl font-serif font-bold text-[#0f172a] mt-3">
-              In-House Testing & Verification Protocols
+      {/* 2. CERTIFICATIONS DISPLAY SECTION (From Reference Website) */}
+      <section className="relative py-18 sm:py-20 lg:py-24 bg-white border-b border-slate-200/80 overflow-hidden">
+        {/* Soft Ambient Radial Lights */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-sky-100/30 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+            <div className="flex items-center justify-center gap-2.5 mb-2.5">
+              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
+                Recognized Regulatory Accreditations
+              </span>
+              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif text-[#0f172a] font-normal leading-[1.15] tracking-tight">
+              Certified for Quality and{" "}
+              <span className="font-serif italic font-light text-[#1b628b]">
+                Reliability
+              </span>
             </h2>
-            <p className="text-xs sm:text-sm text-[#666055] mt-2">
-              Every production lot is subjected to physicochemical, microbiological, and stability validation before receiving quality release.
+
+            {/* Signature Underline Accent */}
+            <div className="w-16 h-1 bg-[#1b628b] rounded-full mx-auto mt-3.5 mb-3.5" />
+
+            <p className="text-sm sm:text-[15px] text-[#64748b] max-w-2xl mx-auto leading-relaxed font-normal">
+              Our dedication to high standards is recognized by industry-leading bodies, ensuring every product meets rigorous quality, purity, and safety benchmarks
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {testingProtocols.map((protocol, idx) => (
+          {/* 5 Certification Badges Showcase Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-6 max-w-7xl mx-auto mb-14 sm:mb-16">
+            {certificationsData.map((cert) => (
               <div
-                key={idx}
-                className="p-6 bg-white border border-[#e2e8f0] rounded-3xl shadow-xs space-y-3"
+                key={cert.id}
+                className="group relative bg-[#f8fafc] rounded-2xl p-6 sm:p-7 border border-slate-200/90 hover:border-[#1b628b]/40 shadow-xs hover:shadow-lg hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center"
               >
-                <div className="w-8 h-8 rounded-xl bg-[#f0f7fb] text-[#164666] border border-[#bae6fd] flex items-center justify-center font-bold text-xs font-serif">
-                  0{idx + 1}
+                {/* Official Badge Image Container */}
+                <div className="w-24 h-24 rounded-2xl bg-white border border-slate-200/80 flex items-center justify-center p-3 mb-5 shadow-2xs group-hover:scale-105 group-hover:border-[#1b628b]/40 transition-all duration-300">
+                  <Image
+                    src={cert.image}
+                    alt={cert.name}
+                    width={80}
+                    height={80}
+                    className="object-contain max-h-20 w-auto"
+                  />
                 </div>
-                <h3 className="text-base font-serif font-bold text-[#0f172a]">
-                  {protocol.title}
+
+                {/* Badge Tag */}
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1b628b] bg-white border border-[#d9ecf7] px-3 py-1 rounded-full mb-3 shadow-2xs">
+                  {cert.badgeCode}
+                </span>
+
+                {/* Title */}
+                <h3 className="text-base font-semibold text-[#0f172a] group-hover:text-[#1b628b] transition-colors leading-snug mb-1.5">
+                  {cert.name}
                 </h3>
-                <ul className="space-y-2 text-xs text-[#5c554a] pt-2 border-t border-[#ece6d9]">
-                  {protocol.items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-1.5">
-                      <span className="text-[#164666] font-bold">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+
+                {/* Authority */}
+                <p className="text-[11.5px] text-slate-500 font-medium mb-3">
+                  {cert.authority}
+                </p>
+
+                {/* Importance Summary */}
+                <p className="text-[12.5px] text-slate-600 leading-relaxed font-normal flex-1">
+                  {cert.importance}
+                </p>
               </div>
             ))}
+          </div>
+
+          {/* Authentic Editorial Narrative Box (From Reference Site) */}
+          <div className="max-w-5xl mx-auto bg-gradient-to-br from-white via-[#f0f7fb]/60 to-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 md:divide-x md:divide-slate-200/80">
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#164666]">
+                  <ShieldCheck className="w-4 h-4 text-[#1b628b]" />
+                  <span>Good Manufacturing Practices (GMP)</span>
+                </div>
+                <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                  Our commitment to excellence is deeply woven into every aspect of our manufacturing process. We adhere strictly to Good Manufacturing Practices (GMP), ensuring that all products are consistently produced and controlled according to quality standards appropriate to their intended use.
+                </p>
+              </div>
+
+              <div className="space-y-3 md:pl-8">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#164666]">
+                  <Award className="w-4 h-4 text-[#1b628b]" />
+                  <span>Quality Systems Accreditation</span>
+                </div>
+                <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                  This rigorous approach, combined with our ISO 9001:2015 certification, guarantees that our clients receive not just products, but a promise of unwavering quality, safety, and reliability. We continuously invest in advanced technology and staff training to uphold and surpass these high benchmarks.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Audit Dossier Request */}
-      <section className="py-16 max-w-4xl mx-auto px-4 text-center space-y-4">
-        <h3 className="text-2xl font-serif font-bold text-[#0f172a]">
-          Need Audit Packages & Regulatory Compliance Packs?
-        </h3>
-        <p className="text-xs text-[#5c554a] max-w-lg mx-auto">
-          We furnish complete audit dossiers, DMF files, allergen certificates, and stability test reports for retail registration in India and global export markets.
-        </p>
-        <button
-          onClick={() => setIsQuoteOpen(true)}
-          className="px-6 py-3 gold-button text-xs font-bold rounded-xl shadow-md transition-transform hover:scale-105"
-        >
-          Request Compliance Dossiers
-        </button>
+      {/* 3. OUR COMMITMENT TO QUALITY (From Reference Website) */}
+      <section className="relative py-18 sm:py-20 lg:py-24 bg-[#f8fafc] border-b border-slate-200/80 overflow-hidden">
+        {/* Soft Ambient Radial Lights */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-sky-100/30 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            {/* Left: Quality Image */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="relative w-full max-w-md lg:max-w-none">
+                <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-slate-200/90 bg-white shadow-xl shadow-slate-200/80 group">
+                  <Image
+                    src="/images/quality.png"
+                    alt="Two scientists reviewing data on a tablet in a modern laboratory"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Commitment Narrative & Steps */}
+            <div className="lg:col-span-7">
+              <div className="flex items-center gap-2.5 mb-2.5">
+                <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+                <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
+                  Uncompromising Standards
+                </span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif text-[#0f172a] font-normal leading-[1.15] tracking-tight">
+                Our Commitment to{" "}
+                <span className="font-serif italic font-light text-[#1b628b]">
+                  Quality
+                </span>
+              </h2>
+
+              <div className="w-14 h-1 bg-[#1b628b] rounded-full mt-3.5 mb-3.5" />
+
+              <p className="text-sm sm:text-[15px] text-[#64748b] leading-relaxed max-w-xl mb-7 font-normal">
+                At Mani Lifestyle, quality is not just a goal; it is the foundation of everything we do. From the meticulous sourcing of raw materials to the final packaging, each stage of production is subjected to stringent quality control checks.
+              </p>
+
+              {/* 3 Quality Assurance Steps */}
+              <div className="space-y-3 sm:space-y-3.5">
+                {qualityPillars.map((pillar) => (
+                  <div
+                    key={pillar.step}
+                    className="group flex items-start gap-4 p-4 rounded-xl bg-white border border-slate-200/80 hover:border-[#1b628b]/40 shadow-xs hover:shadow-sm transition-all duration-300"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-[#f0f7fb] border border-[#d2e7f5] text-[#164666] flex items-center justify-center font-bold text-xs font-serif shrink-0 mt-0.5 group-hover:bg-[#164666] group-hover:text-white group-hover:border-[#164666] transition-all">
+                      {pillar.step}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-sm sm:text-[14.5px] font-semibold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug">
+                        {pillar.title}
+                      </h3>
+                      <p className="text-xs text-slate-500 leading-relaxed font-normal mt-0.5">
+                        {pillar.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
+      {/* Quote RFQ Modal */}
       <QuoteModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
     </div>
   );

@@ -23,29 +23,24 @@ export const navigationLinks: NavItem[] = [
     href: "/services",
     children: [
       {
-        label: "Overview of Solutions",
-        href: "/services",
-        description: "Explore Mani Lifestyle's turnkey B2B manufacturing capabilities",
-      },
-      {
-        label: "Private Label (OEM)",
-        href: "/services/private-label",
-        description: "Pre-tested skincare & salon formulations ready for fast 21-day launch",
-      },
-      {
         label: "Custom Formulation (ODM)",
         href: "/services/custom-formulation",
-        description: "Bespoke bench formulation & active percentage R&D to your brief",
       },
       {
-        label: "Third-Party Contract Compounding",
+        label: "Private Label Manufacturing (OEM)",
+        href: "/services/private-label",
+      },
+      {
+        label: "Contract & Third-Party Manufacturing",
         href: "/services/contract-manufacturing",
-        description: "High-capacity automated blending, filling & batch scaling",
       },
       {
         label: "Packaging Design & Sourcing",
         href: "/services/packaging-solutions",
-        description: "Airless pumps, amber droppers, tubes, jars & regulatory labeling",
+      },
+      {
+        label: "Overview of Solutions",
+        href: "/services",
       },
     ],
   },

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
   FlaskConical,
@@ -34,27 +35,40 @@ export default async function ServiceDetailPage({
   }
 
   return (
-    <div className="min-h-screen bg-[#fdfcf7] text-[#0f172a]">
+    <div className="min-h-screen bg-[#f8fafc] text-[#0f172a]">
       {/* Breadcrumb & Header */}
-      <section className="py-16 bg-gradient-to-b from-[#f8fafc] via-[#fdfcf7] to-[#f8f5ed] border-b border-[#e2e8f0]">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-16 bg-gradient-to-b from-[#f0f7fb] via-[#f8fafc] to-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             href="/services"
-            className="inline-flex items-center gap-1.5 text-xs text-[#164666] hover:text-[#6a501a] font-bold mb-4 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs text-[#164666] hover:text-[#0f172a] font-bold mb-6 transition-colors"
           >
             <ChevronLeft className="w-4 h-4" /> Back to All Services
           </Link>
 
-          <div className="max-w-3xl space-y-4">
-            <span className="text-xs uppercase font-extrabold tracking-widest text-[#1b628b] bg-[#e0f2fe] px-3 py-1 rounded-full border border-[#bae6fd] inline-block">
-              {service.tagline}
-            </span>
-            <h1 className="text-4xl sm:text-5xl font-serif font-bold text-[#0f172a]">
-              {service.title}
-            </h1>
-            <p className="text-base text-[#5c554a] leading-relaxed">
-              {service.fullDesc}
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8 space-y-4">
+              <span className="text-xs uppercase font-extrabold tracking-widest text-[#1b628b] bg-[#e0f2fe] px-3.5 py-1 rounded-full border border-[#bae6fd] inline-block">
+                {service.tagline}
+              </span>
+              <h1 className="text-3xl sm:text-5xl font-serif font-normal text-[#0f172a] tracking-tight">
+                {service.title}
+              </h1>
+              <p className="text-sm sm:text-base text-[#475569] leading-relaxed max-w-2xl font-normal">
+                {service.fullDesc}
+              </p>
+            </div>
+
+            <div className="lg:col-span-4 relative h-56 sm:h-64 rounded-2xl overflow-hidden border border-slate-200 shadow-lg bg-[#edf4f9]">
+              <Image
+                src={service.image}
+                alt={service.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/40 via-transparent to-transparent" />
+            </div>
           </div>
         </div>
       </section>

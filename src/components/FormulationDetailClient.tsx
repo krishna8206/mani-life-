@@ -174,7 +174,7 @@ export default function FormulationDetailClient({
             <div className="flex items-center justify-center gap-2.5 mb-2.5">
               <span className="w-8 h-[1.5px] bg-[#4a728e]" />
               <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
-                Turnkey Manufacturing Excellence
+                Indian Manufacturing Excellence
               </span>
               <span className="w-8 h-[1.5px] bg-[#4a728e]" />
             </div>

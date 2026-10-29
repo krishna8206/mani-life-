@@ -138,9 +138,71 @@
   animation: float-up 2.5s ease-in-out infinite;
 }
 
-/* Delicate smooth transitions */
-* {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow, transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+/* Micro-animations & Slider Transitions */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
 }
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 15px rgba(27, 98, 139, 0.15); }
+  50% { box-shadow: 0 0 30px rgba(27, 98, 139, 0.35); }
+}
+
+@keyframes progress-fill {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes slide-in-next {
+  0% { opacity: 0; transform: translateX(30px) scale(0.98); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes slide-in-prev {
+  0% { opacity: 0; transform: translateX(-30px) scale(0.98); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  100% { transform: translateX(250%) skewX(-20deg); }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.slide-next-animation {
+  animation: slide-in-next 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.slide-prev-animation {
+  animation: slide-in-prev 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.shimmer-sweep-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-sweep-hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-150%) skewX(-20deg);
+  pointer-events: none;
+}
+
+.shimmer-sweep-hover:hover::after {
+  animation: shimmer-sweep 1.2s ease-in-out;
+}
+

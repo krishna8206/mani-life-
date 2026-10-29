@@ -1567,7 +1567,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
   ],
   "expandHeadline": "Expand Your Skincare Line with Confidence",
   "expandParagraphs": [
-    "Mani Lifestyle offers comprehensive private label services for your brand's coffee face wash line. We provide a complete turnkey solution, from developing a unique custom formulation that aligns with your brand’s vision to sourcing premium packaging and designing eye-catching labels. Our goal is to make your product launch seamless and successful.",
+    "Mani Lifestyle offers comprehensive private label services for your brand's coffee face wash line. We provide a complete end-to-end solution, from developing a unique custom formulation that aligns with your brand’s vision to sourcing premium packaging and designing eye-catching labels. Our goal is to make your product launch seamless and successful.",
     "As an experienced contract manufacturer, we understand the needs of both emerging startups and established brands. We offer flexible MOQs (Minimum Order Quantities) and a reliable supply chain to help you scale your business. Our expertise extends to creating natural and organic coffee face washes, ensuring your products meet the growing demand for clean and sustainable beauty."
   ]
 },
@@ -1629,7 +1629,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
   ],
   "expandHeadline": "Expand Your Skincare Line with Confidence",
   "expandParagraphs": [
-    "Mani Lifestyle offers comprehensive private label services for your brand's coffee face wash line. We provide a complete turnkey solution, from developing a unique custom formulation that aligns with your brand’s vision to sourcing premium packaging and designing eye-catching labels. Our goal is to make your product launch seamless and successful.",
+    "Mani Lifestyle offers comprehensive private label services for your brand's coffee face wash line. We provide a complete end-to-end solution, from developing a unique custom formulation that aligns with your brand’s vision to sourcing premium packaging and designing eye-catching labels. Our goal is to make your product launch seamless and successful.",
     "As an experienced contract manufacturer, we understand the needs of both emerging startups and established brands. We offer flexible MOQs (Minimum Order Quantities) and a reliable supply chain to help you scale your business. Our expertise extends to creating natural and organic coffee face washes, ensuring your products meet the growing demand for clean and sustainable beauty."
   ]
 },
@@ -2322,7 +2322,7 @@ export function getFormulationDetail(productSlug: string, categorySlug?: string)
       },
       {
         title: "Private Label & OEM Expertise",
-        description: `Complete turnkey development from initial bench sampling and packaging sourcing to carton design and label compliance.`
+        description: `Complete development from initial bench sampling and packaging sourcing to carton design and label compliance.`
       },
       {
         title: "Premium Safe Ingredients",

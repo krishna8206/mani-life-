@@ -12,7 +12,7 @@ interface QuoteModalProps {
 export default function QuoteModal({
   isOpen,
   onClose,
-  preselectedCategory = "Clinical Face Serums",
+  preselectedCategory = "Clinical Face Serum",
 }: QuoteModalProps) {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({

@@ -25,6 +25,9 @@ import {
   Heart,
 } from "lucide-react";
 import QuoteModal from "@/components/QuoteModal";
+import TactileCategoryCard from "@/components/TactileCategoryCard";
+import CosmeticAmbientBackground from "@/components/CosmeticAmbientBackground";
+import { motion } from "framer-motion";
 
 // --- CUSTOM SVG CATEGORY ICONS MATCHING REFERENCE EXACTLY ---
 
@@ -167,66 +170,37 @@ const personalCareCards: PersonalCareCard[] = [
   },
 ];
 
-function PersonalCareCardItem({ card }: { card: PersonalCareCard }) {
-  const IconComponent = card.icon;
+function PersonalCareCardItem({
+  card,
+  index,
+  priority = false,
+}: {
+  card: PersonalCareCard;
+  index: number;
+  priority?: boolean;
+}) {
   return (
-    <Link
-      href={`/products/${card.categorySlug}`}
-      className="relative flex items-center group transition-all duration-300 hover:-translate-y-2 cursor-pointer select-none"
-      style={{ width: "295px", height: "270px" }}
+    <motion.div
+      initial={{ opacity: 0, y: 50, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{
+        duration: 0.65,
+        delay: (index % 3) * 0.14,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="w-full flex justify-center"
     >
-      {/* Uniform Arch Container with Product Photo on Stone Pedestal */}
-      <div
-        className="relative rounded-t-full rounded-b-[2rem] overflow-hidden shadow-md shrink-0 border border-slate-200/70 bg-gradient-to-b from-[#eae2d5] to-[#f6f2ec]"
-        style={{ width: "132px", height: "270px" }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={card.archImage}
-          alt={card.title}
-          className="w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-500"
-          loading="eager"
-        />
-      </div>
-
-      {/* Uniform Overlapping Floating White Content Card */}
-      <div
-        className="relative -ml-11 z-10 bg-white/98 backdrop-blur-md rounded-[1.75rem] p-4.5 shadow-xl shadow-slate-900/6 border border-white/90 flex flex-col justify-between group-hover:shadow-2xl group-hover:shadow-slate-900/10 transition-all duration-300"
-        style={{ width: "185px", height: "250px" }}
-      >
-        <div>
-          {/* Category Icon Badge */}
-          <div className="w-10 h-10 rounded-full border border-sky-100 bg-white flex items-center justify-center text-[#164666] shadow-2xs mb-2">
-            <IconComponent className="w-5 h-5 text-[#164666]" />
-          </div>
-
-          {/* Title */}
-          <h3 className="font-serif text-lg font-bold text-[#0f2b3e] tracking-tight leading-snug">
-            {card.title}
-          </h3>
-
-          {/* Bullet Items with Leaf */}
-          <ul className="mt-2 space-y-1 text-xs text-slate-600 font-medium h-[84px] flex flex-col justify-start">
-            {card.items.map((item, idx) => (
-              <li key={idx} className="flex items-center gap-1.5 leading-tight">
-                <LeafBullet />
-                <span className="truncate">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* View Products Button */}
-        <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-          <span className="text-xs font-semibold text-[#0f2b3e] group-hover:text-[#164666] transition-colors">
-            View Products
-          </span>
-          <span className="w-7 h-7 rounded-full bg-sky-100 group-hover:bg-[#164666] text-[#164666] group-hover:text-white flex items-center justify-center transition-all duration-200 shadow-2xs">
-            <ArrowRight className="w-3.5 h-3.5" />
-          </span>
-        </div>
-      </div>
-    </Link>
+      <TactileCategoryCard
+        id={card.id}
+        title={card.title}
+        archImage={card.archImage}
+        categorySlug={card.categorySlug}
+        icon={card.icon}
+        items={card.items}
+        priority={priority}
+      />
+    </motion.div>
   );
 }
 
@@ -352,66 +326,38 @@ const skinCareCategories: SkinCareCategory[] = [
   },
 ];
 
-function SkinCareCardItem({ category }: { category: SkinCareCategory }) {
-  const IconComponent = category.icon;
+function SkinCareCardItem({
+  category,
+  index,
+  priority = false,
+}: {
+  category: SkinCareCategory;
+  index: number;
+  priority?: boolean;
+}) {
   return (
-    <Link
-      href={`/products/${category.categorySlug}`}
-      className="relative flex items-center group transition-all duration-300 hover:-translate-y-2 cursor-pointer select-none"
-      style={{ width: "295px", height: "270px" }}
+    <motion.div
+      initial={{ opacity: 0, y: 50, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{
+        duration: 0.65,
+        delay: (index % 3) * 0.14,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="w-full flex justify-center"
     >
-      {/* Uniform Arch Container with Product Photo on Stone Pedestal */}
-      <div
-        className="relative rounded-t-full rounded-b-[2rem] overflow-hidden shadow-md shrink-0 border border-slate-200/70 bg-gradient-to-b from-[#eae2d5] to-[#f6f2ec]"
-        style={{ width: "132px", height: "270px" }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={category.archImage}
-          alt={category.title}
-          className="w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-500"
-          loading="lazy"
-        />
-      </div>
-
-      {/* Uniform Overlapping Floating White Content Card */}
-      <div
-        className="relative -ml-11 z-10 bg-white/98 backdrop-blur-md rounded-[1.75rem] p-4.5 shadow-xl shadow-slate-900/6 border border-white/90 flex flex-col justify-between group-hover:shadow-2xl group-hover:shadow-slate-900/10 transition-all duration-300"
-        style={{ width: "185px", height: "250px" }}
-      >
-        <div>
-          {/* Category Icon Badge */}
-          <div className="w-10 h-10 rounded-full border border-sky-100 bg-white flex items-center justify-center text-[#164666] shadow-2xs mb-2">
-            <IconComponent className="w-5 h-5 text-[#164666]" />
-          </div>
-
-          {/* Title */}
-          <h3 className="font-serif text-lg font-bold text-[#0f2b3e] tracking-tight leading-snug">
-            {category.title}
-          </h3>
-
-          {/* Bullet Items with Leaf */}
-          <ul className="mt-2 space-y-1 text-xs text-slate-600 font-medium h-[84px] flex flex-col justify-start">
-            {category.items.map((item, idx) => (
-              <li key={idx} className="flex items-center gap-1.5 leading-tight">
-                <LeafBullet />
-                <span className="truncate">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* View Products Button */}
-        <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-          <span className="text-xs font-semibold text-[#0f2b3e] group-hover:text-[#164666] transition-colors">
-            View Products
-          </span>
-          <span className="w-7 h-7 rounded-full bg-sky-100 group-hover:bg-[#164666] text-[#164666] group-hover:text-white flex items-center justify-center transition-all duration-200 shadow-2xs">
-            <ArrowRight className="w-3.5 h-3.5" />
-          </span>
-        </div>
-      </div>
-    </Link>
+      <TactileCategoryCard
+        id={category.id}
+        title={category.title}
+        archImage={category.archImage}
+        categorySlug={category.categorySlug}
+        icon={category.icon}
+        items={category.items}
+        tag={category.tag}
+        priority={priority}
+      />
+    </motion.div>
   );
 }
 
@@ -446,12 +392,11 @@ export default function ProductsPage() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#0f172a] selection:bg-[#164666] selection:text-white relative overflow-hidden">
-      {/* Atmospheric Soft Ambient Radiance matching Homepage */}
-      <div className="absolute top-1/4 -right-20 w-[550px] h-[550px] bg-[#d3e9f7]/50 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-3/4 -left-20 w-[450px] h-[450px] bg-[#e6f2fa]/60 rounded-full blur-3xl pointer-events-none" />
+      {/* --- PREMIUM ZERO-LAG COSMETIC AMBIENT BACKGROUND ANIMATION --- */}
+      <CosmeticAmbientBackground />
 
       {/* --- 1. HERO SECTION (THEMED WITH HOMEPAGE DESIGN SYSTEM) --- */}
-      <section className="relative w-full pt-16 pb-12 sm:pt-20 sm:pb-16 text-center bg-gradient-to-br from-[#ffffff] via-[#f1f7fb] to-[#e4f0f7] border-b border-slate-200/80 px-4">
+      <section className="relative w-full pt-16 pb-12 sm:pt-20 sm:pb-16 text-center bg-white/45 backdrop-blur-sm border-b border-sky-200/40 px-4">
         <div className="max-w-4xl mx-auto space-y-4">
           {/* Brand Micro-header */}
           <div className="flex items-center justify-center gap-2.5">
@@ -504,7 +449,7 @@ export default function ProductsPage() {
       </section>
 
       {/* --- 2. PERSONAL CARE RANGE (EXACT ALIGN STYLE PRESERVED) --- */}
-      <section className="max-w-[1340px] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative z-10">
+      <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative z-10">
         <div className="text-center mb-10 sm:mb-12 space-y-2">
           <div className="flex items-center justify-center gap-2.5">
             <span className="w-8 h-[1.5px] bg-[#4a728e]" />
@@ -524,9 +469,9 @@ export default function ProductsPage() {
 
         {searchQuery ? (
           filteredPersonalCare.length > 0 ? (
-            <div className="flex flex-wrap items-center justify-center gap-6 xl:gap-8">
-              {filteredPersonalCare.map((card) => (
-                <PersonalCareCardItem key={card.id} card={card} />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 xl:gap-12 justify-items-center">
+              {filteredPersonalCare.map((card, idx) => (
+                <PersonalCareCardItem key={card.id} card={card} index={idx} priority={idx < 3} />
               ))}
             </div>
           ) : (
@@ -535,26 +480,16 @@ export default function ProductsPage() {
             </div>
           )
         ) : (
-          <>
-            {/* ROW 1: 4 Cards with Exactly Equal Dimensions & Baseline */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8 justify-items-center">
-              {personalCareCards.slice(0, 4).map((card) => (
-                <PersonalCareCardItem key={card.id} card={card} />
-              ))}
-            </div>
-
-            {/* ROW 2: 2 Centered Cards with Identical Dimensions & Proportions */}
-            <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-6 xl:gap-8">
-              {personalCareCards.slice(4, 6).map((card) => (
-                <PersonalCareCardItem key={card.id} card={card} />
-              ))}
-            </div>
-          </>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 xl:gap-12 justify-items-center">
+            {personalCareCards.map((card, idx) => (
+              <PersonalCareCardItem key={card.id} card={card} index={idx} priority={idx < 3} />
+            ))}
+          </div>
         )}
       </section>
 
       {/* --- 3. SKIN CARE RANGE (THE REMAINING SECTION FROM THE LIVE LINK) --- */}
-      <section className="max-w-[1340px] mx-auto px-4 sm:px-6 lg:px-8 pb-20 relative z-10">
+      <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pb-20 relative z-10">
         <div className="text-center mb-10 sm:mb-12 space-y-2">
           <div className="flex items-center justify-center gap-2.5">
             <span className="w-8 h-[1.5px] bg-[#4a728e]" />
@@ -573,9 +508,9 @@ export default function ProductsPage() {
         </div>
 
         {filteredSkinCare.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8 justify-items-center">
-            {filteredSkinCare.map((category) => (
-              <SkinCareCardItem key={category.id} category={category} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 xl:gap-12 justify-items-center">
+            {filteredSkinCare.map((category, idx) => (
+              <SkinCareCardItem key={category.id} category={category} index={idx} priority={idx < 3} />
             ))}
           </div>
         ) : (

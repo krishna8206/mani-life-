@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mani Lifestyle - 360° Turntable Product Showcase Prototype</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 20%, #f4ede4 0%, #e8decb 50%, #d8caa7 100%);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      color: #1e293b;
+      overflow-x: hidden;
+    }
+
+    .demo-header {
+      text-align: center;
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+
+    .demo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #78350f;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .demo-badge .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .demo-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .demo-sub {
+      font-size: 14px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    /* --- CARDS CONTAINER --- */
+    .cards-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 36px;
+      perspective: 1200px;
+    }
+
+    /* --- LUXURY SCULPTURAL ARCH CARD --- */
+    .luxury-arch-card {
+      position: relative;
+      width: 360px;
+      height: 520px;
+      border-radius: 180px 180px 32px 32px;
+      background: linear-gradient(180deg, #faf7f2 0%, #f3eee3 60%, #e7dcce 100%);
+      box-shadow: 
+        0 25px 50px -12px rgba(15, 23, 42, 0.12),
+        0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+        0 1px 3px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 24px 28px;
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+      user-select: none;
+    }
+
+    .luxury-arch-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 
+        0 35px 65px -15px rgba(15, 23, 42, 0.18),
+        0 0 0 1px rgba(255, 255, 255, 0.95) inset;
+    }
+
+    /* Arched Sub-Header Banner */
+    .card-category-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+
+    .curved-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0f2b3e;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    /* --- 3D TURNTABLE STAGE --- */
+    .stage-container {
+      position: relative;
+      width: 100%;
+      height: 290px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1000px;
+    }
+
+    /* Travertine Round Stone Pedestal */
+    .stone-pedestal {
+      position: absolute;
+      bottom: 15px;
+      width: 220px;
+      height: 52px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 50% 35%, #fffdfa 0%, #ece2d2 60%, #c9b99f 100%);
+      box-shadow: 
+        0 16px 28px rgba(30, 20, 10, 0.25),
+        0 4px 10px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+      z-index: 1;
+    }
+
+    .stone-pedestal::after {
+      content: '';
+      position: absolute;
+      bottom: -18px;
+      left: 15px;
+      right: 15px;
+      height: 25px;
+      border-radius: 50%;
+      background: rgba(30, 20, 10, 0.25);
+      filter: blur(10px);
+      z-index: -1;
+    }
+
+    /* Turntable Dynamic Shadow on Pedestal */
+    .pedestal-shadow {
+      position: absolute;
+      bottom: 35px;
+      width: 110px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(30, 20, 10, 0.35);
+      filter: blur(6px);
+      z-index: 2;
+      animation: shadowPulse 6s ease-in-out infinite;
+    }
+
+    @keyframes shadowPulse {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.45; }
+      50% { transform: scale(0.92) rotate(180deg); opacity: 0.35; }
+    }
+
+    /* --- 360° SPINNING BOTTLE WRAPPER --- */
+    .bottle-spinner-stage {
+      position: relative;
+      width: 140px;
+      height: 250px;
+      transform-style: preserve-3d;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: continuousSpin 7s linear infinite;
+      transition: filter 0.3s ease;
+    }
+
+    /* PAUSE ON HOVER (AS REQUESTED BY USER) */
+    .luxury-arch-card:hover .bottle-spinner-stage,
+    .luxury-arch-card:hover .pedestal-shadow {
+      animation-play-state: paused;
+    }
+
+    @keyframes continuousSpin {
+      0% {
+        transform: rotateY(0deg);
+      }
+      100% {
+        transform: rotateY(360deg);
+      }
+    }
+
+    /* Realistic 3D Glass Dropper Bottle Mockup Component */
+    .bottle-3d {
+      position: relative;
+      width: 86px;
+      height: 190px;
+      transform-style: preserve-3d;
+    }
+
+    /* Dropper Pipette Top */
+    .pipette-bulb {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 26px;
+      height: 26px;
+      border-radius: 50% 50% 12% 12%;
+      background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
+      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.9), 0 2px 5px rgba(0,0,0,0.15);
+      z-index: 4;
+    }
+
+    /* Gold / Metallic Collar Ring */
+    .dropper-collar {
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 38px;
+      height: 18px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #c5a059 0%, #fdf0cd 35%, #ecd08c 50%, #b38a42 80%, #7d5e23 100%);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      z-index: 5;
+    }
+
+    /* Frosted Glass Main Body */
+    .bottle-body {
+      position: absolute;
+      top: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 78px;
+      height: 148px;
+      border-radius: 12px 12px 16px 16px;
+      background: linear-gradient(
+        105deg,
+        rgba(255, 255, 255, 0.85) 0%,
+        rgba(251, 240, 222, 0.7) 25%,
+        rgba(217, 184, 142, 0.6) 50%,
+        rgba(255, 255, 255, 0.9) 70%,
+        rgba(180, 140, 95, 0.75) 100%
+      );
+      backdrop-filter: blur(10px);
+      box-shadow: 
+        0 10px 24px rgba(100, 70, 40, 0.18),
+        inset 2px 0 6px rgba(255, 255, 255, 0.9),
+        inset -2px 0 6px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Glossy Light Reflection Sweep on Glass */
+    .glass-glare {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 35%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.6) 50%, transparent 100%);
+      filter: blur(2px);
+    }
+
+    /* Label on Bottle */
+    .bottle-label {
+      width: 62px;
+      height: 82px;
+      background: #fafaf9;
+      border-radius: 4px;
+      padding: 8px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      border: 0.5px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .label-badge {
+      font-size: 6px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #94a3b8;
+    }
+
+    .label-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 9px;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .label-desc {
+      font-size: 5.5px;
+      color: #64748b;
+      line-height: 1.2;
+    }
+
+    /* --- FROSTED GLASS FLOATING SPEC BADGE (BOTTOM RIGHT) --- */
+    .floating-spec-badge {
+      position: absolute;
+      bottom: 68px;
+      right: 18px;
+      width: 170px;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 18px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 
+        0 12px 30px rgba(15, 23, 42, 0.09),
+        0 1px 2px rgba(0, 0, 0, 0.04);
+      z-index: 10;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .luxury-arch-card:hover .floating-spec-badge {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.14);
+    }
+
+    .spec-num {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #94a3b8;
+      text-transform: uppercase;
+    }
+
+    .spec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f2b3e;
+      margin: 2px 0 4px;
+      line-height: 1.15;
+    }
+
+    .spec-actives {
+      font-size: 10.5px;
+      color: #475569;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .spec-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .spec-tag {
+      font-size: 8.5px;
+      font-weight: 600;
+      color: #164666;
+      background: rgba(22, 70, 102, 0.08);
+      padding: 2px 7px;
+      border-radius: 9999px;
+    }
+
+    /* --- BOTTOM ACTION BAR --- */
+    .card-footer {
+      width: 100%;
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      z-index: 10;
+    }
+
+    .explore-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0f2b3e;
+      color: #ffffff;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 12px rgba(15, 43, 62, 0.2);
+    }
+
+    .luxury-arch-card:hover .explore-btn {
+      background: #164666;
+      transform: translateX(2px);
+    }
+
+    .explore-btn svg {
+      width: 13px;
+      height: 13px;
+      transition: transform 0.2s ease;
+    }
+
+    .luxury-arch-card:hover .explore-btn svg {
+      transform: translateX(3px);
+    }
+
+    .moq-info {
+      font-size: 10px;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    /* Hover hint tooltip */
+    .hover-hint {
+      margin-top: 25px;
+      font-size: 12px;
+      color: #78350f;
+      background: rgba(254, 243, 199, 0.8);
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      padding: 8px 18px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="demo-header">
+    <div class="demo-badge">
+      <span class="pulse-dot"></span>
+      Interactive 360° Turntable Preview
+    </div>
+    <h1 class="demo-title">Sculptural Arch & 360° Rotation</h1>
+    <p class="demo-sub">Continuous turntable spin that automatically pauses when hovered</p>
+  </div>
+
+  <div class="cards-row">
+    <!-- CARD 1: SERUMS -->
+    <div class="luxury-arch-card" id="serum-card">
+      <div class="card-category-label">Formulation 01</div>
+      <div class="curved-tagline">Natural Radiance</div>
+
+      <div class="stage-container">
+        <!-- Pedestal shadow -->
+        <div class="pedestal-shadow"></div>
+        <!-- Stone Pedestal -->
+        <div class="stone-pedestal"></div>
+
+        <!-- 360° Rotating Bottle -->
+        <div class="bottle-spinner-stage">
+          <div class="bottle-3d">
+            <div class="pipette-bulb"></div>
+            <div class="dropper-collar"></div>
+            <div class="bottle-body">
+              <div class="glass-glare"></div>
+              <div class="bottle-label">
+                <span class="label-badge">Mani Life</span>
+                <span class="label-title">Radiance<br>Serum</span>
+                <span class="label-desc">Vit C 15%<br>Hyaluronic</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Glassmorphism Spec Badge -->
+        <div class="floating-spec-badge">
+          <div class="spec-num">No. 01 &bull; Active Serum</div>
+          <div class="spec-title">Radiance Concentrate</div>
+          <div class="spec-actives">Hyaluronic Acid &bull; Rosehip</div>
+          <div class="spec-tags">
+            <span class="spec-tag">Clean</span>
+            <span class="spec-tag">Vegan</span>
+            <span class="spec-tag">MOQ 500</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <span class="moq-info">Ahmedabad Lab</span>
+        <div class="explore-btn">
+          <span>Explore Actives</span>
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hover-hint">
+    <span>💡 Cursor card par le jao to 360° rotation <strong>PAUSE</strong> ho jayega, cursor hataoge to wapas ghoomna shuru ho jayega!</span>
+  </div>
+
+</body>
+</html>

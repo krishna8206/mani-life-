@@ -206,3 +206,201 @@
   animation: shimmer-sweep 1.2s ease-in-out;
 }
 
+/* --- TACTILE GLASS LIGHT SHEEN SWEEP --- */
+@keyframes glass-sheen-sweep {
+  0% {
+    transform: translateX(-160%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-20deg);
+  }
+}
+
+.group:hover .glass-sheen-effect {
+  animation: glass-sheen-sweep 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* --- LUXURY AMBIENT COSMETIC BACKGROUND ANIMATIONS (ZERO-LAG GPU COMPOSITED) --- */
+@keyframes ambient-morph-float-1 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate3d(50px, -40px, 0) scale(1.12) rotate(6deg);
+  }
+  66% {
+    transform: translate3d(-35px, 35px, 0) scale(0.92) rotate(-5deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes ambient-morph-float-2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate3d(-60px, 45px, 0) scale(0.94) rotate(-8deg);
+  }
+  66% {
+    transform: translate3d(40px, -50px, 0) scale(1.15) rotate(7deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes ambient-morph-float-3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(45px, -35px, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes cosmetic-mote-rise {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.15;
+  }
+  40% {
+    opacity: 0.75;
+  }
+  70% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate3d(15px, -65px, 0);
+    opacity: 0.1;
+  }
+}
+
+@keyframes subtle-beam-shimmer {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scaleX(0.95);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scaleX(1.05);
+  }
+}
+
+.animate-ambient-1 {
+  animation: ambient-morph-float-1 22s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+}
+
+.animate-ambient-2 {
+  animation: ambient-morph-float-2 26s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+}
+
+.animate-ambient-3 {
+  animation: ambient-morph-float-3 18s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+}
+
+.animate-mote {
+  animation: cosmetic-mote-rise 10s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+.animate-beam-shimmer {
+  animation: subtle-beam-shimmer 8s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+/* --- VIVID COSMETIC SERUM GLASS BUBBLES --- */
+@keyframes bubble-rise {
+  0% {
+    transform: translate3d(0, 105vh, 0) scale(0.65);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(var(--drift-x, 25px), -12vh, 0) scale(1.15);
+    opacity: 0;
+  }
+}
+
+@keyframes bubble-wobble-slow {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+}
+
+.animate-bubble-rise {
+  animation-name: bubble-rise;
+  animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1);
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
+
+/* --- VIBRANT AURORA ORB ORBIT --- */
+@keyframes fluid-orb-pulse-1 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(80px, 60px, 0) scale(1.22) rotate(18deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes fluid-orb-pulse-2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(-70px, -60px, 0) scale(0.85) rotate(-16deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes fluid-orb-pulse-3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(60px, -80px, 0) scale(1.18);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-fluid-1 {
+  animation: fluid-orb-pulse-1 16s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-fluid-2 {
+  animation: fluid-orb-pulse-2 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-fluid-3 {
+  animation: fluid-orb-pulse-3 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+
+

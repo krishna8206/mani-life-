@@ -8,7 +8,7 @@ import { ArrowRight } from "lucide-react";
 function LeafBullet() {
   return (
     <svg
-      className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#164666] shrink-0 transition-transform duration-300 group-hover:scale-110"
+      className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-[#164666] shrink-0 transition-transform duration-300 group-hover:scale-110"
       viewBox="0 0 24 24"
       fill="currentColor"
     >
@@ -69,7 +69,7 @@ export function TactileCategoryCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative flex items-center justify-center group cursor-pointer select-none transition-all duration-500 ease-out shrink-0 w-full max-w-[396px] h-[308px] sm:h-[348px]"
+      className="relative flex items-center justify-center group cursor-pointer select-none transition-all duration-500 ease-out w-full max-w-[340px] xs:max-w-[360px] sm:max-w-[396px] h-[280px] xs:h-[300px] sm:h-[348px] mx-auto"
       style={{
         perspective: "1000px",
         transformStyle: "preserve-3d",
@@ -80,7 +80,7 @@ export function TactileCategoryCard({
     >
       {/* --- 1. PRO-SCALE ARCH PRODUCT SHOWCASE CONTAINER --- */}
       <div
-        className="relative rounded-t-full rounded-b-[1.75rem] sm:rounded-b-[2.25rem] overflow-hidden shadow-lg shrink-0 border border-white/80 bg-gradient-to-b from-[#eae2d5] via-[#f3ede5] to-[#f8f5ee] transition-all duration-500 group-hover:shadow-xl group-hover:border-sky-200/80 w-[53%] sm:w-[215px] h-full sm:h-[348px]"
+        className="relative rounded-t-full rounded-b-[1.75rem] sm:rounded-b-[2.25rem] overflow-hidden shadow-lg shrink-0 border border-white/80 bg-gradient-to-b from-[#eae2d5] via-[#f3ede5] to-[#f8f5ee] transition-all duration-500 group-hover:shadow-xl group-hover:border-sky-200/80 w-[52%] sm:w-[215px] h-full sm:h-[348px]"
         style={{
           transform: "translateZ(15px)",
           transformStyle: "preserve-3d",
@@ -103,7 +103,7 @@ export function TactileCategoryCard({
 
       {/* --- 2. LUXURY FROSTED CRYSTAL GLASSSIFIED CONTENT BOX --- */}
       <div
-        className="relative -ml-4 sm:-ml-6 z-10 rounded-[1.5rem] sm:rounded-[1.85rem] p-3.5 sm:p-5 flex flex-col justify-between transition-all duration-500 ease-out backdrop-blur-xl border overflow-hidden shrink-0 w-[51%] sm:w-[205px] h-[88%] sm:h-[308px]"
+        className="relative -ml-[6%] sm:-ml-6 z-10 rounded-[1.25rem] sm:rounded-[1.85rem] p-3 xs:p-3.5 sm:p-5 flex flex-col justify-between transition-all duration-500 ease-out backdrop-blur-xl border overflow-hidden shrink-0 w-[54%] sm:w-[205px] h-[88%] sm:h-[308px]"
         style={{
           transform: "translateZ(38px)",
           background: isHovered
@@ -132,28 +132,28 @@ export function TactileCategoryCard({
         {/* Content Top */}
         <div className="relative z-10">
           {/* Category Icon Badge */}
-          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl border border-white/90 bg-white/80 backdrop-blur-md flex items-center justify-center text-[#164666] shadow-sm mb-2 sm:mb-2.5 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-md">
-            <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 text-[#164666] transition-colors duration-300 group-hover:text-[#1b628b]" />
+          <div className="w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 rounded-lg xs:rounded-xl sm:rounded-2xl border border-white/90 bg-white/80 backdrop-blur-md flex items-center justify-center text-[#164666] shadow-sm mb-1.5 sm:mb-2.5 transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:shadow-md">
+            <IconComponent className="w-3.5 h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5 text-[#164666] transition-colors duration-300 group-hover:text-[#1b628b]" />
           </div>
 
           {/* Title */}
-          <h3 className="font-serif text-[15px] sm:text-[17px] font-bold text-[#0a2333] tracking-tight leading-snug line-clamp-1 group-hover:text-[#164666] transition-colors duration-200">
+          <h3 className="font-serif text-[13.5px] xs:text-[15px] sm:text-[17px] font-bold text-[#0a2333] tracking-tight leading-snug line-clamp-1 group-hover:text-[#164666] transition-colors duration-200">
             {title}
           </h3>
 
           {/* Subtitle / Tag (if provided) */}
           {tag && (
-            <p className="text-[9px] sm:text-[10px] uppercase tracking-wider font-semibold text-[#1b628b] mt-0.5 truncate">
+            <p className="text-[8.5px] xs:text-[9px] sm:text-[10px] uppercase tracking-wider font-semibold text-[#1b628b] mt-0.5 truncate">
               {tag}
             </p>
           )}
 
           {/* Bullet Items with Leaf */}
-          <ul className="mt-1.5 sm:mt-2.5 space-y-1 sm:space-y-1.5 text-[11px] sm:text-xs text-[#1e293b] font-medium min-h-[66px] sm:min-h-[86px] flex flex-col justify-start">
+          <ul className="mt-1 xs:mt-1.5 sm:mt-2.5 space-y-0.5 xs:space-y-1 sm:space-y-1.5 text-[10px] xs:text-[11px] sm:text-xs text-[#1e293b] font-medium min-h-[50px] xs:min-h-[64px] sm:min-h-[86px] flex flex-col justify-start">
             {items.map((item, idx) => (
               <li
                 key={idx}
-                className="flex items-center gap-1.5 leading-tight transition-transform duration-200 group-hover:translate-x-0.5"
+                className="flex items-center gap-1 xs:gap-1.5 leading-tight transition-transform duration-200 group-hover:translate-x-0.5"
               >
                 <LeafBullet />
                 <span className="truncate">{item}</span>
@@ -163,12 +163,12 @@ export function TactileCategoryCard({
         </div>
 
         {/* --- 3. MAGNETIC VIEW PRODUCTS ACTION FOOTER --- */}
-        <div className="relative z-10 pt-1.5 sm:pt-2 border-t border-slate-300/45 flex items-center justify-between">
-          <span className="text-[11px] sm:text-xs font-semibold text-[#0a2333] group-hover:text-[#164666] transition-colors duration-200">
+        <div className="relative z-10 pt-1 xs:pt-1.5 sm:pt-2 border-t border-slate-300/45 flex items-center justify-between">
+          <span className="text-[10px] xs:text-[11px] sm:text-xs font-semibold text-[#0a2333] group-hover:text-[#164666] transition-colors duration-200">
             View Products
           </span>
-          <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/90 border border-sky-100 group-hover:bg-[#164666] text-[#164666] group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs group-hover:shadow-md group-hover:scale-105">
-            <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
+          <span className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 rounded-full bg-white/90 border border-sky-100 group-hover:bg-[#164666] text-[#164666] group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs group-hover:shadow-md group-hover:scale-105">
+            <ArrowRight className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
           </span>
         </div>
       </div>

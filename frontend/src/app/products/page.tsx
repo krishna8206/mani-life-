@@ -179,7 +179,7 @@ function PersonalCareCardItem({
   priority?: boolean;
 }) {
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center min-w-0">
       <TactileCategoryCard
         id={card.id}
         title={card.title}
@@ -325,7 +325,7 @@ function SkinCareCardItem({
   priority?: boolean;
 }) {
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center min-w-0">
       <TactileCategoryCard
         id={category.id}
         title={category.title}
@@ -428,7 +428,7 @@ export default function ProductsPage() {
       </section>
 
       {/* --- 2. PERSONAL CARE RANGE (EXACT ALIGN STYLE PRESERVED) --- */}
-      <section className="max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-8 py-16 sm:py-20 relative z-10">
+      <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 relative z-10 overflow-hidden">
         <div className="text-center mb-10 sm:mb-12 space-y-2">
           <div className="flex items-center justify-center gap-2.5">
             <span className="w-8 h-[1.5px] bg-[#4a728e]" />
@@ -468,7 +468,7 @@ export default function ProductsPage() {
       </section>
 
       {/* --- 3. SKIN CARE RANGE (THE REMAINING SECTION FROM THE LIVE LINK) --- */}
-      <section className="max-w-[1400px] mx-auto px-3 sm:px-6 lg:px-8 pb-20 relative z-10">
+      <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pb-20 relative z-10 overflow-hidden">
         <div className="text-center mb-10 sm:mb-12 space-y-2">
           <div className="flex items-center justify-center gap-2.5">
             <span className="w-8 h-[1.5px] bg-[#4a728e]" />

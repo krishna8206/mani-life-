@@ -39,66 +39,45 @@ export default function ServicesPage() {
   const [activeProcessIndex, setActiveProcessIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState<"next" | "prev">("next");
   const [isPaused, setIsPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
-
+  
   const activeStage = oemProcessStages[activeProcessIndex];
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
-
+  
   // Auto-play slider with smooth 5-second rotation
   useEffect(() => {
     if (isPaused) {
-      if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
-      if (timerRef.current) clearTimeout(timerRef.current);
+            if (timerRef.current) clearTimeout(timerRef.current);
       return;
     }
 
     const duration = 5000; // 5 seconds per slide
-    const intervalStep = 50; // update progress every 50ms
-    const stepIncrement = (intervalStep / duration) * 100;
-
-    setProgress(0);
-
-    progressIntervalRef.current = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          return 100;
-        }
-        return prev + stepIncrement;
-      });
-    }, intervalStep);
-
+    
     timerRef.current = setTimeout(() => {
       setSlideDirection("next");
       setActiveProcessIndex((prev) => (prev + 1) % oemProcessStages.length);
-      setProgress(0);
-    }, duration);
+          }, duration);
 
     return () => {
-      if (progressIntervalRef.current) clearInterval(progressIntervalRef.current);
-      if (timerRef.current) clearTimeout(timerRef.current);
+            if (timerRef.current) clearTimeout(timerRef.current);
     };
   }, [activeProcessIndex, isPaused]);
 
   const handleSelectStage = (idx: number) => {
     setSlideDirection(idx > activeProcessIndex ? "next" : "prev");
     setActiveProcessIndex(idx);
-    setProgress(0);
-  };
+      };
 
   const handleNextStage = () => {
     setSlideDirection("next");
     setActiveProcessIndex((prev) => (prev + 1) % oemProcessStages.length);
-    setProgress(0);
-  };
+      };
 
   const handlePrevStage = () => {
     setSlideDirection("prev");
     setActiveProcessIndex((prev) =>
       prev === 0 ? oemProcessStages.length - 1 : prev - 1
     );
-    setProgress(0);
-  };
+      };
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#0f172a] selection:bg-[#164666] selection:text-white overflow-hidden">

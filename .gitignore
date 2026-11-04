@@ -1,8 +1,7 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 node_modules/
-/.pnp
+**/node_modules/
+.pnp
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -15,10 +14,13 @@ coverage/
 
 # next.js
 .next/
+**/.next/
 out/
+**/out/
 
 # production
 build/
+**/build/
 
 # misc
 .DS_Store
@@ -30,15 +32,18 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files
 .env*
+**/.env*
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
+**/*.tsbuildinfo
 next-env.d.ts
+**/next-env.d.ts
 
 # scratch
 scratch/

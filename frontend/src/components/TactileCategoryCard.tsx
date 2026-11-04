@@ -69,7 +69,7 @@ export function TactileCategoryCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative flex items-center justify-center group cursor-pointer select-none transition-all duration-500 ease-out w-full max-w-[340px] xs:max-w-[360px] sm:max-w-[396px] h-[280px] xs:h-[300px] sm:h-[348px] mx-auto"
+      className="relative flex items-center justify-center group cursor-pointer select-none transition-all duration-500 ease-out w-full max-w-[335px] xs:max-w-[350px] sm:max-w-[396px] h-[280px] xs:h-[300px] sm:h-[348px] mx-auto"
       style={{
         perspective: "1000px",
         transformStyle: "preserve-3d",
@@ -80,7 +80,7 @@ export function TactileCategoryCard({
     >
       {/* --- 1. PRO-SCALE ARCH PRODUCT SHOWCASE CONTAINER --- */}
       <div
-        className="relative rounded-t-full rounded-b-[1.75rem] sm:rounded-b-[2.25rem] overflow-hidden shadow-lg shrink-0 border border-white/80 bg-gradient-to-b from-[#eae2d5] via-[#f3ede5] to-[#f8f5ee] transition-all duration-500 group-hover:shadow-xl group-hover:border-sky-200/80 w-[52%] sm:w-[215px] h-full sm:h-[348px]"
+        className="relative rounded-t-full rounded-b-[1.75rem] sm:rounded-b-[2.25rem] overflow-hidden shadow-lg shrink-0 border border-white/80 bg-gradient-to-b from-[#eae2d5] via-[#f3ede5] to-[#f8f5ee] transition-all duration-500 group-hover:shadow-xl group-hover:border-sky-200/80 w-[48%] sm:w-[215px] h-full sm:h-[348px]"
         style={{
           transform: "translateZ(15px)",
           transformStyle: "preserve-3d",
@@ -103,7 +103,7 @@ export function TactileCategoryCard({
 
       {/* --- 2. LUXURY FROSTED CRYSTAL GLASSSIFIED CONTENT BOX --- */}
       <div
-        className="relative -ml-[6%] sm:-ml-6 z-10 rounded-[1.25rem] sm:rounded-[1.85rem] p-3 xs:p-3.5 sm:p-5 flex flex-col justify-between transition-all duration-500 ease-out backdrop-blur-xl border overflow-hidden shrink-0 w-[54%] sm:w-[205px] h-[88%] sm:h-[308px]"
+        className="relative -ml-[6%] sm:-ml-6 z-10 rounded-[1.25rem] sm:rounded-[1.85rem] p-3 xs:p-3.5 sm:p-5 flex flex-col justify-between transition-all duration-500 ease-out backdrop-blur-xl border overflow-hidden shrink-0 w-[58%] sm:w-[205px] h-[88%] sm:h-[308px]"
         style={{
           transform: "translateZ(38px)",
           background: isHovered
@@ -167,7 +167,7 @@ export function TactileCategoryCard({
           <span className="text-[10px] xs:text-[11px] sm:text-xs font-semibold text-[#0a2333] group-hover:text-[#164666] transition-colors duration-200">
             View Products
           </span>
-          <span className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 rounded-full bg-white/90 border border-sky-100 group-hover:bg-[#164666] text-[#164666] group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs group-hover:shadow-md group-hover:scale-105">
+          <span className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7 rounded-full bg-white/90 border border-sky-100 group-hover:bg-[#164666] text-[#164666] group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs group-hover:shadow-md group-hover:scale-105 shrink-0">
             <ArrowRight className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
           </span>
         </div>

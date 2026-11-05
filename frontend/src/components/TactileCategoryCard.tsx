@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useCallback } from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
@@ -26,6 +26,7 @@ export interface TactileCategoryCardProps {
   items: string[];
   tag?: string;
   priority?: boolean;
+  index?: number;
 }
 
 export function TactileCategoryCard({
@@ -36,10 +37,62 @@ export function TactileCategoryCard({
   items,
   tag,
   priority = false,
+  index = 0,
 }: TactileCategoryCardProps) {
   const cardRef = useRef<HTMLAnchorElement>(null);
   const [rotate, setRotate] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(priority);
+  const [parallaxY, setParallaxY] = useState(0);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+
+    if (priority) {
+      setIsVisible(true);
+    }
+
+    // Viewport entrance observer for staggered cascade
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.01, rootMargin: "250px 0px 150px 0px" }
+    );
+    observer.observe(el);
+
+    // Subtle 3D optical parallax drift on bottle image inside arch
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (cardRef.current) {
+            const rect = cardRef.current.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            if (rect.top < windowHeight + 100 && rect.bottom > -100) {
+              const centerOffset = rect.top + rect.height / 2 - windowHeight / 2;
+              const offset = Math.max(-14, Math.min(14, centerOffset * -0.04));
+              setParallaxY(offset);
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!cardRef.current) return;
@@ -69,10 +122,15 @@ export function TactileCategoryCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative flex items-center justify-center group cursor-pointer select-none transition-all duration-500 ease-out w-full max-w-[335px] xs:max-w-[350px] sm:max-w-[396px] h-[280px] xs:h-[300px] sm:h-[348px] mx-auto"
+      className={`relative flex items-center justify-center group cursor-pointer select-none w-full max-w-[335px] xs:max-w-[350px] sm:max-w-[396px] h-[280px] xs:h-[300px] sm:h-[348px] mx-auto transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        isVisible
+          ? "opacity-100 translate-y-0 scale-100"
+          : "opacity-0 translate-y-8 scale-[0.97]"
+      }`}
       style={{
         perspective: "1000px",
         transformStyle: "preserve-3d",
+        transitionDelay: isVisible && !priority ? `${(index % 3) * 90}ms` : "0ms",
         transform: isHovered
           ? `perspective(1000px) rotateX(${rotate.x.toFixed(2)}deg) rotateY(${rotate.y.toFixed(2)}deg) translateY(-8px)`
           : "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)",
@@ -84,21 +142,33 @@ export function TactileCategoryCard({
         style={{
           transform: "translateZ(15px)",
           transformStyle: "preserve-3d",
+          isolation: "isolate",
+          clipPath: "inset(0 round 9999px 9999px 1.75rem 1.75rem)",
+          WebkitClipPath: "inset(0 round 9999px 9999px 1.75rem 1.75rem)",
         }}
       >
-        <Image
-          src={archImage}
-          alt={title}
-          width={215}
-          height={348}
-          priority={priority}
-          quality={95}
-          sizes="(max-width: 640px) 190px, 215px"
-          className="w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-700 ease-out"
-        />
+        {/* Parallax inner wrapper for cosmetic bottle */}
+        <div
+          className="relative w-full h-full scale-[1.05] transition-transform duration-100 ease-out will-change-transform"
+          style={{ transform: `translateY(${parallaxY}px)` }}
+        >
+          <Image
+            src={archImage}
+            alt={title}
+            width={215}
+            height={348}
+            priority={priority}
+            quality={95}
+            sizes="(max-width: 640px) 190px, 215px"
+            className="w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-700 ease-out"
+          />
+        </div>
 
         {/* Ambient Subtle Inset Light Gradient */}
         <div className="absolute inset-0 pointer-events-none rounded-t-full rounded-b-[1.75rem] sm:rounded-b-[2.25rem] ring-1 ring-inset ring-black/5" />
+
+        {/* Specular glass glint sweep across arch rim */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[160%] skew-x-[-25deg] group-hover:translate-x-[220%] transition-transform duration-1000 ease-out pointer-events-none" />
       </div>
 
       {/* --- 2. LUXURY FROSTED CRYSTAL GLASSSIFIED CONTENT BOX --- */}

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import {
   ShieldCheck,
   Award,
@@ -10,6 +9,8 @@ import {
 } from "lucide-react";
 import { certificationsData } from "@/data/certifications";
 import QuoteModal from "@/components/QuoteModal";
+import CertificatePlaqueCard from "@/components/CertificatePlaqueCard";
+import QualityTracePipeline from "@/components/QualityTracePipeline";
 
 export default function CertificationsPage() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
@@ -134,7 +135,7 @@ export default function CertificationsPage() {
         </div>
       </section>
 
-      {/* 2. CERTIFICATIONS DISPLAY SECTION (From Reference Website) */}
+      {/* 2. CERTIFICATIONS DISPLAY SECTION WITH PREMIUM STAGGERED SCROLL REVEALS */}
       <section className="relative py-18 sm:py-20 lg:py-24 bg-white border-b border-slate-200/80 overflow-hidden">
         {/* Soft Ambient Radial Lights */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-sky-100/30 rounded-full blur-3xl pointer-events-none" />
@@ -161,53 +162,31 @@ export default function CertificationsPage() {
             <div className="w-16 h-1 bg-[#1b628b] rounded-full mx-auto mt-3.5 mb-3.5" />
 
             <p className="text-sm sm:text-[15px] text-[#64748b] max-w-2xl mx-auto leading-relaxed font-normal">
-              Our dedication to high standards is recognized by industry-leading bodies, ensuring every product meets rigorous quality, purity, and safety benchmarks
+              Our dedication to high standards is recognized by industry-leading bodies, ensuring every product meets rigorous quality, purity, and safety benchmarks.
             </p>
           </div>
 
-          {/* 5 Certification Badges Showcase Grid */}
+          {/* 5 Certification Badges Showcase Grid with 3D Tilt & Specular Sheen */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-6 max-w-7xl mx-auto mb-14 sm:mb-16">
-            {certificationsData.map((cert) => (
-              <div
+            {certificationsData.map((cert, idx) => (
+              <CertificatePlaqueCard
                 key={cert.id}
-                className="group relative bg-[#f8fafc] rounded-2xl p-6 sm:p-7 border border-slate-200/90 hover:border-[#1b628b]/40 shadow-xs hover:shadow-lg hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col items-center text-center"
-              >
-                {/* Official Badge Image Container */}
-                <div className="w-24 h-24 rounded-2xl bg-white border border-slate-200/80 flex items-center justify-center p-3 mb-5 shadow-2xs group-hover:scale-105 group-hover:border-[#1b628b]/40 transition-all duration-300">
-                  <Image
-                    src={cert.image}
-                    alt={cert.name}
-                    width={80}
-                    height={80}
-                    className="object-contain max-h-20 w-auto"
-                  />
-                </div>
-
-                {/* Badge Tag */}
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#1b628b] bg-white border border-[#d9ecf7] px-3 py-1 rounded-full mb-3 shadow-2xs">
-                  {cert.badgeCode}
-                </span>
-
-                {/* Title */}
-                <h3 className="text-base font-semibold text-[#0f172a] group-hover:text-[#1b628b] transition-colors leading-snug mb-1.5">
-                  {cert.name}
-                </h3>
-
-                {/* Authority */}
-                <p className="text-[11.5px] text-slate-500 font-medium mb-3">
-                  {cert.authority}
-                </p>
-
-                {/* Importance Summary */}
-                <p className="text-[12.5px] text-slate-600 leading-relaxed font-normal flex-1">
-                  {cert.importance}
-                </p>
-              </div>
+                id={cert.id}
+                name={cert.name}
+                authority={cert.authority}
+                scope={cert.scope}
+                importance={cert.importance}
+                badgeCode={cert.badgeCode}
+                image={cert.image}
+                verified={cert.verified}
+                index={idx}
+                priority={idx < 2}
+              />
             ))}
           </div>
 
-          {/* Authentic Editorial Narrative Box (From Reference Site) */}
-          <div className="max-w-5xl mx-auto bg-gradient-to-br from-white via-[#f0f7fb]/60 to-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-sm">
+          {/* Authentic Editorial Narrative Box */}
+          <div className="max-w-5xl mx-auto bg-gradient-to-br from-white via-[#f0f7fb]/60 to-white rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-sm transition-all duration-700 hover:shadow-md">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 md:divide-x md:divide-slate-200/80">
               <div className="space-y-3">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#164666]">
@@ -233,73 +212,13 @@ export default function CertificationsPage() {
         </div>
       </section>
 
-      {/* 3. OUR COMMITMENT TO QUALITY (From Reference Website) */}
+      {/* 3. OUR COMMITMENT TO QUALITY WITH INTERACTIVE PROCESS TRACE & LAB PARALLAX */}
       <section className="relative py-18 sm:py-20 lg:py-24 bg-[#f8fafc] border-b border-slate-200/80 overflow-hidden">
         {/* Soft Ambient Radial Lights */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-sky-100/30 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* Left: Quality Image */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-md lg:max-w-none">
-                <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden border border-slate-200/90 bg-white shadow-xl shadow-slate-200/80 group">
-                  <Image
-                    src="/images/quality.png"
-                    alt="Two scientists reviewing data on a tablet in a modern laboratory"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    priority
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Commitment Narrative & Steps */}
-            <div className="lg:col-span-7">
-              <div className="flex items-center gap-2.5 mb-2.5">
-                <span className="w-8 h-[1.5px] bg-[#4a728e]" />
-                <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
-                  Uncompromising Standards
-                </span>
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif text-[#0f172a] font-normal leading-[1.15] tracking-tight">
-                Our Commitment to{" "}
-                <span className="font-serif italic font-light text-[#1b628b]">
-                  Quality
-                </span>
-              </h2>
-
-              <div className="w-14 h-1 bg-[#1b628b] rounded-full mt-3.5 mb-3.5" />
-
-              <p className="text-sm sm:text-[15px] text-[#64748b] leading-relaxed max-w-xl mb-7 font-normal">
-                At Mani Lifestyle, quality is not just a goal; it is the foundation of everything we do. From the meticulous sourcing of raw materials to the final packaging, each stage of production is subjected to stringent quality control checks.
-              </p>
-
-              {/* 3 Quality Assurance Steps */}
-              <div className="space-y-3 sm:space-y-3.5">
-                {qualityPillars.map((pillar) => (
-                  <div
-                    key={pillar.step}
-                    className="group flex items-start gap-4 p-4 rounded-xl bg-white border border-slate-200/80 hover:border-[#1b628b]/40 shadow-xs hover:shadow-sm transition-all duration-300"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-[#f0f7fb] border border-[#d2e7f5] text-[#164666] flex items-center justify-center font-bold text-xs font-serif shrink-0 mt-0.5 group-hover:bg-[#164666] group-hover:text-white group-hover:border-[#164666] transition-all">
-                      {pillar.step}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-sm sm:text-[14.5px] font-semibold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug">
-                        {pillar.title}
-                      </h3>
-                      <p className="text-xs text-slate-500 leading-relaxed font-normal mt-0.5">
-                        {pillar.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <QualityTracePipeline steps={qualityPillars} />
         </div>
       </section>
 

@@ -188,6 +188,7 @@ function PersonalCareCardItem({
         icon={card.icon}
         items={card.items}
         priority={priority}
+        index={index}
       />
     </div>
   );
@@ -335,6 +336,7 @@ function SkinCareCardItem({
         items={category.items}
         tag={category.tag}
         priority={priority}
+        index={index}
       />
     </div>
   );
@@ -509,15 +511,15 @@ export default function ProductsPage() {
           <div className="relative z-10 max-w-2xl mx-auto space-y-4">
             <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-white/10 text-sky-200 border border-white/15 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Full Turnkey Manufacturing &bull; Low MOQ from 500 Units</span>
+              <span>Proudly Made in India &bull; End-to-End Manufacturing &bull; Low MOQ from 500 Units</span>
             </span>
 
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-white font-normal tracking-tight leading-tight">
-              Ready to Build Your Dream<br />Personal Care Brand Together?
+              Ready to Build Your Dream<br />Personal Care Brand in India?
             </h2>
 
             <p className="text-xs sm:text-sm text-sky-100/80 leading-relaxed max-w-xl mx-auto">
-              Our Ahmedabad cosmetic compounding laboratory develops custom fragrance profiles, bespoke active percentages, and white-label finished packaging for your brand.
+              Our state-of-the-art Ahmedabad (Gujarat, India) compounding campus develops custom formulations, bespoke active percentages, and complete finished packaging for Indian and global brands.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-3.5 pt-3">

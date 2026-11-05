@@ -23,6 +23,8 @@ import {
 } from "lucide-react";
 import { faqsData } from "@/data/faqs";
 import QuoteModal from "@/components/QuoteModal";
+import { certificationsData } from "@/data/certifications";
+import CertificatePlaqueCard from "@/components/CertificatePlaqueCard";
 
 function PumpBottleIcon({
   className = "w-5 h-5",
@@ -487,147 +489,23 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* 5 Original Logo Badges Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 lg:gap-6 items-stretch max-w-6xl mx-auto">
-            {/* 1. GMP Quality */}
-            <div className="group bg-[#f8fafc] hover:bg-white rounded-2xl p-5 border border-slate-200/90 hover:border-[#164666] shadow-2xs hover:shadow-xl hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between items-center text-center">
-              <div className="w-full flex flex-col items-center">
-                <div className="relative w-full h-20 sm:h-24 flex items-center justify-center p-2 mb-3 bg-white/60 rounded-xl group-hover:bg-white transition-colors">
-                  <Image
-                    src="/images/certifications/gmp.png"
-                    alt="GMP Quality Certification"
-                    width={110}
-                    height={110}
-                    className="max-h-16 sm:max-h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <h3 className="text-sm sm:text-[15px] font-bold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug tracking-tight mb-1">
-                  GMP Certified
-                </h3>
-                <span className="text-[10.5px] font-semibold text-[#1b628b] uppercase tracking-wider mb-1 block">
-                  Cleanroom Standards
-                </span>
-                <p className="text-[11.5px] text-slate-500 leading-relaxed font-normal">
-                  Good Manufacturing Practice for cosmetic compounding & safety.
-                </p>
-              </div>
-              <div className="pt-2.5 border-t border-slate-200/60 w-full flex items-center justify-center gap-1.5 text-[10px] font-semibold text-emerald-700 mt-3">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                <span>Verified Facility</span>
-              </div>
-            </div>
-
-            {/* 2. ISO 9001:2015 */}
-            <div className="group bg-[#f8fafc] hover:bg-white rounded-2xl p-5 border border-slate-200/90 hover:border-[#164666] shadow-2xs hover:shadow-xl hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between items-center text-center">
-              <div className="w-full flex flex-col items-center">
-                <div className="relative w-full h-20 sm:h-24 flex items-center justify-center p-2 mb-3 bg-white/60 rounded-xl group-hover:bg-white transition-colors">
-                  <Image
-                    src="/images/certifications/iso.png"
-                    alt="ISO 9001:2015 Certification"
-                    width={120}
-                    height={100}
-                    className="max-h-16 sm:max-h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <h3 className="text-sm sm:text-[15px] font-bold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug tracking-tight mb-1">
-                  ISO 9001:2015
-                </h3>
-                <span className="text-[10.5px] font-semibold text-[#1b628b] uppercase tracking-wider mb-1 block">
-                  QMS Accredited
-                </span>
-                <p className="text-[11.5px] text-slate-500 leading-relaxed font-normal">
-                  Standardized batch repeatability & quality management systems.
-                </p>
-              </div>
-              <div className="pt-2.5 border-t border-slate-200/60 w-full flex items-center justify-center gap-1.5 text-[10px] font-semibold text-emerald-700 mt-3">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                <span>Verified Facility</span>
-              </div>
-            </div>
-
-            {/* 3. Ministry of AYUSH */}
-            <div className="group bg-[#f8fafc] hover:bg-white rounded-2xl p-5 border border-slate-200/90 hover:border-[#164666] shadow-2xs hover:shadow-xl hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between items-center text-center">
-              <div className="w-full flex flex-col items-center">
-                <div className="relative w-full h-20 sm:h-24 flex items-center justify-center p-2 mb-3 bg-white/60 rounded-xl group-hover:bg-white transition-colors">
-                  <Image
-                    src="/images/certifications/ministry.png"
-                    alt="Ministry of Ayush Certification"
-                    width={140}
-                    height={90}
-                    className="max-h-16 sm:max-h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <h3 className="text-sm sm:text-[15px] font-bold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug tracking-tight mb-1">
-                  Ministry of AYUSH
-                </h3>
-                <span className="text-[10.5px] font-semibold text-[#1b628b] uppercase tracking-wider mb-1 block">
-                  Govt. of India License
-                </span>
-                <p className="text-[11.5px] text-slate-500 leading-relaxed font-normal">
-                  Certified Ayurvedic, herbal, and natural cosmetic drug approval.
-                </p>
-              </div>
-              <div className="pt-2.5 border-t border-slate-200/60 w-full flex items-center justify-center gap-1.5 text-[10px] font-semibold text-emerald-700 mt-3">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                <span>Verified Facility</span>
-              </div>
-            </div>
-
-            {/* 4. Animal Test-Free (PETA) */}
-            <div className="group bg-[#f8fafc] hover:bg-white rounded-2xl p-5 border border-slate-200/90 hover:border-[#164666] shadow-2xs hover:shadow-xl hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between items-center text-center">
-              <div className="w-full flex flex-col items-center">
-                <div className="relative w-full h-20 sm:h-24 flex items-center justify-center p-2 mb-3 bg-white/60 rounded-xl group-hover:bg-white transition-colors">
-                  <Image
-                    src="/images/certifications/peta.png"
-                    alt="PETA Animal Test-Free Certification"
-                    width={140}
-                    height={80}
-                    className="max-h-16 sm:max-h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <h3 className="text-sm sm:text-[15px] font-bold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug tracking-tight mb-1">
-                  Animal Test-Free
-                </h3>
-                <span className="text-[10.5px] font-semibold text-[#1b628b] uppercase tracking-wider mb-1 block">
-                  PETA Certified
-                </span>
-                <p className="text-[11.5px] text-slate-500 leading-relaxed font-normal">
-                  100% cruelty-free cosmetic formulations and ethical raw sourcing.
-                </p>
-              </div>
-              <div className="pt-2.5 border-t border-slate-200/60 w-full flex items-center justify-center gap-1.5 text-[10px] font-semibold text-emerald-700 mt-3">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                <span>Verified Facility</span>
-              </div>
-            </div>
-
-            {/* 5. US FDA Registered */}
-            <div className="group bg-[#f8fafc] hover:bg-white rounded-2xl p-5 border border-slate-200/90 hover:border-[#164666] shadow-2xs hover:shadow-xl hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between items-center text-center">
-              <div className="w-full flex flex-col items-center">
-                <div className="relative w-full h-20 sm:h-24 flex items-center justify-center p-2 mb-3 bg-white/60 rounded-xl group-hover:bg-white transition-colors">
-                  <Image
-                    src="/images/certifications/fda.png"
-                    alt="US FDA Registered Facility"
-                    width={130}
-                    height={90}
-                    className="max-h-16 sm:max-h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <h3 className="text-sm sm:text-[15px] font-bold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug tracking-tight mb-1">
-                  US FDA Registered
-                </h3>
-                <span className="text-[10.5px] font-semibold text-[#1b628b] uppercase tracking-wider mb-1 block">
-                  Global Export
-                </span>
-                <p className="text-[11.5px] text-slate-500 leading-relaxed font-normal">
-                  Facility establishment registered for seamless international trade.
-                </p>
-              </div>
-              <div className="pt-2.5 border-t border-slate-200/60 w-full flex items-center justify-center gap-1.5 text-[10px] font-semibold text-emerald-700 mt-3">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                <span>Verified Facility</span>
-              </div>
-            </div>
+          {/* 5 Accreditation Badges Showcase Grid with 3D Tilt & Specular Sheen */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-6 items-stretch max-w-7xl mx-auto">
+            {certificationsData.map((cert, idx) => (
+              <CertificatePlaqueCard
+                key={cert.id}
+                id={cert.id}
+                name={cert.name}
+                authority={cert.authority}
+                scope={cert.scope}
+                importance={cert.importance}
+                badgeCode={cert.badgeCode}
+                image={cert.image}
+                verified={cert.verified}
+                index={idx}
+                priority={idx < 2}
+              />
+            ))}
           </div>
         </div>
       </section>

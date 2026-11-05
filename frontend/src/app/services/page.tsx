@@ -87,7 +87,7 @@ export default function ServicesPage() {
         <div className="absolute top-1/3 right-[10%] w-[520px] h-[520px] bg-sky-200/40 rounded-full blur-[90px] pointer-events-none animate-pulse-glow" />
 
         {/* Top-Right Corner Botanical Flowers Accent */}
-        <div className="absolute top-0 right-0 w-[180px] sm:w-[240px] md:w-[300px] lg:w-[340px] pointer-events-none z-10 select-none">
+        <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-[160px] sm:w-[220px] md:w-[280px] lg:w-[320px] pointer-events-none z-0 select-none opacity-90">
           <Image
             src="/images/services/services-flower-accent.png"
             alt="Botanical Jasmine Flowers"
@@ -99,7 +99,7 @@ export default function ServicesPage() {
         </div>
 
         {/* Bottom-Left Corner Skincare Cream Jar Accent */}
-        <div className="absolute bottom-6 sm:bottom-8 left-0 w-[140px] sm:w-[190px] md:w-[230px] lg:w-[260px] pointer-events-none z-10 select-none">
+        <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 w-[120px] sm:w-[160px] md:w-[190px] lg:w-[210px] pointer-events-none z-0 select-none opacity-85">
           <Image
             src="/images/services/services-cream-accent.png"
             alt="Cosmetic Cream Jar with Petals"
@@ -130,14 +130,14 @@ export default function ServicesPage() {
                 </span>
               </div>
 
-              {/* Master Headline (Exact copy & typography from reference) */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-serif text-[#092232] font-bold leading-[1.12] tracking-tight">
+              {/* Master Headline (Refined luxury typography - elegant, not overly bold) */}
+              <h1 className="text-3xl sm:text-4xl lg:text-[2.9rem] font-serif text-[#092232] font-normal leading-[1.16] tracking-tight">
                 Our Services. <br />
-                <span className="italic font-normal text-[#0d5c80]">
+                <span className="italic font-light text-[#0d5c80]">
                   Crafting Your Brand’s
                 </span>{" "}
                 <br className="hidden sm:inline" />
-                <span className="relative inline-block italic font-normal text-[#0d5c80]">
+                <span className="relative inline-block italic font-light text-[#0d5c80]">
                   Future.
                   {/* Painterly soft curve underline */}
                   <svg
@@ -179,8 +179,8 @@ export default function ServicesPage() {
                 </a>
               </div>
 
-              {/* Trust Indicators Strip - Clean Minimal List Matching Reference Dots */}
-              <div className="pt-6 flex flex-wrap items-center gap-y-2.5 gap-x-5 text-xs text-[#526477]">
+              {/* Trust Indicators Strip - Clean Minimal List with Zero Collision */}
+              <div className="pt-8 sm:pt-10 flex flex-wrap items-center gap-y-2.5 gap-x-5 text-xs text-[#526477] relative z-10 pl-1 sm:pl-2">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
                   <span className="font-bold text-[#0f172a]">Low 500 MOQ</span>
@@ -201,21 +201,74 @@ export default function ServicesPage() {
               </div>
             </div>
 
-            {/* Right: Organic Fluid Shape Showcase with Consultation Photo & Floating Badges */}
+            {/* Right: Pure Coded Organic Fluid Shape Showcase with Vector Antialiasing & Real Floating Badges */}
             <div className="lg:col-span-5 relative flex items-center justify-center">
-              <div className="relative w-full max-w-[480px] aspect-[440/430] select-none transition-transform duration-700 hover:scale-[1.02]">
+              <div className="relative w-full max-w-[490px] aspect-[500/480] mx-auto select-none group transition-transform duration-700 hover:scale-[1.015]">
                 {/* Subtle ambient cyan glow behind the organic shape */}
-                <div className="absolute inset-4 bg-gradient-to-tr from-sky-300/35 via-teal-200/25 to-transparent rounded-full blur-2xl pointer-events-none" />
+                <div className="absolute inset-4 bg-gradient-to-tr from-sky-300/45 via-teal-200/30 to-sky-100/20 rounded-full blur-3xl pointer-events-none -z-10 transform scale-95 transition-transform duration-700 group-hover:scale-105" />
 
-                <Image
-                  src="/images/services/services-hero-organic-shape.png"
-                  alt="Mani Lifestyle Certified Cosmetics Manufacturer Consultation"
-                  width={480}
-                  height={470}
-                  priority
-                  quality={98}
-                  className="w-full h-auto object-contain relative z-10 drop-shadow-[0_20px_35px_rgba(18,65,95,0.16)]"
-                />
+                {/* Vector SVG container with Organic Shape Clip & Glowing Border */}
+                <svg
+                  viewBox="0 0 500 480"
+                  className="w-full h-full overflow-visible drop-shadow-[0_20px_35px_rgba(18,65,95,0.14)]"
+                  preserveAspectRatio="xMidYMid meet"
+                >
+                  <defs>
+                    {/* Vector clip path for the organic wave silhouette */}
+                    <clipPath id="heroWaveClip">
+                      <path d="M 499 242.4 C 503.2 281.1, 487.2 325, 466.5 358.6 C 445.8 392.2, 411.1 424.6, 375 444 C 338.9 463.4, 291.7 472.2, 250 475.2 C 208.3 478.2, 161.1 481.2, 125 461.8 C 88.9 442.4, 52.6 395.2, 33.5 358.6 C 14.4 322, 8.7 280.2, 10.5 242.4 C 12.3 204.6, 23.8 162.9, 44.5 132 C 65.2 101.1, 107.3 76.1, 134.5 57.1 C 161.7 38.1, 174 23.9, 207.5 18.2 C 241 12.5, 296.5 5, 335.5 23 C 374.5 41, 414.3 89.6, 441.5 126.2 C 468.8 162.8, 494.8 203.7, 499 242.4 Z" />
+                    </clipPath>
+
+                    {/* Smooth glowing gradient for the border stroke */}
+                    <linearGradient id="heroBorderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#c2e9fb" stopOpacity="0.95" />
+                      <stop offset="50%" stopColor="#8dd9fd" stopOpacity="0.9" />
+                      <stop offset="100%" stopColor="#c7ecfe" stopOpacity="0.95" />
+                    </linearGradient>
+                  </defs>
+
+                  {/* High-resolution consultation photo clipped to organic fluid contour */}
+                  <g clipPath="url(#heroWaveClip)">
+                    <image
+                      href="/images/services/consultation-photo-clean.png"
+                      width="500"
+                      height="480"
+                      preserveAspectRatio="xMidYMid slice"
+                      className="transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  </g>
+
+                  {/* Glowing vector organic border outline */}
+                  <path
+                    d="M 499 242.4 C 503.2 281.1, 487.2 325, 466.5 358.6 C 445.8 392.2, 411.1 424.6, 375 444 C 338.9 463.4, 291.7 472.2, 250 475.2 C 208.3 478.2, 161.1 481.2, 125 461.8 C 88.9 442.4, 52.6 395.2, 33.5 358.6 C 14.4 322, 8.7 280.2, 10.5 242.4 C 12.3 204.6, 23.8 162.9, 44.5 132 C 65.2 101.1, 107.3 76.1, 134.5 57.1 C 161.7 38.1, 174 23.9, 207.5 18.2 C 241 12.5, 296.5 5, 335.5 23 C 374.5 41, 414.3 89.6, 441.5 126.2 C 468.8 162.8, 494.8 203.7, 499 242.4 Z"
+                    fill="none"
+                    stroke="url(#heroBorderGradient)"
+                    strokeWidth="5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+
+                {/* Floating Badge 1: Top-Left "FDCA Approved" (Real HTML Component) */}
+                <div className="absolute top-2 sm:top-4 left-3 sm:left-6 z-30 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_8px_20px_rgba(15,23,42,0.08)] transition-all duration-300 hover:scale-105 select-none">
+                  <div className="w-4 h-4 rounded-full bg-emerald-500/15 flex items-center justify-center text-emerald-600">
+                    <Check className="w-2.5 h-2.5 stroke-[3]" />
+                  </div>
+                  <span className="text-[11px] sm:text-xs font-semibold text-slate-800 tracking-tight">
+                    FDCA Approved
+                  </span>
+                </div>
+
+                {/* Floating Badge 2: Bottom "Ahmedabad Manufacturing Campus" (Real HTML Component) */}
+                <div className="absolute -bottom-3 sm:-bottom-4 right-2 sm:right-4 z-30 max-w-[310px] sm:max-w-[340px] px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_12px_30px_rgba(18,65,95,0.14)] transition-all duration-300 hover:scale-[1.02] select-none">
+                  <div className="flex items-center gap-1.5 text-[10px] sm:text-[10.5px] font-bold text-[#0d5c80] uppercase tracking-wider mb-0.5">
+                    <Sparkles className="w-3.5 h-3.5 text-[#0d5c80]" />
+                    <span>Ahmedabad Manufacturing Campus</span>
+                  </div>
+                  <p className="text-[11px] sm:text-xs font-medium text-slate-700 leading-snug">
+                    Class 100,000 Cleanroom &amp; Automated Compounding
+                  </p>
+                </div>
               </div>
             </div>
           </div>

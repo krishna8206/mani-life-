@@ -81,38 +81,77 @@ export default function ServicesPage() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#0f172a] selection:bg-[#164666] selection:text-white overflow-hidden">
-      {/* 1. HERO SECTION - EDITORIAL SPLIT-CANVAS (ANIMATED & UNBOXED) */}
-      <section className="relative w-full min-h-[580px] lg:min-h-[660px] flex items-center bg-gradient-to-br from-[#ffffff] via-[#f1f7fb] to-[#e4f0f7] border-b border-slate-200/80 overflow-hidden">
-        {/* Soft atmospheric ambient glow with slow breathing animation */}
-        <div className="absolute top-1/4 -right-20 w-[550px] h-[550px] bg-[#d3e9f7]/60 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
-        <div className="absolute -bottom-20 -left-20 w-[450px] h-[450px] bg-[#e6f2fa]/70 rounded-full blur-3xl pointer-events-none" />
+      {/* 1. HERO SECTION - LUXURY COSMETIC EDITORIAL CANVAS (EXACT REFERENCE DESIGN & ORGANIC SHAPE) */}
+      <section className="relative w-full min-h-[620px] lg:min-h-[690px] flex items-center bg-gradient-to-b from-[#ffffff] via-[#f1f8fc] to-[#e4f1f9] overflow-hidden pt-24 pb-20 lg:pt-28 lg:pb-24">
+        {/* Soft atmospheric ambient glow behind the right organic showcase */}
+        <div className="absolute top-1/3 right-[10%] w-[520px] h-[520px] bg-sky-200/40 rounded-full blur-[90px] pointer-events-none animate-pulse-glow" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        {/* Top-Right Corner Botanical Flowers Accent */}
+        <div className="absolute top-0 right-0 w-[180px] sm:w-[240px] md:w-[300px] lg:w-[340px] pointer-events-none z-10 select-none">
+          <Image
+            src="/images/services/services-flower-accent.png"
+            alt="Botanical Jasmine Flowers"
+            width={340}
+            height={425}
+            priority
+            className="w-full h-auto object-contain object-top-right drop-shadow-sm"
+          />
+        </div>
+
+        {/* Bottom-Left Corner Skincare Cream Jar Accent */}
+        <div className="absolute bottom-6 sm:bottom-8 left-0 w-[140px] sm:w-[190px] md:w-[230px] lg:w-[260px] pointer-events-none z-10 select-none">
+          <Image
+            src="/images/services/services-cream-accent.png"
+            alt="Cosmetic Cream Jar with Petals"
+            width={260}
+            height={160}
+            className="w-full h-auto object-contain object-bottom-left drop-shadow-sm"
+          />
+        </div>
+
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             {/* Left: Editorial Content */}
             <div className="lg:col-span-7 space-y-6">
               {/* Breadcrumb Navigation */}
-              <nav aria-label="Breadcrumb" className="inline-flex items-center gap-2 text-xs text-[#64748b]">
+              <nav aria-label="Breadcrumb" className="inline-flex items-center gap-2 text-xs text-[#526a7e] font-medium">
                 <Link href="/" className="hover:text-[#164666] transition-colors">
                   Home
                 </Link>
-                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+                <span className="text-slate-400 font-normal">&gt;</span>
                 <span className="text-[#164666] font-semibold">Services</span>
               </nav>
 
-              {/* Brand Micro-header */}
-              <div className="flex items-center gap-2.5">
-                <span className="w-8 h-[1.5px] bg-[#4a728e] animate-pulse" />
-                <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
+              {/* Brand Micro-header with Em-dash prefix */}
+              <div className="flex items-center gap-2 pt-0.5">
+                <span className="text-[#3b6785] font-light select-none text-sm leading-none">——</span>
+                <span className="text-[10.5px] sm:text-xs uppercase tracking-[0.22em] font-semibold text-[#3b6785]">
                   CERTIFIED COSMETICS MANUFACTURER · AHMEDABAD, INDIA
                 </span>
               </div>
 
-              {/* Master Headline (Exact copy from reference) */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-serif text-[#0f172a] font-normal leading-[1.08] tracking-tight">
+              {/* Master Headline (Exact copy & typography from reference) */}
+              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-serif text-[#092232] font-bold leading-[1.12] tracking-tight">
                 Our Services. <br />
-                <span className="italic font-light text-[#1b628b]">
-                  Crafting Your Brand’s Future.
+                <span className="italic font-normal text-[#0d5c80]">
+                  Crafting Your Brand’s
+                </span>{" "}
+                <br className="hidden sm:inline" />
+                <span className="relative inline-block italic font-normal text-[#0d5c80]">
+                  Future.
+                  {/* Painterly soft curve underline */}
+                  <svg
+                    className="absolute -bottom-2.5 left-0 w-full h-3 text-[#99d2f2]/80 pointer-events-none"
+                    viewBox="0 0 160 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="none"
+                  >
+                    <path
+                      d="M3 9C45 3.5 115 2.5 157 8.5C130 11.5 60 12.5 3 9Z"
+                      fill="currentColor"
+                    />
+                  </svg>
                 </span>
               </h1>
 
@@ -125,81 +164,81 @@ export default function ServicesPage() {
               <div className="pt-2 flex flex-wrap items-center gap-3.5">
                 <button
                   onClick={() => setIsQuoteOpen(true)}
-                  className="px-6 py-3.5 bg-[#164666] hover:bg-[#10364f] text-white font-medium text-xs sm:text-sm rounded-lg flex items-center justify-center gap-2 shadow-md shadow-[#164666]/20 transition-all hover:scale-[1.02] active:scale-[0.99] cursor-pointer shimmer-sweep-hover"
+                  className="px-6 py-3.5 bg-[#164666] hover:bg-[#0f344d] text-white font-medium text-xs sm:text-sm rounded-[10px] flex items-center justify-center gap-2 shadow-md shadow-[#164666]/20 transition-all hover:scale-[1.02] active:scale-[0.99] cursor-pointer group"
                 >
                   <span>Request Custom Formulation Quote</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
 
                 <a
                   href="tel:+919724681096"
-                  className="px-6 py-3.5 bg-white/90 hover:bg-white text-[#0f172a] font-medium text-xs sm:text-sm rounded-lg border border-[#c8d9e6] hover:border-[#164666] text-center transition-all shadow-xs backdrop-blur-xs flex items-center gap-2 hover:shadow-md"
+                  className="px-6 py-3.5 bg-white hover:bg-slate-50/90 text-[#0f172a] font-medium text-xs sm:text-sm rounded-[10px] border border-[#d4e3ee] hover:border-[#164666] text-center transition-all shadow-xs flex items-center gap-2 hover:shadow-md hover:scale-[1.01]"
                 >
                   <Phone className="w-4 h-4 text-[#164666]" />
                   <span>Call +91 97246 81096</span>
                 </a>
               </div>
 
-              {/* Trust Indicators Strip - Clean Minimal List */}
-              <div className="pt-6 border-t border-slate-200/80 flex flex-wrap items-center gap-y-3 gap-x-6 text-xs text-[#526477]">
+              {/* Trust Indicators Strip - Clean Minimal List Matching Reference Dots */}
+              <div className="pt-6 flex flex-wrap items-center gap-y-2.5 gap-x-5 text-xs text-[#526477]">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="font-semibold text-[#0f172a]">Low 500 MOQ</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                  <span className="font-bold text-[#0f172a]">Low 500 MOQ</span>
                   <span className="text-[#64748b]">(Startups &amp; Salons)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#1b628b]" />
-                  <span className="font-semibold text-[#0f172a]">500+ Stock Formulas</span>
+                  <span className="w-2 h-2 rounded-full bg-[#0d5c80] shrink-0" />
+                  <span className="font-bold text-[#0f172a]">500+ Stock Formulas</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#4a728e]" />
-                  <span className="font-semibold text-[#0f172a]">ISO 22716 &amp; WHO-GMP</span>
+                  <span className="w-2 h-2 rounded-full bg-[#0d5c80] shrink-0" />
+                  <span className="font-bold text-[#0f172a]">ISO 22716 &amp; WHO-GMP</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="font-semibold text-[#0f172a]">100% Client IP</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                  <span className="font-bold text-[#0f172a]">100% Client IP</span>
                 </div>
               </div>
             </div>
 
-            {/* Right: Asymmetrical Fluid Hero Composition with Gentle Float */}
+            {/* Right: Organic Fluid Shape Showcase with Consultation Photo & Floating Badges */}
             <div className="lg:col-span-5 relative flex items-center justify-center">
-              <div className="relative w-full max-w-[460px] aspect-[4/5]">
-                {/* Organic shaped background aura */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#164666]/15 via-sky-200/40 to-transparent rounded-[2.5rem] rotate-3 scale-105" />
+              <div className="relative w-full max-w-[480px] aspect-[440/430] select-none transition-transform duration-700 hover:scale-[1.02]">
+                {/* Subtle ambient cyan glow behind the organic shape */}
+                <div className="absolute inset-4 bg-gradient-to-tr from-sky-300/35 via-teal-200/25 to-transparent rounded-full blur-2xl pointer-events-none" />
 
-                {/* Main Hero Visual with smooth rounded mask */}
-                <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/60 bg-white shimmer-sweep-hover group">
-                  <Image
-                    src="/images/services/our-servcies.png"
-                    alt="Mani Lifestyle Cosmetics Formulation"
-                    fill
-                    priority
-                    className="object-cover object-center scale-105 transition-transform duration-700 group-hover:scale-110"
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/60 via-transparent to-transparent" />
-
-                  {/* Overlaid Editorial Glass Badge */}
-                  <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/90 backdrop-blur-md border border-white/60 shadow-lg text-left transition-transform duration-300 group-hover:-translate-y-1">
-                    <div className="flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest text-[#1b628b]">
-                      <Sparkles className="w-3.5 h-3.5 text-[#1b628b] animate-spin-slow" />
-                      <span>Ahmedabad Manufacturing Campus</span>
-                    </div>
-                    <div className="text-xs font-semibold text-[#0f172a] mt-0.5">
-                      Class 100,000 Cleanroom &amp; Automated Compounding
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floating Decorative Lens Accent with Gentle Oscillation */}
-                <div className="absolute -top-4 -left-4 px-4 py-2 rounded-full bg-white/95 backdrop-blur-md border border-slate-200 shadow-md text-xs font-semibold text-[#164666] flex items-center gap-2 animate-float-gentle">
-                  <BadgeCheck className="w-4 h-4 text-emerald-600" />
-                  <span>FDCA Approved</span>
-                </div>
+                <Image
+                  src="/images/services/services-hero-organic-shape.png"
+                  alt="Mani Lifestyle Certified Cosmetics Manufacturer Consultation"
+                  width={480}
+                  height={470}
+                  priority
+                  quality={98}
+                  className="w-full h-auto object-contain relative z-10 drop-shadow-[0_20px_35px_rgba(18,65,95,0.16)]"
+                />
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Bottom Undulating Ambient Fluid Wave Transition */}
+        <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none pointer-events-none z-10">
+          <svg
+            viewBox="0 0 1440 75"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-10 sm:h-14 lg:h-16 text-[#f8fafc]"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0,28 C260,65 520,5 780,40 C1040,75 1260,15 1440,42 L1440,75 L0,75 Z"
+              fill="rgba(214, 235, 248, 0.45)"
+            />
+            <path
+              d="M0,45 C300,12 600,60 900,25 C1200,55 1350,28 1440,48 L1440,75 L0,75 Z"
+              fill="#f8fafc"
+            />
+          </svg>
         </div>
       </section>
 

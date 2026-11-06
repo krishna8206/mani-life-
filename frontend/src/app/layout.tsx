@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import QuickActionBar from "@/components/QuickActionBar";
+import InitialPreloader from "@/components/InitialPreloader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,6 +59,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#f8fafc] text-[#0f172a] font-sans selection:bg-blue-600 selection:text-white">
+        <InitialPreloader />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -29,9 +29,21 @@ import {
   Check,
 } from "lucide-react";
 import QuoteModal from "@/components/QuoteModal";
+import AboutHeroVisual from "@/components/AboutHeroVisual";
+import WhyWeExistStage from "@/components/WhyWeExistStage";
+import BiomorphicDropletsCapabilities from "@/components/BiomorphicDropletsCapabilities";
+import RomanArchProductExpertise from "@/components/RomanArchProductExpertise";
+import CleanroomScrollProgress from "@/components/CleanroomScrollProgress";
+import VisionPrinciplesShowcase from "@/components/VisionPrinciplesShowcase";
 
 export default function AboutPage() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+  const [isHeroEntered, setIsHeroEntered] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsHeroEntered(true), 40);
+    return () => clearTimeout(timer);
+  }, []);
 
   // "Why We Exist" 4 Core Values
   const coreValues = [
@@ -62,119 +74,6 @@ export default function AboutPage() {
       badge: "Govt. Approved",
       desc: "Strict adherence to Gujarat FDCA regulatory guidelines, complete stability testing, and batch COA analytical verification.",
       icon: CheckCircle2,
-    },
-  ];
-
-  // "What We Do" Capabilities
-  const capabilities = [
-    {
-      num: "01",
-      title: "Custom Formulation (ODM R&D)",
-      tagline: "Bespoke Cosmetic Science",
-      desc: "Novel active research, texture optimization, scent profiling, and accelerated bench trials to create your unique proprietary formula.",
-      icon: Lightbulb,
-      link: "/services/custom-formulation",
-    },
-    {
-      num: "02",
-      title: "Private Labeling (OEM Fast Track)",
-      tagline: "Market-Ready Bench Stock",
-      desc: "Over 500+ clinically verified formulations ready for immediate bottling, custom packaging, and commercial launch with minimal lead time.",
-      icon: Tags,
-      link: "/services/private-label",
-    },
-    {
-      num: "03",
-      title: "Packaging & Component Sourcing",
-      tagline: "Spec-to-Shelf Presentation",
-      desc: "Amber droppers, airless vacuum pumps, aluminum tubes, recyclable jars, label design advisory, and leak-proof seal validation.",
-      icon: Box,
-      link: "/services/packaging-solutions",
-    },
-    {
-      num: "04",
-      title: "Licensing & Regulatory Support",
-      tagline: "Complete Compliance Dossier",
-      desc: "End-to-end FDCA documentation, legal CDSCO & INCI artwork clearance, batch certificates of analysis (COA), and e-commerce launch support.",
-      icon: FileCheck2,
-      link: "/certifications",
-    },
-  ];
-
-  // "Our Product Expertise" 8 Verticals
-  const expertiseItems = [
-    {
-      title: "Face Washes & Cleansers",
-      subtitle: "pH 5.5 foaming, gel, & clarifying washes",
-      icon: Droplets,
-      href: "/products",
-    },
-    {
-      title: "Serums & Clinical Actives",
-      subtitle: "Vitamin C, Niacinamide, & barrier elixirs",
-      icon: FlaskConical,
-      href: "/products",
-    },
-    {
-      title: "Scrubs & Exfoliators",
-      subtitle: "AHA/BHA chemical peels & micro-polishes",
-      icon: Sparkles,
-      href: "/products",
-    },
-    {
-      title: "Salon Professional Facial Kits",
-      subtitle: "Multi-stage aesthetic treatment regimens",
-      icon: Layers,
-      href: "/products",
-    },
-    {
-      title: "Hair Oils & Scalp Serums",
-      subtitle: "Rosemary, Redensyl, & botanical infusions",
-      icon: Beaker,
-      href: "/products",
-    },
-    {
-      title: "Sunscreens & Treatment Masks",
-      subtitle: "SPF 50 fluid gels & hydrogel clay masks",
-      icon: Sun,
-      href: "/products",
-    },
-    {
-      title: "Pre & Post Wax Care",
-      subtitle: "Soothing aloe lotions & antiseptic cleansers",
-      icon: Sparkle,
-      href: "/products",
-    },
-    {
-      title: "Herbal & Fruit Waxes",
-      subtitle: "Low-temp peelable stripless waxes & roll-ons",
-      icon: Leaf,
-      href: "/products",
-    },
-  ];
-
-  // Our Vision Principles
-  const visionPrinciples = [
-    {
-      category: "Collaboration",
-      title: "Trusted Partnership",
-      desc: "We build enduring collaborations founded on transparency, reliable batch timelines, and shared growth with emerging startups and established beauty brands",
-      highlight: "Reliable Batch Schedules & Support",
-      icon: Handshake,
-    },
-    {
-      category: "Formulation",
-      title: "Innovative Quality",
-      desc: "We deliver clean, biocompatible, and active-driven formulations with pharmaceutical-grade stability to help your brand lead the modern personal care market",
-      highlight: "Lab-Verified Stability & Clean Actives",
-      icon: Award,
-    },
-    {
-      category: "Identity",
-      title: "Brand-Centric Approach",
-      desc: "Every product batch, texture, fragrance, and label is tailored to embody your distinct brand philosophy, aesthetic identity, and commercial price tier",
-      highlight: "Custom Formulations Tailored to You",
-      icon: Palette,
     },
   ];
 
@@ -209,113 +108,138 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#0f172a] selection:bg-[#164666] selection:text-white font-sans antialiased">
-      {/* 1. HERO SECTION */}
-      <section className="relative w-full py-16 sm:py-20 lg:py-24 bg-[#f0f7fb] border-b border-slate-200 overflow-hidden">
+      {/* Cleanroom Liquid Scroll Progress Bar */}
+      <CleanroomScrollProgress />
+      {/* 1. HERO SECTION WITH ARCHITECTURAL ROMAN ARCH CLEANROOM MONOLITH */}
+      <section className="relative w-full pt-14 pb-16 sm:pt-18 sm:pb-20 lg:pt-20 lg:pb-24 bg-gradient-to-b from-[#eef6fa] via-[#f4f9fd] to-[#f8fafc] border-b border-slate-200/80 overflow-hidden">
         {/* Soft Ambient Radial Lights */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-sky-100/40 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-sky-200/35 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 right-[-10%] w-[600px] h-[450px] bg-teal-100/40 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-4">
-            {/* Brand Micro-header */}
-            <p className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#1b628b]">
-              About Mani Lifestyle • Ahmedabad, Gujarat
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 items-center">
+            {/* Left Column: Brand Story & Call to Actions with Downward Entrance Cascade */}
+            <div
+              className="lg:col-span-7 space-y-4 text-left will-change-transform"
+              style={{
+                transform: isHeroEntered ? "translateY(0px)" : "translateY(24px)",
+                opacity: isHeroEntered ? 1 : 0,
+                transition: "transform 850ms cubic-bezier(0.16, 1, 0.3, 1) 100ms, opacity 850ms ease-out 100ms",
+              }}
+            >
+              {/* Brand Micro-header with Glowing Pill */}
+              <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/80 border border-sky-200/80 shadow-2xs backdrop-blur-xs">
+                <span className="w-2 h-2 rounded-full bg-[#1b628b] animate-ping" />
+                <span className="text-[10.5px] sm:text-xs uppercase tracking-[0.22em] font-semibold text-[#164666]">
+                  State-of-the-Art Compounding Campus • Ahmedabad, India
+                </span>
+              </div>
 
-            {/* Signature Title with Italic Accent */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[#0f172a] font-normal leading-[1.15] tracking-tight">
-              The Engine Behind India’s Emerging{" "}
-              <span className="font-serif italic font-light text-[#1b628b]">
-                Beauty & Wellness Brands
-              </span>
-            </h1>
+              {/* Signature Master Headline */}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#0f172a] font-normal leading-[1.14] tracking-tight">
+                The Formulation Engine Behind India’s Leading{" "}
+                <span className="font-serif italic font-light text-[#1b628b] block sm:inline">
+                  Prestige Cosmetics.
+                </span>
+              </h1>
 
-            <p className="text-sm sm:text-base text-[#64748b] leading-relaxed max-w-2xl font-normal pt-1">
-              A certified cosmetic manufacturing company and specialized research laboratory based in Ahmedabad, Gujarat. We engineer high-performance skincare and haircare solutions for startups, clinical dermatologists, and established salon chains.
-            </p>
+              {/* Subtitle Description */}
+              <p className="text-sm sm:text-base text-[#475569] leading-relaxed max-w-2xl font-normal pt-1">
+                From novel active research and pH-buffered dermal stability to finished luxury packaging, Mani Lifestyle powers high-growth beauty startups, clinical dermatologists, and prestigious salon chains with low MOQ from 500 units.
+              </p>
 
-            {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-2">
-              <button
-                onClick={() => setIsQuoteOpen(true)}
-                className="px-7 py-3.5 bg-[#164666] hover:bg-[#10364f] text-white text-xs sm:text-sm font-semibold rounded-xl shadow-md shadow-[#164666]/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-              >
-                Request Formulation Samples
-              </button>
+              {/* Dual Primary Call-to-Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3.5 pt-2">
+                <button
+                  onClick={() => setIsQuoteOpen(true)}
+                  className="inline-flex items-center gap-2 px-6 sm:px-7 py-3.5 bg-[#164666] hover:bg-[#10364f] text-white text-xs sm:text-sm font-semibold rounded-xl shadow-lg shadow-[#164666]/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                >
+                  <Sparkles className="w-4 h-4 text-sky-200" />
+                  <span>Request Formulation Samples</span>
+                  <ArrowRight className="w-4 h-4 text-white" />
+                </button>
 
-              <a
-                href="https://wa.me/919724681096?text=Hello%20Mani%20Lifestyle,%20I%20would%20like%20to%20learn%20more%20about%20your%20manufacturing%20campus."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3.5 bg-white hover:bg-slate-50 text-[#164666] border border-slate-200/90 hover:border-[#164666]/40 text-xs sm:text-sm font-semibold rounded-xl shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98]"
-              >
-                Contact Our Plant (+91 97246 81096)
-              </a>
-            </div>
+                <a
+                  href="https://wa.me/919724681096?text=Hello%20Mani%20Lifestyle,%20I%20would%20like%20to%20learn%20more%20about%20your%20manufacturing%20campus."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 sm:px-6 py-3.5 bg-white hover:bg-slate-50 text-[#164666] border border-slate-200/90 hover:border-[#164666]/40 text-xs sm:text-sm font-semibold rounded-xl shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <Phone className="w-4 h-4 text-[#164666]" />
+                  <span>Call Regulatory Plant (+91 97246 81096)</span>
+                </a>
+              </div>
 
-            {/* 4 Trust Highlights Card Strip */}
-            <div className="pt-4 mt-2">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-white/70 backdrop-blur-xs p-3 rounded-2xl border border-[#d9ecf7] max-w-2xl shadow-xs">
-                <div className="flex items-center gap-2.5 py-1 px-2.5">
-                  <FlaskConical className="w-4 h-4 text-[#164666] shrink-0" strokeWidth={1.8} />
-                  <div>
-                    <div className="text-[11px] sm:text-xs font-semibold text-[#0f172a] leading-tight">
-                      Custom &
-                    </div>
-                    <div className="text-[10px] text-[#64748b] leading-tight">
-                      White-Label
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2.5 py-1 px-2.5">
-                  <Sparkles className="w-4 h-4 text-[#164666] shrink-0" strokeWidth={1.8} />
-                  <div>
-                    <div className="text-[11px] sm:text-xs font-semibold text-[#0f172a] leading-tight">
-                      In-House
-                    </div>
-                    <div className="text-[10px] text-[#64748b] leading-tight">
-                      R&D Lab
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2.5 py-1 px-2.5">
-                  <Box className="w-4 h-4 text-[#164666] shrink-0" strokeWidth={1.8} />
-                  <div>
-                    <div className="text-[11px] sm:text-xs font-semibold text-[#0f172a] leading-tight">
-                      Flexible Low MOQ
-                    </div>
-                    <div className="text-[10px] text-[#64748b] leading-tight">
-                      Startup Friendly
+              {/* 4 Trust Highlights Micro-Strip */}
+              <div className="pt-3">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-white/80 backdrop-blur-md p-3 rounded-2xl border border-[#d2e7f5] shadow-xs">
+                  <div className="flex items-center gap-2.5 py-1 px-2.5 rounded-xl hover:bg-sky-50/70 transition-colors">
+                    <FlaskConical className="w-4 h-4 text-[#164666] shrink-0" strokeWidth={1.8} />
+                    <div>
+                      <div className="text-[11px] sm:text-xs font-semibold text-[#0f172a] leading-tight">
+                        Custom & White-Label
+                      </div>
+                      <div className="text-[9.5px] text-[#64748b] leading-tight">
+                        ODM & OEM Active Lab
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="flex items-center gap-2.5 py-1 px-2.5">
-                  <ShieldCheck className="w-4 h-4 text-[#164666] shrink-0" strokeWidth={1.8} />
-                  <div>
-                    <div className="text-[11px] sm:text-xs font-semibold text-[#0f172a] leading-tight">
-                      WHO-GMP &
+                  <div className="flex items-center gap-2.5 py-1 px-2.5 rounded-xl hover:bg-sky-50/70 transition-colors">
+                    <Sparkles className="w-4 h-4 text-[#164666] shrink-0" strokeWidth={1.8} />
+                    <div>
+                      <div className="text-[11px] sm:text-xs font-semibold text-[#0f172a] leading-tight">
+                        In-House R&D
+                      </div>
+                      <div className="text-[9.5px] text-[#64748b] leading-tight">
+                        Formulation Scientists
+                      </div>
                     </div>
-                    <div className="text-[10px] text-[#64748b] leading-tight">
-                      ISO 22716
+                  </div>
+
+                  <div className="flex items-center gap-2.5 py-1 px-2.5 rounded-xl hover:bg-sky-50/70 transition-colors">
+                    <Box className="w-4 h-4 text-[#164666] shrink-0" strokeWidth={1.8} />
+                    <div>
+                      <div className="text-[11px] sm:text-xs font-semibold text-[#0f172a] leading-tight">
+                        Flexible Low MOQ
+                      </div>
+                      <div className="text-[9.5px] text-[#64748b] leading-tight">
+                        From 500 Units
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5 py-1 px-2.5 rounded-xl hover:bg-sky-50/70 transition-colors">
+                    <ShieldCheck className="w-4 h-4 text-[#164666] shrink-0" strokeWidth={1.8} />
+                    <div>
+                      <div className="text-[11px] sm:text-xs font-semibold text-[#0f172a] leading-tight">
+                        WHO-GMP & FDCA
+                      </div>
+                      <div className="text-[9.5px] text-[#64748b] leading-tight">
+                        ISO 22716 Cleanroom
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Right Column: Architectural Luxury Elliptical Cleanroom Oculus */}
+            <div className="lg:col-span-5 flex justify-center">
+              <AboutHeroVisual />
             </div>
           </div>
         </div>
       </section>
 
       {/* 2. INTRO (Who We Are - Crafting Excellence in Cosmetics) */}
-      <section className="relative py-14 sm:py-16 lg:py-18 bg-white border-b border-slate-200/80 overflow-hidden">
+      <section className="relative py-14 sm:py-16 lg:py-20 bg-white border-b border-slate-200/80 overflow-hidden">
         {/* Soft Ambient Radial Lights */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[350px] bg-sky-100/30 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto">
+            {/* Editorial Eyebrow */}
             <div className="flex items-center justify-center gap-2.5 mb-2.5">
               <span className="w-8 h-[1.5px] bg-[#4a728e]" />
               <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
@@ -334,9 +258,25 @@ export default function AboutPage() {
             {/* Subtle Underline Accent */}
             <div className="w-12 h-0.5 bg-[#1b628b] rounded-full mx-auto mt-3 mb-4" />
 
-            <p className="text-sm sm:text-[15px] text-[#64748b] max-w-2xl mx-auto leading-relaxed font-normal">
+            <p className="text-sm sm:text-[15px] text-[#64748b] leading-relaxed font-normal">
               Mani Lifestyle is a certified cosmetic manufacturing company and research laboratory based in Ahmedabad, Gujarat. We specialize in crafting high-performance, safe, and skin-friendly cosmetic products using a perfect blend of modern science and traditional botanical pharmacology, offering end-to-end manufacturing solutions from concept to commercial shelf.
             </p>
+
+            {/* 3 Cleanroom Badges */}
+            <div className="flex flex-wrap items-center justify-center gap-2.5 mt-6">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#164666] bg-sky-50 border border-sky-200/80 px-3 py-1 rounded-full shadow-2xs">
+                <CheckCircle2 className="w-3.5 h-3.5 text-teal-600" />
+                <span>WHO-GMP Plant</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#164666] bg-sky-50 border border-sky-200/80 px-3 py-1 rounded-full shadow-2xs">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#1b628b]" />
+                <span>ISO 22716 Cleanroom</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#164666] bg-sky-50 border border-sky-200/80 px-3 py-1 rounded-full shadow-2xs">
+                <FlaskConical className="w-3.5 h-3.5 text-[#164666]" />
+                <span>Ahmedabad R&D Lab</span>
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -372,33 +312,8 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* 4 Value Cards Grid (Authentic to the Website) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 items-stretch max-w-6xl mx-auto">
-            {coreValues.map((val) => {
-              const IconComp = val.icon;
-              return (
-                <div
-                  key={val.title}
-                  className="group relative bg-white rounded-2xl p-7 sm:p-8 border border-slate-200/90 hover:border-[#1b628b]/40 shadow-xs hover:shadow-lg hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1 flex flex-col items-center text-center"
-                >
-                  {/* Icon Container */}
-                  <div className="w-14 h-14 rounded-2xl bg-[#f0f7fb] border border-[#d9ecf7] text-[#164666] flex items-center justify-center group-hover:bg-[#164666] group-hover:border-[#164666] group-hover:text-white group-hover:scale-105 group-hover:shadow-md transition-all duration-300 mb-5">
-                    <IconComp className="w-6 h-6" strokeWidth={1.75} />
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-base sm:text-lg font-semibold text-[#0f172a] group-hover:text-[#1b628b] transition-colors tracking-tight leading-snug mb-2.5">
-                    {val.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-[13px] sm:text-[13.5px] text-slate-500 leading-relaxed font-normal flex-1">
-                    {val.desc}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
+          {/* 4 Core Pillars: Interactive Architectural Louvre Stage (100% Box-Free) */}
+          <WhyWeExistStage />
         </div>
       </section>
 
@@ -433,40 +348,8 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* 4 Capabilities Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 items-stretch max-w-6xl mx-auto">
-            {capabilities.map((cap) => {
-              const IconComp = cap.icon;
-              return (
-                <div
-                  key={cap.title}
-                  className="group relative bg-[#f8fafc] rounded-2xl p-7 border border-slate-200/90 hover:border-[#1b628b]/40 shadow-xs hover:shadow-lg hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1 flex flex-col"
-                >
-                  {/* Top Row: Icon + Number */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="w-12 h-12 rounded-xl bg-white border border-[#d9ecf7] text-[#164666] flex items-center justify-center group-hover:bg-[#164666] group-hover:text-white transition-all duration-300">
-                      <IconComp className="w-5 h-5" strokeWidth={1.8} />
-                    </div>
-                    <span className="text-xs font-bold text-slate-400 group-hover:text-[#1b628b] transition-colors">
-                      {cap.num}
-                    </span>
-                  </div>
-
-                  <div className="text-[11px] font-semibold text-[#1b628b] mb-1">
-                    {cap.tagline}
-                  </div>
-
-                  <h3 className="text-base font-semibold text-[#0f172a] group-hover:text-[#1b628b] transition-colors tracking-tight leading-snug mb-2.5">
-                    {cap.title}
-                  </h3>
-
-                  <p className="text-[13px] text-slate-500 leading-relaxed font-normal">
-                    {cap.desc}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
+          {/* 4 Capabilities: Floating Biomorphic Liquid Droplets (100% Box-Free) */}
+          <BiomorphicDropletsCapabilities />
         </div>
       </section>
 
@@ -501,31 +384,8 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* 8 Product Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 max-w-6xl mx-auto">
-            {expertiseItems.map((item) => {
-              const IconComp = item.icon;
-              return (
-                <Link
-                  key={item.title}
-                  href={item.href}
-                  className="group bg-white rounded-2xl p-6 border border-slate-200/90 hover:border-[#1b628b]/40 shadow-xs hover:shadow-lg hover:shadow-slate-200/80 transition-all duration-300 hover:-translate-y-1 block"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-[#f0f7fb] border border-[#d9ecf7] text-[#164666] flex items-center justify-center group-hover:bg-[#164666] group-hover:border-[#164666] group-hover:text-white transition-all duration-300 mb-4">
-                    <IconComp className="w-5 h-5" strokeWidth={1.75} />
-                  </div>
-
-                  <h3 className="text-sm sm:text-[15px] font-semibold text-[#0f172a] group-hover:text-[#1b628b] transition-colors leading-snug mb-1">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-[12px] text-slate-500 leading-relaxed font-normal">
-                    {item.subtitle}
-                  </p>
-                </Link>
-              );
-            })}
-          </div>
+          {/* 8 Roman Arch Apothecary Niches (Unique Architectural Shape) */}
+          <RomanArchProductExpertise />
         </div>
       </section>
 
@@ -560,50 +420,8 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* 3 Vision Principles - Open Tripartite Architecture with Subtle Vertical Hairlines */}
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-0 md:divide-x md:divide-slate-200/90">
-              {visionPrinciples.map((item) => {
-                const IconComp = item.icon;
-                return (
-                  <div
-                    key={item.title}
-                    className="group flex flex-col items-center text-center px-6 sm:px-8 lg:px-10 transition-all duration-300"
-                  >
-                    {/* Floating Emblem Badge */}
-                    <div className="relative w-16 h-16 rounded-2xl bg-white border border-[#d2e7f5] text-[#164666] flex items-center justify-center mb-5 shadow-xs group-hover:scale-105 group-hover:bg-[#164666] group-hover:text-white group-hover:border-[#164666] group-hover:shadow-md transition-all duration-300">
-                      <IconComp className="w-7 h-7" strokeWidth={1.65} />
-                    </div>
-
-                    {/* Category Label */}
-                    <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.24em] font-semibold text-[#1b628b] mb-2">
-                      {item.category}
-                    </span>
-
-                    {/* Headline */}
-                    <h3 className="text-xl sm:text-[22px] font-serif text-[#0f172a] font-medium tracking-tight mb-3 group-hover:text-[#164666] transition-colors leading-snug">
-                      {item.title}
-                    </h3>
-
-                    {/* Editorial Accent Dash */}
-                    <div className="w-8 h-[1.5px] bg-[#1b628b]/40 mx-auto mb-4 group-hover:w-12 group-hover:bg-[#164666] transition-all duration-300" />
-
-                    {/* Narrative Description */}
-                    <p className="text-[14px] text-slate-600 leading-relaxed font-normal mb-6 max-w-sm mx-auto">
-                      {item.desc}
-                    </p>
-
-                    {/* Hallmark Tag (Clean, Unboxed, NO Dot) */}
-                    <div className="mt-auto pt-2">
-                      <span className="text-[11.5px] font-medium tracking-wide text-[#164666] bg-[#f0f7fb] border border-[#d9ecf7] px-4 py-1.5 rounded-full inline-block">
-                        {item.highlight}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          {/* 3 Vision Principles - Open Tripartite Architecture with Scroll Stagger */}
+          <VisionPrinciplesShowcase />
         </div>
       </section>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -55,6 +55,29 @@ function PumpBottleIcon({
 export default function HomePage() {
   const [activeFaqIndex, setActiveFaqIndex] = useState<number | null>(0);
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [isHeroEntered, setIsHeroEntered] = useState(false);
+  const servicesSectionRef = useRef<HTMLDivElement>(null);
+  const [isServicesVisible, setIsServicesVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsHeroEntered(true), 40);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const el = servicesSectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsServicesVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const trustReasons = [
     {
@@ -269,9 +292,19 @@ export default function HomePage() {
     <div className="min-h-screen bg-[#f8fafc] text-[#0f172a] selection:bg-[#164666] selection:text-white">
       {/* 1. HERO SECTION - SEAMLESS INTEGRATED LUXURY HERO (HEADER FLOATS NATIVELY INSIDE HERO) */}
       <section className="relative w-full min-h-[580px] lg:min-h-[640px] xl:min-h-[700px] lg:h-screen lg:max-h-[880px] flex items-center bg-[#f0f7fb] border-b border-slate-200 overflow-hidden">
-        {/* Right side: exact user-provided image (mani-hero-right-side.jpg) */}
-        {/* Generous responsive container anchored to bottom-right ensures the cream jar, Erlenmeyer flask, and stirring rod are 100% visible with zero cut-off */}
-        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-[74%] xl:w-[68%] 2xl:w-[62%] z-0 pointer-events-none overflow-hidden">
+        {/* Right side: exact user-provided image (mani-hero-right-side.jpg) with 3D Entrance Perspective Flip */}
+        <div
+          className="absolute right-0 top-0 bottom-0 w-full lg:w-[74%] xl:w-[68%] 2xl:w-[62%] z-0 pointer-events-none overflow-hidden will-change-transform"
+          style={{
+            perspective: "1200px",
+            transformOrigin: "right center",
+            transform: !isHeroEntered
+              ? "perspective(1200px) rotateY(-18deg) scale(0.94)"
+              : "perspective(1200px) rotateY(0deg) scale(1)",
+            opacity: isHeroEntered ? 1 : 0,
+            transition: "transform 900ms cubic-bezier(0.16, 1, 0.3, 1), opacity 900ms ease-out",
+          }}
+        >
           <div className="relative w-full h-full">
             <Image
               src="/images/mani-hero-right-side.jpg"
@@ -289,7 +322,15 @@ export default function HomePage() {
         </div>
 
         <div className="relative z-10 max-w-[1500px] mx-auto px-6 sm:px-8 lg:px-12 xl:px-14 w-full pt-20 sm:pt-24 lg:pt-16 pb-8">
-          <div className="max-w-lg lg:max-w-xl xl:max-w-[560px] space-y-3.5 sm:space-y-4 lg:space-y-4 xl:space-y-4.5">
+          {/* Editorial Content with Downward Entrance Cascade */}
+          <div
+            className="max-w-lg lg:max-w-xl xl:max-w-[560px] space-y-3.5 sm:space-y-4 lg:space-y-4 xl:space-y-4.5 will-change-transform"
+            style={{
+              transform: isHeroEntered ? "translateY(0px)" : "translateY(28px)",
+              opacity: isHeroEntered ? 1 : 0,
+              transition: "transform 850ms cubic-bezier(0.16, 1, 0.3, 1) 100ms, opacity 850ms ease-out 100ms",
+            }}
+          >
             {/* Brand Micro-header */}
             <div className="flex items-center gap-2.5">
               <span className="w-8 h-[1.5px] bg-[#4a728e]" />
@@ -550,13 +591,18 @@ export default function HomePage() {
             </defs>
           </svg>
 
-          {/* 4 Cards (Organic Asymmetrical Rounded Rectangle / Soft Blob Card) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 items-stretch pt-2">
-            {organicServices.map((service) => {
+          {/* 4 Cards (Organic Asymmetrical Rounded Rectangle / Soft Blob Card) with Staggered Viewport Entrance */}
+          <div ref={servicesSectionRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 items-stretch pt-2">
+            {organicServices.map((service, index) => {
               const IconComp = service.icon;
               return (
                 <div
                   key={service.num}
+                  style={{
+                    transform: isServicesVisible ? "translateY(0px)" : "translateY(32px)",
+                    opacity: isServicesVisible ? 1 : 0,
+                    transition: `transform 700ms cubic-bezier(0.16, 1, 0.3, 1) ${index * 80}ms, opacity 700ms ease-out ${index * 80}ms`,
+                  }}
                   className="group relative flex flex-col justify-between transition-all duration-500 hover:-translate-y-2"
                 >
                   {/* Floating Circular Glass Icon Badge at Top-Left */}

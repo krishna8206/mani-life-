@@ -33,251 +33,18 @@ import {
   oemProcessStages,
 } from "@/data/services";
 import QuoteModal from "@/components/QuoteModal";
-
-
-// --- PRO-LEVEL SCROLL-AWARE SHOWCASE ROW (CONNECTED LIQUID JOURNEY & KINETIC PARALLAX) ---
-function ServiceShowcaseRow({
-  service,
-  index,
-  setIsQuoteOpen,
-  scrollProgress,
-}: {
-  service: (typeof servicesData)[0];
-  index: number;
-  setIsQuoteOpen: (val: boolean) => void;
-  scrollProgress: number;
-}) {
-  const rowRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [parallaxY, setParallaxY] = useState(0);
-  const [isReached, setIsReached] = useState(false);
-
-  useEffect(() => {
-    const el = rowRef.current;
-    if (!el) return;
-
-    // Viewport entrance reveal observer
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-    );
-    observer.observe(el);
-
-    // Kinetic parallax drift on scroll (GPU composited) & checkpoint detection
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (rowRef.current) {
-            const rect = rowRef.current.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            
-            // Check if scroll has reached this row's midpoint
-            setIsReached(rect.top <= windowHeight * 0.58);
-
-            if (rect.top < windowHeight + 100 && rect.bottom > -100) {
-              const centerOffset = rect.top + rect.height / 2 - windowHeight / 2;
-              const offset = Math.max(-20, Math.min(20, centerOffset * -0.06));
-              setParallaxY(offset);
-            }
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const isEven = index % 2 === 1;
-
-  return (
-    <div
-      ref={rowRef}
-      id={service.slug}
-      className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center group transition-all duration-700"
-    >
-      {/* Central Journey Node Anchor (Desktop) */}
-      <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 items-center justify-center pointer-events-none">
-        <div
-          className={`w-11 h-11 rounded-full border-2 bg-white flex items-center justify-center font-serif text-xs font-bold transition-all duration-500 shadow-md ${
-            isReached
-              ? "border-[#1b628b] bg-gradient-to-b from-sky-50 to-white text-[#164666] scale-110 shadow-[0_0_24px_rgba(27,98,139,0.45)] ring-4 ring-sky-200/80"
-              : "border-slate-300 text-slate-400 scale-95"
-          }`}
-        >
-          0{index + 1}
-        </div>
-      </div>
-
-      {/* Visual Media Column - Pro Asymmetrical Atelier Curves with Kinetic Blur-to-Sharp & Parallax */}
-      <div
-        className={`lg:col-span-6 relative ${isEven ? "lg:order-2" : "lg:order-1"} transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isVisible
-            ? "opacity-100 translate-y-0 scale-100 blur-0"
-            : "opacity-0 translate-y-14 scale-[0.95] blur-sm"
-        }`}
-      >
-        <div className="relative w-full aspect-[4/3] max-w-[540px] mx-auto select-none group/media">
-          {/* Ambient atmospheric cyan aura with breathing loop and hover bloom */}
-          <div
-            className={`absolute -inset-4 bg-gradient-to-tr from-sky-300/35 via-teal-200/25 to-transparent rounded-[48px] blur-2xl pointer-events-none -z-10 transition-all duration-700 group-hover/media:scale-110 group-hover/media:opacity-90 ${
-              isVisible ? "opacity-100 animate-aura-breathe" : "opacity-0"
-            }`}
-          />
-
-          {/* Main Asymmetrical Frame with Alternating Directional Sweeps */}
-          <div
-            className={`relative w-full h-full overflow-hidden border-[3px] border-white/95 shadow-[0_20px_50px_rgba(18,65,95,0.14)] ring-1 ring-sky-300/60 bg-gradient-to-b from-sky-50 to-white transition-all duration-700 group-hover/media:shadow-[0_28px_65px_rgba(18,65,95,0.22)] group-hover/media:-translate-y-1 ${
-              isEven
-                ? "rounded-tr-[56px] sm:rounded-tr-[76px] rounded-bl-[56px] sm:rounded-bl-[76px] rounded-tl-2xl sm:rounded-tl-3xl rounded-br-2xl sm:rounded-br-3xl"
-                : "rounded-tl-[56px] sm:rounded-tl-[76px] rounded-br-[56px] sm:rounded-br-[76px] rounded-tr-2xl sm:rounded-tr-3xl rounded-bl-2xl sm:rounded-bl-3xl"
-            }`}
-          >
-            {/* Inner parallax container */}
-            <div
-              className="relative w-full h-full scale-[1.08] transition-transform duration-100 ease-out will-change-transform"
-              style={{ transform: `translate3d(0, ${parallaxY}px, 0)` }}
-            >
-              <Image
-                src={service.image}
-                alt={service.title}
-                fill
-                className="object-cover object-center scale-100 transition-transform duration-1000 ease-out group-hover/media:scale-106"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-
-            {/* Subtle soft gradient lighting vignette */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-transparent to-transparent pointer-events-none" />
-
-            {/* Top corner ambient glint */}
-            <div className="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-white/25 via-transparent to-transparent pointer-events-none" />
-
-            {/* Pro specular glass sheen sweep across card */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[160%] skew-x-[-25deg] group-hover/media:translate-x-[220%] transition-transform duration-1000 ease-out pointer-events-none" />
-          </div>
-        </div>
-      </div>
-
-      {/* Editorial Text Content Column with Staggered Kinetic Blur-to-Sharp Entrance */}
-      <div
-        className={`lg:col-span-6 space-y-5 ${isEven ? "lg:order-1" : "lg:order-2"} transition-all duration-1000 delay-150 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isVisible
-            ? "opacity-100 translate-y-0 blur-0"
-            : "opacity-0 translate-y-10 blur-sm"
-        }`}
-      >
-        {/* Large Editorial Serif Number & Tag */}
-        <div className="flex items-center gap-4">
-          <span
-            className={`text-4xl sm:text-5xl font-serif font-light transition-all duration-500 inline-block select-none ${
-              isReached
-                ? "text-[#164666] -translate-y-1"
-                : "text-[#164666]/25 group-hover:text-[#1b628b]/60 group-hover:-translate-y-1"
-            }`}
-          >
-            0{index + 1}
-          </span>
-          <span
-            className={`h-[1px] bg-slate-200/90 transition-all duration-700 ${
-              isVisible ? "w-12 group-hover:w-16 group-hover:bg-[#1b628b]/40" : "w-0"
-            }`}
-          />
-          <span className="text-xs uppercase font-bold tracking-widest text-[#1b628b] transition-colors duration-300">
-            {service.tagline.split("&")[0].trim()}
-          </span>
-        </div>
-
-        {/* Service Title */}
-        <h3 className="text-2xl sm:text-3xl font-serif text-[#0f172a] font-normal leading-snug group-hover:text-[#164666] transition-colors duration-300">
-          {service.title}
-        </h3>
-
-        {/* Descriptive Story */}
-        <p className="text-sm text-[#475569] leading-relaxed">
-          {service.fullDesc}
-        </p>
-
-        {/* Highlight Bullets with Interactive Micro-Pills */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-slate-200/70">
-          {service.features.slice(0, 4).map((feature, fIdx) => (
-            <div
-              key={fIdx}
-              className="group/bullet flex items-start gap-2.5 text-xs text-[#334155] leading-snug p-1.5 -mx-1.5 rounded-lg hover:bg-white/90 hover:shadow-[0_2px_8px_rgba(18,65,95,0.06)] transition-all duration-200 cursor-default"
-            >
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5 transition-all duration-200 group-hover/bullet:scale-110 group-hover/bullet:text-[#0d5c80]" />
-              <span className="group-hover/bullet:text-[#0f172a] transition-colors duration-200">
-                {feature}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* Dual Action CTAs with Pro Magnetic Physics */}
-        <div className="pt-3 flex flex-wrap items-center gap-3">
-          <button
-            onClick={() => setIsQuoteOpen(true)}
-            className="btn-shimmer-sweep px-5 sm:px-6 py-3 bg-[#164666] hover:bg-[#0f344d] text-white font-medium text-xs rounded-lg transition-all duration-300 shadow-sm hover:shadow-[0_8px_20px_rgba(22,70,102,0.28)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer flex items-center gap-2 group/btn"
-          >
-            <span>Request Feasibility Quote</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
-          </button>
-
-          <Link
-            href={`/services/${service.slug}`}
-            className="px-5 py-3 bg-white hover:bg-slate-50 text-[#0f172a] hover:text-[#164666] font-medium text-xs rounded-lg border border-slate-200 hover:border-[#164666]/60 transition-all duration-300 flex items-center gap-1.5 shadow-xs hover:shadow-md hover:-translate-y-0.5 group/link"
-          >
-            <span>Explore Specifications</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-[#1b628b] transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
+import CleanroomScrollProgress from "@/components/CleanroomScrollProgress";
+import ServicePrecisionJourney from "@/components/ServicePrecisionJourney";
+import ServicesHeroVisual from "@/components/ServicesHeroVisual";
 
 export default function ServicesPage() {
-  const precisionContainerRef = useRef<HTMLDivElement>(null);
-  const [precisionScrollProgress, setPrecisionScrollProgress] = useState(0);
+  const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+  const [isHeroEntered, setIsHeroEntered] = useState(false);
 
   useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (precisionContainerRef.current) {
-            const rect = precisionContainerRef.current.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            // Calculate progress of journey down the 4 models
-            const totalDistance = rect.height - windowHeight * 0.3;
-            const currentPosition = windowHeight * 0.5 - rect.top;
-            const raw = currentPosition / totalDistance;
-            const clamped = Math.max(0, Math.min(1, raw));
-            setPrecisionScrollProgress(clamped);
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    const timer = setTimeout(() => setIsHeroEntered(true), 40);
+    return () => clearTimeout(timer);
   }, []);
-  const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [activeProcessIndex, setActiveProcessIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState<"next" | "prev">("next");
   const [isPaused, setIsPaused] = useState(false);
@@ -323,6 +90,9 @@ export default function ServicesPage() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#0f172a] selection:bg-[#164666] selection:text-white overflow-hidden">
+      {/* Cleanroom Liquid Scroll Progress Bar */}
+      <CleanroomScrollProgress />
+
       {/* 1. HERO SECTION - LUXURY COSMETIC EDITORIAL CANVAS (EXACT REFERENCE DESIGN & ORGANIC SHAPE) */}
       <section className="relative w-full min-h-[600px] lg:min-h-[670px] flex items-center bg-gradient-to-b from-[#ffffff] via-[#f4f9fc] to-[#e6f2f9] overflow-hidden pt-20 pb-16 lg:pt-24 lg:pb-20">
         {/* Soft atmospheric ambient glow behind the right organic showcase */}
@@ -330,8 +100,15 @@ export default function ServicesPage() {
 
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-            {/* Left: Editorial Content */}
-            <div className="lg:col-span-7 space-y-6">
+            {/* Left: Editorial Content with Downward Entrance Cascade */}
+            <div
+              className="lg:col-span-7 space-y-6 will-change-transform"
+              style={{
+                transform: isHeroEntered ? "translateY(0px)" : "translateY(24px)",
+                opacity: isHeroEntered ? 1 : 0,
+                transition: "transform 850ms cubic-bezier(0.16, 1, 0.3, 1) 100ms, opacity 850ms ease-out 100ms",
+              }}
+            >
               {/* Brand Micro-header with Em-dash prefix */}
               <div className="flex items-center gap-2 pt-0.5">
                 <span className="text-[#3b6785] font-light select-none text-sm leading-none">——</span>
@@ -435,30 +212,9 @@ export default function ServicesPage() {
               </div>
             </div>
 
-            {/* Right: Branded Architectural Luxury Showcase (Editorial Roman Dome Arch & Formulations) */}
+            {/* Right: Branded Architectural Luxury Showcase (3D Classical Roman Dome Arch Flip) */}
             <div className="lg:col-span-5 relative flex items-center justify-center lg:justify-end">
-              <div className="relative w-full max-w-[440px] sm:max-w-[460px] lg:max-w-[480px] aspect-[4/5] select-none group">
-                {/* Multi-layered ambient atmospheric cyan aura */}
-                <div className="absolute -inset-4 bg-gradient-to-tr from-sky-300/40 via-teal-200/25 to-sky-100/15 rounded-[48px] blur-3xl pointer-events-none -z-10 transition-transform duration-700 group-hover:scale-108 animate-aura-breathe" />
-
-                {/* Main Architectural Arch Container (Classical High-Luxury Cosmetic Atelier Silhouette) */}
-                <div className="relative w-full h-full rounded-t-[140px] sm:rounded-t-[175px] lg:rounded-t-[190px] rounded-b-[28px] sm:rounded-b-[36px] overflow-hidden border-[3px] border-white/95 shadow-[0_20px_50px_rgba(18,65,95,0.16)] ring-1 ring-sky-300/60 bg-gradient-to-b from-sky-50 to-white transition-all duration-500 group-hover:shadow-[0_26px_60px_rgba(18,65,95,0.22)]">
-                  {/* High-Resolution Luxury Cosmetic Serums & Formulations Visual */}
-                  <Image
-                    src="/images/hero-serums.jpg"
-                    alt="Mani Lifestyle - Bespoke Cosmetics Formulations & Private Label Manufacturing"
-                    fill
-                    priority
-                    className="object-cover object-center scale-100 transition-transform duration-700 ease-out group-hover:scale-105"
-                    sizes="(max-width: 1024px) 100vw, 45vw"
-                  />
-
-                  {/* Clean soft ambient highlight across top glass rim */}
-                  <div className="absolute top-0 right-0 w-44 h-44 bg-gradient-to-bl from-white/25 via-transparent to-transparent pointer-events-none" />
-                  {/* Pro specular glass sheen sweep */}
-                  <div className="hero-arch-glint absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[160%] skew-x-[-25deg] group-hover:translate-x-[200%] transition-transform duration-1000 ease-out pointer-events-none" />
-                </div>
-              </div>
+              <ServicesHeroVisual />
             </div>
           </div>
         </div>
@@ -507,42 +263,8 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          {/* Alternating Editorial Showcase Rows */}
-          <div ref={precisionContainerRef} className="relative">
-            {/* --- CENTRAL LUMINOUS JOURNEY THREAD (DESKTOP) --- */}
-            <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-8 bottom-16 w-[3px] pointer-events-none z-10">
-              {/* Base Blueprint Track */}
-              <div className="absolute inset-0 bg-slate-200/70 rounded-full" />
-
-              {/* Dynamic Active Glowing Beam */}
-              <div
-                className="absolute top-0 left-0 right-0 bg-gradient-to-b from-[#164666] via-[#1b628b] to-sky-400 rounded-full transition-all duration-75 shadow-[0_0_14px_rgba(27,98,139,0.55)]"
-                style={{ height: `${precisionScrollProgress * 100}%` }}
-              />
-
-              {/* Luminous Liquid Droplet Orb */}
-              <div
-                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-white border-2 border-[#1b628b] shadow-[0_0_20px_rgba(27,98,139,0.85)] flex items-center justify-center transition-all duration-75 ease-out"
-                style={{ top: `${precisionScrollProgress * 100}%` }}
-              >
-                <span className="w-2.5 h-2.5 rounded-full bg-gradient-to-tr from-[#164666] to-cyan-400" />
-                <span className="absolute inset-0 rounded-full bg-sky-400 animate-ping opacity-45" />
-              </div>
-            </div>
-
-            {/* Alternating Editorial Showcase Rows */}
-            <div className="space-y-28 lg:space-y-36 relative">
-              {servicesData.map((service, index) => (
-                <ServiceShowcaseRow
-                  key={service.slug}
-                  service={service}
-                  index={index}
-                  setIsQuoteOpen={setIsQuoteOpen}
-                  scrollProgress={precisionScrollProgress}
-                />
-              ))}
-            </div>
-          </div>
+          {/* Alternating Editorial Showcase Rows with Synchronized Fluid Thread */}
+          <ServicePrecisionJourney setIsQuoteOpen={setIsQuoteOpen} />
         </div>
       </section>
 

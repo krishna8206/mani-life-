@@ -267,19 +267,21 @@ export default function HomePage() {
   useEffect(() => {
     const fetchHomeCMS = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/home");
+        const res = await fetch("http://localhost:5000/api/home", {
+          cache: "no-store",
+        });
         if (res.ok) {
           const data = await res.json();
-          if (data && (data.servicesSection || data.hero)) {
-            setCmsData(data);
+            if (data && (data.servicesSection || data.hero || data.categoriesSection)) {
+              setCmsData(data);
+            }
           }
+        } catch {
+          // Safe offline / fallback operation
         }
-      } catch {
-        // Safe offline / fallback operation
-      }
-    };
-    fetchHomeCMS();
-  }, []);
+      };
+      fetchHomeCMS();
+    }, []);
 
   const handleOpenQuote = (categoryOrProduct?: string) => {
     if (categoryOrProduct) {
@@ -460,9 +462,8 @@ export default function HomePage() {
                     <Link
                       key={hl.id || idx}
                       href={hl.link || "/services"}
-                      className={`flex items-center gap-2.5 group transition-colors py-0.5 ${
-                        idx > 0 ? "sm:border-l sm:border-[#c8d9e6]/70 sm:pl-3" : ""
-                      }`}
+                      className={`flex items-center gap-2.5 group transition-colors py-0.5 ${idx > 0 ? "sm:border-l sm:border-[#c8d9e6]/70 sm:pl-3" : ""
+                        }`}
                     >
                       <IconC className="w-4 h-4 text-[#164666] shrink-0 transition-transform group-hover:scale-110" strokeWidth={1.8} />
                       <div>
@@ -897,11 +898,10 @@ export default function HomePage() {
               return (
                 <div
                   key={faq.question || index}
-                  className={`rounded-2xl transition-all duration-300 overflow-hidden border ${
-                    isOpen
+                  className={`rounded-2xl transition-all duration-300 overflow-hidden border ${isOpen
                       ? "bg-white border-[#164666]/50 shadow-md shadow-sky-950/5 ring-1 ring-[#164666]/10"
                       : "bg-white border-slate-200/90 hover:border-slate-300 shadow-2xs hover:shadow-xs"
-                  }`}
+                    }`}
                 >
                   <button
                     onClick={() => setActiveFaqIndex(isOpen ? null : index)}
@@ -909,30 +909,27 @@ export default function HomePage() {
                   >
                     <div className="flex items-center gap-3 sm:gap-3.5 flex-1 pr-2">
                       <span
-                        className={`w-7 h-7 rounded-lg text-xs font-mono font-bold flex items-center justify-center shrink-0 transition-colors ${
-                          isOpen
+                        className={`w-7 h-7 rounded-lg text-xs font-mono font-bold flex items-center justify-center shrink-0 transition-colors ${isOpen
                             ? "bg-[#164666] text-white"
                             : "bg-[#f0f7fb] text-[#164666] border border-[#d9ecf7] group-hover:bg-[#e1f0fa]"
-                        }`}
+                          }`}
                       >
                         0{index + 1}
                       </span>
 
                       <span
-                        className={`text-sm sm:text-[15.5px] font-semibold leading-snug tracking-tight transition-colors ${
-                          isOpen ? "text-[#164666]" : "text-[#0f172a] group-hover:text-[#164666]"
-                        }`}
+                        className={`text-sm sm:text-[15.5px] font-semibold leading-snug tracking-tight transition-colors ${isOpen ? "text-[#164666]" : "text-[#0f172a] group-hover:text-[#164666]"
+                          }`}
                       >
                         {faq.question}
                       </span>
                     </div>
 
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
-                        isOpen
+                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen
                           ? "bg-[#164666] text-white rotate-180 shadow-xs"
                           : "bg-[#f0f7fb] text-[#164666] border border-[#d9ecf7] group-hover:bg-[#164666] group-hover:text-white"
-                      }`}
+                        }`}
                     >
                       <ChevronDown className="w-4 h-4" />
                     </div>

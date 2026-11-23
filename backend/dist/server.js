@@ -459,6 +459,20 @@ const server = http_1.default.createServer(async (req, res) => {
                     const activeCount = await Product_1.Product.countDocuments({ categorySlug: targetSlug, status: 'ACTIVE' });
                     await Category_1.Category.findOneAndUpdate({ $or: [{ slug }, { aliases: slug }, { id: slug }] }, { $set: { productCount: totalCount, activeFormulations: activeCount } });
                 }
+                // 3. Synchronize category image to HomePage document if updated
+                const catImage = categoryData.image || categoryData.manufacturerSection?.image || categoryData.hero?.bgImage;
+                if (catImage) {
+                    const homePage = await HomePage_1.HomePage.findOne();
+                    if (homePage?.categoriesSection?.items) {
+                        const items = homePage.categoriesSection.items.map((it) => {
+                            if (it.slug === slug || (updated?.aliases && updated.aliases.includes(it.slug))) {
+                                it.image = catImage;
+                            }
+                            return it;
+                        });
+                        await HomePage_1.HomePage.findOneAndUpdate({}, { $set: { 'categoriesSection.items': items } });
+                    }
+                }
                 return sendJson(res, 200, { success: true, updated });
             }
         }

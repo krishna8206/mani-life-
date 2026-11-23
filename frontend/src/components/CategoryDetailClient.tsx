@@ -59,6 +59,7 @@ export default function CategoryDetailClient({
         format: p.format || "Custom Formula",
         target: p.idealFor,
         moq: p.standardMOQ,
+        image: ("image" in p && typeof (p as any).image === "string" ? (p as any).image : null),
       })),
     },
   };
@@ -106,17 +107,18 @@ export default function CategoryDetailClient({
             items:
               data.products && data.products.length > 0
                 ? data.products
-                    .filter((p: any) => p.status !== 'DRAFT')
-                    .map((p: any, idx: number) => ({
-                      id: p.id || `P-${idx + 1}`,
-                      name: p.name,
-                      slug: ("slug" in p && typeof (p as any).slug === "string" ? (p as any).slug : p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')),
-                      tag: p.tag || 'All Formulations',
-                      format: p.format || p.texture || 'Custom Formula',
-                      target: p.target || '',
-                      moq: p.moq || '500 Units',
-                    }))
-                    .sort((a: any, b: any) => (a.id || '').localeCompare(b.id || '', undefined, { numeric: true }))
+                  .filter((p: any) => p.status !== 'DRAFT')
+                  .map((p: any, idx: number) => ({
+                    id: p.id || `P-${idx + 1}`,
+                    name: p.name,
+                    slug: ("slug" in p && typeof (p as any).slug === "string" ? (p as any).slug : p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')),
+                    tag: p.tag || 'All Formulations',
+                    format: p.format || p.texture || 'Custom Formula',
+                    target: p.target || '',
+                    moq: p.moq || '500 Units',
+                    image: p.image || null,
+                  }))
+                  .sort((a: any, b: any) => (a.id || '').localeCompare(b.id || '', undefined, { numeric: true }))
                 : prev.productRange.items,
           },
         }));
@@ -306,9 +308,21 @@ export default function CategoryDetailClient({
                     className="w-full text-left py-3.5 px-2 flex items-center justify-between group hover:bg-sky-50/60 rounded-lg transition-all cursor-pointer"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="text-[#1b628b] font-bold text-base group-hover:translate-x-1 transition-transform shrink-0">
-                        »
-                      </span>
+                      {(item as any).image ? (
+                        <div className="relative w-8 h-8 rounded-lg overflow-hidden shrink-0 bg-slate-100 border border-slate-200/90 shadow-2xs group-hover:scale-105 transition-transform">
+                          <Image
+                            src={(item as any).image}
+                            alt={item.name}
+                            fill
+                            className="object-cover"
+                            sizes="32px"
+                          />
+                        </div>
+                      ) : (
+                        <span className="text-[#1b628b] font-bold text-base group-hover:translate-x-1 transition-transform shrink-0">
+                          »
+                        </span>
+                      )}
                       <span className="text-sm sm:text-[15px] font-medium text-slate-700 group-hover:text-[#164666] transition-colors">
                         {item.name}
                       </span>
@@ -332,9 +346,21 @@ export default function CategoryDetailClient({
                     className="w-full text-left py-3.5 px-2 flex items-center justify-between group hover:bg-sky-50/60 rounded-lg transition-all cursor-pointer"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="text-[#1b628b] font-bold text-base group-hover:translate-x-1 transition-transform shrink-0">
-                        »
-                      </span>
+                      {(item as any).image ? (
+                        <div className="relative w-8 h-8 rounded-lg overflow-hidden shrink-0 bg-slate-100 border border-slate-200/90 shadow-2xs group-hover:scale-105 transition-transform">
+                          <Image
+                            src={(item as any).image}
+                            alt={item.name}
+                            fill
+                            className="object-cover"
+                            sizes="32px"
+                          />
+                        </div>
+                      ) : (
+                        <span className="text-[#1b628b] font-bold text-base group-hover:translate-x-1 transition-transform shrink-0">
+                          »
+                        </span>
+                      )}
                       <span className="text-sm sm:text-[15px] font-medium text-slate-700 group-hover:text-[#164666] transition-colors">
                         {item.name}
                       </span>
@@ -358,9 +384,21 @@ export default function CategoryDetailClient({
                     className="w-full text-left py-3.5 px-2 flex items-center justify-between group hover:bg-sky-50/60 rounded-lg transition-all cursor-pointer"
                   >
                     <div className="flex items-center gap-3">
-                      <span className="text-[#1b628b] font-bold text-base group-hover:translate-x-1 transition-transform shrink-0">
-                        »
-                      </span>
+                      {(item as any).image ? (
+                        <div className="relative w-8 h-8 rounded-lg overflow-hidden shrink-0 bg-slate-100 border border-slate-200/90 shadow-2xs group-hover:scale-105 transition-transform">
+                          <Image
+                            src={(item as any).image}
+                            alt={item.name}
+                            fill
+                            className="object-cover"
+                            sizes="32px"
+                          />
+                        </div>
+                      ) : (
+                        <span className="text-[#1b628b] font-bold text-base group-hover:translate-x-1 transition-transform shrink-0">
+                          »
+                        </span>
+                      )}
                       <span className="text-sm sm:text-[15px] font-medium text-slate-700 group-hover:text-[#164666] transition-colors">
                         {item.name}
                       </span>

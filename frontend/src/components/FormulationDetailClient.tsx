@@ -1,4 +1,4 @@
-"use client";
+  "use client";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -31,7 +31,71 @@ export default function FormulationDetailClient({
   relatedFormulations = [],
 }: FormulationDetailClientProps) {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
-  const catSlug = activeCategorySlug || formulation.categorySlug;
+  const [data, setData] = useState(formulation);
+  const catSlug = activeCategorySlug || data.categorySlug;
+
+  React.useEffect(() => {
+    let isMounted = true;
+    fetch(`http://localhost:5000/api/products/${formulation.slug}`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Product not in live db');
+        return res.json();
+      })
+      .then((live) => {
+        if (!isMounted || !live) return;
+        setData((prev) => ({
+          ...prev,
+          name: live.name || prev.name,
+          eyebrow: live.eyebrow || prev.eyebrow,
+          titleLine1: live.titleLine1 || prev.titleLine1,
+          titleLine2: live.titleLine2 || prev.titleLine2,
+          cleanroomBadge: live.cleanroomBadge || prev.cleanroomBadge,
+          moqBadge: live.moqBadge || prev.moqBadge,
+          headline: live.headline || prev.headline,
+          tagline: live.tagline || prev.tagline,
+          image: live.image || prev.image,
+          imageAlt: live.imageAlt || prev.imageAlt,
+          format: live.format || prev.format,
+          pH: live.pH || prev.pH,
+          keyActives:
+            Array.isArray(live.keyActives) && live.keyActives.length > 0
+              ? live.keyActives
+              : Array.isArray(live.actives) && live.actives.length > 0
+                ? live.actives
+                : prev.keyActives,
+          skinTypes:
+            Array.isArray(live.skinTypes) && live.skinTypes.length > 0
+              ? live.skinTypes
+              : prev.skinTypes,
+          packagingOptions:
+            Array.isArray(live.packagingOptions) && live.packagingOptions.length > 0
+              ? live.packagingOptions
+              : Array.isArray(live.packagingTypes) && live.packagingTypes.length > 0
+                ? live.packagingTypes
+                : prev.packagingOptions,
+          overviewParagraphs:
+            Array.isArray(live.overviewParagraphs) && live.overviewParagraphs.length > 0
+              ? live.overviewParagraphs
+              : prev.overviewParagraphs,
+          whyChoosePoints:
+            Array.isArray(live.whyChoosePoints) && live.whyChoosePoints.length > 0
+              ? live.whyChoosePoints
+              : prev.whyChoosePoints,
+          expandHeadline: live.expandHeadline || prev.expandHeadline,
+          expandParagraphs:
+            Array.isArray(live.expandParagraphs) && live.expandParagraphs.length > 0
+              ? live.expandParagraphs
+              : prev.expandParagraphs,
+        }));
+      })
+      .catch(() => {
+        // Fallback to static formulation data
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [formulation.slug]);
 
   return (
     <div className="min-h-screen bg-white text-[#0f172a]">
@@ -51,10 +115,10 @@ export default function FormulationDetailClient({
               href={`/products/${catSlug}`}
               className="hover:text-[#164666] transition-colors"
             >
-              {formulation.categoryTitle}
+              {data.categoryTitle}
             </Link>
             <span>/</span>
-            <span className="text-[#164666] font-semibold">{formulation.name}</span>
+            <span className="text-[#164666] font-semibold">{data.name}</span>
           </div>
         </div>
       </section>
@@ -70,18 +134,18 @@ export default function FormulationDetailClient({
               <div className="relative rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 p-4 shadow-xl group">
                 <div className="relative w-full h-[380px] sm:h-[460px] rounded-2xl overflow-hidden bg-gradient-to-br from-slate-100 via-slate-50 to-sky-50/40">
                   <Image
-                    src={formulation.image}
-                    alt={formulation.imageAlt}
+                    src={data.image}
+                    alt={data.imageAlt}
                     fill
                     className="object-cover group-hover:scale-104 transition-transform duration-700 ease-out"
                     priority
                   />
                   {/* Floating Badges */}
                   <div className="absolute top-4 left-4 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-md text-[11px] font-semibold text-[#164666] border border-slate-200 shadow-xs">
-                    Ahmedabad Cleanroom Compounding
+                    {data.cleanroomBadge || "Ahmedabad Cleanroom Compounding"}
                   </div>
                   <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-md text-[11px] font-semibold text-emerald-700 border border-emerald-200 shadow-xs">
-                    Flexible Low MOQ
+                    {data.moqBadge || "Flexible Low MOQ"}
                   </div>
                 </div>
               </div>
@@ -94,20 +158,20 @@ export default function FormulationDetailClient({
                 <div className="flex items-center gap-2.5 mb-2.5">
                   <span className="w-8 h-[1.5px] bg-[#4a728e]" />
                   <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
-                    Certified Cosmetics Manufacturer • Ahmedabad, India
+                    {data.eyebrow || "Certified Cosmetics Manufacturer • Ahmedabad, India"}
                   </span>
                 </div>
 
                 <h1 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-serif text-[#0f172a] font-normal leading-[1.12] tracking-tight">
-                  {formulation.headline.replace(/ Manufacturer.*/, "")}{" "}
+                  {data.titleLine1 || (data.headline ? data.headline.replace(/ Manufacturer.*/, "") : data.name)}{" "}
                   <span className="font-serif italic font-light text-[#1b628b]">
-                    Manufacturer in India.
+                    {data.titleLine2 || "Manufacturer in India."}
                   </span>
                 </h1>
 
                 {/* Subtitle / Tagline */}
                 <p className="text-xs sm:text-sm font-medium text-[#1b628b] mt-1.5 uppercase tracking-wider">
-                  {formulation.tagline}
+                  {data.tagline}
                 </p>
 
                 {/* Center Accent Underline */}
@@ -116,7 +180,7 @@ export default function FormulationDetailClient({
 
               {/* 3 Detailed Technical Paragraphs */}
               <div className="space-y-4 text-xs sm:text-sm lg:text-[15px] text-[#475569] leading-relaxed font-normal">
-                {formulation.overviewParagraphs.map((para, idx) => (
+                {data.overviewParagraphs.map((para, idx) => (
                   <p key={idx}>{para}</p>
                 ))}
               </div>
@@ -129,7 +193,7 @@ export default function FormulationDetailClient({
                       Key Active Ingredients
                     </div>
                     <div className="font-medium text-[#164666]">
-                      {formulation.keyActives.join(", ")}
+                      {data.keyActives.join(", ")}
                     </div>
                   </div>
                   <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/70">
@@ -137,7 +201,7 @@ export default function FormulationDetailClient({
                       Suitable Skin Types
                     </div>
                     <div className="font-medium text-[#164666]">
-                      {formulation.skinTypes.join(" • ")}
+                      {data.skinTypes.join(" • ")}
                     </div>
                   </div>
                 </div>
@@ -182,7 +246,7 @@ export default function FormulationDetailClient({
             <h2 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-serif text-[#0f172a] font-normal leading-[1.12] tracking-tight uppercase">
               WHY CHOOSE MANI LIFESTYLE AS YOUR{" "}
               <span className="font-serif italic font-light text-[#1b628b]">
-                {formulation.name.toUpperCase()} MANUFACTURER?
+                {data.name.toUpperCase()} MANUFACTURER?
               </span>
             </h2>
 
@@ -192,7 +256,7 @@ export default function FormulationDetailClient({
 
           {/* 5 Features List */}
           <div className="space-y-4 max-w-4xl mx-auto">
-            {formulation.whyChoosePoints.map((point, idx) => (
+            {data.whyChoosePoints.map((point, idx) => (
               <div
                 key={idx}
                 className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:border-[#164666]/40 hover:shadow-md transition-all flex items-start gap-4 group"
@@ -217,11 +281,11 @@ export default function FormulationDetailClient({
           {/* ======================================================== */}
           <div className="mt-16 pt-12 border-t border-slate-200/80 max-w-4xl mx-auto space-y-5">
             <h3 className="text-2xl sm:text-3xl font-serif text-[#0f172a] font-normal leading-tight">
-              {formulation.expandHeadline}
+              {data.expandHeadline}
             </h3>
 
             <div className="space-y-4 text-xs sm:text-sm lg:text-[15px] text-[#475569] leading-relaxed font-normal">
-              {formulation.expandParagraphs.map((para, idx) => (
+              {data.expandParagraphs.map((para, idx) => (
                 <p key={idx}>{para}</p>
               ))}
             </div>
@@ -238,7 +302,7 @@ export default function FormulationDetailClient({
                 className="px-5 py-3.5 bg-white hover:bg-slate-50 text-[#0f172a] font-medium text-xs sm:text-sm rounded-lg border border-[#c8d9e6] hover:border-[#164666] transition-all shadow-xs flex items-center gap-1.5"
               >
                 <ChevronLeft className="w-4 h-4 text-[#164666]" />
-                <span>Back to All {formulation.categoryTitle}s</span>
+                <span>Back to All {data.categoryTitle}s</span>
               </Link>
             </div>
           </div>

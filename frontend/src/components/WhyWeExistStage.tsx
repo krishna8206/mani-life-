@@ -14,7 +14,15 @@ interface CorePillar {
   stats: { label: string; value: string }[];
 }
 
-const pillars: CorePillar[] = [
+const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
+  Leaf,
+  FlaskConical,
+  Heart,
+  CheckCircle2,
+  Sparkles,
+};
+
+const defaultPillars: CorePillar[] = [
   {
     id: "01",
     num: "01",
@@ -73,10 +81,27 @@ const pillars: CorePillar[] = [
   },
 ];
 
-export default function WhyWeExistStage() {
+interface WhyWeExistStageProps {
+  pillars?: any[];
+}
+
+export default function WhyWeExistStage({ pillars: propsPillars }: WhyWeExistStageProps = {}) {
+  const pillars: CorePillar[] = Array.isArray(propsPillars) && propsPillars.length > 0
+    ? propsPillars.map((p, idx) => ({
+        id: p.id || `0${idx + 1}`,
+        num: p.num || `0${idx + 1}`,
+        title: p.title || 'Purity Standard',
+        subtitle: p.subtitle || 'Dermatological Precision',
+        tag: p.tag || 'Toxin-Free',
+        desc: p.desc || '',
+        icon: typeof p.icon === 'string' ? (iconMap[p.icon] || Leaf) : (p.icon || Leaf),
+        stats: Array.isArray(p.stats) ? p.stats : [],
+      }))
+    : defaultPillars;
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [activeId, setActiveId] = useState<string>("01");
+  const [activeId, setActiveId] = useState<string>(pillars[0]?.id || "01");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -132,11 +157,11 @@ export default function WhyWeExistStage() {
                   <div>
                     <div className="flex items-center justify-between gap-4 mb-4">
                       <div className="flex items-center gap-3">
-                        <span className="text-3xl font-serif text-[#164666] font-normal tracking-tight">
+                        <span className="text-3xl font-cormorant text-[#164666] font-bold tracking-tight">
                           {pillar.num}
                         </span>
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#1b628b] animate-ping" />
-                        <span className="text-[10.5px] uppercase tracking-[0.22em] font-semibold text-[#1b628b] bg-sky-100/70 border border-sky-200/80 px-2.5 py-0.5 rounded-full">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#164666]" />
+                        <span className="text-[10.5px] uppercase tracking-[0.22em] font-semibold text-[#164666] bg-sky-100/70 border border-sky-200/80 px-2.5 py-0.5 rounded-full">
                           {pillar.tag}
                         </span>
                       </div>
@@ -148,10 +173,10 @@ export default function WhyWeExistStage() {
                     </div>
 
                     {/* Headline & Subtitle */}
-                    <h3 className="text-2xl sm:text-3xl font-serif text-[#0f172a] font-normal tracking-tight leading-tight mb-1">
+                    <h3 className="text-2xl sm:text-3xl font-cormorant font-bold text-[#091e2f] tracking-tight leading-tight mb-1">
                       {pillar.title}
                     </h3>
-                    <p className="text-xs sm:text-[13px] font-serif italic text-[#1b628b] font-light mb-4">
+                    <p className="text-xs sm:text-[13px] font-sans uppercase tracking-wider text-[#164666] font-semibold mb-3">
                       {pillar.subtitle}
                     </p>
 
@@ -187,7 +212,7 @@ export default function WhyWeExistStage() {
                 /* --- INACTIVE COLLAPSED VERTICAL SLAT --- */
                 <div className="h-full flex flex-col justify-between items-center py-2 animate-in fade-in duration-300">
                   {/* Watermark Numeral */}
-                  <span className="text-2xl font-serif text-[#164666]/30 font-light tracking-tight group-hover:text-[#164666]">
+                  <span className="text-2xl font-cormorant text-[#164666]/40 font-bold tracking-tight group-hover:text-[#164666]">
                     {pillar.num}
                   </span>
 
@@ -231,11 +256,11 @@ export default function WhyWeExistStage() {
                 className="w-full px-5 py-4 flex items-center justify-between text-left cursor-pointer"
               >
                 <div className="flex items-center gap-3.5">
-                  <span className="text-lg font-serif font-bold text-[#164666]">
+                  <span className="text-xl font-cormorant font-bold text-[#164666]">
                     {pillar.num}
                   </span>
                   <div>
-                    <h4 className="text-base font-semibold text-[#0f172a] leading-tight">
+                    <h4 className="text-lg font-cormorant font-bold text-[#091e2f] leading-tight">
                       {pillar.title}
                     </h4>
                     <span className="text-[10px] uppercase tracking-wider text-[#1b628b] font-medium">

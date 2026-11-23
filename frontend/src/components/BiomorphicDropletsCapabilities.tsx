@@ -16,7 +16,14 @@ interface CapabilityDroplet {
   highlight: string;
 }
 
-const droplets: CapabilityDroplet[] = [
+const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
+  Lightbulb,
+  Tags,
+  Box,
+  FileCheck2,
+};
+
+const defaultDroplets: CapabilityDroplet[] = [
   {
     num: "01",
     stageLabel: "STAGE 01",
@@ -67,7 +74,40 @@ const droplets: CapabilityDroplet[] = [
   },
 ];
 
-export default function BiomorphicDropletsCapabilities() {
+const defaultRadii = [
+  "58% 42% 62% 38% / 48% 62% 38% 52%",
+  "42% 58% 38% 62% / 62% 48% 52% 38%",
+  "65% 35% 55% 45% / 45% 55% 45% 55%",
+  "48% 52% 40% 60% / 56% 44% 60% 40%",
+];
+
+const defaultGlows = [
+  "from-sky-300/40 via-teal-200/30 to-blue-300/20",
+  "from-teal-300/40 via-sky-200/30 to-emerald-200/20",
+  "from-amber-200/35 via-sky-200/30 to-teal-200/20",
+  "from-sky-300/40 via-blue-200/30 to-indigo-200/20",
+];
+
+interface BiomorphicDropletsCapabilitiesProps {
+  capabilities?: any[];
+}
+
+export default function BiomorphicDropletsCapabilities({ capabilities: propsCaps }: BiomorphicDropletsCapabilitiesProps = {}) {
+  const droplets: CapabilityDroplet[] = Array.isArray(propsCaps) && propsCaps.length > 0
+    ? propsCaps.map((c, idx) => ({
+        num: c.num || `0${idx + 1}`,
+        stageLabel: c.stageLabel || `STAGE 0${idx + 1}`,
+        title: c.title || 'Capability',
+        subtitle: c.subtitle || '',
+        tagline: c.tagline || 'Precision Formulation',
+        desc: c.desc || '',
+        icon: typeof c.icon === 'string' ? (iconMap[c.icon] || Lightbulb) : (c.icon || Lightbulb),
+        dropletRadius: defaultRadii[idx % defaultRadii.length],
+        dropletGlow: defaultGlows[idx % defaultGlows.length],
+        highlight: c.highlight || 'Lab Verified',
+      }))
+    : defaultDroplets;
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<string | null>(null);
@@ -162,7 +202,7 @@ export default function BiomorphicDropletsCapabilities() {
 
                   {/* Droplet Center Node: Luxury Serif Numeral + Cosmetic Instrument Icon */}
                   <div className="relative z-10 flex flex-col items-center">
-                    <span className="text-xs font-serif font-light text-[#164666]/80 tracking-widest mb-1">
+                    <span className="text-xs font-cormorant font-bold text-[#164666] tracking-widest mb-1">
                       {droplet.num}
                     </span>
                     <div className="w-10 h-10 rounded-full bg-white/95 text-[#164666] flex items-center justify-center shadow-xs border border-sky-200/70 group-hover:bg-[#164666] group-hover:text-white group-hover:border-[#164666] transition-all duration-300">
@@ -182,10 +222,10 @@ export default function BiomorphicDropletsCapabilities() {
 
                   {/* Unified Height Title Block */}
                   <div className="min-h-[58px] flex flex-col justify-center items-center mb-2">
-                    <h3 className="text-lg sm:text-[19px] font-serif font-normal text-[#0f172a] group-hover:text-[#164666] transition-colors tracking-tight leading-snug">
+                    <h3 className="text-xl sm:text-[22px] font-cormorant font-bold text-[#091e2f] group-hover:text-[#164666] transition-colors tracking-tight leading-snug">
                       {droplet.title}
                     </h3>
-                    <span className="text-xs font-serif italic text-[#1b628b] font-light mt-0.5">
+                    <span className="text-[11px] font-sans uppercase tracking-wider font-semibold text-[#164666] mt-0.5">
                       {droplet.subtitle}
                     </span>
                   </div>

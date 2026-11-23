@@ -5,6 +5,11 @@ export interface FormulationDetail {
   name: string;
   headline: string;
   tagline: string;
+  eyebrow?: string;
+  titleLine1?: string;
+  titleLine2?: string;
+  cleanroomBadge?: string;
+  moqBadge?: string;
   image: string;
   imageAlt: string;
   overviewParagraphs: string[];

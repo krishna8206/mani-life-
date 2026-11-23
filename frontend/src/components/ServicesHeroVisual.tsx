@@ -91,7 +91,7 @@ export default function ServicesHeroVisual() {
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full max-w-[420px] sm:max-w-[440px] lg:max-w-[460px] mx-auto select-none cursor-pointer flex items-center justify-center py-2"
+      className="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[390px] xl:max-w-[430px] mx-auto select-none cursor-pointer flex items-center justify-center py-1 max-h-[calc(100dvh-170px)]"
       style={{
         perspective: "1200px",
       }}
@@ -99,7 +99,7 @@ export default function ServicesHeroVisual() {
       {/* 1. Multi-layered Ambient Atmospheric Cyan Aura */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div
-          className={`w-[360px] sm:w-[400px] h-[460px] sm:h-[500px] rounded-[140px] bg-gradient-to-tr from-sky-300/40 via-teal-200/30 to-sky-100/20 blur-3xl transition-all duration-1000 ease-out ${
+          className={`w-[320px] sm:w-[350px] h-[400px] sm:h-[450px] rounded-[140px] bg-gradient-to-tr from-sky-300/40 via-teal-200/30 to-sky-100/20 blur-3xl transition-all duration-1000 ease-out ${
             isEntered ? "opacity-90 scale-100" : "opacity-0 scale-75"
           }`}
         />
@@ -107,7 +107,7 @@ export default function ServicesHeroVisual() {
 
       {/* 2. Outer 3D Perspective Tilt Container */}
       <div
-        className="relative w-full aspect-[4/5] will-change-transform"
+        className="relative w-full aspect-[4/5] max-h-[calc(100dvh-175px)] will-change-transform"
         style={{
           transform: !isEntered
             ? "perspective(1200px) rotateY(-24deg) rotateX(6deg) scale(0.90) translateY(24px)"

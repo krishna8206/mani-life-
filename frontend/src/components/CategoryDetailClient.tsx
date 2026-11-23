@@ -26,7 +26,7 @@ export default function CategoryDetailClient({
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
 
-  const showcase = getCategoryShowcase(categoryMeta.slug) || {
+  const fallbackShowcase = getCategoryShowcase(categoryMeta.slug) || {
     slug: categoryMeta.slug,
     aliases: [],
     hero: {
@@ -39,6 +39,8 @@ export default function CategoryDetailClient({
       subtitle: "Custom Formulations Tailored for Your Brand",
       image: categoryMeta.image,
       imageAlt: `${categoryMeta.title} Manufacturing`,
+      plantBadge: "Ahmedabad Manufacturing Plant",
+      moqBadge: "Flexible Low MOQ",
       paragraphs: [
         { text: categoryMeta.description },
         { text: categoryMeta.manufacturingOverview.leadSummary },
@@ -52,6 +54,7 @@ export default function CategoryDetailClient({
       items: categoryProducts.map((p, idx) => ({
         id: `P-${idx + 1}`,
         name: p.name,
+        slug: ("slug" in p && typeof (p as any).slug === "string" ? (p as any).slug : p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')),
         tag: "All Formulations",
         format: p.format || "Custom Formula",
         target: p.idealFor,
@@ -60,13 +63,82 @@ export default function CategoryDetailClient({
     },
   };
 
+  const [showcase, setShowcase] = useState(fallbackShowcase);
+
+  // Live client-side hydration from MongoDB Atlas
+  React.useEffect(() => {
+    let isMounted = true;
+    fetch(`http://localhost:5000/api/categories/${categoryMeta.slug}`)
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to load live category');
+        return res.json();
+      })
+      .then((data) => {
+        if (!isMounted || !data) return;
+        setShowcase((prev) => ({
+          ...prev,
+          slug: data.slug || prev.slug,
+          hero: {
+            title: data.hero?.title || prev.hero.title,
+            subtitle: data.hero?.subtitle || prev.hero.subtitle,
+            bgImage: data.hero?.bgImage || prev.hero.bgImage,
+          },
+          manufacturerSection: {
+            ...prev.manufacturerSection,
+            title: data.manufacturerSection?.title || prev.manufacturerSection.title,
+            subtitle: data.manufacturerSection?.subtitle || prev.manufacturerSection.subtitle,
+            image: data.manufacturerSection?.image || prev.manufacturerSection.image,
+            plantBadge: data.manufacturerSection?.plantBadge || (prev.manufacturerSection as any).plantBadge || "Ahmedabad Manufacturing Plant",
+            moqBadge: data.manufacturerSection?.moqBadge || (prev.manufacturerSection as any).moqBadge || "Flexible Low MOQ",
+            paragraphs:
+              data.manufacturerSection?.paragraphs && data.manufacturerSection.paragraphs.length > 0
+                ? data.manufacturerSection.paragraphs
+                : prev.manufacturerSection.paragraphs,
+            highlights:
+              data.manufacturerSection?.highlights && data.manufacturerSection.highlights.length > 0
+                ? data.manufacturerSection.highlights
+                : prev.manufacturerSection.highlights,
+          },
+          productRange: {
+            ...prev.productRange,
+            title: data.productRange?.title || prev.productRange.title,
+            description: data.productRange?.description || prev.productRange.description,
+            items:
+              data.products && data.products.length > 0
+                ? data.products
+                    .filter((p: any) => p.status !== 'DRAFT')
+                    .map((p: any, idx: number) => ({
+                      id: p.id || `P-${idx + 1}`,
+                      name: p.name,
+                      slug: ("slug" in p && typeof (p as any).slug === "string" ? (p as any).slug : p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')),
+                      tag: p.tag || 'All Formulations',
+                      format: p.format || p.texture || 'Custom Formula',
+                      target: p.target || '',
+                      moq: p.moq || '500 Units',
+                    }))
+                    .sort((a: any, b: any) => (a.id || '').localeCompare(b.id || '', undefined, { numeric: true }))
+                : prev.productRange.items,
+          },
+        }));
+      })
+      .catch(() => {
+        // Fallback gracefully to existing static state
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [categoryMeta.slug]);
+
   const handleOpenQuote = (productName?: string) => {
     setSelectedProduct(productName || null);
     setIsQuoteOpen(true);
   };
 
-  // Split items evenly into 3 columns (matching Image 2 editorial column layout)
-  const allItems = showcase.productRange.items;
+  // Split items evenly into 3 columns (matching editorial column layout)
+  const allItems = [...showcase.productRange.items].sort((a, b) =>
+    (a.id || '').localeCompare(b.id || '', undefined, { numeric: true })
+  );
   const colSize = Math.ceil(allItems.length / 3);
   const col1 = allItems.slice(0, colSize);
   const col2 = allItems.slice(colSize, colSize * 2);
@@ -92,7 +164,7 @@ export default function CategoryDetailClient({
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center space-y-3 sm:space-y-4">
           {/* Master Category Title - Unified Clean White Serif */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-serif text-white font-normal leading-[1.1] tracking-tight drop-shadow-xl">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-cormorant font-semibold text-white leading-[1.08] tracking-tight drop-shadow-xl">
             {showcase.hero.title}
           </h1>
 
@@ -121,10 +193,10 @@ export default function CategoryDetailClient({
                     priority
                   />
                   <div className="absolute top-3.5 left-3.5 px-3 py-1 rounded-lg bg-white/95 backdrop-blur-md text-[11px] font-semibold text-[#164666] border border-slate-200 shadow-xs">
-                    Ahmedabad Manufacturing Plant
+                    {(showcase.manufacturerSection as any).plantBadge || "Ahmedabad Manufacturing Plant"}
                   </div>
                   <div className="absolute bottom-3.5 right-3.5 px-3 py-1 rounded-lg bg-white/95 backdrop-blur-md text-[11px] font-semibold text-emerald-700 border border-emerald-200 shadow-xs">
-                    Flexible Low MOQ
+                    {(showcase.manufacturerSection as any).moqBadge || "Flexible Low MOQ"}
                   </div>
                 </div>
               </div>
@@ -141,9 +213,9 @@ export default function CategoryDetailClient({
                   </span>
                 </div>
 
-                <h2 className="text-2xl sm:text-3xl lg:text-[2.65rem] font-serif text-[#0f172a] font-normal leading-[1.12] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl lg:text-[2.65rem] font-cormorant font-semibold text-[#091e2f] leading-[1.12] tracking-tight">
                   Top {showcase.hero.title.replace(/ & .*/, "")} Manufacturers{" "}
-                  <span className="font-serif italic font-light text-[#1b628b]">
+                  <span className="font-cormorant font-semibold text-[#164666]">
                     in India.
                   </span>
                 </h2>
@@ -209,9 +281,9 @@ export default function CategoryDetailClient({
               <span className="w-8 h-[1.5px] bg-[#4a728e]" />
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-serif text-[#0f172a] font-normal leading-[1.12] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-cormorant font-semibold text-[#091e2f] leading-[1.12] tracking-tight">
               {showcase.hero.title}{" "}
-              <span className="font-serif italic font-light text-[#1b628b]">
+              <span className="font-cormorant font-semibold text-[#164666]">
                 Product Range.
               </span>
             </h2>

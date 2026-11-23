@@ -1,0 +1,21 @@
+{
+  "name": "cosmetics-backend",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "node dist/server.js",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "seed": "node dist/data/seeder.js"
+  },
+  "dependencies": {
+    "cloudinary": "^2.11.0",
+    "dotenv": "^16.6.1",
+    "mongoose": "^8.24.10"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5"
+  }
+}

@@ -3,7 +3,12 @@
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 
-export default function AboutHeroVisual() {
+interface AboutHeroVisualProps {
+  image?: string;
+  alt?: string;
+}
+
+export default function AboutHeroVisual({ image, alt }: AboutHeroVisualProps = {}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [rotate, setRotate] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
@@ -146,8 +151,8 @@ export default function AboutHeroVisual() {
                 style={{ transform: `translateY(${parallaxY}px)` }}
               >
                 <Image
-                  src="/images/cleanroom-lab.jpg"
-                  alt="Mani Lifestyle Sterile Cleanroom Laboratory and Compounding Campus"
+                  src={image || "/images/cleanroom-lab.jpg"}
+                  alt={alt || "Mani Lifestyle Sterile Cleanroom Laboratory and Compounding Campus"}
                   fill
                   priority
                   quality={95}

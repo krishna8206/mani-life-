@@ -166,9 +166,9 @@ Notes: ${formData.message || "None"}`;
             </div>
             <h2
               id="quote-modal-title"
-              className="text-base sm:text-lg md:text-xl font-serif font-bold text-[#0f172a] tracking-tight leading-tight"
+              className="text-lg sm:text-xl md:text-2xl font-cormorant font-semibold text-[#091e2f] tracking-tight leading-tight"
             >
-              Request Custom Formulation & Batch Quote
+              Request Custom Formulation <span className="font-cormorant font-semibold text-[#164666]">&amp; Batch Quote</span>
             </h2>
             <p className="text-[11px] sm:text-xs text-slate-500 mt-1 line-clamp-2">
               Certified cosmetics manufacturer in Ahmedabad, India. Custom skincare, haircare, and salon products for startups & growing brands.
@@ -196,8 +196,8 @@ Notes: ${formData.message || "None"}`;
               <div className="inline-block px-3 py-1 bg-slate-100 rounded-full text-[11px] font-mono text-slate-700 font-semibold mb-2">
                 Reference: {referenceId}
               </div>
-              <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#0f172a]">
-                Quote Scope Received Successfully
+              <h3 className="text-2xl sm:text-3xl font-cormorant font-bold text-[#091e2f] tracking-tight">
+                Quote Scope Received <span className="font-cormorant font-bold text-[#164666]">Successfully</span>
               </h3>
               <p className="text-slate-600 max-w-md mx-auto text-xs sm:text-sm leading-relaxed mt-2">
                 Thank you, <strong className="text-[#0f172a]">{formData.fullName}</strong>. Your requirement for{" "}
@@ -252,7 +252,7 @@ Notes: ${formData.message || "None"}`;
               {/* Row 1: Full Name & Company Name */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-800 mb-1">
+                  <label className="block text-xs font-semibold text-[#091e2f] mb-1 tracking-wide">
                     Full Name <span className="text-[#164666]">*</span>
                   </label>
                   <input
@@ -275,7 +275,7 @@ Notes: ${formData.message || "None"}`;
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-800 mb-1">
+                  <label className="block text-xs font-semibold text-[#091e2f] mb-1 tracking-wide">
                     Brand / Company Name <span className="text-[#164666]">*</span>
                   </label>
                   <input
@@ -301,7 +301,7 @@ Notes: ${formData.message || "None"}`;
               {/* Row 2: Business Email & Phone */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-800 mb-1">
+                  <label className="block text-xs font-semibold text-[#091e2f] mb-1 tracking-wide">
                     Business Email <span className="text-[#164666]">*</span>
                   </label>
                   <input
@@ -324,7 +324,7 @@ Notes: ${formData.message || "None"}`;
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-800 mb-1">
+                  <label className="block text-xs font-semibold text-[#091e2f] mb-1 tracking-wide">
                     Phone / WhatsApp Number <span className="text-[#164666]">*</span>
                   </label>
                   <input
@@ -350,7 +350,7 @@ Notes: ${formData.message || "None"}`;
               {/* Row 3: Product Range & Manufacturing Service */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-800 mb-1">
+                  <label className="block text-xs font-semibold text-[#091e2f] mb-1 tracking-wide">
                     Target Product Category
                   </label>
                   <select
@@ -370,7 +370,7 @@ Notes: ${formData.message || "None"}`;
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-800 mb-1">
+                  <label className="block text-xs font-semibold text-[#091e2f] mb-1 tracking-wide">
                     Manufacturing Service Type
                   </label>
                   <select
@@ -389,7 +389,7 @@ Notes: ${formData.message || "None"}`;
               {/* Row 4: Initial Batch Size & Packaging Need */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-800 mb-1">
+                  <label className="block text-xs font-semibold text-[#091e2f] mb-1 tracking-wide">
                     Planned Initial Order Batch
                   </label>
                   <select
@@ -405,7 +405,7 @@ Notes: ${formData.message || "None"}`;
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-800 mb-1">
+                  <label className="block text-xs font-semibold text-[#091e2f] mb-1 tracking-wide">
                     Packaging Requirements
                   </label>
                   <select
@@ -422,7 +422,7 @@ Notes: ${formData.message || "None"}`;
 
               {/* Message / Specifications */}
               <div>
-                <label className="block text-xs font-bold text-slate-800 mb-1">
+                <label className="block text-xs font-semibold text-[#091e2f] mb-1 tracking-wide">
                   Project Notes or Target Benchmarks (Optional)
                 </label>
                 <textarea

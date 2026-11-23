@@ -1,0 +1,140 @@
+export const defaultCertificationsData = {
+  hero: {
+    kicker: 'Quality Accreditations • Ahmedabad, Gujarat',
+    headlinePart1: 'Trusted & ',
+    headlineHighlight: 'Certified',
+    subheadline:
+      'Our commitment to excellence is backed by prestigious national and international quality accreditations, ensuring that every cosmetic formulation meets rigorous safety, purity, and clinical dermal benchmarks.',
+    primaryCtaText: 'Request Compliance Dossiers',
+    secondaryCtaText: 'Contact Regulatory Plant (+91 97246 81096)',
+    phone: '+91 97246 81096',
+    trustHighlights: [
+      {
+        id: '1',
+        title: 'WHO-GMP &',
+        subtitle: 'ISO 9001:2015',
+        icon: 'ShieldCheck',
+      },
+      {
+        id: '2',
+        title: 'Ministry of',
+        subtitle: 'AYUSH Licensed',
+        icon: 'Award',
+      },
+      {
+        id: '3',
+        title: 'FDA & FDCA',
+        subtitle: 'Export Ready',
+        icon: 'Globe2',
+      },
+      {
+        id: '4',
+        title: '100% PETA',
+        subtitle: 'Animal Test-Free',
+        icon: 'Leaf',
+      },
+    ],
+  },
+  certificationsSection: {
+    eyebrow: 'Recognized Regulatory Accreditations',
+    title: 'Certified for Quality and',
+    highlight: 'Reliability',
+    description:
+      'Our dedication to high standards is recognized by industry-leading bodies, ensuring every product meets rigorous quality, purity, and safety benchmarks.',
+    items: [
+      {
+        id: 'gmp',
+        name: 'Good Manufacturing Practices',
+        authority: 'WHO-GMP & ISO 22716:2007 Guidelines',
+        scope: 'Cosmetics - Good Compounding & Packaging Practices',
+        importance:
+          'Ensures products are consistently produced, compounded, and controlled to the highest global hygiene and safety standards',
+        badgeCode: 'GMP CERTIFIED',
+        image: '/images/certifications/gmp.png',
+        verified: true,
+      },
+      {
+        id: 'iso-9001',
+        name: 'ISO 9001:2015 Accreditation',
+        authority: 'International Organization for Standardization',
+        scope: 'Quality Management Systems (QMS) Compliance',
+        importance:
+          'Guarantees institutional batch consistency, rigorous quality checkpoints, continuous R&D testing, and standardized repeatability',
+        badgeCode: 'ISO 9001:2015',
+        image: '/images/certifications/iso.png',
+        verified: true,
+      },
+      {
+        id: 'ayush',
+        name: 'Ministry of AYUSH Licensed',
+        authority: 'Government of India, Drug Licensing Authority',
+        scope: 'Classical & Proprietary Ayurvedic Cosmetic Products',
+        importance:
+          'Authorizes the lawful commercial compounding and export of certified Ayurvedic, herbal, and therapeutic wellness formulations',
+        badgeCode: 'AYUSH LICENSED',
+        image: '/images/certifications/ministry.png',
+        verified: true,
+      },
+      {
+        id: 'peta',
+        name: 'PETA Animal Test-Free',
+        authority: 'People for the Ethical Treatment of Animals',
+        scope: '100% Cruelty-Free & Humane Formulation Ethics',
+        importance:
+          'Guarantees absolute zero animal testing across all raw botanical ingredients, active compounds, and finished production batches',
+        badgeCode: 'CRUELTY-FREE',
+        image: '/images/certifications/peta.png',
+        verified: true,
+      },
+      {
+        id: 'fda',
+        name: 'FDA & FDCA Approved',
+        authority: 'Food & Drugs Control Administration & US FDA Registered',
+        scope: 'Cosmetic Facility & Product Registration',
+        importance:
+          'Certified compliance with domestic FDCA Gujarat statutory mandates and US FDA facility registration for seamless international distribution',
+        badgeCode: 'FDCA & FDA',
+        image: '/images/certifications/fda.png',
+        verified: true,
+      },
+    ],
+  },
+  standardsEditorial: {
+    leftBlock: {
+      title: 'Good Manufacturing Practices (GMP)',
+      text: 'Our commitment to excellence is deeply woven into every aspect of our manufacturing process. We adhere strictly to Good Manufacturing Practices (GMP), ensuring that all products are consistently produced and controlled according to quality standards appropriate to their intended use.',
+      icon: 'ShieldCheck',
+    },
+    rightBlock: {
+      title: 'Quality Systems Accreditation',
+      text: 'This rigorous approach, combined with our ISO 9001:2015 certification, guarantees that our clients receive not just products, but a promise of unwavering quality, safety, and reliability. We continuously invest in advanced technology and staff training to uphold and surpass these high benchmarks.',
+      icon: 'Award',
+    },
+  },
+  qualityPipeline: {
+    eyebrow: 'Quality Assurance Process',
+    title: 'Our Commitment to',
+    highlight: 'Quality',
+    description:
+      'Comprehensive cleanroom validation, microbiological testing, and analytical batch verification across every single production stage.',
+    image: '/images/quality.png',
+    imageAlt: 'Analytical cosmetic laboratory testing and sterile cleanroom validation',
+    steps: [
+      {
+        step: '01',
+        title: 'Raw Material Sourcing & Quarantine',
+        desc: 'Every active compound, botanical extract, and packaging component undergoes analytical identity verification and certificate of analysis (COA) cross-checking before release to compounding.',
+      },
+      {
+        step: '02',
+        title: 'In-Process Cleanroom Validation',
+        desc: 'Continuous monitoring of batch temperature, mixing shear, and viscosity profiling within WHO-GMP compliant, HEPA-filtered compounding suites.',
+      },
+      {
+        step: '03',
+        title: 'Comprehensive Final Release Testing',
+        desc: 'Multi-parameter laboratory clearance including microbial assays, pH verification, and stability checks before sealing and issuing batch documentation.',
+      },
+    ],
+  },
+};

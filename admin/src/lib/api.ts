@@ -1,0 +1,190 @@
+import { Inquiry, Product, Category, DashboardStats } from './types';
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+
+// Initial Mock Seed (guarantees zero-friction offline preview or standalone run)
+export const initialInquiries: Inquiry[] = [
+  {
+    id: 'RFQ-1082',
+    fullName: 'Priya Sharma',
+    companyName: 'Lumina Botanicals',
+    email: 'priya@luminabotanicals.com',
+    phone: '+91 98765 43210',
+    category: 'Clinical Face Serums',
+    serviceType: 'Private Label',
+    batchSize: '1,000 - 2,500 units',
+    packaging: 'Amber Dropper Bottle (30ml)',
+    notes: 'Need 10% Niacinamide + 1% Zinc PCA formulation with stability study report for FDA filing.',
+    status: 'NEW',
+    createdAt: '2026-11-18T10:15:00Z',
+    source: 'Quote Modal',
+  },
+  {
+    id: 'RFQ-1081',
+    fullName: 'Rahul Varma',
+    companyName: 'Aura Derma Lab',
+    email: 'rahul@auraderma.in',
+    phone: '+91 97123 98450',
+    category: 'Facial Kits & Peels',
+    serviceType: 'Custom Formulation',
+    batchSize: '2,500 - 5,000 units',
+    packaging: 'Laminated Monocartons & Foil Sachets',
+    notes: 'Require 6-step professional salon facial kit with Glycolic and Kojic acid benchmarks.',
+    status: 'SAMPLE_DISPATCHED',
+    createdAt: '2026-11-17T14:30:00Z',
+    source: 'Quote Modal',
+  },
+  {
+    id: 'RFQ-1080',
+    fullName: 'Dr. Sameer Patel',
+    companyName: 'Dermacure Clinics',
+    email: 'drsameer@dermacure.org',
+    phone: '+91 99250 88214',
+    category: 'Hair Treatments & Botox',
+    serviceType: 'Contract Compounding',
+    batchSize: '5,000+ units (Enterprise)',
+    packaging: 'Pump Dispenser Bottle (250ml)',
+    notes: 'Zero formaldehyde hair botox system with hydrolyzed keratin and argan oil base.',
+    status: 'QUOTED',
+    createdAt: '2026-11-16T11:20:00Z',
+    source: 'Contact Page',
+  },
+  {
+    id: 'RFQ-1079',
+    fullName: 'Ananya Roy',
+    companyName: 'Velvet Herbals',
+    email: 'ananya@velvetherbals.com',
+    phone: '+91 98300 12345',
+    category: 'Moisturizers & SPF',
+    serviceType: 'Private Label',
+    batchSize: '500 - 1,000 units',
+    packaging: 'Airless Pump Bottle (50g)',
+    notes: 'Broad-spectrum SPF 50 PA++++ gel sunscreen with no white cast.',
+    status: 'IN_PRODUCTION',
+    createdAt: '2026-11-15T09:40:00Z',
+    source: 'Quote Modal',
+  },
+];
+
+export const initialProducts: Product[] = [
+  {
+    id: 'PRD-001',
+    name: '10% Niacinamide + 1% Zinc PCA Blemish Clarifying Serum',
+    category: 'Skincare',
+    categorySlug: 'skincare',
+    moq: '500 Units',
+    actives: ['Niacinamide 10%', 'Zinc PCA 1%', 'Centella Asiatica'],
+    texture: 'Water-gel serum with velvety matte dry-down',
+    packagingTypes: ['Amber Glass Dropper (30ml)', 'Frosted Glass Pump (50ml)'],
+    status: 'ACTIVE',
+    leadTime: '14-21 Business Days',
+    regulatory: ['ISO 22716', 'WHO-GMP Compliant', 'COA Provided'],
+  },
+  {
+    id: 'PRD-002',
+    name: '20% Vitamin C (Ethyl Ascorbic Acid) + Ferulic Illuminating Elixir',
+    category: 'Skincare',
+    categorySlug: 'skincare',
+    moq: '500 Units',
+    actives: ['Ethyl Ascorbic Acid 20%', 'Ferulic Acid 0.5%', 'Hyaluronic Acid 1%'],
+    texture: 'Lightweight crystal-clear fluid',
+    packagingTypes: ['UV-Coated Glass Dropper (30ml)'],
+    status: 'ACTIVE',
+    leadTime: '14-21 Business Days',
+    regulatory: ['ISO 22716', 'WHO-GMP Compliant'],
+  },
+  {
+    id: 'PRD-003',
+    name: 'Salon Pro Brazilian Keratin & Hair Botox Compounding System',
+    category: 'Haircare',
+    categorySlug: 'haircare',
+    moq: '250 Liters / 1,000 Units',
+    actives: ['Hydrolyzed Keratin', 'Pracaxi Seed Oil', 'Ceramides Complex'],
+    texture: 'Rich conditioning thermal emulsion',
+    packagingTypes: ['HDPE Salon Jar (500ml)', 'Dispenser Bottle (250ml)'],
+    status: 'ACTIVE',
+    leadTime: '21-28 Business Days',
+    regulatory: ['Formaldehyde-Free Certified', 'ISO 22716'],
+  },
+  {
+    id: 'PRD-004',
+    name: 'SPF 50 PA++++ Hybrid Fluid Invisible Sunscreen',
+    category: 'Suncare',
+    categorySlug: 'suncare',
+    moq: '1,000 Units',
+    actives: ['Tinosorb S', 'Uvinul A Plus', 'Ectoin 1%'],
+    texture: 'Ultra-light water gel, zero greasy residue',
+    packagingTypes: ['Airless Tube with Precision Nozzle (50g)'],
+    status: 'ACTIVE',
+    leadTime: '18-24 Business Days',
+    regulatory: ['In-Vivo SPF Tested', 'ISO 22716', 'Water Resistant (80m)'],
+  },
+  {
+    id: 'PRD-005',
+    name: '6-Step 24K Gold Luminance Professional Facial Kit',
+    category: 'Salon Kits',
+    categorySlug: 'salon-kits',
+    moq: '500 Kits',
+    actives: ['Colloidal 24K Gold', 'Swiss Apple Stem Cells', 'Peptide Matrix'],
+    texture: 'Multi-step cleansing, scrub, gel, cream, peel-off mask & serum',
+    packagingTypes: ['Rigid Monocarton Kit with Sealed Sachets (6x15g)'],
+    status: 'ACTIVE',
+    leadTime: '21 Business Days',
+    regulatory: ['Dermatologically Tested', 'ISO 22716'],
+  },
+];
+
+export const initialCategories: Category[] = [
+  {
+    id: 'CAT-01',
+    name: 'Facial Skincare & Dermaceuticals',
+    slug: 'skincare',
+    description: 'Active face serums, brightening elixirs, barrier repair creams, and gentle cleansers.',
+    productCount: 18,
+    featuredActives: ['Niacinamide', 'Vitamin C', 'Hyaluronic Acid', 'Salicylic Acid'],
+  },
+  {
+    id: 'CAT-02',
+    name: 'Haircare & Salon Treatments',
+    slug: 'haircare',
+    description: 'Professional hair botox, sulfate-free shampoos, keratin masks, and scalp serums.',
+    productCount: 14,
+    featuredActives: ['Hydrolyzed Keratin', 'Redensyl', 'Anagain', 'Rosemary Extract'],
+  },
+  {
+    id: 'CAT-03',
+    name: 'Professional Salon Facial Kits',
+    slug: 'salon-kits',
+    description: 'Turnkey 5-step and 6-step facial treatment systems for salons, aesthetic clinics, and spas.',
+    productCount: 9,
+    featuredActives: ['24K Colloidal Gold', 'Glycolic Acid', 'Glutathione', 'Marine Algae'],
+  },
+  {
+    id: 'CAT-04',
+    name: 'Body Care & Specialty Hygiene',
+    slug: 'body-care',
+    description: 'Nourishing body butters, AHA/BHA body lotions, depilatory waxes, and intimate washes.',
+    productCount: 12,
+    featuredActives: ['Lactic Acid', 'Shea Butter', 'Tea Tree Oil', 'Ceramides'],
+  },
+];
+
+export async function fetchDashboardStats(): Promise<DashboardStats> {
+  try {
+    const res = await fetch(`${API_BASE_URL}/dashboard/stats`, { cache: 'no-store' });
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch {
+    // Graceful fallback to initial mock data
+  }
+  return {
+    totalInquiries: 38,
+    newInquiriesToday: 4,
+    activeProducts: initialProducts.length,
+    totalCategories: initialCategories.length,
+    pendingQuotes: 12,
+    conversionRate: '34.2%',
+    recentInquiries: initialInquiries,
+  };
+}

@@ -11,7 +11,25 @@ export interface QualityStep {
   badge?: string;
 }
 
-export function QualityTracePipeline({ steps }: { steps: QualityStep[] }) {
+export interface QualityTracePipelineProps {
+  eyebrow?: string;
+  title?: string;
+  highlight?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  steps: QualityStep[];
+}
+
+export function QualityTracePipeline({
+  eyebrow = "Uncompromising Standards",
+  title = "Our Commitment to",
+  highlight = "Quality",
+  description = "At Mani Lifestyle, quality is not just a goal; it is the foundation of everything we do. From the meticulous sourcing of raw materials to the final packaging, each stage of production is subjected to stringent quality control checks.",
+  image = "/images/quality.png",
+  imageAlt = "Analytical cosmetic laboratory testing and sterile cleanroom validation",
+  steps,
+}: QualityTracePipelineProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
@@ -86,8 +104,8 @@ export function QualityTracePipeline({ steps }: { steps: QualityStep[] }) {
               style={{ transform: `translateY(${parallaxY}px)` }}
             >
               <Image
-                src="/images/quality.png"
-                alt="Analytical cosmetic laboratory testing and sterile cleanroom validation"
+                src={image || "/images/quality.png"}
+                alt={imageAlt || "Analytical cosmetic laboratory testing and sterile cleanroom validation"}
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 480px"
@@ -131,24 +149,24 @@ export function QualityTracePipeline({ steps }: { steps: QualityStep[] }) {
         >
           {/* Micro-Header */}
           <div className="flex items-center gap-2.5">
-            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
-            <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
-              Uncompromising Standards
+            <span className="w-8 h-[1.5px] bg-[#164666]" />
+            <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#164666]">
+              {eyebrow}
             </span>
           </div>
 
           {/* Section Title */}
-          <h2 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif text-[#0f172a] font-normal leading-[1.15] tracking-tight">
-            Our Commitment to{" "}
-            <span className="font-serif italic font-light text-[#1b628b]">
-              Quality
+          <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-cormorant font-semibold text-[#091e2f] tracking-tight leading-[1.12]">
+            {title}{" "}
+            <span className="font-cormorant font-semibold text-[#164666]">
+              {highlight}
             </span>
           </h2>
 
-          <div className="w-14 h-1 bg-[#1b628b] rounded-full mt-2 mb-2" />
+          <div className="w-12 h-px bg-slate-300 mt-3 mb-3" />
 
-          <p className="text-sm sm:text-[15px] text-[#64748b] leading-relaxed max-w-xl font-normal">
-            At Mani Lifestyle, quality is not just a goal; it is the foundation of everything we do. From the meticulous sourcing of raw materials to the final packaging, each stage of production is subjected to stringent quality control checks.
+          <p className="text-sm sm:text-[15px] text-slate-700 leading-relaxed max-w-xl font-normal">
+            {description}
           </p>
 
           {/* 3 Step Interactive Process Pipeline */}

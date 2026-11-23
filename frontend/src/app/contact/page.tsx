@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   ExternalLink,
@@ -14,7 +14,153 @@ import {
 } from "lucide-react";
 import CosmeticAmbientBackground from "@/components/CosmeticAmbientBackground";
 
+interface ContactCard {
+  id: string;
+  category: string;
+  primaryText: string;
+  secondaryText?: string;
+  thirdText?: string;
+  link?: string;
+  linkText?: string;
+  copyable?: boolean;
+  copyValue?: string;
+  icon: string;
+}
+
+interface EmailItem {
+  id: string;
+  email: string;
+  label?: string;
+}
+
+const defaultContactData = {
+  hero: {
+    kicker: "Certified Cosmetics Manufacturer • Ahmedabad, India",
+    headlinePart1: "Contact ",
+    headlineHighlight: "Us.",
+    subheadline: "We're here to answer your questions and help you find the right solutions",
+    backgroundImage: "/images/contact-hero.webp",
+  },
+  channels: {
+    eyebrow: "Direct Channels",
+    title: "Contact ",
+    highlight: "Info.",
+    description: "Feel free to ask us any questions\nor business enquiry, we will get back to you soon!",
+    contactCards: [
+      {
+        id: "card-hours",
+        category: "Shift Operating Hours",
+        primaryText: "Mon – Fri: 8.30am – 5.30pm",
+        secondaryText: "Sat (Alternate): 8.30am – 12.30pm",
+        thirdText: "",
+        link: "",
+        linkText: "",
+        copyable: false,
+        copyValue: "",
+        icon: "/images/icon-time.png",
+      },
+      {
+        id: "card-phone",
+        category: "Phone Calls",
+        primaryText: "+91 97246 81096",
+        secondaryText: "",
+        thirdText: "",
+        link: "tel:+919724681096",
+        linkText: "",
+        copyable: true,
+        copyValue: "+919724681096",
+        icon: "/images/icon-phone.png",
+      },
+      {
+        id: "card-whatsapp",
+        category: "Instant WhatsApp Chat",
+        primaryText: "+91 97246 81096",
+        secondaryText: "",
+        thirdText: "",
+        link: "https://wa.me/919724681096",
+        linkText: "Chat",
+        copyable: false,
+        copyValue: "",
+        icon: "/images/icon-whatsapp.png",
+      },
+      {
+        id: "card-location",
+        category: "Factory Cleanroom Address",
+        primaryText: "Plot No. C5, Road No. 5,",
+        secondaryText: "Gopal Charan Industrial Hub,",
+        thirdText: "Bakrol Bajrang, 382430, Ahmedabad",
+        link: "",
+        linkText: "",
+        copyable: true,
+        copyValue: "Plot No. C5, Road No. 5, Gopal Charan Industrial Hub, Bakrol Bajrang, 382430, Ahmedabad",
+        icon: "/images/icon-location.png",
+      },
+    ] as ContactCard[],
+    emails: [
+      {
+        id: "email-1",
+        email: "enquiry@manilifestyle.com",
+        label: "Inquiries",
+      },
+      {
+        id: "email-2",
+        email: "sales@manilifestyle.com",
+        label: "Sales",
+      },
+    ] as EmailItem[],
+    plantVisit: {
+      title: "Schedule Cleanroom Plant Visit",
+      description:
+        "Brand founders, salon owners, and procurement teams are warmly invited to inspect our automated vacuum homogenizers, microbiology QA lab, and Class 100,000 cleanroom.",
+      buttonText: "Book Factory Inspection Date",
+      whatsappUrl:
+        "https://wa.me/919724681096?text=Hello%20Mani%20Lifestyle,%20I%20would%20like%20to%20schedule%20a%20cleanroom%20factory%20inspection%20visit.",
+    },
+  },
+  enquiryForm: {
+    eyebrow: "Send an Inquiry",
+    title: "Enquiry ",
+    highlight: "Form.",
+    description: "Fill in the details below and our formulation compounding team will contact you promptly.",
+    nameLabel: "Name",
+    namePlaceholder: "Enter Your Name",
+    emailLabel: "E-mail",
+    emailPlaceholder: "Enter Your Email",
+    phoneLabel: "Contact Number",
+    phonePlaceholder: "Enter Your Contact Number",
+    messageLabel: "About Your Project",
+    messagePlaceholder: "Tell Us About Your Project",
+    submitButtonText: "Submit",
+    scriptUrl:
+      "https://script.google.com/macros/s/AKfycbzWRCmWe0G4_I7MpDhdwo_Tm_Vokm2g6BiR14bvRpTPaPDo_deU_wSh99iGSfnSZZGhtA/exec",
+    sourceFormTag: "Contact Us Form",
+    successTitle: "Success! Your query has been submitted.",
+    successDescription:
+      "Thank you for reaching out to Mani Lifestyle. Our technical and business team has received your inquiry and will contact you shortly.",
+    whatsappCtaText: "Connect via WhatsApp",
+    whatsappUrl:
+      "https://wa.me/919724681096?text=Hello%20Mani%20Lifestyle,%20I%20have%20submitted%20the%20contact%20enquiry%20form.",
+    resetButtonText: "Submit Another Query",
+  },
+  facilityMap: {
+    eyebrow: "Manufacturing Headquarters",
+    title: "Visit Our ",
+    highlight: "Cleanroom Facility.",
+    subtitle: "Plot No. C5, Road No. 5, Gopal Charan Industrial Hub, Bakrol Bajrang, 382430, Ahmedabad, Gujarat, India.",
+    badgeTitle: "Gopal Charan Industrial Hub",
+    badgeSubtitle: "30 minutes from Sardar Vallabhbhai Patel International Airport (AMD)",
+    directionsButtonText: "Get Driving Directions",
+    directionsUrl: "https://maps.google.com/?q=Gopal+Charan+Industrial+Hub,+Bakrol+Bajrang,+Ahmedabad+382430",
+    copyAddressButtonText: "Copy Address",
+    fullAddress: "Plot No. C5, Road No. 5, Gopal Charan Industrial Hub, Bakrol Bajrang, 382430, Ahmedabad",
+    mapEmbedUrl:
+      "https://maps.google.com/maps?q=Gopal+Charan+Industrial+Hub,+Bakrol+Bajrang,+Ahmedabad+382430&t=&z=14&ie=UTF8&iwloc=&output=embed",
+  },
+};
+
 export default function ContactPage() {
+  const [cms, setCms] = useState(defaultContactData);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,6 +172,38 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [copiedType, setCopiedType] = useState<string | null>(null);
 
+  useEffect(() => {
+    async function loadContactCms() {
+      try {
+        const res = await fetch("http://localhost:5000/api/contact-page");
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.hero) {
+            setCms({
+              hero: { ...defaultContactData.hero, ...(data.hero || {}) },
+              channels: {
+                ...defaultContactData.channels,
+                ...(data.channels || {}),
+                contactCards: data.channels?.contactCards || defaultContactData.channels.contactCards,
+                emails: data.channels?.emails || defaultContactData.channels.emails,
+                plantVisit: {
+                  ...defaultContactData.channels.plantVisit,
+                  ...(data.channels?.plantVisit || {}),
+                },
+              },
+              enquiryForm: { ...defaultContactData.enquiryForm, ...(data.enquiryForm || {}) },
+              facilityMap: { ...defaultContactData.facilityMap, ...(data.facilityMap || {}) },
+            });
+          }
+        }
+      } catch (err) {
+        // Fallback to initial state gracefully
+        console.warn("Contact CMS loading using fallback defaults:", err);
+      }
+    }
+    loadContactCms();
+  }, []);
+
   const handleCopy = (text: string, type: string) => {
     navigator.clipboard.writeText(text);
     setCopiedType(type);
@@ -36,8 +214,7 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const scriptUrl =
-      "https://script.google.com/macros/s/AKfycbzWRCmWe0G4_I7MpDhdwo_Tm_Vokm2g6BiR14bvRpTPaPDo_deU_wSh99iGSfnSZZGhtA/exec";
+    const scriptUrl = cms.enquiryForm.scriptUrl || defaultContactData.enquiryForm.scriptUrl;
 
     try {
       const data = new FormData();
@@ -45,7 +222,7 @@ export default function ContactPage() {
       data.append("Email Address", formData.email);
       data.append("Contact Number", formData.phone);
       data.append("Message", formData.message || "No message provided.");
-      data.append("Source Form", "Contact Us Form");
+      data.append("Source Form", cms.enquiryForm.sourceFormTag || "Contact Us Form");
 
       // Submit to live Google Apps Script endpoint
       await fetch(scriptUrl, {
@@ -76,7 +253,7 @@ export default function ContactPage() {
         {/* Background Hero Image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
-          style={{ backgroundImage: "url('/images/contact-hero.webp')" }}
+          style={{ backgroundImage: `url('${cms.hero.backgroundImage || "/images/contact-hero.webp"}')` }}
         />
         {/* Luxury Deep Ocean / Navy Dual-Tone Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a192f]/80 via-[#10364f]/75 to-[#0f172a]/90 backdrop-blur-[1px]" />
@@ -87,19 +264,22 @@ export default function ContactPage() {
           <div className="flex items-center justify-center gap-2.5">
             <span className="w-8 h-[1.5px] bg-sky-300/60" />
             <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-sky-200">
-              Certified Cosmetics Manufacturer • Ahmedabad, India
+              {cms.hero.kicker}
             </span>
             <span className="w-8 h-[1.5px] bg-sky-300/60" />
           </div>
 
           {/* Master Headline in Playfair Serif with Italic Accent */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-serif text-white tracking-tight font-normal leading-tight">
-            Contact <span className="font-serif italic font-light text-sky-300">Us.</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-cormorant font-semibold text-white tracking-tight leading-[1.08]">
+            {cms.hero.headlinePart1}{" "}
+            <span className="font-cormorant font-semibold text-sky-200">
+              {cms.hero.headlineHighlight}
+            </span>
           </h1>
 
           {/* Subtitle */}
           <p className="text-sm sm:text-base md:text-lg text-slate-200 max-w-2xl mx-auto font-normal leading-relaxed">
-            We&apos;re here to answer your questions and help you find the right solutions
+            {cms.hero.subheadline}
           </p>
         </div>
       </section>
@@ -119,222 +299,172 @@ export default function ContactPage() {
               <div className="flex items-center gap-2.5">
                 <span className="w-8 h-[1.5px] bg-[#4a728e]" />
                 <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
-                  Direct Channels
+                  {cms.channels.eyebrow}
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif text-[#0f172a] font-normal leading-tight tracking-tight">
-                Contact <span className="font-serif italic font-light text-[#1b628b]">Info.</span>
+              <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-cormorant font-semibold text-[#091e2f] leading-[1.12] tracking-tight">
+                {cms.channels.title}{" "}
+                <span className="font-cormorant font-semibold text-[#164666]">
+                  {cms.channels.highlight}
+                </span>
               </h2>
               <div className="w-16 h-1 bg-[#1b628b] rounded-full mt-2 mb-3" />
-              <p className="text-sm sm:text-[15px] text-[#64748b] leading-relaxed font-normal">
-                Feel free to ask us any questions
-                <br className="hidden sm:inline" />
-                or business enquiry, we will get back to you soon!
+              <p className="text-sm sm:text-[15px] text-[#64748b] leading-relaxed font-normal whitespace-pre-line">
+                {cms.channels.description}
               </p>
             </div>
 
             {/* Information Cards Grid (Tactile Cards matching Core Pillars) */}
             <div className="space-y-4 pt-1">
-              
-              {/* Item 1: Working Hours */}
-              <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-[#1b628b]/40 hover:shadow-md transition-all duration-300 flex items-start gap-4 group">
-                <div className="w-12 h-12 rounded-2xl bg-[#f0f7fb] border border-[#d9ecf7] text-[#164666] flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
-                  <Image
-                    src="/images/icon-time.png"
-                    alt="Time Icon"
-                    width={22}
-                    height={22}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="text-xs sm:text-sm text-[#475569] leading-relaxed">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#4a728e] block mb-0.5">
-                    Shift Operating Hours
-                  </span>
-                  <div className="font-semibold text-[#0f172a]">
-                    Mon – Fri: 8.30am – 5.30pm
-                  </div>
-                  <div className="text-[#64748b]">
-                    Sat (Alternate): 8.30am – 12.30pm
-                  </div>
-                </div>
-              </div>
+              {cms.channels.contactCards?.map((card, idx) => {
+                const isPhoneOrLink = Boolean(card.link);
+                const hasCopy = Boolean(card.copyable && card.copyValue);
 
-              {/* Item 2: Phone */}
-              <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-[#1b628b]/40 hover:shadow-md transition-all duration-300 flex items-start gap-4 group">
-                <div className="w-12 h-12 rounded-2xl bg-[#f0f7fb] border border-[#d9ecf7] text-[#164666] flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
-                  <Image
-                    src="/images/icon-phone.png"
-                    alt="Phone Icon"
-                    width={22}
-                    height={22}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="flex-1 flex items-center justify-between gap-2">
-                  <div>
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[#4a728e] block mb-0.5">
-                      Phone Calls
-                    </span>
-                    <a
-                      href="tel:+919724681096"
-                      className="text-base sm:text-lg font-bold text-[#164666] hover:text-[#1b628b] transition-colors"
-                    >
-                      +91 97246 81096
-                    </a>
-                  </div>
-                  <button
-                    onClick={() => handleCopy("+919724681096", "phone")}
-                    title="Copy Phone"
-                    className="p-2 rounded-xl text-slate-400 hover:text-[#164666] hover:bg-[#f0f7fb] transition-colors"
+                return (
+                  <div
+                    key={card.id || idx}
+                    className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-[#1b628b]/40 hover:shadow-md transition-all duration-300 flex items-start gap-4 group"
                   >
-                    {copiedType === "phone" ? (
-                      <Check className="w-4 h-4 text-emerald-600" />
-                    ) : (
-                      <Copy className="w-4 h-4" />
-                    )}
-                  </button>
-                </div>
-              </div>
+                    <div className="w-12 h-12 rounded-2xl bg-[#f0f7fb] border border-[#d9ecf7] text-[#164666] flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform overflow-hidden">
+                      <Image
+                        src={card.icon || "/images/icon-phone.png"}
+                        alt={card.category || "Contact Icon"}
+                        width={22}
+                        height={22}
+                        className="object-contain"
+                      />
+                    </div>
 
-              {/* Item 3: WhatsApp */}
-              <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-[#1b628b]/40 hover:shadow-md transition-all duration-300 flex items-start gap-4 group">
-                <div className="w-12 h-12 rounded-2xl bg-[#f0f7fb] border border-[#d9ecf7] text-[#164666] flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
-                  <Image
-                    src="/images/icon-whatsapp.png"
-                    alt="WhatsApp Icon"
-                    width={22}
-                    height={22}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="flex-1 flex items-center justify-between gap-2">
-                  <div>
+                    <div className="flex-1 flex items-center justify-between gap-2 min-w-0">
+                      <div className="min-w-0">
+                        <span className="text-[11px] font-semibold uppercase tracking-wider text-[#4a728e] block mb-0.5">
+                          {card.category}
+                        </span>
+
+                        {isPhoneOrLink ? (
+                          <a
+                            href={card.link}
+                            target={card.link?.startsWith("http") ? "_blank" : undefined}
+                            rel={card.link?.startsWith("http") ? "noopener noreferrer" : undefined}
+                            className="text-base sm:text-lg font-bold text-[#164666] hover:text-[#1b628b] transition-colors inline-flex items-center gap-1.5 break-words"
+                          >
+                            <span>{card.primaryText}</span>
+                            {card.link?.startsWith("http") && <ExternalLink className="w-3.5 h-3.5 opacity-70 shrink-0" />}
+                          </a>
+                        ) : (
+                          <div className="font-semibold text-[#0f172a] text-xs sm:text-sm">
+                            {card.primaryText}
+                          </div>
+                        )}
+
+                        {card.secondaryText && (
+                          <div className="text-xs sm:text-sm text-[#64748b] mt-0.5">
+                            {card.secondaryText}
+                          </div>
+                        )}
+                        {card.thirdText && (
+                          <div className="text-xs sm:text-sm text-[#64748b]">
+                            {card.thirdText}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        {card.linkText && card.link && (
+                          <a
+                            href={card.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3.5 py-1.5 rounded-xl bg-[#f0f7fb] border border-[#d9ecf7] text-[#164666] hover:bg-[#164666] hover:text-white text-xs font-semibold transition-all"
+                          >
+                            {card.linkText}
+                          </a>
+                        )}
+
+                        {hasCopy && (
+                          <button
+                            type="button"
+                            onClick={() => handleCopy(card.copyValue || card.primaryText, `card-${card.id || idx}`)}
+                            title="Copy to clipboard"
+                            className="p-2 rounded-xl text-slate-400 hover:text-[#164666] hover:bg-[#f0f7fb] transition-colors"
+                          >
+                            {copiedType === `card-${card.id || idx}` ? (
+                              <Check className="w-4 h-4 text-emerald-600" />
+                            ) : (
+                              <Copy className="w-4 h-4" />
+                            )}
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* Official Emails Card */}
+              {cms.channels.emails && cms.channels.emails.length > 0 && (
+                <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-[#1b628b]/40 hover:shadow-md transition-all duration-300 flex items-start gap-4 group">
+                  <div className="w-12 h-12 rounded-2xl bg-[#f0f7fb] border border-[#d9ecf7] text-[#164666] flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
+                    <Image
+                      src="/images/icon-email.png"
+                      alt="Email Icon"
+                      width={22}
+                      height={22}
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="flex-1 space-y-1.5">
                     <span className="text-[11px] font-semibold uppercase tracking-wider text-[#4a728e] block mb-0.5">
-                      Instant WhatsApp Chat
+                      Official Emails
                     </span>
-                    <a
-                      href="https://wa.me/919724681096"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-base sm:text-lg font-bold text-[#164666] hover:text-[#1b628b] transition-colors inline-flex items-center gap-1.5"
-                    >
-                      <span>+91 97246 81096</span>
-                      <ExternalLink className="w-3.5 h-3.5 opacity-70" />
-                    </a>
-                  </div>
-                  <a
-                    href="https://wa.me/919724681096"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-3.5 py-1.5 rounded-xl bg-[#f0f7fb] border border-[#d9ecf7] text-[#164666] hover:bg-[#164666] hover:text-white text-xs font-semibold transition-all"
-                  >
-                    Chat
-                  </a>
-                </div>
-              </div>
-
-              {/* Item 4: Emails */}
-              <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-[#1b628b]/40 hover:shadow-md transition-all duration-300 flex items-start gap-4 group">
-                <div className="w-12 h-12 rounded-2xl bg-[#f0f7fb] border border-[#d9ecf7] text-[#164666] flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
-                  <Image
-                    src="/images/icon-email.png"
-                    alt="Email Icon"
-                    width={22}
-                    height={22}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="flex-1 space-y-1">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#4a728e] block mb-0.5">
-                    Official Emails
-                  </span>
-                  <div className="flex items-center justify-between gap-2">
-                    <a
-                      href="mailto:enquiry@manilifestyle.com"
-                      className="text-xs sm:text-sm font-semibold text-[#164666] hover:text-[#1b628b] hover:underline"
-                    >
-                      enquiry@manilifestyle.com
-                    </a>
-                    <button
-                      onClick={() => handleCopy("enquiry@manilifestyle.com", "email1")}
-                      title="Copy Email"
-                      className="p-1 rounded text-slate-400 hover:text-[#164666]"
-                    >
-                      {copiedType === "email1" ? (
-                        <Check className="w-3.5 h-3.5 text-emerald-600" />
-                      ) : (
-                        <Copy className="w-3.5 h-3.5" />
-                      )}
-                    </button>
-                  </div>
-                  <div className="flex items-center justify-between gap-2">
-                    <a
-                      href="mailto:sales@manilifestyle.com"
-                      className="text-xs sm:text-sm font-semibold text-[#164666] hover:text-[#1b628b] hover:underline"
-                    >
-                      sales@manilifestyle.com
-                    </a>
-                    <button
-                      onClick={() => handleCopy("sales@manilifestyle.com", "email2")}
-                      title="Copy Email"
-                      className="p-1 rounded text-slate-400 hover:text-[#164666]"
-                    >
-                      {copiedType === "email2" ? (
-                        <Check className="w-3.5 h-3.5 text-emerald-600" />
-                      ) : (
-                        <Copy className="w-3.5 h-3.5" />
-                      )}
-                    </button>
+                    {cms.channels.emails.map((em, eIdx) => (
+                      <div key={em.id || eIdx} className="flex items-center justify-between gap-2">
+                        <a
+                          href={`mailto:${em.email}`}
+                          className="text-xs sm:text-sm font-semibold text-[#164666] hover:text-[#1b628b] hover:underline"
+                        >
+                          {em.email}
+                        </a>
+                        <button
+                          type="button"
+                          onClick={() => handleCopy(em.email, `email-${em.id || eIdx}`)}
+                          title="Copy Email"
+                          className="p-1 rounded text-slate-400 hover:text-[#164666]"
+                        >
+                          {copiedType === `email-${em.id || eIdx}` ? (
+                            <Check className="w-3.5 h-3.5 text-emerald-600" />
+                          ) : (
+                            <Copy className="w-3.5 h-3.5" />
+                          )}
+                        </button>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
-
-              {/* Item 5: Location */}
-              <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-[#1b628b]/40 hover:shadow-md transition-all duration-300 flex items-start gap-4 group">
-                <div className="w-12 h-12 rounded-2xl bg-[#f0f7fb] border border-[#d9ecf7] text-[#164666] flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-105 transition-transform">
-                  <Image
-                    src="/images/icon-location.png"
-                    alt="Location Icon"
-                    width={22}
-                    height={22}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="text-xs sm:text-sm text-[#475569] leading-relaxed flex-1">
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[#4a728e] block mb-0.5">
-                    Factory Cleanroom Address
-                  </span>
-                  <div className="font-semibold text-[#0f172a]">
-                    Plot No. C5, Road No. 5,
-                  </div>
-                  <div>Gopal Charan Industrial Hub,</div>
-                  <div>Bakrol Bajrang, 382430, Ahmedabad</div>
-                </div>
-              </div>
-
+              )}
             </div>
 
             {/* Cleanroom Plant Visit Callout Box (Theme Styling) */}
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-[#f0f7fb] to-white border border-[#c8d9e6] shadow-xs space-y-2.5">
-              <h3 className="font-bold text-[#164666] text-sm flex items-center gap-2">
-                <Building2 className="w-4 h-4 text-[#164666]" />
-                Schedule Cleanroom Plant Visit
-              </h3>
-              <p className="text-xs text-[#64748b] leading-relaxed">
-                Brand founders, salon owners, and procurement teams are warmly invited
-                to inspect our automated vacuum homogenizers, microbiology QA lab, and Class 100,000 cleanroom.
-              </p>
-              <a
-                href="https://wa.me/919724681096?text=Hello%20Mani%20Lifestyle,%20I%20would%20like%20to%20schedule%20a%20cleanroom%20factory%20inspection%20visit."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#164666] hover:underline pt-1"
-              >
-                <span>Book Factory Inspection Date</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </div>
+            {cms.channels.plantVisit && (
+              <div className="p-6 rounded-2xl bg-gradient-to-br from-[#f0f7fb] to-white border border-[#c8d9e6] shadow-xs space-y-2.5">
+                <h3 className="font-bold text-[#164666] text-sm flex items-center gap-2">
+                  <Building2 className="w-4 h-4 text-[#164666]" />
+                  {cms.channels.plantVisit.title}
+                </h3>
+                <p className="text-xs text-[#64748b] leading-relaxed">
+                  {cms.channels.plantVisit.description}
+                </p>
+                <a
+                  href={cms.channels.plantVisit.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#164666] hover:underline pt-1"
+                >
+                  <span>{cms.channels.plantVisit.buttonText}</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            )}
           </div>
 
           {/* ──────────────────────────────────────────────────────── */}
@@ -349,15 +479,18 @@ export default function ContactPage() {
               <div className="flex items-center gap-2.5">
                 <span className="w-8 h-[1.5px] bg-[#4a728e]" />
                 <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
-                  Send an Inquiry
+                  {cms.enquiryForm.eyebrow}
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-serif text-[#0f172a] font-normal leading-tight tracking-tight">
-                Enquiry <span className="font-serif italic font-light text-[#1b628b]">Form.</span>
+              <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-cormorant font-semibold text-[#091e2f] leading-[1.12] tracking-tight">
+                {cms.enquiryForm.title}{" "}
+                <span className="font-cormorant font-semibold text-[#164666]">
+                  {cms.enquiryForm.highlight}
+                </span>
               </h2>
               <div className="w-16 h-1 bg-[#1b628b] rounded-full mt-2 mb-3" />
               <p className="text-xs sm:text-sm text-[#64748b] leading-relaxed">
-                Fill in the details below and our formulation compounding team will contact you promptly.
+                {cms.enquiryForm.description}
               </p>
             </div>
 
@@ -366,28 +499,28 @@ export default function ContactPage() {
                 <div className="w-16 h-16 bg-emerald-50 text-emerald-600 border border-emerald-200 rounded-full flex items-center justify-center mx-auto shadow-xs">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-serif font-bold text-[#0f172a]">
-                  Success! Your query has been submitted.
+                <h3 className="text-2xl sm:text-3xl font-cormorant font-bold text-[#091e2f]">
+                  {cms.enquiryForm.successTitle}
                 </h3>
                 <p className="text-sm text-[#475569] max-w-md mx-auto leading-relaxed">
-                  Thank you for reaching out to Mani Lifestyle. Our technical and business
-                  team has received your inquiry and will contact you shortly.
+                  {cms.enquiryForm.successDescription}
                 </p>
                 <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <a
-                    href="https://wa.me/919724681096?text=Hello%20Mani%20Lifestyle,%20I%20have%20submitted%20the%20contact%20enquiry%20form."
+                    href={cms.enquiryForm.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs shadow-sm transition-colors flex items-center justify-center gap-2"
                   >
                     <MessageSquare className="w-4 h-4" />
-                    <span>Connect via WhatsApp</span>
+                    <span>{cms.enquiryForm.whatsappCtaText}</span>
                   </a>
                   <button
+                    type="button"
                     onClick={() => setSubmitted(false)}
                     className="px-6 py-2.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 rounded-xl font-semibold text-xs transition-colors"
                   >
-                    Submit Another Query
+                    {cms.enquiryForm.resetButtonText}
                   </button>
                 </div>
               </div>
@@ -404,14 +537,14 @@ export default function ContactPage() {
                     htmlFor="name"
                     className="block text-xs sm:text-[13px] font-semibold text-[#0f172a]"
                   >
-                    Name <span className="text-red-500 font-bold">*</span>
+                    {cms.enquiryForm.nameLabel} <span className="text-red-500 font-bold">*</span>
                   </label>
                   <input
                     type="text"
                     id="name"
                     name="Full Name"
                     required
-                    placeholder="Enter Your Name"
+                    placeholder={cms.enquiryForm.namePlaceholder}
                     value={formData.name}
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
@@ -426,14 +559,14 @@ export default function ContactPage() {
                     htmlFor="email"
                     className="block text-xs sm:text-[13px] font-semibold text-[#0f172a]"
                   >
-                    E-mail <span className="text-red-500 font-bold">*</span>
+                    {cms.enquiryForm.emailLabel} <span className="text-red-500 font-bold">*</span>
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="Email Address"
                     required
-                    placeholder="Enter Your Email"
+                    placeholder={cms.enquiryForm.emailPlaceholder}
                     value={formData.email}
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
@@ -448,14 +581,14 @@ export default function ContactPage() {
                     htmlFor="contact-number"
                     className="block text-xs sm:text-[13px] font-semibold text-[#0f172a]"
                   >
-                    Contact Number <span className="text-red-500 font-bold">*</span>
+                    {cms.enquiryForm.phoneLabel} <span className="text-red-500 font-bold">*</span>
                   </label>
                   <input
                     type="tel"
                     id="contact-number"
                     name="Contact Number"
                     required
-                    placeholder="Enter Your Contact Number"
+                    placeholder={cms.enquiryForm.phonePlaceholder}
                     value={formData.phone}
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
@@ -470,13 +603,13 @@ export default function ContactPage() {
                     htmlFor="message"
                     className="block text-xs sm:text-[13px] font-semibold text-[#0f172a]"
                   >
-                    About Your Project
+                    {cms.enquiryForm.messageLabel}
                   </label>
                   <textarea
                     rows={4}
                     id="message"
                     name="Message"
-                    placeholder="Tell Us About Your Project"
+                    placeholder={cms.enquiryForm.messagePlaceholder}
                     value={formData.message}
                     onChange={(e) =>
                       setFormData({ ...formData, message: e.target.value })
@@ -486,7 +619,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Hidden Field as in Reference */}
-                <input type="hidden" name="Source Form" value="Contact Us Form" />
+                <input type="hidden" name="Source Form" value={cms.enquiryForm.sourceFormTag || "Contact Us Form"} />
 
                 {/* Submit Button (Themed Button Style) */}
                 <div className="pt-2">
@@ -502,7 +635,7 @@ export default function ContactPage() {
                       </>
                     ) : (
                       <>
-                        <span>Submit</span>
+                        <span>{cms.enquiryForm.submitButtonText || "Submit"}</span>
                         <Send className="w-4 h-4" />
                       </>
                     )}
@@ -523,39 +656,43 @@ export default function ContactPage() {
             <div className="flex items-center justify-center gap-2.5">
               <span className="w-8 h-[1.5px] bg-[#4a728e]" />
               <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
-                Manufacturing Headquarters
+                {cms.facilityMap.eyebrow}
               </span>
               <span className="w-8 h-[1.5px] bg-[#4a728e]" />
             </div>
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif text-[#0f172a] font-normal">
-              Visit Our <span className="font-serif italic font-light text-[#1b628b]">Cleanroom Facility.</span>
+            <h3 className="text-2xl sm:text-3xl lg:text-[2.65rem] font-cormorant font-semibold text-[#091e2f] leading-[1.12] tracking-tight">
+              {cms.facilityMap.title}{" "}
+              <span className="font-cormorant font-semibold text-[#164666]">
+                {cms.facilityMap.highlight}
+              </span>
             </h3>
             <div className="w-16 h-1 bg-[#1b628b] rounded-full mx-auto mt-2 mb-2" />
             <p className="text-xs sm:text-sm text-[#64748b]">
-              Plot No. C5, Road No. 5, Gopal Charan Industrial Hub, Bakrol Bajrang, 382430, Ahmedabad, Gujarat, India.
+              {cms.facilityMap.subtitle}
             </p>
           </div>
 
           <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200/90 shadow-xs">
             <div className="text-xs sm:text-sm text-[#475569]">
-              <strong className="text-[#0f172a] block">Gopal Charan Industrial Hub</strong>
-              30 minutes from Sardar Vallabhbhai Patel International Airport (AMD)
+              <strong className="text-[#0f172a] block">{cms.facilityMap.badgeTitle}</strong>
+              {cms.facilityMap.badgeSubtitle}
             </div>
 
             <div className="flex items-center gap-2">
               <a
-                href="https://maps.google.com/?q=Gopal+Charan+Industrial+Hub,+Bakrol+Bajrang,+Ahmedabad+382430"
+                href={cms.facilityMap.directionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#164666] text-white rounded-xl text-xs font-semibold hover:bg-[#10364f] transition-all shadow-xs"
               >
                 <Navigation className="w-3.5 h-3.5" />
-                <span>Get Driving Directions</span>
+                <span>{cms.facilityMap.directionsButtonText}</span>
               </a>
               <button
+                type="button"
                 onClick={() =>
                   handleCopy(
-                    "Plot No. C5, Road No. 5, Gopal Charan Industrial Hub, Bakrol Bajrang, 382430, Ahmedabad",
+                    cms.facilityMap.fullAddress,
                     "address"
                   )
                 }
@@ -569,7 +706,7 @@ export default function ContactPage() {
                 ) : (
                   <>
                     <Copy className="w-3.5 h-3.5" />
-                    <span>Copy Address</span>
+                    <span>{cms.facilityMap.copyAddressButtonText}</span>
                   </>
                 )}
               </button>
@@ -579,7 +716,7 @@ export default function ContactPage() {
           <div className="w-full h-80 sm:h-96 rounded-3xl overflow-hidden border border-slate-200 shadow-md relative bg-slate-100">
             <iframe
               title="Mani Lifestyle Location Map"
-              src="https://maps.google.com/maps?q=Gopal+Charan+Industrial+Hub,+Bakrol+Bajrang,+Ahmedabad+382430&t=&z=14&ie=UTF8&iwloc=&output=embed"
+              src={cms.facilityMap.mapEmbedUrl}
               width="100%"
               height="100%"
               style={{ border: 0 }}

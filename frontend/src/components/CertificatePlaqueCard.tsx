@@ -6,7 +6,6 @@ import {
   CheckCircle2,
   ShieldCheck,
   Sparkles,
-  ArrowRight,
   X,
   FileCheck2,
   Building2,
@@ -46,6 +45,7 @@ export function CertificatePlaqueCard({
   const [isVisible, setIsVisible] = useState(priority);
   const [sheenActive, setSheenActive] = useState(false);
   const [isDossierOpen, setIsDossierOpen] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     const el = cardRef.current;
@@ -104,8 +104,7 @@ export function CertificatePlaqueCard({
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        onClick={() => setIsDossierOpen(true)}
-        className={`group relative rounded-2xl p-6 sm:p-7 border border-slate-200/90 hover:border-[#1b628b]/60 shadow-xs hover:shadow-2xl hover:shadow-sky-950/15 flex flex-col items-center text-center select-none cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`group relative rounded-2xl p-6 sm:p-7 border border-slate-200/90 hover:border-[#1b628b]/60 shadow-xs hover:shadow-2xl hover:shadow-sky-950/15 flex flex-col items-center text-center select-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           isVisible
             ? "opacity-100 translate-y-0 scale-100"
             : "opacity-0 translate-y-8 scale-[0.97]"
@@ -122,7 +121,6 @@ export function CertificatePlaqueCard({
             ? "linear-gradient(180deg, #ffffff 0%, #f9fcff 60%, #edf6fc 100%)"
             : "linear-gradient(180deg, #ffffff 0%, #fafcff 70%, #f4f9fd 100%)",
         }}
-        title="Click to inspect compliance dossier"
       >
         {/* Specular Diagonal Sheen Sweep Across Full Plaque */}
         <div
@@ -148,13 +146,22 @@ export function CertificatePlaqueCard({
           {/* Subtle Ambient Radial Backlight inside Logo Box */}
           <div className="absolute inset-0 bg-radial from-sky-100/60 via-transparent to-transparent pointer-events-none" />
 
-          <Image
-            src={image}
-            alt={name}
-            width={88}
-            height={88}
-            className="object-contain max-h-20 w-auto group-hover:scale-110 transition-transform duration-500 ease-out relative z-10"
-          />
+          {imgError ? (
+            <div className="flex flex-col items-center justify-center text-[#164666] relative z-10 p-2">
+              <ShieldCheck className="w-10 h-10 text-emerald-600 mb-1" />
+              <span className="text-[9px] font-bold uppercase tracking-wider text-[#091e2f] text-center line-clamp-1">{badgeCode || 'CERTIFIED'}</span>
+            </div>
+          ) : (
+            <Image
+              src={image}
+              alt={name}
+              width={88}
+              height={88}
+              unoptimized
+              onError={() => setImgError(true)}
+              className="object-contain max-h-20 w-auto group-hover:scale-110 transition-transform duration-500 ease-out relative z-10"
+            />
+          )}
 
           {/* Diagonal Light Glint over Logo Glass */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-[160%] skew-x-[-25deg] group-hover:translate-x-[220%] transition-transform duration-900 ease-out pointer-events-none" />
@@ -162,16 +169,16 @@ export function CertificatePlaqueCard({
 
         {/* --- 2. REGULATORY BADGE CODE PILL --- */}
         <div
-          className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#164666] bg-white border border-[#c8e2f3] px-3.5 py-1 rounded-full mb-2.5 shadow-2xs group-hover:bg-[#164666] group-hover:text-white group-hover:border-[#164666] transition-all duration-300"
+          className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#164666] bg-slate-50/90 border border-slate-200/90 px-3 py-1 rounded-full mb-2.5 shadow-2xs group-hover:bg-[#164666] group-hover:text-white group-hover:border-[#164666] transition-all duration-300"
           style={{ transform: "translateZ(20px)" }}
         >
-          <Sparkles className="w-2.5 h-2.5 text-[#1b628b] group-hover:text-sky-300 transition-colors" />
+          <FileCheck2 className="w-2.5 h-2.5 text-[#164666] group-hover:text-white transition-colors" />
           <span>{badgeCode}</span>
         </div>
 
         {/* --- 3. TITLE & AUTHORITY --- */}
         <h3
-          className="text-[15px] sm:text-base font-bold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-snug tracking-tight mb-1"
+          className="text-base sm:text-[17px] font-cormorant font-bold text-[#091e2f] group-hover:text-[#164666] transition-colors leading-snug tracking-tight mb-1"
           style={{ transform: "translateZ(16px)" }}
         >
           {name}
@@ -194,23 +201,14 @@ export function CertificatePlaqueCard({
           {importance}
         </p>
 
-        {/* --- 5. LIVE VERIFIED AUDIT BADGE & INSPECT PROMPT --- */}
+        {/* --- 5. LIVE VERIFIED AUDIT BADGE --- */}
         <div
-          className="pt-2.5 border-t border-slate-200/70 w-full flex flex-col gap-1.5 mt-auto"
+          className="pt-2.5 border-t border-slate-200/70 w-full mt-auto"
           style={{ transform: "translateZ(14px)" }}
         >
-          <div className="flex items-center justify-center gap-2 text-[10px] sm:text-[10.5px] font-semibold text-emerald-800 bg-emerald-50/70 rounded-xl py-1.5 px-2 border border-emerald-200/60 transition-all duration-300 group-hover:bg-emerald-100/70">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span className="tracking-wide">Verified &bull; 2026 Audit Active</span>
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 ml-0.5" />
-          </div>
-
-          <div className="flex items-center justify-center gap-1 text-[10.5px] font-semibold text-[#1b628b] group-hover:text-[#164666] transition-colors py-0.5">
-            <span>Inspect Full Dossier</span>
-            <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+          <div className="flex items-center justify-center gap-1.5 text-[10px] sm:text-[10.5px] font-semibold text-emerald-900 bg-emerald-50/80 rounded-xl py-1.5 px-2.5 border border-emerald-200/80 transition-all duration-300 group-hover:bg-emerald-100/90">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+            <span className="tracking-wide">Verified Compliance &bull; 2026 Audit Active</span>
           </div>
         </div>
       </div>

@@ -20,7 +20,18 @@ interface ProductArchItem {
   href: string;
 }
 
-const expertiseArchItems: ProductArchItem[] = [
+const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
+  Droplets,
+  FlaskConical,
+  Sparkles,
+  Layers,
+  Beaker,
+  Sun,
+  Sparkle,
+  Leaf,
+};
+
+const defaultExpertiseArchItems: ProductArchItem[] = [
   {
     title: "Face Washes & Cleansers",
     subtitle: "pH 5.5 foaming, gel, & clarifying washes",
@@ -155,7 +166,7 @@ function InteractiveArchCard({
         <div>
           {/* Category Title: Refined Serif Font Style & Sizing */}
           <div className="min-h-[50px] flex items-center justify-center mb-1">
-            <h3 className="text-[15.5px] sm:text-[16.5px] font-serif font-medium text-[#0f172a] group-hover:text-[#164666] transition-colors leading-[1.3] tracking-[-0.01em]">
+            <h3 className="text-lg sm:text-[19px] font-cormorant font-bold text-[#091e2f] group-hover:text-[#164666] transition-colors leading-[1.25] tracking-tight">
               {item.title}
             </h3>
           </div>
@@ -177,7 +188,20 @@ function InteractiveArchCard({
   );
 }
 
-export default function RomanArchProductExpertise() {
+interface RomanArchProductExpertiseProps {
+  niches?: any[];
+}
+
+export default function RomanArchProductExpertise({ niches: propsNiches }: RomanArchProductExpertiseProps = {}) {
+  const expertiseArchItems: ProductArchItem[] = Array.isArray(propsNiches) && propsNiches.length > 0
+    ? propsNiches.map((n) => ({
+        title: n.title || 'Product Category',
+        subtitle: n.subtitle || '',
+        icon: typeof n.icon === 'string' ? (iconMap[n.icon] || Droplets) : (n.icon || Droplets),
+        href: n.href || '/products',
+      }))
+    : defaultExpertiseArchItems;
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 

@@ -207,7 +207,7 @@ export function TactileCategoryCard({
           </div>
 
           {/* Title */}
-          <h3 className="font-serif text-[13.5px] xs:text-[15px] sm:text-[17px] font-bold text-[#0a2333] tracking-tight leading-snug line-clamp-1 group-hover:text-[#164666] transition-colors duration-200">
+          <h3 className="font-cormorant text-base xs:text-[17px] sm:text-[19px] font-bold text-[#091e2f] tracking-tight leading-snug line-clamp-1 group-hover:text-[#164666] transition-colors duration-200">
             {title}
           </h3>
 

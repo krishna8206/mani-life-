@@ -8,15 +8,18 @@ import {
   ArrowRight,
   ArrowUpRight,
 } from "lucide-react";
-import { servicesData } from "@/data/services";
+import { servicesData, ServiceDetail } from "@/data/services";
 
 interface ServicePrecisionJourneyProps {
   setIsQuoteOpen: (val: boolean) => void;
+  services?: ServiceDetail[];
 }
 
 export default function ServicePrecisionJourney({
   setIsQuoteOpen,
+  services,
 }: ServicePrecisionJourneyProps) {
+  const displayServices = services && services.length > 0 ? services : servicesData;
   const containerRef = useRef<HTMLDivElement>(null);
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -187,7 +190,7 @@ export default function ServicePrecisionJourney({
       {/* 4 EDITORIAL SHOWCASE ROWS WITH STAGGERED ENTRANCES & BUTTERY PARALLAX      */}
       {/* ========================================================================= */}
       <div className="space-y-28 lg:space-y-36 relative">
-        {servicesData.map((service, index) => {
+        {displayServices.map((service, index) => {
           const isEven = index % 2 === 1;
           const isVisible = visibleRows[index];
           const parallax = rowParallax[index] || 0;
@@ -212,7 +215,7 @@ export default function ServicePrecisionJourney({
               {/* Central Journey Node Anchor (Desktop) — Locks onto the Track Line */}
               <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 items-center justify-center pointer-events-none">
                 <div
-                  className={`w-11 h-11 rounded-full border-2 bg-white flex items-center justify-center font-serif text-xs font-bold transition-all duration-500 shadow-md ${
+                  className={`w-11 h-11 rounded-full border-2 bg-white flex items-center justify-center font-cormorant text-sm font-bold transition-all duration-500 shadow-md ${
                     isNodeActive
                       ? "border-[#1b628b] bg-gradient-to-b from-sky-50 to-white text-[#164666] scale-110 shadow-[0_0_24px_rgba(27,98,139,0.5)] ring-4 ring-sky-200/90"
                       : "border-slate-300 text-slate-400 scale-95"
@@ -289,7 +292,7 @@ export default function ServicePrecisionJourney({
                 {/* Large Editorial Serif Number & Tag */}
                 <div className="flex items-center gap-4">
                   <span
-                    className={`text-4xl sm:text-5xl font-serif font-light transition-all duration-500 inline-block select-none ${
+                    className={`text-4xl sm:text-5xl font-cormorant font-bold transition-all duration-500 inline-block select-none ${
                       isNodeActive
                         ? "text-[#164666] -translate-y-0.5"
                         : "text-[#164666]/25 group-hover:text-[#1b628b]/60"
@@ -308,7 +311,7 @@ export default function ServicePrecisionJourney({
                 </div>
 
                 {/* Service Title */}
-                <h3 className="text-2xl sm:text-3xl font-serif text-[#0f172a] font-normal leading-snug group-hover:text-[#164666] transition-colors duration-300">
+                <h3 className="text-2xl sm:text-3xl lg:text-[2rem] font-cormorant font-bold text-[#091e2f] leading-snug group-hover:text-[#164666] transition-colors duration-300">
                   {service.title}
                 </h3>
 

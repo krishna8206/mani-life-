@@ -11,7 +11,13 @@ interface VisionItem {
   icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
 }
 
-const visionPrinciples: VisionItem[] = [
+const iconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
+  Handshake,
+  Award,
+  Palette,
+};
+
+const defaultVisionPrinciples: VisionItem[] = [
   {
     category: "Collaboration",
     title: "Trusted Partnership",
@@ -35,7 +41,21 @@ const visionPrinciples: VisionItem[] = [
   },
 ];
 
-export default function VisionPrinciplesShowcase() {
+interface VisionPrinciplesShowcaseProps {
+  principles?: any[];
+}
+
+export default function VisionPrinciplesShowcase({ principles: propsPrinciples }: VisionPrinciplesShowcaseProps = {}) {
+  const visionPrinciples: VisionItem[] = Array.isArray(propsPrinciples) && propsPrinciples.length > 0
+    ? propsPrinciples.map((pr) => ({
+        category: pr.category || 'Strategic',
+        title: pr.title || 'Principle',
+        desc: pr.desc || '',
+        highlight: pr.highlight || 'Clean Standard',
+        icon: typeof pr.icon === 'string' ? (iconMap[pr.icon] || Award) : (pr.icon || Award),
+      }))
+    : defaultVisionPrinciples;
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -83,7 +103,7 @@ export default function VisionPrinciplesShowcase() {
               </span>
 
               {/* Headline */}
-              <h3 className="text-xl sm:text-[22px] font-serif text-[#0f172a] font-medium tracking-tight mb-3 group-hover:text-[#164666] transition-colors leading-snug">
+              <h3 className="text-2xl sm:text-[25px] font-cormorant font-bold text-[#091e2f] tracking-tight mb-3 group-hover:text-[#164666] transition-colors leading-snug">
                 {item.title}
               </h3>
 

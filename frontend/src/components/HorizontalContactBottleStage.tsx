@@ -103,7 +103,7 @@ export default function HorizontalContactBottleStage({
 
         {/* ------------------------------------------------------------- */}
         {/* 100% PROCEDURAL PHOTOREALISTIC HORIZONTAL BOTTLE (NO IMAGES)  */}
-        {/* Sculpted Luxury Cream Pump Dispenser + Rose-Gold Mirror Collar*/}
+        {/* Normal Luxury Cosmetic Cap + Rose-Gold Collar + Pearl Body     */}
         {/* ------------------------------------------------------------- */}
         <div
           ref={containerRef}
@@ -146,8 +146,8 @@ export default function HorizontalContactBottleStage({
 
                 <linearGradient id="contactOcclusionLine" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#1a1412" stopOpacity="0" />
-                  <stop offset="8%" stopColor="#1a1412" stopOpacity="0.45" />
-                  <stop offset="25%" stopColor="#120c09" stopOpacity="0.75" />
+                  <stop offset="5%" stopColor="#1a1412" stopOpacity="0.45" />
+                  <stop offset="20%" stopColor="#120c09" stopOpacity="0.75" />
                   <stop offset="85%" stopColor="#120c09" stopOpacity="0.70" />
                   <stop offset="98%" stopColor="#1a1412" stopOpacity="0.25" />
                   <stop offset="100%" stopColor="#1a1412" stopOpacity="0" />
@@ -194,7 +194,31 @@ export default function HorizontalContactBottleStage({
                 </radialGradient>
 
                 {/* --------------------------------------------------------- */}
-                {/* 3. MIRROR ROSE-GOLD METALLIC COLLAR (HIGH DYNAMIC RANGE)  */}
+                {/* 3. NORMAL LUXURY CAP GRADIENTS (CLEAN CYLINDRICAL CAP)    */}
+                {/* --------------------------------------------------------- */}
+                {/* Silky champagne-pearl cylindrical cap shader */}
+                <linearGradient id="normalCapPearlGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#e8dfd5" />
+                  <stop offset="3%" stopColor="#ffffff" />
+                  <stop offset="14%" stopColor="#ffffff" />
+                  <stop offset="26%" stopColor="#fbf7f1" />
+                  <stop offset="48%" stopColor="#f3eae0" />
+                  <stop offset="70%" stopColor="#e5d9cc" />
+                  <stop offset="86%" stopColor="#cebda9" />
+                  <stop offset="94%" stopColor="#b6a089" />
+                  <stop offset="98%" stopColor="#d5c7b7" />
+                  <stop offset="100%" stopColor="#967e67" />
+                </linearGradient>
+
+                {/* Cap Left End Face Highlight (Flat circular face in perspective) */}
+                <radialGradient id="capFaceLighting" cx="45%" cy="35%" r="65%">
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+                  <stop offset="50%" stopColor="#f2e8de" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#c5b29c" stopOpacity="0.3" />
+                </radialGradient>
+
+                {/* --------------------------------------------------------- */}
+                {/* 4. MIRROR ROSE-GOLD METALLIC COLLAR (HIGH DYNAMIC RANGE)  */}
                 {/* --------------------------------------------------------- */}
                 <linearGradient id="roseGoldCollarPBR" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#fdf4ee" />
@@ -217,34 +241,6 @@ export default function HorizontalContactBottleStage({
                   <stop offset="50%" stopColor="#873e27" stopOpacity="0.2" />
                   <stop offset="75%" stopColor="#ffffff" stopOpacity="0.85" />
                   <stop offset="100%" stopColor="#3d1508" stopOpacity="0.6" />
-                </linearGradient>
-
-                {/* --------------------------------------------------------- */}
-                {/* 4. SCULPTED ORGANIC CREAM PUMP DISPENSER HEAD GRADIENTS   */}
-                {/* --------------------------------------------------------- */}
-                {/* Master cylindrical gradient across the actuator body */}
-                <linearGradient id="pumpActuatorBodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#ffffff" />
-                  <stop offset="6%" stopColor="#fdf9f2" />
-                  <stop offset="22%" stopColor="#f7f0e4" />
-                  <stop offset="50%" stopColor="#efe5d7" />
-                  <stop offset="76%" stopColor="#dfd2c1" />
-                  <stop offset="92%" stopColor="#beaa95" />
-                  <stop offset="100%" stopColor="#8d745e" />
-                </linearGradient>
-
-                {/* Top spine ergonomic light ridge */}
-                <linearGradient id="pumpSpineHighlight" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
-                  <stop offset="50%" stopColor="#ffffff" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#ffffff" stopOpacity="0.9" />
-                </linearGradient>
-
-                {/* Concave spout underside ambient occlusion shadow */}
-                <linearGradient id="spoutUndersideShadow" x1="0%" y1="100%" x2="0%" y2="0%">
-                  <stop offset="0%" stopColor="#7a624d" stopOpacity="0.55" />
-                  <stop offset="45%" stopColor="#a38c75" stopOpacity="0.35" />
-                  <stop offset="100%" stopColor="#dfd3c4" stopOpacity="0" />
                 </linearGradient>
 
                 {/* --------------------------------------------------------- */}
@@ -281,14 +277,14 @@ export default function HorizontalContactBottleStage({
               <ellipse cx="600" cy="346" rx="490" ry="32" fill="url(#studioGroundShadowWide)" />
               {/* Secondary softer shadow extending downward */}
               <ellipse cx="580" cy="354" rx="410" ry="20" fill="url(#studioGroundShadowWide)" opacity="0.6" />
-              {/* Pump actuator contact shadow on table */}
-              <ellipse cx="140" cy="326" rx="100" ry="16" fill="url(#studioGroundShadowWide)" opacity="0.55" />
+              {/* Normal Cap ground shadow on table */}
+              <ellipse cx="230" cy="336" rx="95" ry="18" fill="url(#studioGroundShadowWide)" opacity="0.55" />
 
               {/* Razor-sharp occlusion line directly where the horizontal cylinder touches the floor */}
               <rect
-                x="220"
+                x="170"
                 y="326"
-                width="760"
+                width="810"
                 height="10"
                 rx="5"
                 fill="url(#contactOcclusionLine)"
@@ -310,114 +306,107 @@ export default function HorizontalContactBottleStage({
                   fill="url(#pearlBodyMaster)"
                 />
                 {/* Reflected Metallic Collar */}
-                <rect x="225" y="177" width="75" height="106" rx="6" fill="url(#roseGoldCollarPBR)" />
-                {/* Reflected Pump Head */}
-                <rect x="130" y="185" width="75" height="87" rx="8" fill="url(#pumpActuatorBodyGrad)" />
+                <rect x="260" y="177" width="40" height="106" rx="4" fill="url(#roseGoldCollarPBR)" />
+                {/* Reflected Normal Cap */}
+                <rect x="165" y="177" width="95" height="106" rx="8" fill="url(#normalCapPearlGrad)" />
               </g>
 
               {/* ========================================================= */}
-              {/* COMPONENT 1: METALLIC ROSE-GOLD COLLAR & PUMP (LEFT SIDE) */}
+              {/* COMPONENT 1: NORMAL LUXURY COSMETIC CAP (LEFT END)        */}
+              {/* Clean, elegant cylindrical cap - NO TAP, NO NOZZLE BEAK!  */}
               {/* ========================================================= */}
 
-              {/* 1.1 Pump Stem (Recessed neck cylinder between actuator and collar) */}
+              {/* 1.1 Rose-Gold Metallic Base Band / Collar Ring */}
               <rect
-                x="205"
-                y="202"
-                width="20"
-                height="56"
-                rx="2"
-                fill="url(#pumpActuatorBodyGrad)"
-                stroke="#b8a590"
-                strokeWidth="0.8"
-              />
-              {/* Stem Inner Shadow under Actuator Head */}
-              <rect x="205" y="202" width="5" height="56" fill="#6d5540" opacity="0.45" />
-
-              {/* 1.2 Master Sculpted Cosmetic Dispenser Pump Head (Actuator + Spout) */}
-              {/* Single continuous ergonomic contour - NO SEPARATE BOX, NO BEAK! */}
-              <path
-                d="M 205 272 L 130 272 L 130 252 C 115 246, 85 234, 46 230 C 43 226, 43 221, 45 218 C 95 196, 145 185, 175 186 C 190 186, 202 183, 205 186 Z"
-                fill="url(#pumpActuatorBodyGrad)"
-                stroke="#cfbeab"
-                strokeWidth="1.2"
-              />
-
-              {/* Spout Underside 3D Concave Shadow (Creates real volume) */}
-              <path
-                d="M 46 230 C 85 234, 115 246, 130 252 L 130 244 C 115 238, 85 228, 48 223 Z"
-                fill="url(#spoutUndersideShadow)"
-              />
-
-              {/* Top Ergonomic Spine Highlight (Soft light ridge from crest to spout tip) */}
-              <path
-                d="M 202 186 C 188 186, 145 188, 98 200 C 65 210, 48 219, 46 220"
-                fill="none"
-                stroke="url(#pumpSpineHighlight)"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                opacity="0.9"
-              />
-
-              {/* Actuator Tactile Finger Grip Ridges (Subtle embossed cosmetic grip) */}
-              <g opacity="0.55">
-                <line x1="162" y1="187" x2="162" y2="198" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" />
-                <line x1="162" y1="188" x2="162" y2="199" stroke="#b49f87" strokeWidth="0.8" strokeLinecap="round" />
-                <line x1="172" y1="186" x2="172" y2="198" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" />
-                <line x1="172" y1="187" x2="172" y2="199" stroke="#b49f87" strokeWidth="0.8" strokeLinecap="round" />
-                <line x1="182" y1="186" x2="182" y2="198" stroke="#ffffff" strokeWidth="1" strokeLinecap="round" />
-                <line x1="182" y1="187" x2="182" y2="199" stroke="#b49f87" strokeWidth="0.8" strokeLinecap="round" />
-              </g>
-
-              {/* Dispensing Nozzle Orifice at Tip (Recessed Cosmetic Liquid Port) */}
-              <ellipse cx="45.5" cy="224" rx="2.4" ry="4.8" fill="#3b2d23" />
-              <ellipse cx="46" cy="223.5" rx="1.4" ry="3.2" fill="#140e0a" />
-              {/* Lower Rim Highlight on Orifice */}
-              <path
-                d="M 44.5 226 Q 46 229 47.5 226"
-                fill="none"
-                stroke="#ffffff"
-                strokeWidth="0.8"
-                opacity="0.85"
-              />
-
-              {/* Actuator Skirt Base Chamfer Line */}
-              <line x1="130" y1="268" x2="205" y2="268" stroke="#ffffff" strokeWidth="0.8" opacity="0.75" />
-              <line x1="130" y1="272" x2="205" y2="272" stroke="#876f57" strokeWidth="1" opacity="0.6" />
-
-              {/* 1.3 High-Gloss Mirror Rose-Gold Metallic Collar (PBR) */}
-              <rect
-                x="225"
+                x="260"
                 y="177"
-                width="75"
+                width="40"
                 height="106"
-                rx="6"
+                rx="4"
                 fill="url(#roseGoldCollarPBR)"
                 stroke="#682916"
-                strokeWidth="1.4"
+                strokeWidth="1.2"
               />
-
-              {/* Smooth Metallic Softbox Reflection Overlay (No hard pinstripes) */}
+              {/* Metallic Band Specular Softbox Overlay */}
               <rect
-                x="225"
+                x="260"
                 y="177"
-                width="75"
+                width="40"
                 height="106"
-                rx="6"
+                rx="4"
                 fill="url(#collarHorizontalReflection)"
                 opacity="0.45"
                 style={{ mixBlendMode: "overlay" }}
               />
+              {/* Metallic Band Precision Chamfer Edges */}
+              <rect x="260" y="177" width="3" height="106" fill="#ffffff" opacity="0.8" />
+              <rect x="297" y="177" width="3" height="106" fill="#ffffff" opacity="0.8" />
 
-              {/* Beveled Collar Edge Rings (Razor-sharp metallic chamfer rims) */}
-              <rect x="225" y="177" width="5" height="106" rx="2" fill="#ffffff" opacity="0.7" />
-              <rect x="229" y="177" width="2" height="106" fill="#692b18" opacity="0.4" />
-              <rect x="295" y="177" width="5" height="106" rx="2" fill="#ffffff" opacity="0.85" />
-              <rect x="293" y="177" width="2" height="106" fill="#692b18" opacity="0.4" />
+              {/* 1.2 Main Normal Luxury Cylindrical Cap Body (Cream Pearl) */}
+              <path
+                d="M 260 177 L 174 177 Q 165 177 165 186 L 165 274 Q 165 283 174 283 L 260 283 Z"
+                fill="url(#normalCapPearlGrad)"
+                stroke="#cfbeab"
+                strokeWidth="1.2"
+              />
 
-              {/* Upper Rim Glint */}
-              <line x1="225" y1="178" x2="300" y2="178" stroke="#ffffff" strokeWidth="1.4" opacity="0.9" />
-              {/* Lower Rim Ground Glint */}
-              <line x1="225" y1="282" x2="300" y2="282" stroke="#ffd8c6" strokeWidth="1.2" opacity="0.75" />
+              {/* Cap End Face (Left circular flat face in 3D perspective) */}
+              <path
+                d="M 166 186 Q 166 177 174 177 L 174 283 Q 166 283 166 274 Z"
+                fill="url(#capFaceLighting)"
+              />
+
+              {/* Cap Top Rim Specular Glint */}
+              <line
+                x1="174"
+                y1="178"
+                x2="260"
+                y2="178"
+                stroke="#ffffff"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                opacity="0.95"
+              />
+
+              {/* Cap Primary Pearlescent Specular Sheen Stripe */}
+              <rect
+                x="172"
+                y="188"
+                width="88"
+                height="14"
+                rx="4"
+                fill="#ffffff"
+                opacity="0.75"
+                filter="url(#softPBRGlow)"
+              />
+
+              {/* Inlaid Rose-Gold Luxury Pinstripe Ring on Cap */}
+              <rect
+                x="184"
+                y="177"
+                width="3.5"
+                height="106"
+                rx="1"
+                fill="url(#roseGoldCollarPBR)"
+                opacity="0.9"
+              />
+              <line x1="185" y1="178" x2="185" y2="282" stroke="#ffffff" strokeWidth="0.8" opacity="0.9" />
+
+              {/* Crisp Parting Seam Between Cap and Rose-Gold Collar */}
+              <line x1="260" y1="177" x2="260" y2="283" stroke="#482518" strokeWidth="1.2" opacity="0.75" />
+              <line x1="261" y1="177" x2="261" y2="283" stroke="#ffffff" strokeWidth="0.8" opacity="0.85" />
+
+              {/* Cap Lower Rim Table Bounce Light */}
+              <line
+                x1="174"
+                y1="282"
+                x2="260"
+                y2="282"
+                stroke="#fcf9f5"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                opacity="0.8"
+              />
 
               {/* ========================================================= */}
               {/* COMPONENT 2: ENLARGED PEARLESCENT BOTTLE BODY (33% LARGER)*/}
@@ -606,7 +595,7 @@ export default function HorizontalContactBottleStage({
               {/* COMPONENT 4: DYNAMIC LIGHT SHEEN SWEEP (HOVER REACTION)   */}
               {/* ========================================================= */}
               <path
-                d="M 300 178 L 982 178 L 982 282 L 300 282 Z"
+                d="M 260 178 L 982 178 L 982 282 L 260 282 Z"
                 fill="none"
                 stroke="url(#pearlSheenBeamWide)"
                 strokeWidth="1.8"

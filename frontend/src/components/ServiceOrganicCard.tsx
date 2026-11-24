@@ -130,7 +130,7 @@ export function ServiceOrganicCard({
           transformStyle: "preserve-3d",
           background: "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(251,253,255,0.96) 55%, rgba(240,247,253,0.92) 100%)",
         }}
-        className="relative w-full h-full backdrop-blur-md border border-[#bce3f5]/90 p-3 pb-4 sm:pb-5 flex flex-col justify-between overflow-hidden shadow-[0_16px_36px_-6px_rgba(27,98,139,0.10),0_0_24px_0_rgba(188,227,245,0.25),inset_0_1.5px_2px_rgba(255,255,255,0.95)] group-hover:border-[#1b628b]/50 group-hover:shadow-[0_28px_56px_-10px_rgba(27,98,139,0.22),0_0_35px_0_rgba(188,227,245,0.45)] transition-all duration-500"
+        className="relative w-full h-full backdrop-blur-md border border-[#bce3f5]/90 pb-4 sm:pb-5 flex flex-col justify-between overflow-hidden shadow-[0_16px_36px_-6px_rgba(27,98,139,0.10),0_0_24px_0_rgba(188,227,245,0.25),inset_0_1.5px_2px_rgba(255,255,255,0.95)] group-hover:border-[#1b628b]/50 group-hover:shadow-[0_28px_56px_-10px_rgba(27,98,139,0.22),0_0_35px_0_rgba(188,227,245,0.45)] transition-all duration-500"
       >
         {/* Diagonal Specular Sheen Glint Sweep on Hover */}
         <div
@@ -155,7 +155,6 @@ export function ServiceOrganicCard({
         {/* ========================================================= */}
         <div
           style={{
-            borderRadius: "24px 24px 0 0",
             transform: "translateZ(12px)",
           }}
           className="relative w-full h-[225px] sm:h-[235px] lg:h-[245px] bg-sky-50 overflow-hidden shrink-0 transition-transform duration-500"
@@ -217,7 +216,7 @@ export function ServiceOrganicCard({
         {/* ========================================================= */}
         <div
           style={{ transform: "translateZ(24px)" }}
-          className="px-3 sm:px-4 pt-2.5 pb-1 flex-1 flex flex-col justify-between relative z-20"
+          className="px-4 sm:px-5 pt-3.5 pb-1 flex-1 flex flex-col justify-between relative z-20"
         >
           <div>
             {/* Service Step Eyebrow Indicator */}
@@ -252,12 +251,8 @@ export function ServiceOrganicCard({
           {/* Bottom Interactive Action Area */}
           <div
             style={{ transform: "translateZ(38px)" }}
-            className="flex items-center justify-between pt-2 border-t border-sky-100/90 mt-1"
+            className="flex items-center justify-end pt-2 border-t border-sky-100/90 mt-1"
           >
-            <span className="text-[11px] font-semibold text-slate-500 group-hover:text-[#1b628b] transition-colors">
-              Explore Capability &rarr;
-            </span>
-
             <button
               type="button"
               onClick={() => onOpenQuote(service.title)}

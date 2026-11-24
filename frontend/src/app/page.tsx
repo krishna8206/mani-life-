@@ -7,6 +7,7 @@ import { API_BASE_URL } from "@/lib/config";
 import {
   Sparkles,
   ArrowRight,
+  
   ShieldCheck,
   ChevronDown,
   FlaskConical,
@@ -27,6 +28,7 @@ import { certificationsData } from "@/data/certifications";
 import CertificatePlaqueCard from "@/components/CertificatePlaqueCard";
 import SpatialFormularyStageShowcase from "@/components/SpatialFormularyStageShowcase";
 import ServiceOrganicCard from "@/components/ServiceOrganicCard";
+import HorizontalContactBottleStage from "@/components/HorizontalContactBottleStage";
 
 function PumpBottleIcon({
   className = "w-5 h-5",
@@ -1215,50 +1217,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. DIRECT FACTORY CONSULTATION CTA BANNER */}
-      <section className="relative py-16 sm:py-20 lg:py-24 bg-white border-b border-slate-200/80 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[350px] bg-sky-100/30 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="flex items-center justify-center gap-2.5 mb-2.5">
-            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
-            <span className="text-[11px] sm:text-xs uppercase tracking-[0.22em] font-semibold text-[#4a728e]">
-              {ctaBanner.eyebrow}
-            </span>
-            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-cormorant font-semibold text-[#091e2f] leading-[1.12] tracking-tight">
-            {ctaBanner.heading}
-          </h2>
-
-          <div className="w-12 h-px bg-slate-300 mx-auto mt-4 mb-4" />
-
-          <p className="text-sm sm:text-[15px] text-slate-700 max-w-2xl mx-auto leading-relaxed font-normal mb-8">
-            {ctaBanner.desc}
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 pt-1">
-            <button
-              onClick={() => setIsQuoteModalOpen(true)}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-[#164666] hover:bg-[#10364f] text-white text-xs sm:text-sm font-semibold rounded-xl shadow-md shadow-[#164666]/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-            >
-              <Send className="w-4 h-4" />
-              <span>{ctaBanner.buttonText}</span>
-            </button>
-
-            <a
-              href={`https://wa.me/919724681096?text=${encodeURIComponent(ctaBanner.whatsappText)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-white hover:bg-[#f8fafc] text-[#164666] border border-slate-200/90 hover:border-[#164666]/40 text-xs sm:text-sm font-semibold rounded-xl shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <Phone className="w-4 h-4 text-[#164666]" />
-              <span>Schedule Plant Tour ({ctaBanner.phone})</span>
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* 8. DIRECT FACTORY CONSULTATION CTA BANNER (Procedural Horizontal Bottle) */}
+      <HorizontalContactBottleStage
+        onOpenQuote={handleOpenQuote}
+        ctaBanner={ctaBanner}
+      />
 
       {/* Quote RFQ Modal */}
       <QuoteModal

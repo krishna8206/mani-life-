@@ -157,7 +157,7 @@ export function ServiceOrganicCard({
           style={{
             transform: "translateZ(12px)",
           }}
-          className="relative w-full h-[225px] sm:h-[235px] lg:h-[245px] bg-sky-50 overflow-hidden shrink-0 transition-transform duration-500"
+          className="relative w-full h-[195px] sm:h-[205px] lg:h-[215px] bg-sky-50 overflow-hidden shrink-0 transition-transform duration-500"
         >
           <div
             style={{ clipPath: `url(#service-wave-${service.id || index})` }}
@@ -216,7 +216,7 @@ export function ServiceOrganicCard({
         {/* ========================================================= */}
         <div
           style={{ transform: "translateZ(24px)" }}
-          className="px-4 sm:px-5 pt-3.5 pb-1 flex-1 flex flex-col justify-between relative z-20"
+          className="px-4 sm:px-5 -mt-2.5 sm:-mt-3 pt-1 pb-1 flex-1 flex flex-col justify-between relative z-20"
         >
           <div>
             {/* Service Step Eyebrow Indicator */}

@@ -74,26 +74,26 @@ const serviceWavePresets = [
   {
     cardRadius: "42px 70px 48px 60px / 55px 45px 65px 50px",
     objectPosition: "center 42%",
-    clipPathD: "M 0 0 L 0 0.88 C 0.25 0.78, 0.60 0.88, 1 0.84 L 1 0 Z",
-    strokePath: "M 0 88 C 25 78, 60 88, 100 84",
+    clipPathD: "M 0 0 L 0 0.95 C 0.25 0.88, 0.60 0.97, 1 0.91 L 1 0 Z",
+    strokePath: "M 0 95 C 25 88, 60 97, 100 91",
   },
   {
     cardRadius: "60px 45px 55px 42px / 48px 65px 45px 58px",
     objectPosition: "center 45%",
-    clipPathD: "M 0 0 L 0 0.84 C 0.35 0.90, 0.70 0.78, 1 0.86 L 1 0 Z",
-    strokePath: "M 0 84 C 35 90, 70 78, 100 86",
+    clipPathD: "M 0 0 L 0 0.92 C 0.35 0.98, 0.70 0.88, 1 0.95 L 1 0 Z",
+    strokePath: "M 0 92 C 35 98, 70 88, 100 95",
   },
   {
     cardRadius: "48px 65px 40px 68px / 60px 48px 55px 45px",
     objectPosition: "center 42%",
-    clipPathD: "M 0 0 L 0 0.86 C 0.30 0.78, 0.70 0.82, 1 0.88 L 1 0 Z",
-    strokePath: "M 0 86 C 30 78, 70 82, 100 88",
+    clipPathD: "M 0 0 L 0 0.94 C 0.30 0.87, 0.70 0.91, 1 0.96 L 1 0 Z",
+    strokePath: "M 0 94 C 30 87, 70 91, 100 96",
   },
   {
     cardRadius: "65px 42px 58px 45px / 45px 58px 48px 62px",
     objectPosition: "center 35%",
-    clipPathD: "M 0 0 L 0 0.85 C 0.28 0.77, 0.65 0.89, 1 0.83 L 1 0 Z",
-    strokePath: "M 0 85 C 28 77, 65 89, 100 83",
+    clipPathD: "M 0 0 L 0 0.93 C 0.28 0.87, 0.65 0.97, 1 0.91 L 1 0 Z",
+    strokePath: "M 0 93 C 28 87, 65 97, 100 91",
   },
 ];
 

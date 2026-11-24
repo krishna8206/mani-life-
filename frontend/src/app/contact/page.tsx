@@ -175,7 +175,7 @@ export default function ContactPage() {
   useEffect(() => {
     async function loadContactCms() {
       try {
-        const res = await fetch("http://localhost:5000/api/contact-page");
+        const res = await fetch("/api/contact-page");
         if (res.ok) {
           const data = await res.json();
           if (data && data.hero) {

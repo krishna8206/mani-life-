@@ -267,7 +267,7 @@ export default function HomePage() {
   useEffect(() => {
     const fetchHomeCMS = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/home", {
+        const res = await fetch("/api/home", {
           cache: "no-store",
         });
         if (res.ok) {

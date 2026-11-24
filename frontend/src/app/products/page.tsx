@@ -366,7 +366,7 @@ export default function ProductsPage() {
 
   // Fetch dynamic CMS data from MongoDB Atlas
   useEffect(() => {
-    fetch("http://localhost:5000/api/product-range-page")
+    fetch("/api/product-range-page")
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.hero) {

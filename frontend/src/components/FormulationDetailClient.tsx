@@ -36,7 +36,7 @@ export default function FormulationDetailClient({
 
   React.useEffect(() => {
     let isMounted = true;
-    fetch(`http://localhost:5000/api/products/${formulation.slug}`)
+    fetch(`/api/products/${formulation.slug}`)
       .then((res) => {
         if (!res.ok) throw new Error('Product not in live db');
         return res.json();

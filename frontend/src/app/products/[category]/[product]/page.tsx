@@ -4,6 +4,9 @@ import { Metadata } from "next";
 import { getAllCategories, getCategoryShowcase } from "@/data/categoryShowcase";
 import { getFormulationDetail } from "@/data/productFormulations";
 import FormulationDetailClient from "@/components/FormulationDetailClient";
+import { connectToDatabase } from "@/lib/db";
+import { Product } from "@/lib/models/Product";
+import { connection } from "next/server";
 
 export const instant = false;
 
@@ -38,101 +41,101 @@ async function resolveLiveFormulation(productSlug: string, categorySlug: string)
   let fallback = getFormulationDetail(productSlug, categorySlug);
 
   try {
-    const res = await fetch(`http://localhost:5000/api/products/${productSlug}`, {
-      cache: "no-store",
-    });
-    if (res.ok) {
-      const live = await res.json();
-      if (live) {
-        if (!fallback) {
-          fallback = {
-            slug: live.slug || productSlug,
-            categorySlug: live.categorySlug || categorySlug,
-            categoryTitle: live.category || "Cosmetics",
-            name: live.name || "Product Formulation",
-            headline: live.headline || `${live.name} Manufacturer in India`,
-            tagline: live.tagline || "Custom & Private Label Formulation",
-            image: live.image || "/images/products/natural-face-wash.jpg",
-            imageAlt: live.imageAlt || `${live.name} Product Tube and Packaging - Mani Lifestyle`,
-            cleanroomBadge: live.cleanroomBadge || "Ahmedabad Cleanroom Compounding",
-            moqBadge: live.moqBadge || "Flexible Low MOQ",
-            eyebrow: live.eyebrow || "CERTIFIED COSMETICS MANUFACTURER • AHMEDABAD, INDIA",
-            titleLine1: live.titleLine1 || live.name,
-            titleLine2: live.titleLine2 || "Manufacturer in India.",
-            overviewParagraphs: live.overviewParagraphs || [],
-            keyActives:
-              Array.isArray(live.keyActives) && live.keyActives.length > 0
-                ? live.keyActives
-                : Array.isArray(live.actives)
-                  ? live.actives
-                  : [],
-            format: live.format || "Custom Formula",
-            pH: live.pH || "pH 5.5",
-            packagingOptions:
-              Array.isArray(live.packagingOptions) && live.packagingOptions.length > 0
-                ? live.packagingOptions
-                : Array.isArray(live.packagingTypes)
-                  ? live.packagingTypes
-                  : [],
-            whyChoosePoints: Array.isArray(live.whyChoosePoints)
+    await connection();
+    await connectToDatabase();
+    const live: any = await Product.findOne({
+      $or: [{ slug: productSlug }, { id: productSlug }],
+    }).lean();
+
+    if (live) {
+      if (!fallback) {
+        fallback = {
+          slug: live.slug || productSlug,
+          categorySlug: live.categorySlug || categorySlug,
+          categoryTitle: live.category || "Cosmetics",
+          name: live.name || "Product Formulation",
+          headline: live.headline || `${live.name} Manufacturer in India`,
+          tagline: live.tagline || "Custom & Private Label Formulation",
+          image: live.image || "/images/products/natural-face-wash.jpg",
+          imageAlt: live.imageAlt || `${live.name} Product Tube and Packaging - Mani Lifestyle`,
+          cleanroomBadge: live.cleanroomBadge || "Ahmedabad Cleanroom Compounding",
+          moqBadge: live.moqBadge || "Flexible Low MOQ",
+          eyebrow: live.eyebrow || "CERTIFIED COSMETICS MANUFACTURER • AHMEDABAD, INDIA",
+          titleLine1: live.titleLine1 || live.name,
+          titleLine2: live.titleLine2 || "Manufacturer in India.",
+          overviewParagraphs: live.overviewParagraphs || [],
+          keyActives:
+            Array.isArray(live.keyActives) && live.keyActives.length > 0
+              ? live.keyActives
+              : Array.isArray(live.actives)
+                ? live.actives
+                : [],
+          format: live.format || "Custom Formula",
+          pH: live.pH || "pH 5.5",
+          packagingOptions:
+            Array.isArray(live.packagingOptions) && live.packagingOptions.length > 0
+              ? live.packagingOptions
+              : Array.isArray(live.packagingTypes)
+                ? live.packagingTypes
+                : [],
+          whyChoosePoints: Array.isArray(live.whyChoosePoints)
+            ? live.whyChoosePoints.map((pt: any) => ({
+              title: pt.title || "",
+              description: pt.description || pt.desc || "",
+            }))
+            : [],
+          skinTypes: live.skinTypes || ["All Skin Types"],
+          expandHeadline: live.expandHeadline || "Expand Your Skincare Line with Confidence",
+          expandParagraphs: live.expandParagraphs || [],
+        };
+      } else {
+        fallback = {
+          ...fallback,
+          name: live.name || fallback.name,
+          image: live.image || fallback.image,
+          imageAlt: live.imageAlt || fallback.imageAlt,
+          format: live.format || fallback.format,
+          pH: live.pH || fallback.pH,
+          tagline: live.tagline || fallback.tagline,
+          headline: live.headline || fallback.headline,
+          cleanroomBadge: live.cleanroomBadge || fallback.cleanroomBadge,
+          moqBadge: live.moqBadge || fallback.moqBadge,
+          keyActives:
+            Array.isArray(live.keyActives) && live.keyActives.length > 0
+              ? live.keyActives
+              : Array.isArray(live.actives) && live.actives.length > 0
+                ? live.actives
+                : fallback.keyActives,
+          overviewParagraphs:
+            Array.isArray(live.overviewParagraphs) && live.overviewParagraphs.length > 0
+              ? live.overviewParagraphs
+              : fallback.overviewParagraphs,
+          whyChoosePoints:
+            Array.isArray(live.whyChoosePoints) && live.whyChoosePoints.length > 0
               ? live.whyChoosePoints.map((pt: any) => ({
                 title: pt.title || "",
                 description: pt.description || pt.desc || "",
               }))
-              : [],
-            skinTypes: live.skinTypes || ["All Skin Types"],
-            expandHeadline: live.expandHeadline || "Expand Your Skincare Line with Confidence",
-            expandParagraphs: live.expandParagraphs || [],
-          };
-        } else {
-          fallback = {
-            ...fallback,
-            name: live.name || fallback.name,
-            image: live.image || fallback.image,
-            imageAlt: live.imageAlt || fallback.imageAlt,
-            format: live.format || fallback.format,
-            pH: live.pH || fallback.pH,
-            tagline: live.tagline || fallback.tagline,
-            headline: live.headline || fallback.headline,
-            cleanroomBadge: live.cleanroomBadge || fallback.cleanroomBadge,
-            moqBadge: live.moqBadge || fallback.moqBadge,
-            keyActives:
-              Array.isArray(live.keyActives) && live.keyActives.length > 0
-                ? live.keyActives
-                : Array.isArray(live.actives) && live.actives.length > 0
-                  ? live.actives
-                  : fallback.keyActives,
-            overviewParagraphs:
-              Array.isArray(live.overviewParagraphs) && live.overviewParagraphs.length > 0
-                ? live.overviewParagraphs
-                : fallback.overviewParagraphs,
-            whyChoosePoints:
-              Array.isArray(live.whyChoosePoints) && live.whyChoosePoints.length > 0
-                ? live.whyChoosePoints.map((pt: any) => ({
-                  title: pt.title || "",
-                  description: pt.description || pt.desc || "",
-                }))
-                : fallback.whyChoosePoints,
-            packagingOptions:
-              Array.isArray(live.packagingOptions) && live.packagingOptions.length > 0
-                ? live.packagingOptions
-                : Array.isArray(live.packagingTypes) && live.packagingTypes.length > 0
-                  ? live.packagingTypes
-                  : fallback.packagingOptions,
-            skinTypes:
-              Array.isArray(live.skinTypes) && live.skinTypes.length > 0
-                ? live.skinTypes
-                : fallback.skinTypes,
-            expandParagraphs:
-              Array.isArray(live.expandParagraphs) && live.expandParagraphs.length > 0
-                ? live.expandParagraphs
-                : fallback.expandParagraphs,
-          };
-        }
+              : fallback.whyChoosePoints,
+          packagingOptions:
+            Array.isArray(live.packagingOptions) && live.packagingOptions.length > 0
+              ? live.packagingOptions
+              : Array.isArray(live.packagingTypes) && live.packagingTypes.length > 0
+                ? live.packagingTypes
+                : fallback.packagingOptions,
+          skinTypes:
+            Array.isArray(live.skinTypes) && live.skinTypes.length > 0
+              ? live.skinTypes
+              : fallback.skinTypes,
+          expandParagraphs:
+            Array.isArray(live.expandParagraphs) && live.expandParagraphs.length > 0
+              ? live.expandParagraphs
+              : fallback.expandParagraphs,
+        };
       }
     }
-  } catch {
-    // Graceful offline fallback
+  } catch (err) {
+    console.warn("Could not query live product from MongoDB, using fallback:", err);
   }
 
   return fallback;

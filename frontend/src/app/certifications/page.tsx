@@ -112,7 +112,7 @@ export default function CertificationsPage() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/certifications")
+    fetch("/api/certifications")
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.hero) {

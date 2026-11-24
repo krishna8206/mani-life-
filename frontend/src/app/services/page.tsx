@@ -198,7 +198,7 @@ export default function ServicesPage() {
 
   // Fetch dynamic CMS data from MongoDB Atlas
   useEffect(() => {
-    fetch("http://localhost:5000/api/services-page")
+    fetch("/api/services-page")
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.hero) {

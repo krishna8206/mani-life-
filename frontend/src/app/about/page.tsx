@@ -353,7 +353,7 @@ export default function AboutPage() {
   useEffect(() => {
     const fetchAboutData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/about");
+        const res = await fetch("/api/about");
         if (res.ok) {
           const json = await res.json();
           if (json && json.hero) {

@@ -782,13 +782,14 @@ export default function HomePage() {
       </section>
 
       {/* 3. PRODUCT CATEGORIES IN YOUR BRAND */}
-      <section id="categories" className="relative pt-6 sm:pt-8 lg:pt-10 pb-16 sm:py-20 lg:py-24 bg-[#f8fafc] border-b border-slate-200/80 overflow-hidden">
+      <section id="categories" className="relative pt-6 sm:pt-8 lg:pt-10 pb-12 sm:py-16 lg:py-20 bg-[#f8fafc] border-b border-slate-200/80 overflow-hidden">
         <div className="absolute top-10 right-0 w-96 h-96 bg-[#164666]/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-10 left-0 w-96 h-96 bg-sky-200/20 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
-            <div className="flex items-center justify-center gap-2.5 mb-2">
+        <div className="relative z-10 max-w-[1500px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-14">
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+            <div className="flex items-center justify-center gap-2.5 mb-2.5">
               <span className="w-8 h-[1.5px] bg-[#4a728e]" />
               <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
                 {categoriesHeader.eyebrow}
@@ -807,63 +808,371 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7 items-stretch">
-            {coreCategories.map((cat: any) => (
-              <Link
-                key={cat.num || cat.slug}
-                href={`/products/${cat.slug || "skincare-serums"}`}
-                className="group relative bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 hover:border-[#164666] shadow-xs hover:shadow-xl hover:shadow-slate-200/90 transition-all duration-500 hover:-translate-y-1.5 overflow-hidden flex flex-col justify-between"
-              >
-                <div className="relative w-full aspect-[4/3] overflow-hidden bg-slate-100">
-                  <Image
-                    src={cat.image || "/images/categories/cat-serum.jpg"}
-                    alt={cat.name}
-                    fill
-                    className="object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-lg bg-white/95 backdrop-blur-md border border-white/80 text-[#164666] font-mono font-bold text-xs shadow-xs group-hover:bg-[#164666] group-hover:text-white transition-colors duration-300">
-                    {cat.num}
-                  </div>
-                </div>
+          {/* 6 Categories Asymmetric Bento Grid - Rectangular Architectural Frames */}
+          <div className="space-y-4 sm:space-y-5">
+            {/* CLUSTER 1: Categories 01, 02, 03 */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 items-stretch">
+              {/* Category 01: Featured Tall Card (Left) */}
+              {coreCategories[0] && (
+                <div className="lg:col-span-6 flex flex-col">
+                  <Link
+                    href={`/products/${coreCategories[0].slug || "cleansers-toners"}`}
+                    className="group relative bg-[#fcfbf9] rounded-xl sm:rounded-2xl border border-slate-200/90 hover:border-[#164666] shadow-xs hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col justify-between h-full"
+                  >
+                    <div className="relative w-full h-[260px] sm:h-[300px] lg:h-[320px] xl:h-[340px] overflow-hidden bg-slate-100">
+                      <Image
+                        src={coreCategories[0].image || "/images/categories/cat-face-wash.jpg"}
+                        alt={coreCategories[0].name}
+                        fill
+                        className="object-cover object-center group-hover:scale-104 transition-transform duration-700 ease-out"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
+                    </div>
 
-                <div className="p-5 flex flex-col justify-between flex-1">
-                  <div className="flex-1 flex flex-col">
-                    <span className="text-[10.5px] font-bold tracking-[0.14em] text-[#1b628b] uppercase mb-1.5 block">
-                      {cat.tagline}
-                    </span>
+                    <div className="p-5 sm:p-6 flex flex-col justify-between flex-1">
+                      <div>
+                        <div className="flex items-center gap-2.5 mb-1.5">
+                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] whitespace-nowrap">
+                            {coreCategories[0].tagline}
+                          </span>
+                          <span className="h-[1px] flex-1 bg-slate-300/80" />
+                        </div>
 
-                    <h3 className="text-xl sm:text-[1.3rem] font-cormorant font-bold text-[#091e2f] group-hover:text-[#164666] transition-colors leading-snug tracking-tight min-h-[32px] sm:min-h-[36px] flex items-center mb-2.5">
-                      {cat.name}
-                    </h3>
+                        <h3 className="text-2xl sm:text-[1.75rem] lg:text-[2rem] font-cormorant font-semibold text-[#091e2f] group-hover:text-[#164666] transition-colors leading-tight mb-2">
+                          {coreCategories[0].name}
+                        </h3>
 
-                    <p className="text-[13px] text-slate-500 leading-relaxed font-normal min-h-[58px] sm:min-h-[62px] mb-4 flex-1">
-                      {cat.description}
-                    </p>
+                        <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal mb-3.5">
+                          {coreCategories[0].description}
+                        </p>
 
-                    <div className="flex flex-wrap gap-1.5 mb-4 min-h-[56px] sm:min-h-[58px] content-start">
-                      {cat.tags?.map((tag: string) => (
-                        <span
-                          key={tag}
-                          className="text-[10px] sm:text-[10.5px] font-medium px-2 py-0.5 rounded-md bg-[#f0f7fb] text-[#164666] border border-[#d9ecf7] group-hover:bg-sky-50 transition-colors"
-                        >
-                          {tag}
+                        <div className="flex flex-wrap gap-1.5 mb-4">
+                          {coreCategories[0].tags?.map((tag: string) => (
+                            <span
+                              key={tag}
+                              className="text-[10px] sm:text-[10.5px] font-medium px-2.5 py-0.5 rounded-full bg-white text-[#164666] border border-slate-200/90 shadow-2xs group-hover:border-[#164666]/30 transition-colors"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="pt-3 border-t border-slate-200/80 flex items-center justify-between text-slate-700 group-hover:text-[#164666] transition-colors">
+                        <span className="font-cormorant italic text-sm sm:text-base font-medium tracking-wide">
+                          Inspect Formulations
                         </span>
-                      ))}
+                        <div className="flex items-center gap-2">
+                          <span className="w-8 sm:w-12 h-[1px] bg-slate-300 group-hover:bg-[#164666] transition-colors" />
+                          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1.5" />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
-                    <span className="text-xs font-semibold text-[#164666] group-hover:text-[#0f172a] transition-colors tracking-wide">
-                      Inspect Formulations
-                    </span>
-                    <div className="w-7 h-7 rounded-full bg-[#f0f7fb] text-[#164666] group-hover:bg-[#164666] group-hover:text-white flex items-center justify-center transition-all duration-300 group-hover:translate-x-1 shadow-2xs">
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </div>
-                  </div>
+                  </Link>
                 </div>
-              </Link>
-            ))}
+              )}
+
+              {/* Right Stack: Categories 02 and 03 */}
+              <div className="lg:col-span-6 flex flex-col gap-4 sm:gap-5 justify-between">
+                {/* Category 02: Serums (Image Left, Details Right) */}
+                {coreCategories[1] && (
+                  <Link
+                    href={`/products/${coreCategories[1].slug || "skincare-serums"}`}
+                    className="group relative bg-[#f0f6fa] rounded-xl sm:rounded-2xl border border-slate-200/90 hover:border-[#164666] shadow-xs hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col sm:flex-row flex-1"
+                  >
+                    <div className="relative w-full sm:w-[42%] h-[180px] sm:h-auto min-h-[180px] overflow-hidden bg-slate-100 shrink-0">
+                      <Image
+                        src={coreCategories[1].image || "/images/categories/cat-serum.jpg"}
+                        alt={coreCategories[1].name}
+                        fill
+                        className="object-cover object-center group-hover:scale-104 transition-transform duration-700 ease-out"
+                        sizes="(max-width: 640px) 100vw, 25vw"
+                      />
+                    </div>
+
+                    <div className="p-4 sm:p-5 flex flex-col justify-between flex-1">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1.5">
+                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] whitespace-nowrap">
+                            {coreCategories[1].tagline}
+                          </span>
+                          <span className="h-[1px] flex-1 bg-slate-300/80" />
+                        </div>
+
+                        <h3 className="text-xl sm:text-[1.45rem] font-cormorant font-semibold text-[#091e2f] group-hover:text-[#164666] transition-colors leading-tight mb-1.5">
+                          {coreCategories[1].name}
+                        </h3>
+
+                        <p className="text-xs sm:text-[12.5px] text-slate-600 leading-relaxed font-normal mb-3 line-clamp-2 sm:line-clamp-3">
+                          {coreCategories[1].description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-1 mb-3">
+                          {coreCategories[1].tags?.map((tag: string) => (
+                            <span
+                              key={tag}
+                              className="text-[10px] sm:text-[10.5px] font-medium px-2 py-0.5 rounded-full bg-white text-[#164666] border border-slate-200/90 shadow-2xs group-hover:border-[#164666]/30 transition-colors"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="pt-2 border-t border-slate-200/80 flex items-center justify-between text-slate-700 group-hover:text-[#164666] transition-colors mt-auto">
+                        <span className="font-cormorant italic text-xs sm:text-sm font-medium tracking-wide">
+                          Inspect Formulations
+                        </span>
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-6 sm:w-10 h-[1px] bg-slate-300 group-hover:bg-[#164666] transition-colors" />
+                          <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1.5" />
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                )}
+
+                {/* Category 03: Hair Oil (Details Left, Image Right) */}
+                {coreCategories[2] && (
+                  <Link
+                    href={`/products/${coreCategories[2].slug || "haircare-treatments"}`}
+                    className="group relative bg-[#fdfbf7] rounded-xl sm:rounded-2xl border border-slate-200/90 hover:border-[#164666] shadow-xs hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col sm:flex-row flex-1"
+                  >
+                    <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 order-2 sm:order-1">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1.5">
+                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] whitespace-nowrap">
+                            {coreCategories[2].tagline}
+                          </span>
+                          <span className="h-[1px] flex-1 bg-slate-300/80" />
+                        </div>
+
+                        <h3 className="text-xl sm:text-[1.45rem] font-cormorant font-semibold text-[#091e2f] group-hover:text-[#164666] transition-colors leading-tight mb-1.5">
+                          {coreCategories[2].name}
+                        </h3>
+
+                        <p className="text-xs sm:text-[12.5px] text-slate-600 leading-relaxed font-normal mb-3 line-clamp-2 sm:line-clamp-3">
+                          {coreCategories[2].description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-1 mb-3">
+                          {coreCategories[2].tags?.map((tag: string) => (
+                            <span
+                              key={tag}
+                              className="text-[10px] sm:text-[10.5px] font-medium px-2 py-0.5 rounded-full bg-white text-[#164666] border border-slate-200/90 shadow-2xs group-hover:border-[#164666]/30 transition-colors"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="pt-2 border-t border-slate-200/80 flex items-center justify-between text-slate-700 group-hover:text-[#164666] transition-colors mt-auto">
+                        <span className="font-cormorant italic text-xs sm:text-sm font-medium tracking-wide">
+                          Inspect Formulations
+                        </span>
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-6 sm:w-10 h-[1px] bg-slate-300 group-hover:bg-[#164666] transition-colors" />
+                          <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1.5" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="relative w-full sm:w-[42%] h-[180px] sm:h-auto min-h-[180px] overflow-hidden bg-slate-100 shrink-0 order-1 sm:order-2">
+                      <Image
+                        src={coreCategories[2].image || "/images/categories/cat-hair-oil.jpg"}
+                        alt={coreCategories[2].name}
+                        fill
+                        className="object-cover object-center group-hover:scale-104 transition-transform duration-700 ease-out"
+                        sizes="(max-width: 640px) 100vw, 25vw"
+                      />
+                    </div>
+                  </Link>
+                )}
+              </div>
+            </div>
+
+            {/* CLUSTER 2: Categories 04, 05, 06 (Mirrored Editorial Balance) */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 items-stretch">
+              {/* Left Stack: Categories 04 and 05 */}
+              <div className="lg:col-span-6 flex flex-col gap-4 sm:gap-5 justify-between order-2 lg:order-1">
+                {/* Category 04: Skin Cream (Details Left, Image Right) */}
+                {coreCategories[3] && (
+                  <Link
+                    href={`/products/${coreCategories[3].slug || "suncare-moisturizers"}`}
+                    className="group relative bg-[#fbf9f6] rounded-xl sm:rounded-2xl border border-slate-200/90 hover:border-[#164666] shadow-xs hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col sm:flex-row flex-1"
+                  >
+                    <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 order-2 sm:order-1">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1.5">
+                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] whitespace-nowrap">
+                            {coreCategories[3].tagline}
+                          </span>
+                          <span className="h-[1px] flex-1 bg-slate-300/80" />
+                        </div>
+
+                        <h3 className="text-xl sm:text-[1.45rem] font-cormorant font-semibold text-[#091e2f] group-hover:text-[#164666] transition-colors leading-tight mb-1.5">
+                          {coreCategories[3].name}
+                        </h3>
+
+                        <p className="text-xs sm:text-[12.5px] text-slate-600 leading-relaxed font-normal mb-3 line-clamp-2 sm:line-clamp-3">
+                          {coreCategories[3].description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-1 mb-3">
+                          {coreCategories[3].tags?.map((tag: string) => (
+                            <span
+                              key={tag}
+                              className="text-[10px] sm:text-[10.5px] font-medium px-2 py-0.5 rounded-full bg-white text-[#164666] border border-slate-200/90 shadow-2xs group-hover:border-[#164666]/30 transition-colors"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="pt-2 border-t border-slate-200/80 flex items-center justify-between text-slate-700 group-hover:text-[#164666] transition-colors mt-auto">
+                        <span className="font-cormorant italic text-xs sm:text-sm font-medium tracking-wide">
+                          Inspect Formulations
+                        </span>
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-6 sm:w-10 h-[1px] bg-slate-300 group-hover:bg-[#164666] transition-colors" />
+                          <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1.5" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="relative w-full sm:w-[42%] h-[180px] sm:h-auto min-h-[180px] overflow-hidden bg-slate-100 shrink-0 order-1 sm:order-2">
+                      <Image
+                        src={coreCategories[3].image || "/images/categories/cat-skin-cream.jpg"}
+                        alt={coreCategories[3].name}
+                        fill
+                        className="object-cover object-center group-hover:scale-104 transition-transform duration-700 ease-out"
+                        sizes="(max-width: 640px) 100vw, 25vw"
+                      />
+                    </div>
+                  </Link>
+                )}
+
+                {/* Category 05: Essential Oil (Image Left, Details Right) */}
+                {coreCategories[4] && (
+                  <Link
+                    href={`/products/${coreCategories[4].slug || "body-bath-wellness"}`}
+                    className="group relative bg-[#f4f7f4] rounded-xl sm:rounded-2xl border border-slate-200/90 hover:border-[#164666] shadow-xs hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col sm:flex-row flex-1"
+                  >
+                    <div className="relative w-full sm:w-[42%] h-[180px] sm:h-auto min-h-[180px] overflow-hidden bg-slate-100 shrink-0">
+                      <Image
+                        src={coreCategories[4].image || "/images/categories/cat-essential-oil.jpg"}
+                        alt={coreCategories[4].name}
+                        fill
+                        className="object-cover object-center group-hover:scale-104 transition-transform duration-700 ease-out"
+                        sizes="(max-width: 640px) 100vw, 25vw"
+                      />
+                    </div>
+
+                    <div className="p-4 sm:p-5 flex flex-col justify-between flex-1">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1.5">
+                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] whitespace-nowrap">
+                            {coreCategories[4].tagline}
+                          </span>
+                          <span className="h-[1px] flex-1 bg-slate-300/80" />
+                        </div>
+
+                        <h3 className="text-xl sm:text-[1.45rem] font-cormorant font-semibold text-[#091e2f] group-hover:text-[#164666] transition-colors leading-tight mb-1.5">
+                          {coreCategories[4].name}
+                        </h3>
+
+                        <p className="text-xs sm:text-[12.5px] text-slate-600 leading-relaxed font-normal mb-3 line-clamp-2 sm:line-clamp-3">
+                          {coreCategories[4].description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-1 mb-3">
+                          {coreCategories[4].tags?.map((tag: string) => (
+                            <span
+                              key={tag}
+                              className="text-[10px] sm:text-[10.5px] font-medium px-2 py-0.5 rounded-full bg-white text-[#164666] border border-slate-200/90 shadow-2xs group-hover:border-[#164666]/30 transition-colors"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="pt-2 border-t border-slate-200/80 flex items-center justify-between text-slate-700 group-hover:text-[#164666] transition-colors mt-auto">
+                        <span className="font-cormorant italic text-xs sm:text-sm font-medium tracking-wide">
+                          Inspect Formulations
+                        </span>
+                        <div className="flex items-center gap-1.5">
+                          <span className="w-6 sm:w-10 h-[1px] bg-slate-300 group-hover:bg-[#164666] transition-colors" />
+                          <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1.5" />
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                )}
+              </div>
+
+              {/* Category 06: Featured Tall Card (Right) */}
+              {coreCategories[5] && (
+                <div className="lg:col-span-6 flex flex-col order-1 lg:order-2">
+                  <Link
+                    href={`/products/${coreCategories[5].slug || "masks-lip-eye"}`}
+                    className="group relative bg-[#f8f9fb] rounded-xl sm:rounded-2xl border border-slate-200/90 hover:border-[#164666] shadow-xs hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col justify-between h-full"
+                  >
+                    <div className="relative w-full h-[260px] sm:h-[300px] lg:h-[320px] xl:h-[340px] overflow-hidden bg-slate-100">
+                      <Image
+                        src={coreCategories[5].image || "/images/categories/cat-sheet-mask.jpg"}
+                        alt={coreCategories[5].name}
+                        fill
+                        className="object-cover object-center group-hover:scale-104 transition-transform duration-700 ease-out"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                      />
+                    </div>
+
+                    <div className="p-5 sm:p-6 flex flex-col justify-between flex-1">
+                      <div>
+                        <div className="flex items-center gap-2.5 mb-1.5">
+                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] whitespace-nowrap">
+                            {coreCategories[5].tagline}
+                          </span>
+                          <span className="h-[1px] flex-1 bg-slate-300/80" />
+                        </div>
+
+                        <h3 className="text-2xl sm:text-[1.75rem] lg:text-[2rem] font-cormorant font-semibold text-[#091e2f] group-hover:text-[#164666] transition-colors leading-tight mb-2">
+                          {coreCategories[5].name}
+                        </h3>
+
+                        <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal mb-3.5">
+                          {coreCategories[5].description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-1.5 mb-4">
+                          {coreCategories[5].tags?.map((tag: string) => (
+                            <span
+                              key={tag}
+                              className="text-[10px] sm:text-[10.5px] font-medium px-2.5 py-0.5 rounded-full bg-white text-[#164666] border border-slate-200/90 shadow-2xs group-hover:border-[#164666]/30 transition-colors"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="pt-3 border-t border-slate-200/80 flex items-center justify-between text-slate-700 group-hover:text-[#164666] transition-colors">
+                        <span className="font-cormorant italic text-sm sm:text-base font-medium tracking-wide">
+                          Inspect Formulations
+                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className="w-8 sm:w-12 h-[1px] bg-slate-300 group-hover:bg-[#164666] transition-colors" />
+                          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1.5" />
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>

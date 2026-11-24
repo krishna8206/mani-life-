@@ -744,7 +744,7 @@ export default function HomePage() {
       </section>
 
       {/* 3. PRODUCT CATEGORIES IN YOUR BRAND */}
-      <section id="categories" className="relative pt-6 sm:pt-8 lg:pt-10 pb-12 sm:py-16 lg:py-20 bg-[#f8fafc] border-b border-slate-200/80 overflow-hidden">
+      <section id="categories" className="relative pt-6 sm:pt-8 lg:pt-10 pb-6 sm:pb-8 lg:pb-10 bg-[#f8fafc] border-b border-slate-200/80 overflow-hidden">
         <div className="absolute top-10 right-0 w-96 h-96 bg-[#164666]/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-10 left-0 w-96 h-96 bg-sky-200/20 rounded-full blur-3xl pointer-events-none" />
 
@@ -1140,11 +1140,11 @@ export default function HomePage() {
       </section>
 
       {/* 7. FREQUENTLY ASKED QUESTIONS */}
-      <section id="faqs" className="relative py-16 sm:py-20 lg:py-24 bg-[#f8fafc] border-b border-slate-200/80 overflow-hidden">
+      <section id="faqs" className="relative pt-6 sm:pt-8 lg:pt-10 pb-14 sm:pb-16 lg:pb-20 bg-[#f8fafc] border-b border-slate-200/80 overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-sky-100/30 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+          <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
             <div className="flex items-center justify-center gap-2.5 mb-2.5">
               <span className="w-8 h-[1.5px] bg-[#4a728e]" />
               <span className="text-[11px] sm:text-xs uppercase tracking-[0.22em] font-semibold text-[#4a728e]">

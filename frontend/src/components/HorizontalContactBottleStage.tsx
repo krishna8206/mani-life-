@@ -97,7 +97,7 @@ export default function HorizontalContactBottleStage({
     "Hello ManiLife, I am interested in custom cosmetic formulation and manufacturing.";
 
   return (
-    <section className="relative w-full py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-[#f8fafc] via-[#fbfaf8] to-[#f4f2ee] border-b border-slate-200/80 overflow-hidden select-none">
+    <section className="relative w-full py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-[#f8fafc] via-[#fbfaf8] to-[#f4f2ee] border-b border-slate-200/80 overflow-hidden select-none">
       {/* ------------------------------------------------------------- */}
       {/* Ambient Cosmetic Studio Backdrop Lighting (Soft Pastel Blurs)  */}
       {/* ------------------------------------------------------------- */}
@@ -687,7 +687,7 @@ export default function HorizontalContactBottleStage({
         {/* ------------------------------------------------------------- */}
         {/* ACTION BUTTONS & TELEPHONE CONNECTORS                         */}
         {/* ------------------------------------------------------------- */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 pt-10 sm:pt-14">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 pt-6 sm:pt-8">
           {onOpenQuote && (
             <button
               onClick={() => onOpenQuote()}

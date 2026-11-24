@@ -67,25 +67,26 @@ export default function HorizontalContactBottleStage({
   // Tactile Click Animation Handler
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      const clickX = ((e.clientX - rect.left) / rect.width) * 1260;
-      const clickY = ((e.clientY - rect.top) / rect.height) * 560;
+      // 1. Open quote/contact modal immediately!
+      onOpenQuote?.();
 
-      // 1. Trigger 3D press compression + ripple wave
-      setIsClicked(true);
-      setRipple({ x: clickX, y: clickY, active: true });
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const clickX = ((e.clientX - rect.left) / rect.width) * 1260;
+        const clickY = ((e.clientY - rect.top) / rect.height) * 560;
 
-      // 2. Smooth spring back
-      setTimeout(() => {
-        setIsClicked(false);
-      }, 240);
+        // 2. Trigger 3D press compression + ripple wave
+        setIsClicked(true);
+        setRipple({ x: clickX, y: clickY, active: true });
 
-      // 3. Open quote / contact modal after tactile feedback
-      setTimeout(() => {
-        setRipple((prev) => ({ ...prev, active: false }));
-        onOpenQuote?.();
-      }, 260);
+        setTimeout(() => {
+          setIsClicked(false);
+        }, 220);
+
+        setTimeout(() => {
+          setRipple((prev) => ({ ...prev, active: false }));
+        }, 500);
+      }
     },
     [onOpenQuote]
   );
@@ -689,7 +690,7 @@ export default function HorizontalContactBottleStage({
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 pt-10 sm:pt-14">
           {onOpenQuote && (
             <button
-              onClick={onOpenQuote}
+              onClick={() => onOpenQuote()}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 bg-gradient-to-r from-[#164666] to-[#0f344d] hover:from-[#113853] hover:to-[#0a2639] text-white text-xs sm:text-sm font-semibold rounded-xl shadow-lg shadow-[#164666]/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
               <Send className="w-4 h-4 text-emerald-400" />

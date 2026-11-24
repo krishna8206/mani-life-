@@ -287,9 +287,11 @@ export default function HomePage() {
       fetchHomeCMS();
     }, []);
 
-  const handleOpenQuote = (categoryOrProduct?: string) => {
-    if (categoryOrProduct) {
+  const handleOpenQuote = (categoryOrProduct?: any) => {
+    if (typeof categoryOrProduct === "string" && categoryOrProduct.trim() !== "") {
       setQuotePreselectedCategory(categoryOrProduct);
+    } else {
+      setQuotePreselectedCategory("Clinical Face Serums");
     }
     setIsQuoteModalOpen(true);
   };

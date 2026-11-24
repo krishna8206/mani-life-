@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useCallback, useEffect } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import {
   Send,
@@ -12,6 +12,7 @@ import {
   ArrowRight,
   ShieldCheck,
   FlaskConical,
+  MousePointerClick,
 } from "lucide-react";
 
 interface HorizontalContactBottleStageProps {
@@ -36,8 +37,8 @@ export default function HorizontalContactBottleStage({
   const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 50, y: 50 });
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [ripple, setRipple] = useState<{ x: number; y: number; active: boolean }>({
-    x: 730,
-    y: 250,
+    x: 765,
+    y: 270,
     active: false,
   });
 
@@ -69,8 +70,8 @@ export default function HorizontalContactBottleStage({
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
-      const clickX = ((e.clientX - rect.left) / rect.width) * 1200;
-      const clickY = ((e.clientY - rect.top) / rect.height) * 520;
+      const clickX = ((e.clientX - rect.left) / rect.width) * 1260;
+      const clickY = ((e.clientY - rect.top) / rect.height) * 560;
 
       // 1. Trigger 3D press compression + ripple wave
       setIsClicked(true);
@@ -81,7 +82,7 @@ export default function HorizontalContactBottleStage({
         setIsClicked(false);
       }, 240);
 
-      // 3. Open quote modal after the tactile animation completes
+      // 3. Open quote / contact modal after tactile feedback
       setTimeout(() => {
         setRipple((prev) => ({ ...prev, active: false }));
         onOpenQuote?.();
@@ -102,18 +103,18 @@ export default function HorizontalContactBottleStage({
       {/* ------------------------------------------------------------- */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Soft daylight sky fill */}
-        <div className="absolute top-1/4 -left-20 w-[650px] h-[520px] bg-sky-100/40 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute top-1/4 -left-20 w-[700px] h-[550px] bg-sky-100/40 rounded-full blur-[140px] pointer-events-none" />
         {/* Warm luxury champagne / rose glow */}
-        <div className="absolute top-1/3 right-0 w-[700px] h-[580px] bg-rose-100/35 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/3 right-0 w-[750px] h-[600px] bg-rose-100/35 rounded-full blur-[150px] pointer-events-none" />
         {/* Center studio softbox highlight */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[480px] bg-gradient-to-r from-amber-50/50 via-white/80 to-rose-50/40 rounded-full blur-3xl opacity-85" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[500px] bg-gradient-to-r from-amber-50/50 via-white/80 to-rose-50/40 rounded-full blur-3xl opacity-85" />
       </div>
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* ------------------------------------------------------------- */}
         {/* SECTION HEADER                                                */}
         {/* ------------------------------------------------------------- */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <div className="inline-flex items-center justify-center gap-2.5 mb-3 px-3.5 py-1 rounded-full bg-white/85 border border-slate-200/80 shadow-2xs backdrop-blur-sm">
             <span className="w-2 h-2 rounded-full bg-[#164666] animate-pulse" />
             <span className="text-[11px] uppercase tracking-[0.22em] font-semibold text-[#164666]">
@@ -134,8 +135,18 @@ export default function HorizontalContactBottleStage({
         </div>
 
         {/* ------------------------------------------------------------- */}
-        {/* 100% PROCEDURAL PHOTOREALISTIC HORIZONTAL BOTTLE (NO IMAGES)  */}
-        {/* True Physical Bottle Anatomy + Foil-Textured Shimmer Animation */}
+        {/* PROMINENT CLICK-ME CUE ABOVE BOTTLE                           */}
+        {/* ------------------------------------------------------------- */}
+        <div className="flex items-center justify-center mb-3">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 border border-[#164666]/30 shadow-sm text-xs font-semibold text-[#164666] transition-transform hover:scale-105">
+            <MousePointerClick className="w-4 h-4 text-[#b85872] animate-bounce" />
+            <span>Click anywhere on the bottle below to open Contact Us</span>
+          </div>
+        </div>
+
+        {/* ------------------------------------------------------------- */}
+        {/* ENLARGED PROCEDURAL HORIZONTAL BOTTLE (260px DIAMETER)        */}
+        {/* True Physical Bottle Anatomy + Unmistakable Click Affordance */}
         {/* ------------------------------------------------------------- */}
         <div
           ref={containerRef}
@@ -146,17 +157,17 @@ export default function HorizontalContactBottleStage({
           role="button"
           tabIndex={0}
           aria-label="Contact Us Bottle - Click to open quotation and inquiry modal"
-          className="relative max-w-[1260px] mx-auto cursor-pointer group outline-none"
-          style={{ perspective: "1500px" }}
+          className="relative max-w-[1360px] mx-auto cursor-pointer group outline-none"
+          style={{ perspective: "1600px" }}
         >
           {/* 3D Perspective Tilting & Tactile Click Stage */}
           <div
             className="relative w-full will-change-transform"
             style={{
               transform: isClicked
-                ? `scale(0.975) translateY(5px) rotateX(${tilt.x * 0.7}deg) rotateY(${tilt.y * 0.7}deg)`
+                ? `scale(0.972) translateY(6px) rotateX(${tilt.x * 0.7}deg) rotateY(${tilt.y * 0.7}deg)`
                 : isHovered
-                ? `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.018)`
+                ? `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.02)`
                 : "rotateX(0deg) rotateY(0deg) scale(1)",
               transition: isClicked
                 ? "transform 0.12s cubic-bezier(0.2, 0, 0, 1)"
@@ -166,7 +177,7 @@ export default function HorizontalContactBottleStage({
           >
             {/* Master Photorealistic Procedural Bottle Vector Canvas */}
             <svg
-              viewBox="0 0 1200 520"
+              viewBox="0 0 1260 560"
               className="w-full h-auto drop-shadow-2xl select-none"
               style={{ overflow: "visible" }}
             >
@@ -175,17 +186,17 @@ export default function HorizontalContactBottleStage({
                 {/* 1. STUDIO GROUND SHADOWS & CONTACT OCCLUSION              */}
                 {/* --------------------------------------------------------- */}
                 <radialGradient id="studioGroundShadowWide" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#181310" stopOpacity="0.34" />
-                  <stop offset="48%" stopColor="#2a1d17" stopOpacity="0.16" />
-                  <stop offset="78%" stopColor="#3d2a22" stopOpacity="0.04" />
+                  <stop offset="0%" stopColor="#181310" stopOpacity="0.36" />
+                  <stop offset="48%" stopColor="#2a1d17" stopOpacity="0.18" />
+                  <stop offset="78%" stopColor="#3d2a22" stopOpacity="0.05" />
                   <stop offset="100%" stopColor="#3d2a22" stopOpacity="0" />
                 </radialGradient>
 
                 <linearGradient id="contactOcclusionLine" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#1a1412" stopOpacity="0" />
                   <stop offset="5%" stopColor="#1a1412" stopOpacity="0.45" />
-                  <stop offset="18%" stopColor="#0c0705" stopOpacity="0.85" />
-                  <stop offset="85%" stopColor="#0c0705" stopOpacity="0.80" />
+                  <stop offset="18%" stopColor="#0c0705" stopOpacity="0.88" />
+                  <stop offset="85%" stopColor="#0c0705" stopOpacity="0.82" />
                   <stop offset="98%" stopColor="#1a1412" stopOpacity="0.25" />
                   <stop offset="100%" stopColor="#1a1412" stopOpacity="0" />
                 </linearGradient>
@@ -288,8 +299,7 @@ export default function HorizontalContactBottleStage({
                 </linearGradient>
 
                 {/* --------------------------------------------------------- */}
-                {/* 5. DYNAMIC FOIL SHIMMER & TEXTURE FOR "Contact Us"       */}
-                {/* Animated light sweep continuously gliding across text     */}
+                {/* 5. DYNAMIC FOIL SHIMMER FOR "Contact Us"                  */}
                 {/* --------------------------------------------------------- */}
                 <linearGradient id="animatedFoilShimmer" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#0f2f47" />
@@ -301,7 +311,6 @@ export default function HorizontalContactBottleStage({
                   <stop offset="62%" stopColor="#1a5278" />
                   <stop offset="80%" stopColor="#164666" />
                   <stop offset="100%" stopColor="#0f2f47" />
-                  {/* Continuous Smooth Metallic Shimmer Sweep */}
                   <animate
                     attributeName="x1"
                     values="-100%; 200%"
@@ -316,12 +325,18 @@ export default function HorizontalContactBottleStage({
                   />
                 </linearGradient>
 
-                {/* Foil Micro-Texture Pattern for embossed physical tactile feel */}
+                {/* Foil Micro-Texture Pattern */}
                 <pattern id="foilMicroStipple" width="4" height="4" patternUnits="userSpaceOnUse">
                   <rect width="4" height="4" fill="#164666" />
                   <circle cx="1" cy="1" r="0.5" fill="#2d6487" opacity="0.4" />
                   <circle cx="3" cy="3" r="0.5" fill="#0d283c" opacity="0.6" />
                 </pattern>
+
+                {/* CTA Button Gradient */}
+                <linearGradient id="ctaButtonGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#164666" />
+                  <stop offset="100%" stopColor="#0a2436" />
+                </linearGradient>
 
                 {/* Filters */}
                 <filter id="softPBRGlow" x="-20%" y="-20%" width="140%" height="140%">
@@ -337,94 +352,91 @@ export default function HorizontalContactBottleStage({
               {/* STAGE FLOOR CONTACT SHADOWS & STUDIO REFLECTION           */}
               {/* ========================================================= */}
               {/* Wide diffuse ambient floor shadow */}
-              <ellipse cx="640" cy="384" rx="550" ry="36" fill="url(#studioGroundShadowWide)" />
+              <ellipse cx="680" cy="420" rx="600" ry="40" fill="url(#studioGroundShadowWide)" />
               {/* Secondary softer shadow extending downward */}
-              <ellipse cx="620" cy="392" rx="460" ry="22" fill="url(#studioGroundShadowWide)" opacity="0.65" />
+              <ellipse cx="660" cy="428" rx="510" ry="24" fill="url(#studioGroundShadowWide)" opacity="0.65" />
               {/* Cap ground shadow on table */}
-              <ellipse cx="230" cy="374" rx="100" ry="20" fill="url(#studioGroundShadowWide)" opacity="0.6" />
+              <ellipse cx="210" cy="410" rx="110" ry="22" fill="url(#studioGroundShadowWide)" opacity="0.6" />
 
               {/* Razor-sharp occlusion line directly where the horizontal cylinder touches the floor */}
               <rect
-                x="170"
-                y="361"
-                width="900"
-                height="12"
-                rx="6"
+                x="150"
+                y="396"
+                width="980"
+                height="14"
+                rx="7"
                 fill="url(#contactOcclusionLine)"
                 filter="url(#contactShadowBlur)"
               />
 
               {/* ========================================================= */}
               {/* MIRROR STUDIO REFLECTION ON TABLE SURFACE (INVERTED)       */}
-              {/* Inverted around contact line Y = 365: (730 - Y)           */}
+              {/* Inverted around contact line Y = 400: (800 - Y)           */}
               {/* ========================================================= */}
               <g
-                transform="translate(0, 730) scale(1, -1)"
+                transform="translate(0, 800) scale(1, -1)"
                 opacity="0.18"
                 style={{ mixBlendMode: "multiply", filter: "blur(3.5px)" }}
               >
                 {/* Reflected Bottle Body */}
                 <path
-                  d="M 1040 135 L 420 135 C 370 135, 335 186, 320 190 L 320 310 C 335 314, 370 365, 420 365 L 1040 365 Q 1065 365 1065 340 L 1065 160 Q 1065 135 1040 135 Z"
+                  d="M 1100 140 L 430 140 C 375 140, 335 198, 320 202 L 320 338 C 335 342, 375 400, 430 400 L 1100 400 Q 1135 400 1135 365 L 1135 175 Q 1135 140 1100 140 Z"
                   fill="url(#pearlBodyMaster)"
                 />
                 {/* Reflected Metallic Collar */}
-                <rect x="270" y="190" width="50" height="120" rx="4" fill="url(#roseGoldCollarPBR)" />
+                <rect x="260" y="202" width="60" height="136" rx="4" fill="url(#roseGoldCollarPBR)" />
                 {/* Reflected Normal Cap */}
-                <rect x="160" y="190" width="110" height="120" rx="8" fill="url(#normalCapPearlGrad)" />
+                <rect x="140" y="202" width="120" height="136" rx="8" fill="url(#normalCapPearlGrad)" />
               </g>
 
               {/* ========================================================= */}
               {/* COMPONENT 1: NORMAL LUXURY COSMETIC CAP (LEFT END)        */}
-              {/* Clean, sleek cylindrical cap with rose-gold metallic ring */}
               {/* ========================================================= */}
 
               {/* 1.1 Rose-Gold Metallic Base Band / Collar Ring */}
               <rect
-                x="270"
-                y="190"
-                width="50"
-                height="120"
-                rx="5"
+                x="260"
+                y="202"
+                width="60"
+                height="136"
+                rx="6"
                 fill="url(#roseGoldCollarPBR)"
                 stroke="#682916"
                 strokeWidth="1.2"
               />
-              {/* Metallic Band Specular Softbox Overlay */}
               <rect
-                x="270"
-                y="190"
-                width="50"
-                height="120"
-                rx="5"
+                x="260"
+                y="202"
+                width="60"
+                height="136"
+                rx="6"
                 fill="url(#collarHorizontalReflection)"
                 opacity="0.45"
                 style={{ mixBlendMode: "overlay" }}
               />
-              {/* Metallic Band Precision Chamfer Edges */}
-              <rect x="270" y="190" width="3.5" height="120" fill="#ffffff" opacity="0.8" />
-              <rect x="316" y="190" width="3.5" height="120" fill="#ffffff" opacity="0.8" />
+              <rect x="260" y="202" width="4" height="136" fill="#ffffff" opacity="0.8" />
+              <rect x="315" y="202" width="4" height="136" fill="#ffffff" opacity="0.8" />
 
-              {/* 1.2 Main Normal Luxury Cylindrical Cap Body (Cream Pearl) */}
+              {/* 1.2 Main Normal Luxury Cylindrical Cap Body */}
               <path
-                d="M 270 190 L 170 190 Q 160 190, 160 200 L 160 300 Q 160 310, 170 310 L 270 310 Z"
+                d="M 260 202 L 150 202 Q 140 202, 140 212 L 140 328 Q 140 338, 150 338 L 260 338 Z"
                 fill="url(#normalCapPearlGrad)"
                 stroke="#cfbeab"
                 strokeWidth="1.2"
               />
 
-              {/* Cap End Face (Left flat face in 3D perspective) */}
+              {/* Cap End Face (Left flat face) */}
               <path
-                d="M 160 200 Q 160 190, 170 190 L 170 310 Q 160 310, 160 300 Z"
+                d="M 140 212 Q 140 202, 150 202 L 150 338 Q 140 338, 140 328 Z"
                 fill="url(#capFaceLighting)"
               />
 
               {/* Cap Top Rim Specular Glint */}
               <line
-                x1="170"
-                y1="191"
-                x2="270"
-                y2="191"
+                x1="150"
+                y1="203"
+                x2="260"
+                y2="203"
                 stroke="#ffffff"
                 strokeWidth="1.8"
                 strokeLinecap="round"
@@ -433,10 +445,10 @@ export default function HorizontalContactBottleStage({
 
               {/* Cap Primary Pearlescent Specular Sheen Stripe */}
               <rect
-                x="168"
-                y="202"
-                width="102"
-                height="16"
+                x="148"
+                y="216"
+                width="112"
+                height="18"
                 rx="4"
                 fill="#ffffff"
                 opacity="0.75"
@@ -445,26 +457,26 @@ export default function HorizontalContactBottleStage({
 
               {/* Inlaid Rose-Gold Luxury Pinstripe Ring on Cap */}
               <rect
-                x="180"
-                y="190"
-                width="4"
-                height="120"
+                x="162"
+                y="202"
+                width="4.5"
+                height="136"
                 rx="1"
                 fill="url(#roseGoldCollarPBR)"
                 opacity="0.9"
               />
-              <line x1="181" y1="191" x2="181" y2="309" stroke="#ffffff" strokeWidth="0.8" opacity="0.9" />
+              <line x1="163" y1="203" x2="163" y2="337" stroke="#ffffff" strokeWidth="0.8" opacity="0.9" />
 
               {/* Crisp Parting Seam Between Cap and Rose-Gold Collar */}
-              <line x1="270" y1="190" x2="270" y2="310" stroke="#482518" strokeWidth="1.2" opacity="0.75" />
-              <line x1="271" y1="190" x2="271" y2="310" stroke="#ffffff" strokeWidth="0.8" opacity="0.85" />
+              <line x1="260" y1="202" x2="260" y2="338" stroke="#482518" strokeWidth="1.2" opacity="0.75" />
+              <line x1="261" y1="202" x2="261" y2="338" stroke="#ffffff" strokeWidth="0.8" opacity="0.85" />
 
               {/* Cap Lower Rim Table Bounce Light */}
               <line
-                x1="170"
-                y1="309"
-                x2="270"
-                y2="309"
+                x1="150"
+                y1="337"
+                x2="260"
+                y2="337"
                 stroke="#fcf9f5"
                 strokeWidth="1.2"
                 strokeLinecap="round"
@@ -472,43 +484,40 @@ export default function HorizontalContactBottleStage({
               />
 
               {/* ========================================================= */}
-              {/* COMPONENT 2: PHYSICAL BOTTLE ANATOMY (230PX DIAMETER)     */}
-              {/* Double-wall thick glass base + sculpted cosmetic shoulder */}
+              {/* COMPONENT 2: ENLARGED PHYSICAL BOTTLE BODY (260PX DIAMETER)*/}
               {/* ========================================================= */}
 
               {/* 2.1 Master Pearl Body Geometry */}
               <path
-                d="M 1040 135 L 420 135 C 370 135, 335 186, 320 190 L 320 310 C 335 314, 370 365, 420 365 L 1040 365 Q 1065 365 1065 340 L 1065 160 Q 1065 135 1040 135 Z"
+                d="M 1100 140 L 430 140 C 375 140, 335 198, 320 202 L 320 338 C 335 342, 375 400, 430 400 L 1100 400 Q 1135 400 1135 365 L 1135 175 Q 1135 140 1100 140 Z"
                 fill="url(#pearlBodyMaster)"
                 stroke="#cbb9a7"
-                strokeWidth="1.4"
+                strokeWidth="1.5"
               />
 
               {/* 2.2 Thick Solid Glass Base (Luxury Cosmetic Punt Anatomy) */}
-              {/* Real cosmetic bottles have a 35px-45px solid glass bottom */}
               <path
-                d="M 1025 137 Q 1062 137 1062 162 L 1062 338 Q 1062 363 1025 363 Q 1042 340 1042 250 Q 1042 160 1025 137 Z"
+                d="M 1085 142 Q 1132 142 1132 175 L 1132 365 Q 1132 398 1085 398 Q 1105 370 1105 270 Q 1105 170 1085 142 Z"
                 fill="url(#thickGlassPuntShader)"
                 opacity="0.8"
               />
-              {/* Base Inner Chamber Refraction Lip */}
               <path
-                d="M 1022 142 Q 1038 180 1038 250 Q 1038 320 1022 358"
+                d="M 1082 148 Q 1100 190 1100 270 Q 1100 350 1082 392"
                 fill="none"
                 stroke="#ffffff"
-                strokeWidth="1.5"
+                strokeWidth="1.6"
                 opacity="0.75"
               />
 
               {/* 2.3 Shoulder Curvature 3D Highlight Dome */}
               <path
-                d="M 420 135 C 370 135, 335 186, 320 190 L 320 250 C 342 226, 375 180, 420 170 Z"
+                d="M 430 140 C 375 140, 335 198, 320 202 L 320 270 C 345 240, 380 185, 430 175 Z"
                 fill="url(#shoulderDomeGleam)"
               />
 
-              {/* 2.4 Primary Horizontal Specular Light Stripe (Softbox beam) */}
+              {/* 2.4 Primary Horizontal Specular Light Stripe */}
               <path
-                d="M 410 155 L 1030 155 Q 1048 155 1048 165 Q 1048 175 1030 175 L 410 175 C 370 175, 342 186, 328 195 L 324 188 C 340 176, 370 155, 410 155 Z"
+                d="M 420 162 L 1090 162 Q 1110 162 1110 172 Q 1110 182 1090 182 L 420 182 C 375 182, 345 196, 328 206 L 324 198 C 342 185, 375 162, 420 162 Z"
                 fill="url(#pearlSheenBeamWide)"
                 opacity="0.9"
                 filter="url(#softPBRGlow)"
@@ -516,46 +525,44 @@ export default function HorizontalContactBottleStage({
 
               {/* 2.5 Thin Razor Specular Glint Along Top Rim */}
               <path
-                d="M 420 137 L 1035 137"
+                d="M 430 142 L 1095 142"
                 stroke="#ffffff"
-                strokeWidth="2"
+                strokeWidth="2.2"
                 strokeLinecap="round"
                 opacity="0.95"
               />
 
-              {/* 2.6 Rounded Base Heel Specular Highlight (Right End) */}
+              {/* 2.6 Rounded Base Heel Specular Highlight */}
               <path
-                d="M 1040 137 Q 1063 137 1063 160 L 1063 340 Q 1063 363 1040 363"
+                d="M 1100 142 Q 1133 142 1133 175 L 1133 365 Q 1133 398 1100 398"
                 fill="none"
                 stroke="#ffffff"
-                strokeWidth="1.8"
+                strokeWidth="2"
                 opacity="0.85"
               />
+              <ellipse cx="1125" cy="270" rx="8" ry="85" fill="url(#baseHeelGleam)" opacity="0.65" />
 
-              {/* Base Dome Accent Light */}
-              <ellipse cx="1057" cy="250" rx="7" ry="75" fill="url(#baseHeelGleam)" opacity="0.65" />
-
-              {/* 2.7 Bottom Rim Bounce Light (Reflecting Studio Table) */}
+              {/* 2.7 Bottom Rim Bounce Light */}
               <path
-                d="M 420 363 L 1038 363"
+                d="M 430 398 L 1098 398"
                 stroke="#fcf9f5"
-                strokeWidth="1.6"
+                strokeWidth="1.8"
                 strokeLinecap="round"
                 opacity="0.8"
               />
 
               {/* ========================================================= */}
-              {/* COMPONENT 3: DIRECT SILK-SCREEN PRINTING WITH FOIL SHIMMER */}
-              {/* Tactile Textured "Contact Us" with Continuous Metallic Glow */}
+              {/* COMPONENT 3: DIRECT SILK-SCREEN PRINTING & CLICK CTA      */}
+              {/* Unmistakable Affordance to "Contact Us"                    */}
               {/* ========================================================= */}
 
               {/* 3.1 Brand Eyebrow - Luxury Rose-Pink Tracked Lettering */}
               <text
-                x="730"
-                y="205"
+                x="765"
+                y="215"
                 textAnchor="middle"
                 fontFamily="system-ui, -apple-system, sans-serif"
-                fontSize="12"
+                fontSize="13"
                 fontWeight="700"
                 letterSpacing="4.5px"
                 fill="#b85872"
@@ -564,15 +571,14 @@ export default function HorizontalContactBottleStage({
               </text>
 
               {/* 3.2 MASTER HEADLINE: "Contact Us" WITH TEXTURE & SHIMMER */}
-              {/* Multi-layered physical embossing + animated metallic foil glow */}
               <g>
                 {/* Layer 1: Embossed lower-right tactile shadow/relief */}
                 <text
-                  x="731"
-                  y="260"
+                  x="766"
+                  y="270"
                   textAnchor="middle"
                   fontFamily="'Cormorant Garamond', Georgia, serif"
-                  fontSize="58"
+                  fontSize="64"
                   fontWeight="700"
                   letterSpacing="1.2px"
                   fill="#ffffff"
@@ -583,11 +589,11 @@ export default function HorizontalContactBottleStage({
 
                 {/* Layer 2: Deep micro-stipple foil texture base */}
                 <text
-                  x="730"
-                  y="258"
+                  x="765"
+                  y="268"
                   textAnchor="middle"
                   fontFamily="'Cormorant Garamond', Georgia, serif"
-                  fontSize="58"
+                  fontSize="64"
                   fontWeight="700"
                   letterSpacing="1.2px"
                   fill="url(#foilMicroStipple)"
@@ -595,36 +601,36 @@ export default function HorizontalContactBottleStage({
                   Contact Us
                 </text>
 
-                {/* Layer 3: Dynamic Animated Foil Shimmer Sweep (60fps) */}
+                {/* Layer 3: Dynamic Animated Foil Shimmer Sweep */}
                 <text
-                  x="730"
-                  y="258"
+                  x="765"
+                  y="268"
                   textAnchor="middle"
                   fontFamily="'Cormorant Garamond', Georgia, serif"
-                  fontSize="58"
+                  fontSize="64"
                   fontWeight="700"
                   letterSpacing="1.2px"
                   fill="url(#animatedFoilShimmer)"
-                  style={{ mixBlendMode: "screen", opacity: isHovered ? 0.95 : 0.85 }}
+                  style={{ mixBlendMode: "screen", opacity: isHovered ? 0.98 : 0.88 }}
                 >
                   Contact Us
                 </text>
               </g>
 
               {/* 3.3 Delicate Rose-Pink Hairline Divider with Center Star */}
-              <g transform="translate(605, 274)">
-                <line x1="0" y1="0" x2="110" y2="0" stroke="#c26d85" strokeWidth="1" opacity="0.65" />
-                <circle cx="125" cy="0" r="2.8" fill="#c26d85" />
-                <line x1="140" y1="0" x2="250" y2="0" stroke="#c26d85" strokeWidth="1" opacity="0.65" />
+              <g transform="translate(635, 285)">
+                <line x1="0" y1="0" x2="115" y2="0" stroke="#c26d85" strokeWidth="1" opacity="0.65" />
+                <circle cx="130" cy="0" r="3" fill="#c26d85" />
+                <line x1="145" y1="0" x2="260" y2="0" stroke="#c26d85" strokeWidth="1" opacity="0.65" />
               </g>
 
               {/* 3.4 Direct Plant & Cleanroom Telemetry (Slate Navy) */}
               <text
-                x="730"
-                y="296"
+                x="765"
+                y="308"
                 textAnchor="middle"
                 fontFamily="system-ui, -apple-system, sans-serif"
-                fontSize="12.5"
+                fontSize="13"
                 fontWeight="500"
                 letterSpacing="1.2px"
                 fill="#42647e"
@@ -634,11 +640,11 @@ export default function HorizontalContactBottleStage({
 
               {/* 3.5 Contact Details & ISO GMP Specifications */}
               <text
-                x="730"
-                y="318"
+                x="765"
+                y="328"
                 textAnchor="middle"
                 fontFamily="system-ui, -apple-system, sans-serif"
-                fontSize="11"
+                fontSize="11.5"
                 fontWeight="600"
                 letterSpacing="1.5px"
                 fill="#164666"
@@ -646,27 +652,72 @@ export default function HorizontalContactBottleStage({
                 Ahmedabad Cleanroom Campus  •  +91 97246 81096  •  ISO 22716 GMP
               </text>
 
+              {/* 3.6 PROMINENT CLICK-ME CTA BUTTON DIRECTLY ON THE BOTTLE */}
+              {/* Unmistakable visual affordance: "CLICK BOTTLE TO CONTACT US" */}
+              <g
+                transform="translate(585, 342)"
+                className="transition-transform duration-200 group-hover:scale-[1.02]"
+                style={{ transformOrigin: "180px 22px" }}
+              >
+                {/* Button Outer Halo / Drop Shadow */}
+                <rect
+                  x="0"
+                  y="0"
+                  width="360"
+                  height="44"
+                  rx="22"
+                  fill="url(#ctaButtonGradient)"
+                  stroke="#c58f7a"
+                  strokeWidth="1.5"
+                  className="shadow-lg"
+                />
+
+                {/* Live Pulsing Status Beacon */}
+                <circle cx="28" cy="22" r="5" fill="#10b981" />
+                <circle
+                  cx="28"
+                  cy="22"
+                  r="9"
+                  fill="none"
+                  stroke="#10b981"
+                  strokeWidth="1.5"
+                  className="animate-ping"
+                  style={{ animationDuration: "1.5s" }}
+                />
+
+                {/* Bold Click Callout Text */}
+                <text
+                  x="195"
+                  y="26.5"
+                  textAnchor="middle"
+                  fontFamily="system-ui, -apple-system, sans-serif"
+                  fontSize="11.5"
+                  fontWeight="700"
+                  letterSpacing="1px"
+                  fill="#ffffff"
+                >
+                  CLICK BOTTLE TO CONTACT US →
+                </text>
+              </g>
+
               {/* ========================================================= */}
               {/* COMPONENT 4: INTERACTIVE LUMINOUS CLICK RIPPLE WAVE       */}
-              {/* Subtle expanding luminous ring on bottle surface on click */}
               {/* ========================================================= */}
               {ripple.active && (
                 <g className="pointer-events-none">
-                  {/* Central bright pulse */}
                   <circle
                     cx={ripple.x}
                     cy={ripple.y}
-                    r="18"
+                    r="20"
                     fill="#ffffff"
                     opacity="0.85"
                     className="animate-ping"
                     style={{ animationDuration: "0.55s", animationIterationCount: 1 }}
                   />
-                  {/* Expanding luxury navy ripple */}
                   <circle
                     cx={ripple.x}
                     cy={ripple.y}
-                    r="55"
+                    r="60"
                     fill="none"
                     stroke="#164666"
                     strokeWidth="2.5"
@@ -674,11 +725,10 @@ export default function HorizontalContactBottleStage({
                     className="animate-ping"
                     style={{ animationDuration: "0.75s", animationIterationCount: 1 }}
                   />
-                  {/* Expanding soft rose-pink ambient ring */}
                   <circle
                     cx={ripple.x}
                     cy={ripple.y}
-                    r="95"
+                    r="105"
                     fill="none"
                     stroke="#b85872"
                     strokeWidth="1.8"

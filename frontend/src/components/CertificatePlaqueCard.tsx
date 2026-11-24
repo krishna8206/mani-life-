@@ -3,30 +3,37 @@
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import {
-  CheckCircle2,
   ShieldCheck,
-  Sparkles,
   X,
   FileCheck2,
   Building2,
-  Globe2,
-  Calendar,
+  CheckCircle2,
   ExternalLink,
 } from "lucide-react";
+import { certificationThemes, CertificationTheme } from "@/data/certifications";
 
 export interface CertificatePlaqueCardProps {
   id: string;
   name: string;
   authority?: string;
   scope?: string;
-  importance: string;
+  importance?: string;
   badgeCode: string;
   image: string;
   verified?: boolean;
+  themeKey?: "green" | "blue" | "orange" | "purple" | "cyan";
   index: number;
   priority?: boolean;
   onOpenDossier?: (certId: string) => void;
 }
+
+const defaultThemeKeys: ("green" | "blue" | "orange" | "purple" | "cyan")[] = [
+  "green",
+  "blue",
+  "orange",
+  "purple",
+  "cyan",
+];
 
 export function CertificatePlaqueCard({
   id,
@@ -36,6 +43,7 @@ export function CertificatePlaqueCard({
   importance,
   badgeCode,
   image,
+  themeKey,
   index = 0,
   priority = false,
 }: CertificatePlaqueCardProps) {
@@ -46,6 +54,11 @@ export function CertificatePlaqueCard({
   const [sheenActive, setSheenActive] = useState(false);
   const [isDossierOpen, setIsDossierOpen] = useState(false);
   const [imgError, setImgError] = useState(false);
+
+  const resolvedThemeKey =
+    themeKey || defaultThemeKeys[index % defaultThemeKeys.length];
+  const theme: CertificationTheme =
+    certificationThemes[resolvedThemeKey] || certificationThemes.green;
 
   useEffect(() => {
     const el = cardRef.current;
@@ -59,11 +72,10 @@ export function CertificatePlaqueCard({
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Trigger specular sheen sweep on viewport entrance
           setTimeout(() => {
             setSheenActive(true);
-            setTimeout(() => setSheenActive(false), 1400);
-          }, index * 120 + 300);
+            setTimeout(() => setSheenActive(false), 1200);
+          }, index * 100 + 200);
         }
       },
       { threshold: 0.05, rootMargin: "250px 0px 150px 0px" }
@@ -76,15 +88,15 @@ export function CertificatePlaqueCard({
     };
   }, [index, priority]);
 
-  // Subtle luxury 3D tilt tracking
+  // Luxury 3D tilt tracking
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
     setRotate({
-      x: -(y * 10),
-      y: x * 10,
+      x: -(y * 8),
+      y: x * 8,
     });
   }, []);
 
@@ -97,6 +109,15 @@ export function CertificatePlaqueCard({
     setRotate({ x: 0, y: 0 });
   }, []);
 
+  // Unique IDs for SVG gradient definitions
+  const gradSolidTL = `grad-solid-tl-${id || index}`;
+  const gradRibbonTL = `grad-ribbon-tl-${id || index}`;
+  const gradSoftTL = `grad-soft-tl-${id || index}`;
+
+  const gradSolidBR = `grad-solid-br-${id || index}`;
+  const gradRibbonBR = `grad-ribbon-br-${id || index}`;
+  const gradSoftBR = `grad-soft-br-${id || index}`;
+
   return (
     <>
       <div
@@ -104,27 +125,123 @@ export function CertificatePlaqueCard({
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className={`group relative rounded-2xl p-6 sm:p-7 border border-slate-200/90 hover:border-[#1b628b]/60 shadow-xs hover:shadow-2xl hover:shadow-sky-950/15 flex flex-col items-center text-center select-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        onClick={() => setIsDossierOpen(true)}
+        className={`group relative rounded-[30px] sm:rounded-[32px] flex flex-col items-center text-center select-none cursor-pointer overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           isVisible
             ? "opacity-100 translate-y-0 scale-100"
             : "opacity-0 translate-y-8 scale-[0.97]"
         }`}
         style={{
-          perspective: "1200px",
-          transformStyle: "preserve-3d",
-          isolation: "isolate",
-          transitionDelay: isVisible && !priority ? `${index * 80}ms` : "0ms",
+          border: `2px solid ${theme.cardBorder}`,
+          background: theme.cardBg,
+          boxShadow: isHovered
+            ? `0 24px 48px -10px ${theme.shadowColor}, 0 8px 18px rgba(0,0,0,0.05)`
+            : `0 14px 34px -8px ${theme.shadowColor}, 0 4px 12px rgba(0,0,0,0.03)`,
           transform: isHovered
-            ? `perspective(1200px) rotateX(${rotate.x.toFixed(2)}deg) rotateY(${rotate.y.toFixed(2)}deg) translateY(-8px)`
-            : "perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(0px)",
-          background: isHovered
-            ? "linear-gradient(180deg, #ffffff 0%, #f9fcff 60%, #edf6fc 100%)"
-            : "linear-gradient(180deg, #ffffff 0%, #fafcff 70%, #f4f9fd 100%)",
+            ? `perspective(1000px) rotateX(${rotate.x.toFixed(2)}deg) rotateY(${rotate.y.toFixed(2)}deg) translateY(-8px)`
+            : "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)",
+          transitionDelay: isVisible && !priority ? `${index * 70}ms` : "0ms",
         }}
       >
-        {/* Specular Diagonal Sheen Sweep Across Full Plaque */}
+        {/* ========================================================= */}
+        {/* TOP-LEFT MULTI-LAYERED CORNER WAVE RIBBONS (COMPACT & SUBTLE) */}
+        {/* ========================================================= */}
+        <div className="absolute top-0 left-0 w-20 h-20 sm:w-22 sm:h-22 pointer-events-none z-0">
+          <svg
+            className="w-full h-full"
+            viewBox="0 0 80 80"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id={gradSolidTL} x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor={theme.darkAccent} />
+                <stop offset="50%" stopColor={theme.primary} />
+                <stop offset="100%" stopColor={theme.lightAccent} />
+              </linearGradient>
+
+              <linearGradient id={gradRibbonTL} x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor={theme.primary} stopOpacity="0.45" />
+                <stop offset="100%" stopColor={theme.lightAccent} stopOpacity="0.20" />
+              </linearGradient>
+
+              <linearGradient id={gradSoftTL} x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor={theme.primary} stopOpacity="0.18" />
+                <stop offset="100%" stopColor={theme.lightAccent} stopOpacity="0.04" />
+              </linearGradient>
+            </defs>
+
+            {/* Layer 3: Soft ambient wave boundary */}
+            <path
+              d="M 0 0 L 76 0 C 64 22, 34 50, 0 68 Z"
+              fill={`url(#${gradSoftTL})`}
+            />
+
+            {/* Layer 2: Translucent middle ribbon band */}
+            <path
+              d="M 0 0 L 62 0 C 50 18, 26 40, 0 54 Z"
+              fill={`url(#${gradRibbonTL})`}
+            />
+
+            {/* Layer 1: Solid vibrant corner wave */}
+            <path
+              d="M 0 0 L 48 0 C 38 14, 20 30, 0 42 Z"
+              fill={`url(#${gradSolidTL})`}
+            />
+          </svg>
+        </div>
+
+        {/* ========================================================= */}
+        {/* BOTTOM-RIGHT MULTI-LAYERED CORNER WAVE SWOOSH (COMPACT)   */}
+        {/* ========================================================= */}
+        <div className="absolute bottom-0 right-0 w-20 h-20 sm:w-22 sm:h-22 pointer-events-none z-0">
+          <svg
+            className="w-full h-full"
+            viewBox="0 0 80 80"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id={gradSolidBR} x1="100%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stopColor={theme.darkAccent} />
+                <stop offset="50%" stopColor={theme.primary} />
+                <stop offset="100%" stopColor={theme.lightAccent} />
+              </linearGradient>
+
+              <linearGradient id={gradRibbonBR} x1="100%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stopColor={theme.primary} stopOpacity="0.45" />
+                <stop offset="100%" stopColor={theme.lightAccent} stopOpacity="0.20" />
+              </linearGradient>
+
+              <linearGradient id={gradSoftBR} x1="100%" y1="100%" x2="0%" y2="0%">
+                <stop offset="0%" stopColor={theme.primary} stopOpacity="0.18" />
+                <stop offset="100%" stopColor={theme.lightAccent} stopOpacity="0.04" />
+              </linearGradient>
+            </defs>
+
+            {/* Layer 3: Soft outer wave */}
+            <path
+              d="M 80 80 L 4 80 C 16 58, 46 28, 80 12 Z"
+              fill={`url(#${gradSoftBR})`}
+            />
+
+            {/* Layer 2: Translucent middle ribbon */}
+            <path
+              d="M 80 80 L 18 80 C 30 62, 54 40, 80 26 Z"
+              fill={`url(#${gradRibbonBR})`}
+            />
+
+            {/* Layer 1: Solid vibrant corner wave */}
+            <path
+              d="M 80 80 L 32 80 C 42 66, 60 50, 80 38 Z"
+              fill={`url(#${gradSolidBR})`}
+            />
+          </svg>
+        </div>
+
+        {/* Diagonal Specular Sheen Sweep Across Card on Hover */}
         <div
-          className={`absolute inset-0 rounded-2xl overflow-hidden pointer-events-none transition-opacity duration-500 ${
+          className={`absolute inset-0 pointer-events-none transition-opacity duration-500 z-30 ${
             isHovered || sheenActive ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -135,85 +252,122 @@ export function CertificatePlaqueCard({
           />
         </div>
 
-        {/* --- 1. ELEVATED 3D EMBLEM BADGE PEDESTAL --- */}
-        <div
-          className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl bg-white border border-slate-200/90 flex items-center justify-center p-3.5 mb-4 sm:mb-5 shadow-sm group-hover:shadow-md group-hover:border-[#1b628b]/40 transition-all duration-500 overflow-hidden shrink-0"
-          style={{
-            transform: "translateZ(32px)",
-            transformStyle: "preserve-3d",
-          }}
-        >
-          {/* Subtle Ambient Radial Backlight inside Logo Box */}
-          <div className="absolute inset-0 bg-radial from-sky-100/60 via-transparent to-transparent pointer-events-none" />
-
-          {imgError ? (
-            <div className="flex flex-col items-center justify-center text-[#164666] relative z-10 p-2">
-              <ShieldCheck className="w-10 h-10 text-emerald-600 mb-1" />
-              <span className="text-[9px] font-bold uppercase tracking-wider text-[#091e2f] text-center line-clamp-1">{badgeCode || 'CERTIFIED'}</span>
-            </div>
-          ) : (
-            <Image
-              src={image}
-              alt={name}
-              width={88}
-              height={88}
-              unoptimized
-              onError={() => setImgError(true)}
-              className="object-contain max-h-20 w-auto group-hover:scale-110 transition-transform duration-500 ease-out relative z-10"
+        {/* ========================================================= */}
+        {/* CARD CONTENT LAYER                                        */}
+        {/* ========================================================= */}
+        <div className="relative z-10 w-full px-4 sm:px-5 pt-6 pb-7 flex flex-col items-center text-center">
+          
+          {/* --- 1. ELEVATED ROUNDED HEXAGON BADGE PEDESTAL --- */}
+          <div className="relative w-24 h-26 sm:w-26 sm:h-28 flex items-center justify-center shrink-0 mb-3">
+            {/* Luminous Ambient Hexagon Radial Glow */}
+            <div
+              className="absolute inset-0 rounded-full blur-xl pointer-events-none transition-opacity duration-300"
+              style={{
+                backgroundColor: theme.hexagonGlow,
+                opacity: isHovered ? 0.85 : 0.55,
+              }}
             />
+
+            {/* Precision Rounded Hexagon Base & Crisp Outline */}
+            <svg
+              className="absolute inset-0 w-full h-full drop-shadow-[0_6px_14px_rgba(0,0,0,0.08)]"
+              viewBox="0 0 100 115"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M 50 4 
+                   Q 53 4 56 6 
+                   L 93 27 
+                   Q 96 29 96 33 
+                   L 96 82 
+                   Q 96 86 93 88 
+                   L 56 109 
+                   Q 50 112 44 109 
+                   L 7 88 
+                   Q 4 86 4 82 
+                   L 4 33 
+                   Q 4 29 7 27 
+                   L 44 6 
+                   Q 47 4 50 4 Z"
+                fill="#ffffff"
+                stroke={theme.hexagonBorder}
+                strokeWidth="2.75"
+                strokeLinejoin="round"
+              />
+            </svg>
+
+            {/* Centered High-Res Emblem inside Hexagon */}
+            <div className="relative z-10 w-16 h-16 sm:w-18 sm:h-18 flex items-center justify-center p-1.5 transition-transform duration-300 group-hover:scale-105">
+              {imgError ? (
+                <div className="flex flex-col items-center justify-center text-[#164666]">
+                  <ShieldCheck className="w-10 h-10" style={{ color: theme.primary }} />
+                </div>
+              ) : (
+                <Image
+                  src={image}
+                  alt={name}
+                  width={72}
+                  height={72}
+                  unoptimized
+                  onError={() => setImgError(true)}
+                  className="object-contain max-h-15 sm:max-h-17 w-auto drop-shadow-2xs"
+                />
+              )}
+            </div>
+          </div>
+
+          {/* --- 2. STATUS PILL WITH SOLID CIRCULAR CHECKMARK --- */}
+          <div
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10.5px] font-bold tracking-wide mb-3 shadow-2xs transition-all duration-300"
+            style={{
+              backgroundColor: theme.pillBg,
+              color: theme.pillText,
+            }}
+          >
+            {/* Solid Filled Circle with Crisp White Checkmark */}
+            <div
+              className="w-4 h-4 rounded-full flex items-center justify-center text-white shrink-0 shadow-2xs"
+              style={{ backgroundColor: theme.checkBg }}
+            >
+              <svg
+                className="w-2.5 h-2.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <span>{badgeCode}</span>
+          </div>
+
+          {/* --- 3. BOLD TITLE (MODERN SANS-SERIF) --- */}
+          <h3 className="text-[15px] sm:text-[16px] font-bold text-[#091e2f] leading-snug tracking-tight mb-2 text-center group-hover:text-[#164666] transition-colors">
+            {name}
+          </h3>
+
+          {/* --- 4. SUBTITLE / AUTHORITY --- */}
+          {authority && (
+            <p className="text-[11px] sm:text-[11.5px] font-medium text-slate-700 leading-snug mb-1 text-center line-clamp-2">
+              {authority}
+            </p>
           )}
 
-          {/* Diagonal Light Glint over Logo Glass */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-[160%] skew-x-[-25deg] group-hover:translate-x-[220%] transition-transform duration-900 ease-out pointer-events-none" />
-        </div>
-
-        {/* --- 2. REGULATORY BADGE CODE PILL --- */}
-        <div
-          className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#164666] bg-slate-50/90 border border-slate-200/90 px-3 py-1 rounded-full mb-2.5 shadow-2xs group-hover:bg-[#164666] group-hover:text-white group-hover:border-[#164666] transition-all duration-300"
-          style={{ transform: "translateZ(20px)" }}
-        >
-          <FileCheck2 className="w-2.5 h-2.5 text-[#164666] group-hover:text-white transition-colors" />
-          <span>{badgeCode}</span>
-        </div>
-
-        {/* --- 3. TITLE & AUTHORITY --- */}
-        <h3
-          className="text-base sm:text-[17px] font-cormorant font-bold text-[#091e2f] group-hover:text-[#164666] transition-colors leading-snug tracking-tight mb-1"
-          style={{ transform: "translateZ(16px)" }}
-        >
-          {name}
-        </h3>
-
-        {authority && (
-          <p
-            className="text-[11px] sm:text-[11.5px] text-[#4a728e] font-semibold mb-2.5 line-clamp-1"
-            style={{ transform: "translateZ(12px)" }}
-          >
-            {authority}
+          {/* --- 5. DESCRIPTION / AUDIT PROTOCOLS --- */}
+          <p className="text-[10.5px] sm:text-[11px] font-normal text-slate-500 leading-relaxed text-center px-1">
+            {scope || importance}
           </p>
-        )}
 
-        {/* --- 4. IMPORTANCE / CLINICAL SUMMARY --- */}
-        <p
-          className="text-[12px] sm:text-[12.5px] text-slate-600 leading-relaxed font-normal flex-1 mb-4"
-          style={{ transform: "translateZ(8px)" }}
-        >
-          {importance}
-        </p>
-
-        {/* --- 5. LIVE VERIFIED AUDIT BADGE --- */}
-        <div
-          className="pt-2.5 border-t border-slate-200/70 w-full mt-auto"
-          style={{ transform: "translateZ(14px)" }}
-        >
-          <div className="flex items-center justify-center gap-1.5 text-[10px] sm:text-[10.5px] font-semibold text-emerald-900 bg-emerald-50/80 rounded-xl py-1.5 px-2.5 border border-emerald-200/80 transition-all duration-300 group-hover:bg-emerald-100/90">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
-            <span className="tracking-wide">Verified Compliance &bull; 2026 Audit Active</span>
-          </div>
         </div>
       </div>
 
-      {/* ── 3. DETAILED COMPLIANCE DOSSIER MODAL ── */}
+      {/* ========================================================= */}
+      {/* DETAILED COMPLIANCE DOSSIER MODAL                         */}
+      {/* ========================================================= */}
       {isDossierOpen && (
         <div
           onClick={() => setIsDossierOpen(false)}
@@ -228,14 +382,35 @@ export function CertificatePlaqueCard({
             {/* Modal Header */}
             <div className="flex items-start justify-between pb-3 border-b border-slate-200">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-[#f0f7fb] border border-sky-200/80 p-2 flex items-center justify-center shrink-0">
-                  <Image src={image} alt={name} width={40} height={40} className="object-contain" />
+                <div
+                  className="w-12 h-12 rounded-2xl border p-2 flex items-center justify-center shrink-0"
+                  style={{
+                    backgroundColor: theme.pillBg,
+                    borderColor: theme.cardBorder,
+                  }}
+                >
+                  <Image
+                    src={image}
+                    alt={name}
+                    width={40}
+                    height={40}
+                    className="object-contain"
+                  />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#164666] bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200">
+                  <span
+                    className="text-[10px] font-bold uppercase tracking-[0.2em] px-2.5 py-0.5 rounded-full border"
+                    style={{
+                      backgroundColor: theme.pillBg,
+                      color: theme.pillText,
+                      borderColor: theme.cardBorder,
+                    }}
+                  >
                     {badgeCode}
                   </span>
-                  <h3 className="text-base sm:text-lg font-bold text-[#0f172a] mt-1">{name}</h3>
+                  <h3 className="text-base sm:text-lg font-bold text-[#0f172a] mt-1">
+                    {name}
+                  </h3>
                 </div>
               </div>
               <button
@@ -254,26 +429,20 @@ export function CertificatePlaqueCard({
                   <Building2 className="w-4 h-4 text-[#164666]" />
                   <span>Certifying Authority:</span>
                 </div>
-                <p className="text-slate-600 pl-6 leading-relaxed">{authority || "Statutory Regulatory Commission"}</p>
+                <p className="text-slate-600 pl-6 leading-relaxed">
+                  {authority || "Statutory Regulatory Commission"}
+                </p>
               </div>
 
               {scope && (
                 <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80 space-y-2">
                   <div className="flex items-center gap-2 text-slate-700 font-semibold">
                     <FileCheck2 className="w-4 h-4 text-[#164666]" />
-                    <span>Accreditation Scope:</span>
+                    <span>Accreditation Scope & Benchmark:</span>
                   </div>
                   <p className="text-slate-600 pl-6 leading-relaxed">{scope}</p>
                 </div>
               )}
-
-              <div className="bg-slate-50 p-3.5 rounded-2xl border border-slate-200/80 space-y-2">
-                <div className="flex items-center gap-2 text-slate-700 font-semibold">
-                  <ShieldCheck className="w-4 h-4 text-[#164666]" />
-                  <span>Clinical & Manufacturing Importance:</span>
-                </div>
-                <p className="text-slate-600 pl-6 leading-relaxed">{importance}</p>
-              </div>
 
               <div className="flex items-center justify-between p-3 bg-emerald-50/70 border border-emerald-200 rounded-2xl text-[11px] text-emerald-800 font-semibold">
                 <span className="flex items-center gap-1.5">

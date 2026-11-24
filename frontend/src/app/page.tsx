@@ -26,6 +26,7 @@ import QuoteModal from "@/components/QuoteModal";
 import { certificationsData } from "@/data/certifications";
 import CertificatePlaqueCard from "@/components/CertificatePlaqueCard";
 import SpatialFormularyStageShowcase from "@/components/SpatialFormularyStageShowcase";
+import ServiceOrganicCard from "@/components/ServiceOrganicCard";
 
 function PumpBottleIcon({
   className = "w-5 h-5",
@@ -539,11 +540,50 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2.2 CERTIFIED FOR QUALITY AND RELIABILITY */}
-      <section id="certifications" className="relative py-16 sm:py-20 lg:py-24 bg-white border-b border-slate-200/80 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[350px] bg-sky-100/30 rounded-full blur-3xl pointer-events-none" />
+      {/* 2.2 CERTIFIED FOR QUALITY AND RELIABILITY (1:1 Reference Target Design with Glowing Cloud Atmospheric Background) */}
+      <section id="certifications" className="relative py-18 sm:py-22 lg:py-26 bg-gradient-to-b from-[#e8f3fb] via-[#f2f7fc] to-[#e6f1f9] border-b border-slate-200/80 overflow-hidden">
+        {/* Pro-Level Luminous Glowing Cloud Light Spheres */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-sky-200/60 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[850px] h-[400px] bg-white/90 rounded-full blur-[110px] pointer-events-none" />
+        <div className="absolute -bottom-24 -left-20 w-[650px] h-[500px] bg-cyan-200/50 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute -top-24 -right-20 w-[700px] h-[500px] bg-blue-200/45 rounded-full blur-[140px] pointer-events-none" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Multi-layered Luminous Ambient Glass Wave Ribbons */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none opacity-45 z-0"
+          viewBox="0 0 1440 650"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M -100 480 C 260 410, 480 540, 760 450 C 1040 360, 1240 490, 1580 390"
+            stroke="url(#certFluidWave1)"
+            strokeWidth="48"
+            strokeLinecap="round"
+          />
+          <path
+            d="M -60 520 C 300 460, 520 570, 800 490 C 1080 410, 1280 530, 1580 440"
+            stroke="url(#certFluidWave2)"
+            strokeWidth="24"
+            strokeLinecap="round"
+          />
+          <defs>
+            <linearGradient id="certFluidWave1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#bae6fd" stopOpacity="0.25" />
+              <stop offset="40%" stopColor="#38bdf8" stopOpacity="0.55" />
+              <stop offset="75%" stopColor="#e0f2fe" stopOpacity="0.75" />
+              <stop offset="100%" stopColor="#7dd3fc" stopOpacity="0.25" />
+            </linearGradient>
+            <linearGradient id="certFluidWave2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.10" />
+              <stop offset="50%" stopColor="#ffffff" stopOpacity="0.80" />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity="0.10" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <div className="relative z-10 max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
             <div className="flex items-center justify-center gap-2.5 mb-2.5">
               <span className="w-8 h-[1.5px] bg-[#4a728e]" />
@@ -564,7 +604,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-6 items-stretch max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4 lg:gap-4 xl:gap-4.5 items-stretch max-w-[1360px] mx-auto">
             {certifications.map((cert: any, idx: number) => (
               <CertificatePlaqueCard
                 key={cert.id || idx}
@@ -576,6 +616,7 @@ export default function HomePage() {
                 badgeCode={cert.badgeCode}
                 image={cert.image}
                 verified={cert.verified}
+                themeKey={cert.themeKey}
                 index={idx}
                 priority={idx < 2}
               />
@@ -588,7 +629,7 @@ export default function HomePage() {
       <section id="services" className="relative pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-24 lg:pb-28 bg-gradient-to-b from-[#fbfdfd] via-[#f7fafc] to-[#edf6fa] overflow-hidden">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-sky-100/40 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <div className="flex items-center justify-center gap-3 mb-2.5">
               <span className="w-12 h-[1px] bg-slate-400" />
@@ -625,102 +666,19 @@ export default function HomePage() {
             </defs>
           </svg>
 
-          {/* Service Cards */}
-          <div ref={servicesSectionRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 items-stretch pt-2">
+          {/* Pro-Level Animated Service Cards (Wider Width, Compact Height, 3D Physics & Parallax) */}
+          <div ref={servicesSectionRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4.5 sm:gap-5 lg:gap-5.5 xl:gap-6 items-stretch pt-2 max-w-[1380px] mx-auto">
             {services.map((service: any, index: number) => {
               const preset = serviceWavePresets[index % serviceWavePresets.length];
               return (
-                <div
-                  key={service.num || index}
-                  style={{
-                    transform: isServicesVisible ? "translateY(0px)" : "translateY(32px)",
-                    opacity: isServicesVisible ? 1 : 0,
-                    transition: `transform 700ms cubic-bezier(0.16, 1, 0.3, 1) ${index * 80}ms, opacity 700ms ease-out ${index * 80}ms`,
-                  }}
-                  className="group relative flex flex-col justify-between transition-all duration-500 hover:-translate-y-2"
-                >
-                  <div className="absolute -top-4 left-6 z-30 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/95 backdrop-blur-md border border-[#bce3f5] shadow-[0_8px_20px_rgba(27,98,139,0.10),inset_0_1.5px_2px_rgba(255,255,255,1)] flex items-center justify-center text-[#1b628b] group-hover:scale-110 group-hover:bg-[#1b628b] group-hover:text-white transition-all duration-300">
-                    <FlaskConical className="w-5 h-5" strokeWidth={1.75} />
-                  </div>
-
-                  <div
-                    style={{ borderRadius: preset.cardRadius }}
-                    className="relative w-full h-full bg-white/95 backdrop-blur-md border border-[#bce3f5] p-3 pb-6 flex flex-col justify-between overflow-hidden shadow-[0_15px_35px_-5px_rgba(27,98,139,0.09),0_0_20px_0_rgba(188,227,245,0.25),inset_0_1.5px_2px_rgba(255,255,255,0.95)] group-hover:shadow-[0_24px_48px_-8px_rgba(27,98,139,0.18),0_0_30px_0_rgba(188,227,245,0.40)] transition-all duration-500"
-                  >
-                    <div
-                      style={{ borderRadius: "24px 24px 0 0" }}
-                      className="relative w-full h-[260px] sm:h-[275px] lg:h-[285px] bg-sky-50 overflow-hidden shrink-0"
-                    >
-                      <div
-                        style={{ clipPath: `url(#service-wave-${service.id || index})` }}
-                        className="relative w-full h-full"
-                      >
-                        <Image
-                          src={service.image || "/images/services-v3/v3_img1.jpg"}
-                          alt={service.title}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          style={{ objectPosition: preset.objectPosition }}
-                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                          priority={index < 2}
-                          quality={98}
-                        />
-                      </div>
-
-                      <div className="absolute inset-0 pointer-events-none z-10">
-                        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full block">
-                          <path
-                            d={preset.strokePath}
-                            fill="none"
-                            stroke="#8ed0f2"
-                            strokeWidth="3.5"
-                            strokeOpacity="0.5"
-                            vectorEffect="non-scaling-stroke"
-                            style={{ filter: "blur(2px)" }}
-                          />
-                          <path d={`${preset.strokePath} L 100 100 L 0 100 Z`} fill="white" />
-                          <path
-                            d={preset.strokePath}
-                            fill="none"
-                            stroke="#bce3f5"
-                            strokeWidth="2"
-                            vectorEffect="non-scaling-stroke"
-                          />
-                          <path
-                            d={preset.strokePath}
-                            fill="none"
-                            stroke="white"
-                            strokeWidth="1.5"
-                            strokeOpacity="0.95"
-                            vectorEffect="non-scaling-stroke"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-
-                    <div className="px-3 sm:px-4 pt-2.5 pb-2 flex-1 flex flex-col justify-between">
-                      <div>
-                        <h3 className="text-2xl sm:text-[24px] font-cormorant font-bold text-[#091e2f] group-hover:text-[#164666] transition-colors leading-tight mb-1.5">
-                          <Link href={service.link || "/services"}>{service.title}</Link>
-                        </h3>
-                        <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal mb-4">
-                          {service.desc}
-                        </p>
-                      </div>
-
-                      <div className="flex items-center justify-end">
-                        <button
-                          type="button"
-                          onClick={() => setIsQuoteModalOpen(true)}
-                          aria-label={`Inquire about ${service.title}`}
-                          className="w-10 h-10 rounded-full bg-[#1b628b] hover:bg-[#13496b] text-white flex items-center justify-center shadow-md shadow-[#1b628b]/20 transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
-                        >
-                          <ArrowRight className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <ServiceOrganicCard
+                  key={service.num || service.id || index}
+                  service={service}
+                  preset={preset}
+                  index={index}
+                  isServicesVisible={isServicesVisible}
+                  onOpenQuote={handleOpenQuote}
+                />
               );
             })}
           </div>

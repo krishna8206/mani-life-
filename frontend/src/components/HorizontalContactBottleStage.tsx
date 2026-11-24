@@ -34,6 +34,12 @@ export default function HorizontalContactBottleStage({
   const [tilt, setTilt] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 50, y: 50 });
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+  const [ripple, setRipple] = useState<{ x: number; y: number; active: boolean }>({
+    x: 730,
+    y: 250,
+    active: false,
+  });
 
   // 3D perspective mouse tracking
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -57,6 +63,32 @@ export default function HorizontalContactBottleStage({
     setTilt({ x: 0, y: 0 });
     setMousePos({ x: 50, y: 50 });
   }, []);
+
+  // Tactile Click Animation Handler
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const clickX = ((e.clientX - rect.left) / rect.width) * 1200;
+      const clickY = ((e.clientY - rect.top) / rect.height) * 520;
+
+      // 1. Trigger 3D press compression + ripple wave
+      setIsClicked(true);
+      setRipple({ x: clickX, y: clickY, active: true });
+
+      // 2. Smooth spring back
+      setTimeout(() => {
+        setIsClicked(false);
+      }, 240);
+
+      // 3. Open quote modal after the tactile animation completes
+      setTimeout(() => {
+        setRipple((prev) => ({ ...prev, active: false }));
+        onOpenQuote?.();
+      }, 260);
+    },
+    [onOpenQuote]
+  );
 
   const phone = ctaBanner?.phone || "+91 97246 81096";
   const whatsappText =
@@ -103,27 +135,32 @@ export default function HorizontalContactBottleStage({
 
         {/* ------------------------------------------------------------- */}
         {/* 100% PROCEDURAL PHOTOREALISTIC HORIZONTAL BOTTLE (NO IMAGES)  */}
-        {/* Grand Scale (230px Dia) + Direct Silk-Screened Typography    */}
+        {/* Grand Scale (230px Dia) + Tactile Click Spring & Ripple       */}
         {/* ------------------------------------------------------------- */}
         <div
           ref={containerRef}
           onMouseMove={handleMouseMove}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          onClick={onOpenQuote}
+          onClick={handleClick}
           role="button"
           tabIndex={0}
           aria-label="Contact Us Bottle - Click to open quotation and inquiry modal"
           className="relative max-w-[1260px] mx-auto cursor-pointer group outline-none"
           style={{ perspective: "1500px" }}
         >
-          {/* 3D Perspective Tilting Stage */}
+          {/* 3D Perspective Tilting & Tactile Click Stage */}
           <div
-            className="relative w-full transition-transform duration-300 ease-out will-change-transform"
+            className="relative w-full will-change-transform"
             style={{
-              transform: isHovered
+              transform: isClicked
+                ? `scale(0.975) translateY(5px) rotateX(${tilt.x * 0.7}deg) rotateY(${tilt.y * 0.7}deg)`
+                : isHovered
                 ? `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.018)`
                 : "rotateX(0deg) rotateY(0deg) scale(1)",
+              transition: isClicked
+                ? "transform 0.12s cubic-bezier(0.2, 0, 0, 1)"
+                : "transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
               transformStyle: "preserve-3d",
             }}
           >
@@ -548,16 +585,47 @@ export default function HorizontalContactBottleStage({
               </text>
 
               {/* ========================================================= */}
-              {/* COMPONENT 4: DYNAMIC LIGHT SHEEN SWEEP (HOVER REACTION)   */}
+              {/* COMPONENT 4: INTERACTIVE LUMINOUS CLICK RIPPLE WAVE       */}
+              {/* Subtle expanding luminous ring on bottle surface on click */}
               {/* ========================================================= */}
-              <path
-                d="M 320 190 L 1065 190 L 1065 310 L 320 310 Z"
-                fill="none"
-                stroke="url(#pearlSheenBeamWide)"
-                strokeWidth="1.8"
-                opacity={isHovered ? "0.9" : "0.15"}
-                className="transition-opacity duration-300"
-              />
+              {ripple.active && (
+                <g className="pointer-events-none">
+                  {/* Central bright pulse */}
+                  <circle
+                    cx={ripple.x}
+                    cy={ripple.y}
+                    r="18"
+                    fill="#ffffff"
+                    opacity="0.85"
+                    className="animate-ping"
+                    style={{ animationDuration: "0.55s", animationIterationCount: 1 }}
+                  />
+                  {/* Expanding luxury navy ripple */}
+                  <circle
+                    cx={ripple.x}
+                    cy={ripple.y}
+                    r="55"
+                    fill="none"
+                    stroke="#164666"
+                    strokeWidth="2.5"
+                    opacity="0.6"
+                    className="animate-ping"
+                    style={{ animationDuration: "0.75s", animationIterationCount: 1 }}
+                  />
+                  {/* Expanding soft rose-pink ambient ring */}
+                  <circle
+                    cx={ripple.x}
+                    cy={ripple.y}
+                    r="95"
+                    fill="none"
+                    stroke="#b85872"
+                    strokeWidth="1.8"
+                    opacity="0.45"
+                    className="animate-ping"
+                    style={{ animationDuration: "0.95s", animationIterationCount: 1 }}
+                  />
+                </g>
+              )}
             </svg>
 
             {/* Floating Live Laboratory Status Badge */}

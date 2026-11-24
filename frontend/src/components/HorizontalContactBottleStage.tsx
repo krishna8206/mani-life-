@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import Link from "next/link";
 import {
   Send,
@@ -135,7 +135,7 @@ export default function HorizontalContactBottleStage({
 
         {/* ------------------------------------------------------------- */}
         {/* 100% PROCEDURAL PHOTOREALISTIC HORIZONTAL BOTTLE (NO IMAGES)  */}
-        {/* Grand Scale (230px Dia) + Tactile Click Spring & Ripple       */}
+        {/* True Physical Bottle Anatomy + Foil-Textured Shimmer Animation */}
         {/* ------------------------------------------------------------- */}
         <div
           ref={containerRef}
@@ -172,11 +172,11 @@ export default function HorizontalContactBottleStage({
             >
               <defs>
                 {/* --------------------------------------------------------- */}
-                {/* 1. STUDIO GROUND SHADOWS & OCCLUSION                      */}
+                {/* 1. STUDIO GROUND SHADOWS & CONTACT OCCLUSION              */}
                 {/* --------------------------------------------------------- */}
                 <radialGradient id="studioGroundShadowWide" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#181310" stopOpacity="0.32" />
-                  <stop offset="48%" stopColor="#2a1d17" stopOpacity="0.15" />
+                  <stop offset="0%" stopColor="#181310" stopOpacity="0.34" />
+                  <stop offset="48%" stopColor="#2a1d17" stopOpacity="0.16" />
                   <stop offset="78%" stopColor="#3d2a22" stopOpacity="0.04" />
                   <stop offset="100%" stopColor="#3d2a22" stopOpacity="0" />
                 </radialGradient>
@@ -184,8 +184,8 @@ export default function HorizontalContactBottleStage({
                 <linearGradient id="contactOcclusionLine" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#1a1412" stopOpacity="0" />
                   <stop offset="5%" stopColor="#1a1412" stopOpacity="0.45" />
-                  <stop offset="18%" stopColor="#100a08" stopOpacity="0.75" />
-                  <stop offset="85%" stopColor="#100a08" stopOpacity="0.72" />
+                  <stop offset="18%" stopColor="#0c0705" stopOpacity="0.85" />
+                  <stop offset="85%" stopColor="#0c0705" stopOpacity="0.80" />
                   <stop offset="98%" stopColor="#1a1412" stopOpacity="0.25" />
                   <stop offset="100%" stopColor="#1a1412" stopOpacity="0" />
                 </linearGradient>
@@ -194,24 +194,24 @@ export default function HorizontalContactBottleStage({
                 {/* 2. PEARL SATIN BOTTLE BODY GRADIENTS (OPTIQUE LUXURY IVORY)*/}
                 {/* --------------------------------------------------------- */}
                 <linearGradient id="pearlBodyMaster" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#e3d7cd" />
-                  <stop offset="2.5%" stopColor="#ffffff" />
-                  <stop offset="11%" stopColor="#ffffff" />
-                  <stop offset="22%" stopColor="#faf6f0" />
-                  <stop offset="45%" stopColor="#f5ede2" />
-                  <stop offset="68%" stopColor="#eae0d3" />
-                  <stop offset="84%" stopColor="#d0beaa" />
-                  <stop offset="93%" stopColor="#b2977f" />
-                  <stop offset="98%" stopColor="#d9cca8" stopOpacity="0.6" />
-                  <stop offset="100%" stopColor="#9a7f67" />
+                  <stop offset="0%" stopColor="#e5d9cf" />
+                  <stop offset="2%" stopColor="#ffffff" />
+                  <stop offset="10%" stopColor="#ffffff" />
+                  <stop offset="20%" stopColor="#fbf7f1" />
+                  <stop offset="44%" stopColor="#f5ede3" />
+                  <stop offset="66%" stopColor="#eae0d3" />
+                  <stop offset="82%" stopColor="#cbb9a5" />
+                  <stop offset="92%" stopColor="#af947b" />
+                  <stop offset="97%" stopColor="#d8ccb8" stopOpacity="0.75" />
+                  <stop offset="100%" stopColor="#8f735b" />
                 </linearGradient>
 
-                {/* Horizontal specular sheen sweep (creates silky luster) */}
+                {/* Horizontal Specular Sheen Beam (Softbox light stripe) */}
                 <linearGradient id="pearlSheenBeamWide" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#ffffff" stopOpacity="0.05" />
-                  <stop offset="25%" stopColor="#ffffff" stopOpacity="0.92" />
+                  <stop offset="25%" stopColor="#ffffff" stopOpacity="0.95" />
                   <stop offset="55%" stopColor="#ffffff" stopOpacity="0.98" />
-                  <stop offset="78%" stopColor="#ffffff" stopOpacity="0.78" />
+                  <stop offset="78%" stopColor="#ffffff" stopOpacity="0.80" />
                   <stop offset="100%" stopColor="#ffffff" stopOpacity="0.10" />
                 </linearGradient>
 
@@ -225,10 +225,19 @@ export default function HorizontalContactBottleStage({
 
                 {/* Base Heel Corner Radius Highlight */}
                 <radialGradient id="baseHeelGleam" cx="70%" cy="30%" r="70%">
-                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.88" />
-                  <stop offset="50%" stopColor="#f4ece1" stopOpacity="0.45" />
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+                  <stop offset="50%" stopColor="#f4ece1" stopOpacity="0.5" />
                   <stop offset="100%" stopColor="#b59e87" stopOpacity="0" />
                 </radialGradient>
+
+                {/* Heavy Glass Base Refraction Shader (The Solid Punt) */}
+                <linearGradient id="thickGlassPuntShader" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.25" />
+                  <stop offset="30%" stopColor="#ffffff" stopOpacity="0.85" />
+                  <stop offset="70%" stopColor="#e3d6c8" stopOpacity="0.90" />
+                  <stop offset="90%" stopColor="#ffffff" stopOpacity="0.95" />
+                  <stop offset="100%" stopColor="#c5b39e" stopOpacity="0.4" />
+                </linearGradient>
 
                 {/* --------------------------------------------------------- */}
                 {/* 3. NORMAL LUXURY CAP GRADIENTS (CLEAN CYLINDRICAL CAP)    */}
@@ -270,7 +279,6 @@ export default function HorizontalContactBottleStage({
                   <stop offset="100%" stopColor="#46190b" />
                 </linearGradient>
 
-                {/* Horizontal metallic reflection glint */}
                 <linearGradient id="collarHorizontalReflection" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#ffffff" stopOpacity="0.5" />
                   <stop offset="25%" stopColor="#ffffff" stopOpacity="0.9" />
@@ -278,6 +286,42 @@ export default function HorizontalContactBottleStage({
                   <stop offset="75%" stopColor="#ffffff" stopOpacity="0.85" />
                   <stop offset="100%" stopColor="#3d1508" stopOpacity="0.6" />
                 </linearGradient>
+
+                {/* --------------------------------------------------------- */}
+                {/* 5. DYNAMIC FOIL SHIMMER & TEXTURE FOR "Contact Us"       */}
+                {/* Animated light sweep continuously gliding across text     */}
+                {/* --------------------------------------------------------- */}
+                <linearGradient id="animatedFoilShimmer" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#0f2f47" />
+                  <stop offset="25%" stopColor="#164666" />
+                  <stop offset="45%" stopColor="#1a5278" />
+                  <stop offset="50%" stopColor="#67b2dc" />
+                  <stop offset="53%" stopColor="#ffffff" />
+                  <stop offset="56%" stopColor="#67b2dc" />
+                  <stop offset="62%" stopColor="#1a5278" />
+                  <stop offset="80%" stopColor="#164666" />
+                  <stop offset="100%" stopColor="#0f2f47" />
+                  {/* Continuous Smooth Metallic Shimmer Sweep */}
+                  <animate
+                    attributeName="x1"
+                    values="-100%; 200%"
+                    dur="3.2s"
+                    repeatCount="indefinite"
+                  />
+                  <animate
+                    attributeName="x2"
+                    values="0%; 300%"
+                    dur="3.2s"
+                    repeatCount="indefinite"
+                  />
+                </linearGradient>
+
+                {/* Foil Micro-Texture Pattern for embossed physical tactile feel */}
+                <pattern id="foilMicroStipple" width="4" height="4" patternUnits="userSpaceOnUse">
+                  <rect width="4" height="4" fill="#164666" />
+                  <circle cx="1" cy="1" r="0.5" fill="#2d6487" opacity="0.4" />
+                  <circle cx="3" cy="3" r="0.5" fill="#0d283c" opacity="0.6" />
+                </pattern>
 
                 {/* Filters */}
                 <filter id="softPBRGlow" x="-20%" y="-20%" width="140%" height="140%">
@@ -290,7 +334,7 @@ export default function HorizontalContactBottleStage({
               </defs>
 
               {/* ========================================================= */}
-              {/* STAGE FLOOR CONTACT SHADOWS & STUDIO PEDESTAL             */}
+              {/* STAGE FLOOR CONTACT SHADOWS & STUDIO REFLECTION           */}
               {/* ========================================================= */}
               {/* Wide diffuse ambient floor shadow */}
               <ellipse cx="640" cy="384" rx="550" ry="36" fill="url(#studioGroundShadowWide)" />
@@ -428,8 +472,8 @@ export default function HorizontalContactBottleStage({
               />
 
               {/* ========================================================= */}
-              {/* COMPONENT 2: GRAND SCALE PEARLESCENT BOTTLE BODY (230PX)  */}
-              {/* Height: 230px (Y=135 to Y=365), Length: 645px             */}
+              {/* COMPONENT 2: PHYSICAL BOTTLE ANATOMY (230PX DIAMETER)     */}
+              {/* Double-wall thick glass base + sculpted cosmetic shoulder */}
               {/* ========================================================= */}
 
               {/* 2.1 Master Pearl Body Geometry */}
@@ -440,21 +484,37 @@ export default function HorizontalContactBottleStage({
                 strokeWidth="1.4"
               />
 
-              {/* 2.2 Shoulder Curvature 3D Highlight Dome */}
+              {/* 2.2 Thick Solid Glass Base (Luxury Cosmetic Punt Anatomy) */}
+              {/* Real cosmetic bottles have a 35px-45px solid glass bottom */}
+              <path
+                d="M 1025 137 Q 1062 137 1062 162 L 1062 338 Q 1062 363 1025 363 Q 1042 340 1042 250 Q 1042 160 1025 137 Z"
+                fill="url(#thickGlassPuntShader)"
+                opacity="0.8"
+              />
+              {/* Base Inner Chamber Refraction Lip */}
+              <path
+                d="M 1022 142 Q 1038 180 1038 250 Q 1038 320 1022 358"
+                fill="none"
+                stroke="#ffffff"
+                strokeWidth="1.5"
+                opacity="0.75"
+              />
+
+              {/* 2.3 Shoulder Curvature 3D Highlight Dome */}
               <path
                 d="M 420 135 C 370 135, 335 186, 320 190 L 320 250 C 342 226, 375 180, 420 170 Z"
                 fill="url(#shoulderDomeGleam)"
               />
 
-              {/* 2.3 Horizontal Pearlescent Specular Sheen Beam (Upper Cylinder) */}
+              {/* 2.4 Primary Horizontal Specular Light Stripe (Softbox beam) */}
               <path
-                d="M 410 155 L 1040 155 Q 1058 155 1058 165 Q 1058 175 1040 175 L 410 175 C 370 175, 342 186, 328 195 L 324 188 C 340 176, 370 155, 410 155 Z"
+                d="M 410 155 L 1030 155 Q 1048 155 1048 165 Q 1048 175 1030 175 L 410 175 C 370 175, 342 186, 328 195 L 324 188 C 340 176, 370 155, 410 155 Z"
                 fill="url(#pearlSheenBeamWide)"
                 opacity="0.9"
                 filter="url(#softPBRGlow)"
               />
 
-              {/* 2.4 Thin Razor Specular Glint Along Top Rim */}
+              {/* 2.5 Thin Razor Specular Glint Along Top Rim */}
               <path
                 d="M 420 137 L 1035 137"
                 stroke="#ffffff"
@@ -463,7 +523,7 @@ export default function HorizontalContactBottleStage({
                 opacity="0.95"
               />
 
-              {/* 2.5 Rounded Base Heel Specular Highlight (Right End) */}
+              {/* 2.6 Rounded Base Heel Specular Highlight (Right End) */}
               <path
                 d="M 1040 137 Q 1063 137 1063 160 L 1063 340 Q 1063 363 1040 363"
                 fill="none"
@@ -475,7 +535,7 @@ export default function HorizontalContactBottleStage({
               {/* Base Dome Accent Light */}
               <ellipse cx="1057" cy="250" rx="7" ry="75" fill="url(#baseHeelGleam)" opacity="0.65" />
 
-              {/* 2.6 Bottom Rim Bounce Light (Reflecting Studio Table) */}
+              {/* 2.7 Bottom Rim Bounce Light (Reflecting Studio Table) */}
               <path
                 d="M 420 363 L 1038 363"
                 stroke="#fcf9f5"
@@ -485,8 +545,8 @@ export default function HorizontalContactBottleStage({
               />
 
               {/* ========================================================= */}
-              {/* COMPONENT 3: DIRECT SILK-SCREEN PRINTING (NO AI BOX/CARD) */}
-              {/* Pure Crisp Luxury Cosmetic Typography (Blue & Rose-Pink)   */}
+              {/* COMPONENT 3: DIRECT SILK-SCREEN PRINTING WITH FOIL SHIMMER */}
+              {/* Tactile Textured "Contact Us" with Continuous Metallic Glow */}
               {/* ========================================================= */}
 
               {/* 3.1 Brand Eyebrow - Luxury Rose-Pink Tracked Lettering */}
@@ -503,12 +563,12 @@ export default function HorizontalContactBottleStage({
                 MANILIFE® FORMULARY
               </text>
 
-              {/* 3.2 MASTER HEADLINE: "Contact Us" IN CRISP LUXURY NAVY BLUE */}
-              {/* Razor-sharp typography directly on satin pearl lacquer */}
+              {/* 3.2 MASTER HEADLINE: "Contact Us" WITH TEXTURE & SHIMMER */}
+              {/* Multi-layered physical embossing + animated metallic foil glow */}
               <g>
-                {/* 3D Embossed bottom highlight */}
+                {/* Layer 1: Embossed lower-right tactile shadow/relief */}
                 <text
-                  x="730"
+                  x="731"
                   y="260"
                   textAnchor="middle"
                   fontFamily="'Cormorant Garamond', Georgia, serif"
@@ -516,11 +576,12 @@ export default function HorizontalContactBottleStage({
                   fontWeight="700"
                   letterSpacing="1.2px"
                   fill="#ffffff"
-                  opacity="0.9"
+                  opacity="0.95"
                 >
                   Contact Us
                 </text>
-                {/* Master Ink in Luxury Deep Navy Blue */}
+
+                {/* Layer 2: Deep micro-stipple foil texture base */}
                 <text
                   x="730"
                   y="258"
@@ -529,7 +590,22 @@ export default function HorizontalContactBottleStage({
                   fontSize="58"
                   fontWeight="700"
                   letterSpacing="1.2px"
-                  fill="#123c5a"
+                  fill="url(#foilMicroStipple)"
+                >
+                  Contact Us
+                </text>
+
+                {/* Layer 3: Dynamic Animated Foil Shimmer Sweep (60fps) */}
+                <text
+                  x="730"
+                  y="258"
+                  textAnchor="middle"
+                  fontFamily="'Cormorant Garamond', Georgia, serif"
+                  fontSize="58"
+                  fontWeight="700"
+                  letterSpacing="1.2px"
+                  fill="url(#animatedFoilShimmer)"
+                  style={{ mixBlendMode: "screen", opacity: isHovered ? 0.95 : 0.85 }}
                 >
                   Contact Us
                 </text>

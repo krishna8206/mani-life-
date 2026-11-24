@@ -646,20 +646,6 @@ export default function HorizontalContactBottleStage({
                 Ahmedabad Cleanroom Campus  •  +91 97246 81096  •  ISO 22716 GMP
               </text>
 
-              {/* 3.6 Authentic Cosmetic Net Volume Mark */}
-              <text
-                x="730"
-                y="338"
-                textAnchor="middle"
-                fontFamily="ui-monospace, SFMono-Regular, monospace"
-                fontSize="10"
-                fontWeight="500"
-                letterSpacing="2.5px"
-                fill="#8ca4b8"
-              >
-                500 mL e 16.9 fl. oz.
-              </text>
-
               {/* ========================================================= */}
               {/* COMPONENT 4: INTERACTIVE LUMINOUS CLICK RIPPLE WAVE       */}
               {/* Subtle expanding luminous ring on bottle surface on click */}
@@ -703,14 +689,6 @@ export default function HorizontalContactBottleStage({
                 </g>
               )}
             </svg>
-
-            {/* Floating Live Laboratory Status Badge */}
-            <div className="absolute top-2 right-4 sm:right-8 z-20 pointer-events-none">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/95 border border-[#e3d5c6] shadow-sm backdrop-blur-md text-xs font-mono text-slate-700">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="font-medium text-[11px] text-[#164666]">Ahmedabad Cleanroom Online</span>
-              </span>
-            </div>
           </div>
         </div>
 

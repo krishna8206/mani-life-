@@ -94,6 +94,34 @@
   100% { transform: translateX(100%); }
 }
 
+@keyframes light-glide {
+  0% {
+    transform: translateX(-130%);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.9;
+  }
+  75% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(130%);
+    opacity: 0;
+  }
+}
+
+@keyframes ambient-blink {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
 @keyframes float-up {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }

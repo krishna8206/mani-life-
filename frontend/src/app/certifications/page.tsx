@@ -227,11 +227,14 @@ export default function CertificationsPage() {
       </section>
 
       {/* 2. CERTIFICATIONS DISPLAY SECTION WITH PREMIUM STAGGERED SCROLL REVEALS */}
-      <section className="relative py-18 sm:py-20 lg:py-24 bg-white border-b border-slate-200/80 overflow-hidden">
-        {/* Soft Ambient Radial Lights */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[450px] bg-sky-100/30 rounded-full blur-3xl pointer-events-none" />
+      <section className="relative py-18 sm:py-22 lg:py-26 bg-gradient-to-b from-[#e8f3fb] via-[#f2f7fc] to-[#e6f1f9] border-b border-slate-200/80 overflow-hidden">
+        {/* Pro-Level Luminous Glowing Cloud Light Spheres */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-sky-200/60 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[850px] h-[400px] bg-white/90 rounded-full blur-[110px] pointer-events-none" />
+        <div className="absolute -bottom-24 -left-20 w-[650px] h-[500px] bg-cyan-200/50 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute -top-24 -right-20 w-[700px] h-[500px] bg-blue-200/45 rounded-full blur-[140px] pointer-events-none" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sky-50/80 border border-sky-200/80 mb-3 shadow-2xs">
@@ -256,9 +259,9 @@ export default function CertificationsPage() {
             </p>
           </div>
 
-          {/* Certification Badges Showcase Grid with 3D Tilt & Specular Sheen */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-6 max-w-7xl mx-auto mb-14 sm:mb-16">
-            {cms.certificationsSection.items.map((cert, idx) => (
+          {/* Certification Badges Showcase Grid with 3D Tilt & Specular Sheen (1:1 Reference Target Design) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4 lg:gap-4 xl:gap-4.5 max-w-[1360px] mx-auto mb-14 sm:mb-16">
+            {cms.certificationsSection.items.map((cert: any, idx) => (
               <CertificatePlaqueCard
                 key={cert.id || idx}
                 id={cert.id}
@@ -269,6 +272,7 @@ export default function CertificationsPage() {
                 badgeCode={cert.badgeCode}
                 image={cert.image}
                 verified={cert.verified}
+                themeKey={cert.themeKey}
                 index={idx}
                 priority={idx < 2}
               />

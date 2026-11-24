@@ -132,10 +132,10 @@ export default function SpatialFormularyStageShowcase({
   const dropletScale = Math.sin(dropletRatio * Math.PI);
 
   // =========================================================================
-  // SHAMPOO 3D MECHANISM (Concept 1: Twist-Unlock & Spring-Loaded Piston Rise)
+  // SHAMPOO 3D MECHANISM (Spring-Loaded Piston Elevation, Straight Upright Cap)
   // =========================================================================
-  // 1. Initial 3D twist from locked (-22°) to active salon dispensing position (0°)
-  const pumpUnlockRotate = (1 - Math.min(uncapRatio / 0.26, 1)) * -22;
+  // 1. Upright stable alignment (0° rotation so the dispenser stays perfectly straight)
+  const pumpUnlockRotate = 0;
 
   // 2. Spring-loaded piston elevation (lifts 44px upward in harmony with the serums)
   const shampooLift = easeUncap * 44;

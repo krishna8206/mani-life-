@@ -12,7 +12,6 @@ import {
   ArrowRight,
   ShieldCheck,
   FlaskConical,
-  MousePointerClick,
 } from "lucide-react";
 
 interface HorizontalContactBottleStageProps {
@@ -135,18 +134,8 @@ export default function HorizontalContactBottleStage({
         </div>
 
         {/* ------------------------------------------------------------- */}
-        {/* PROMINENT CLICK-ME CUE ABOVE BOTTLE                           */}
-        {/* ------------------------------------------------------------- */}
-        <div className="flex items-center justify-center mb-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 border border-[#164666]/30 shadow-sm text-xs font-semibold text-[#164666] transition-transform hover:scale-105">
-            <MousePointerClick className="w-4 h-4 text-[#b85872] animate-bounce" />
-            <span>Click anywhere on the bottle below to open Contact Us</span>
-          </div>
-        </div>
-
-        {/* ------------------------------------------------------------- */}
         {/* ENLARGED PROCEDURAL HORIZONTAL BOTTLE (260px DIAMETER)        */}
-        {/* True Physical Bottle Anatomy + Unmistakable Click Affordance */}
+        {/* True Physical Bottle Anatomy - Entire Bottle is Clickable     */}
         {/* ------------------------------------------------------------- */}
         <div
           ref={containerRef}
@@ -641,64 +630,16 @@ export default function HorizontalContactBottleStage({
               {/* 3.5 Contact Details & ISO GMP Specifications */}
               <text
                 x="765"
-                y="328"
+                y="332"
                 textAnchor="middle"
                 fontFamily="system-ui, -apple-system, sans-serif"
-                fontSize="11.5"
+                fontSize="12"
                 fontWeight="600"
                 letterSpacing="1.5px"
                 fill="#164666"
               >
                 Ahmedabad Cleanroom Campus  •  +91 97246 81096  •  ISO 22716 GMP
               </text>
-
-              {/* 3.6 PROMINENT CLICK-ME CTA BUTTON DIRECTLY ON THE BOTTLE */}
-              {/* Unmistakable visual affordance: "CLICK BOTTLE TO CONTACT US" */}
-              <g
-                transform="translate(585, 342)"
-                className="transition-transform duration-200 group-hover:scale-[1.02]"
-                style={{ transformOrigin: "180px 22px" }}
-              >
-                {/* Button Outer Halo / Drop Shadow */}
-                <rect
-                  x="0"
-                  y="0"
-                  width="360"
-                  height="44"
-                  rx="22"
-                  fill="url(#ctaButtonGradient)"
-                  stroke="#c58f7a"
-                  strokeWidth="1.5"
-                  className="shadow-lg"
-                />
-
-                {/* Live Pulsing Status Beacon */}
-                <circle cx="28" cy="22" r="5" fill="#10b981" />
-                <circle
-                  cx="28"
-                  cy="22"
-                  r="9"
-                  fill="none"
-                  stroke="#10b981"
-                  strokeWidth="1.5"
-                  className="animate-ping"
-                  style={{ animationDuration: "1.5s" }}
-                />
-
-                {/* Bold Click Callout Text */}
-                <text
-                  x="195"
-                  y="26.5"
-                  textAnchor="middle"
-                  fontFamily="system-ui, -apple-system, sans-serif"
-                  fontSize="11.5"
-                  fontWeight="700"
-                  letterSpacing="1px"
-                  fill="#ffffff"
-                >
-                  CLICK BOTTLE TO CONTACT US →
-                </text>
-              </g>
 
               {/* ========================================================= */}
               {/* COMPONENT 4: INTERACTIVE LUMINOUS CLICK RIPPLE WAVE       */}

@@ -73,7 +73,7 @@ export default function HorizontalContactBottleStage({
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
         const clickX = ((e.clientX - rect.left) / rect.width) * 1260;
-        const clickY = ((e.clientY - rect.top) / rect.height) * 560;
+        const clickY = 115 + ((e.clientY - rect.top) / rect.height) * 365;
 
         // 2. Trigger 3D press compression + ripple wave
         setIsClicked(true);
@@ -97,7 +97,7 @@ export default function HorizontalContactBottleStage({
     "Hello ManiLife, I am interested in custom cosmetic formulation and manufacturing.";
 
   return (
-    <section className="relative w-full py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-[#f8fafc] via-[#fbfaf8] to-[#f4f2ee] border-b border-slate-200/80 overflow-hidden select-none">
+    <section className="relative w-full py-8 sm:py-10 lg:py-12 bg-gradient-to-b from-[#f8fafc] via-[#fbfaf8] to-[#f4f2ee] border-b border-slate-200/80 overflow-hidden select-none">
       {/* ------------------------------------------------------------- */}
       {/* Ambient Cosmetic Studio Backdrop Lighting (Soft Pastel Blurs)  */}
       {/* ------------------------------------------------------------- */}
@@ -114,7 +114,7 @@ export default function HorizontalContactBottleStage({
         {/* ------------------------------------------------------------- */}
         {/* SECTION HEADER                                                */}
         {/* ------------------------------------------------------------- */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+        <div className="text-center max-w-3xl mx-auto mb-2 sm:mb-3">
           <div className="inline-flex items-center justify-center gap-2.5 mb-3 px-3.5 py-1 rounded-full bg-white/85 border border-slate-200/80 shadow-2xs backdrop-blur-sm">
             <span className="w-2 h-2 rounded-full bg-[#164666] animate-pulse" />
             <span className="text-[11px] uppercase tracking-[0.22em] font-semibold text-[#164666]">
@@ -167,7 +167,7 @@ export default function HorizontalContactBottleStage({
           >
             {/* Master Photorealistic Procedural Bottle Vector Canvas */}
             <svg
-              viewBox="0 0 1260 560"
+              viewBox="0 115 1260 365"
               className="w-full h-auto drop-shadow-2xl select-none"
               style={{ overflow: "visible" }}
             >
@@ -336,6 +336,16 @@ export default function HorizontalContactBottleStage({
                 <filter id="contactShadowBlur" x="-10%" y="-40%" width="120%" height="180%">
                   <feGaussianBlur stdDeviation="7" />
                 </filter>
+
+                {/* Soft ground reflection gradient mask */}
+                <mask id="reflectionFadeMask">
+                  <linearGradient id="reflectionAlphaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
+                    <stop offset="65%" stopColor="#ffffff" stopOpacity="0.45" />
+                    <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+                  </linearGradient>
+                  <rect x="0" y="396" width="1260" height="90" fill="url(#reflectionAlphaGrad)" />
+                </mask>
               </defs>
 
               {/* ========================================================= */}
@@ -365,6 +375,7 @@ export default function HorizontalContactBottleStage({
               {/* ========================================================= */}
               <g
                 transform="translate(0, 800) scale(1, -1)"
+                mask="url(#reflectionFadeMask)"
                 opacity="0.18"
                 style={{ mixBlendMode: "multiply", filter: "blur(3.5px)" }}
               >
@@ -687,7 +698,7 @@ export default function HorizontalContactBottleStage({
         {/* ------------------------------------------------------------- */}
         {/* ACTION BUTTONS & TELEPHONE CONNECTORS                         */}
         {/* ------------------------------------------------------------- */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 pt-6 sm:pt-8">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4 pt-2 sm:pt-3">
           {onOpenQuote && (
             <button
               onClick={() => onOpenQuote()}
@@ -710,7 +721,7 @@ export default function HorizontalContactBottleStage({
         </div>
 
         {/* Factory Credibility Highlights */}
-        <div className="mt-10 sm:mt-12 pt-8 border-t border-slate-200/60 max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+        <div className="mt-5 sm:mt-6 pt-4 border-t border-slate-200/60 max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
           <div className="flex flex-col items-center">
             <span className="text-sm font-semibold text-[#164666]">Class 10,000 Cleanroom</span>
             <span className="text-[11px] text-slate-500">ISO 22716 & GMP Compliant</span>

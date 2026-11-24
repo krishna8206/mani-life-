@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { API_BASE_URL } from "@/lib/config";
 import {
   Sparkles,
   Search,
@@ -366,7 +367,7 @@ export default function ProductsPage() {
 
   // Fetch dynamic CMS data from MongoDB Atlas
   useEffect(() => {
-    fetch("/api/product-range-page")
+    fetch(`${API_BASE_URL}/api/product-range-page`)
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.hero) {

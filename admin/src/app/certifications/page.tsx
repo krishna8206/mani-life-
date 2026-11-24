@@ -178,7 +178,7 @@ export default function CertificationsAdminPage() {
   const fetchCertificationsData = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/certifications');
+      const res = await fetch('https://mani-life-1n34.vercel.app/api/certifications');
       if (res.ok) {
         const data = await res.json();
         if (data && data.hero) {
@@ -203,7 +203,7 @@ export default function CertificationsAdminPage() {
     if (e) e.preventDefault();
     setSaving(true);
     try {
-      const res = await fetch('http://localhost:5000/api/certifications', {
+      const res = await fetch('https://mani-life-1n34.vercel.app/api/certifications', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(cms),

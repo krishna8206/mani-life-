@@ -364,7 +364,7 @@ export default function ServicesAdminPage() {
   const fetchServicesData = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/services-page');
+      const res = await fetch('https://mani-life-1n34.vercel.app/api/services-page');
       if (res.ok) {
         const data = await res.json();
         if (data && data.hero) {
@@ -390,7 +390,7 @@ export default function ServicesAdminPage() {
     if (e) e.preventDefault();
     setSaving(true);
     try {
-      const res = await fetch('http://localhost:5000/api/services-page', {
+      const res = await fetch('https://mani-life-1n34.vercel.app/api/services-page', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(cms),

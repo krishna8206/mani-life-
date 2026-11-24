@@ -19,7 +19,7 @@ export default function LoginPage() {
 
     try {
       // 1. Attempt API verification via backend REST service (Port 5000)
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch('https://mani-life-1n34.vercel.app/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email.trim(), password: password.trim() }),

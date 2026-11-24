@@ -398,7 +398,7 @@ export default function HomePageCMS() {
 
   const fetchHomeData = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/home');
+      const res = await fetch('https://mani-life-1n34.vercel.app/api/home');
       if (res.ok) {
         const data = await res.json();
         if (data) {
@@ -504,7 +504,7 @@ export default function HomePageCMS() {
     setIsSaving(true);
     setNotification(null);
     try {
-      const res = await fetch('http://localhost:5000/api/home', {
+      const res = await fetch('https://mani-life-1n34.vercel.app/api/home', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(cms),

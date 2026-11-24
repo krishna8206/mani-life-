@@ -142,7 +142,7 @@ export default function DashboardPage() {
       setIsRefreshing(true);
 
       // 1. Fetch live aggregated statistics
-      const statsRes = await fetch('http://localhost:5000/api/dashboard/stats');
+      const statsRes = await fetch('https://mani-life-1n34.vercel.app/api/dashboard/stats');
       if (statsRes.ok) {
         const statsData = await statsRes.json();
         setStats(statsData);
@@ -152,7 +152,7 @@ export default function DashboardPage() {
       }
 
       // 2. Fetch live inquiries
-      const inqRes = await fetch('http://localhost:5000/api/inquiries');
+      const inqRes = await fetch('https://mani-life-1n34.vercel.app/api/inquiries');
       if (inqRes.ok) {
         const inqData = await inqRes.json();
         if (Array.isArray(inqData) && inqData.length > 0) {
@@ -161,7 +161,7 @@ export default function DashboardPage() {
       }
 
       // 3. Fetch live categories
-      const catRes = await fetch('http://localhost:5000/api/categories');
+      const catRes = await fetch('https://mani-life-1n34.vercel.app/api/categories');
       if (catRes.ok) {
         const catData = await catRes.json();
         if (Array.isArray(catData) && catData.length > 0) {

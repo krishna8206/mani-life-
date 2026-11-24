@@ -21,6 +21,14 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "https://mani-life-1n34.vercel.app/api/:path*",
+      },
+    ];
+  },
   async redirects() {
     return [
       {

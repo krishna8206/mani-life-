@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { API_BASE_URL } from "@/lib/config";
 import {
   Leaf,
   FlaskConical,
@@ -353,7 +354,7 @@ export default function AboutPage() {
   useEffect(() => {
     const fetchAboutData = async () => {
       try {
-        const res = await fetch("/api/about");
+        const res = await fetch(`${API_BASE_URL}/api/about`);
         if (res.ok) {
           const json = await res.json();
           if (json && json.hero) {

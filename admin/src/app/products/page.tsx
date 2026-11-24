@@ -295,7 +295,7 @@ export default function ProductsPage() {
   const fetchRangeCms = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/product-range-page');
+      const res = await fetch('https://mani-life-1n34.vercel.app/api/product-range-page');
       if (res.ok) {
         const data = await res.json();
         if (data && data.hero) {
@@ -332,7 +332,7 @@ export default function ProductsPage() {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/categories');
+      const res = await fetch('https://mani-life-1n34.vercel.app/api/categories');
       if (res.ok) {
         const data = await res.json();
         setCategories(data);
@@ -345,7 +345,7 @@ export default function ProductsPage() {
   const fetchCategoryProducts = async (slug: string) => {
     setInvLoading(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/categories/${slug}`);
+      const res = await fetch(`https://mani-life-1n34.vercel.app/api/categories/${slug}`);
       if (res.ok) {
         const data = await res.json();
         if (data.products) {
@@ -363,7 +363,7 @@ export default function ProductsPage() {
     if (e) e.preventDefault();
     setSaving(true);
     try {
-      const res = await fetch('http://localhost:5000/api/product-range-page', {
+      const res = await fetch('https://mani-life-1n34.vercel.app/api/product-range-page', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(rangeCms),

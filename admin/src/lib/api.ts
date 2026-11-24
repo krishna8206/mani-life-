@@ -1,6 +1,6 @@
 import { Inquiry, Product, Category, DashboardStats } from './types';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://mani-life-1n34.vercel.app/api';
 
 // Initial Mock Seed (guarantees zero-friction offline preview or standalone run)
 export const initialInquiries: Inquiry[] = [

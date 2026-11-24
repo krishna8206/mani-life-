@@ -26,7 +26,7 @@ export default function CategoriesPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/categories')
+    fetch('https://mani-life-1n34.vercel.app/api/categories')
       .then((r) => r.json())
       .then((data) => {
         setCategories(data);

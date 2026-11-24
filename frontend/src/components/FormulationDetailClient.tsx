@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { API_BASE_URL } from "@/lib/config";
 import {
   Send,
   Phone,
@@ -36,7 +37,7 @@ export default function FormulationDetailClient({
 
   React.useEffect(() => {
     let isMounted = true;
-    fetch(`/api/products/${formulation.slug}`)
+    fetch(`${API_BASE_URL}/api/products/${formulation.slug}`)
       .then((res) => {
         if (!res.ok) throw new Error('Product not in live db');
         return res.json();

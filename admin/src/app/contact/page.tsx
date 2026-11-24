@@ -228,7 +228,7 @@ export default function ContactAdminPage() {
     async function fetchContactCms() {
       try {
         setLoading(true);
-        const res = await fetch('http://localhost:5000/api/contact-page');
+        const res = await fetch('https://mani-life-1n34.vercel.app/api/contact-page');
         if (res.ok) {
           const data = await res.json();
           if (data && data.hero) {
@@ -258,7 +258,7 @@ export default function ContactAdminPage() {
   const handleSave = async () => {
     try {
       setSaving(true);
-      const res = await fetch('http://localhost:5000/api/contact-page', {
+      const res = await fetch('https://mani-life-1n34.vercel.app/api/contact-page', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(cms),

@@ -13,6 +13,7 @@ import {
 import { CategoryMeta, ProductItem } from "@/data/products";
 import { getCategoryShowcase } from "@/data/categoryShowcase";
 import QuoteModal from "@/components/QuoteModal";
+import { API_BASE_URL } from "@/lib/config";
 
 interface CategoryDetailClientProps {
   categoryMeta: CategoryMeta;
@@ -69,7 +70,7 @@ export default function CategoryDetailClient({
   // Live client-side hydration from MongoDB Atlas
   React.useEffect(() => {
     let isMounted = true;
-    fetch(`/api/categories/${categoryMeta.slug}`)
+    fetch(`${API_BASE_URL}/api/categories/${categoryMeta.slug}`)
       .then((res) => {
         if (!res.ok) throw new Error('Failed to load live category');
         return res.json();

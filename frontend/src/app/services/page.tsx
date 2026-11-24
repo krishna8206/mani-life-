@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { API_BASE_URL } from "@/lib/config";
 import {
   FlaskConical,
   Package,
@@ -198,7 +199,7 @@ export default function ServicesPage() {
 
   // Fetch dynamic CMS data from MongoDB Atlas
   useEffect(() => {
-    fetch("/api/services-page")
+    fetch(`${API_BASE_URL}/api/services-page`)
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.hero) {

@@ -395,7 +395,7 @@ export default function AboutAdminPage() {
   const fetchAboutData = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/about');
+      const res = await fetch('https://mani-life-1n34.vercel.app/api/about');
       if (res.ok) {
         const data = await res.json();
         if (data && data.hero) {
@@ -424,7 +424,7 @@ export default function AboutAdminPage() {
     if (e) e.preventDefault();
     setSaving(true);
     try {
-      const res = await fetch('http://localhost:5000/api/about', {
+      const res = await fetch('https://mani-life-1n34.vercel.app/api/about', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(cms),

@@ -13,6 +13,7 @@ import {
   MessageSquare,
 } from "lucide-react";
 import CosmeticAmbientBackground from "@/components/CosmeticAmbientBackground";
+import { API_BASE_URL } from "@/lib/config";
 
 interface ContactCard {
   id: string;
@@ -175,7 +176,7 @@ export default function ContactPage() {
   useEffect(() => {
     async function loadContactCms() {
       try {
-        const res = await fetch("/api/contact-page");
+        const res = await fetch(`${API_BASE_URL}/api/contact-page`);
         if (res.ok) {
           const data = await res.json();
           if (data && data.hero) {

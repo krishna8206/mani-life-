@@ -173,7 +173,7 @@ export default function CategoryDetailPage({
   const fetchCategoryData = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost:5000/api/categories/${categorySlug}`);
+      const res = await fetch(`https://mani-life-1n34.vercel.app/api/categories/${categorySlug}`);
       if (res.ok) {
         const data = await res.json();
         if (data && (data.name || data.hero)) {
@@ -233,7 +233,7 @@ export default function CategoryDetailPage({
   const handleSave = async () => {
     try {
       setSaving(true);
-      const res = await fetch(`http://localhost:5000/api/categories/${categorySlug}`, {
+      const res = await fetch(`https://mani-life-1n34.vercel.app/api/categories/${categorySlug}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(cms),
@@ -356,7 +356,7 @@ export default function CategoryDetailPage({
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/products/${identifier}`, {
+      const res = await fetch(`https://mani-life-1n34.vercel.app/api/products/${identifier}`, {
         method: 'DELETE',
       });
       if (res.ok) {
@@ -409,7 +409,7 @@ export default function CategoryDetailPage({
         ],
       };
 
-      const res = await fetch('http://localhost:5000/api/products', {
+      const res = await fetch('https://mani-life-1n34.vercel.app/api/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
@@ -446,7 +446,7 @@ export default function CategoryDetailPage({
 
     try {
       setSavingProductDetail(true);
-      const res = await fetch(`http://localhost:5000/api/products/${encodeURIComponent(identifier)}`, {
+      const res = await fetch(`https://mani-life-1n34.vercel.app/api/products/${encodeURIComponent(identifier)}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(editingProduct),

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { API_BASE_URL } from "@/lib/config";
 import {
   Sparkles,
   ArrowRight,
@@ -267,7 +268,7 @@ export default function HomePage() {
   useEffect(() => {
     const fetchHomeCMS = async () => {
       try {
-        const res = await fetch("/api/home", {
+        const res = await fetch(`${API_BASE_URL}/api/home`, {
           cache: "no-store",
         });
         if (res.ok) {

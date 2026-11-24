@@ -44,7 +44,7 @@ export default function ImageUploadInput({
       });
 
       // 2. Upload to backend Cloudinary endpoint
-      const res = await fetch('http://localhost:5000/api/upload', {
+      const res = await fetch('https://mani-life-1n34.vercel.app/api/upload', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ image: base64Data, folder }),

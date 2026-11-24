@@ -11,6 +11,7 @@ import { certificationsData } from "@/data/certifications";
 import QuoteModal from "@/components/QuoteModal";
 import CertificatePlaqueCard from "@/components/CertificatePlaqueCard";
 import QualityTracePipeline from "@/components/QualityTracePipeline";
+import { API_BASE_URL } from "@/lib/config";
 
 const renderTrustIcon = (iconName: string) => {
   const cls = "w-4 h-4 text-[#164666] shrink-0";
@@ -112,7 +113,7 @@ export default function CertificationsPage() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
 
   useEffect(() => {
-    fetch("/api/certifications")
+    fetch(`${API_BASE_URL}/api/certifications`)
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.hero) {

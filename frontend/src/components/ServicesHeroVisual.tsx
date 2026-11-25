@@ -96,7 +96,7 @@ export default function ServicesHeroVisual({ image, alt }: ServicesHeroVisualPro
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[390px] xl:max-w-[430px] mx-auto select-none cursor-pointer flex items-center justify-center py-1 max-h-[calc(100dvh-170px)]"
+      className="relative w-full max-w-[420px] sm:max-w-[460px] lg:max-w-[490px] xl:max-w-[520px] mx-auto select-none cursor-pointer flex items-center justify-center py-1"
       style={{
         perspective: "1200px",
       }}
@@ -104,7 +104,7 @@ export default function ServicesHeroVisual({ image, alt }: ServicesHeroVisualPro
       {/* 1. Multi-layered Ambient Atmospheric Cyan Aura */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div
-          className={`w-[320px] sm:w-[350px] h-[400px] sm:h-[450px] rounded-[140px] bg-gradient-to-tr from-sky-300/40 via-teal-200/30 to-sky-100/20 blur-3xl transition-all duration-1000 ease-out ${
+          className={`w-[340px] sm:w-[400px] h-[340px] sm:h-[400px] rounded-full bg-gradient-to-tr from-sky-300/35 via-teal-200/25 to-sky-100/20 blur-3xl transition-all duration-1000 ease-out ${
             isEntered ? "opacity-90 scale-100" : "opacity-0 scale-75"
           }`}
         />
@@ -112,10 +112,10 @@ export default function ServicesHeroVisual({ image, alt }: ServicesHeroVisualPro
 
       {/* 2. Outer 3D Perspective Tilt Container */}
       <div
-        className="relative w-full aspect-[4/5] max-h-[calc(100dvh-175px)] will-change-transform"
+        className="relative w-full aspect-[10/9] max-h-[calc(100dvh-165px)] will-change-transform"
         style={{
           transform: !isEntered
-            ? "perspective(1200px) rotateY(-24deg) rotateX(6deg) scale(0.90) translateY(24px)"
+            ? "perspective(1200px) rotateY(-18deg) rotateX(4deg) scale(0.92) translateY(20px)"
             : "perspective(1200px) rotateY(0deg) rotateX(0deg) scale(1) translateY(0px)",
           opacity: isEntered ? 1 : 0,
           transition: !isEntered
@@ -125,7 +125,7 @@ export default function ServicesHeroVisual({ image, alt }: ServicesHeroVisualPro
       >
         {/* Interactive Tilt Child Frame */}
         <div
-          className="relative w-full h-full"
+          className="relative w-full h-full p-2 sm:p-2.5 rounded-t-[95px] sm:rounded-t-[125px] rounded-b-[30px] sm:rounded-b-[34px] bg-white/55 backdrop-blur-md border border-white/95 shadow-[0_24px_60px_rgba(18,65,95,0.14)]"
           style={{
             transformStyle: "preserve-3d",
             transform: isHovered
@@ -134,19 +134,19 @@ export default function ServicesHeroVisual({ image, alt }: ServicesHeroVisualPro
             transition: isHovered ? "transform 300ms ease-out" : "transform 500ms ease-out",
           }}
         >
-          {/* Main Architectural Classical Roman Dome Arch */}
+          {/* Main Architectural Soft-Dome Frame (No Side/Top Cutting) */}
           <div
-            className="relative w-full h-full rounded-t-[140px] sm:rounded-t-[175px] lg:rounded-t-[190px] rounded-b-[28px] sm:rounded-b-[36px] overflow-hidden border-[3px] border-white/95 shadow-[0_22px_55px_rgba(18,65,95,0.18)] ring-1 ring-sky-300/60 bg-gradient-to-b from-sky-50 to-white transition-all duration-500 group"
+            className="relative w-full h-full rounded-t-[86px] sm:rounded-t-[114px] rounded-b-[22px] sm:rounded-b-[26px] overflow-hidden border border-sky-100/80 bg-gradient-to-b from-sky-50 to-white transition-all duration-500 group"
             style={{
-              transform: "translateZ(14px)",
+              transform: "translateZ(12px)",
               transformStyle: "preserve-3d",
               isolation: "isolate",
             }}
           >
             {/* High-Resolution Luxury Cosmetic Serums & Formulations Visual */}
             <div
-              className="relative w-full h-full scale-[1.05] transition-transform duration-100 ease-out will-change-transform"
-              style={{ transform: `translateY(${parallaxY}px)` }}
+              className="relative w-full h-full transition-transform duration-100 ease-out will-change-transform"
+              style={{ transform: `translateY(${parallaxY * 0.5}px)` }}
             >
               {image ? (
                 <Image
@@ -154,8 +154,8 @@ export default function ServicesHeroVisual({ image, alt }: ServicesHeroVisualPro
                   alt={alt || "Mani Lifestyle - Bespoke Cosmetics Formulations & Private Label Manufacturing"}
                   fill
                   priority
-                  className="object-cover object-center scale-100 transition-transform duration-700 ease-out group-hover:scale-106"
-                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  sizes="(max-width: 1024px) 100vw, 48vw"
                 />
               ) : (
                 <div className="w-full h-full bg-gradient-to-br from-sky-50 via-white to-sky-100/60 flex items-center justify-center text-xs text-slate-400">

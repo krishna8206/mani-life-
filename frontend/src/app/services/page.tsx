@@ -298,10 +298,10 @@ export default function ServicesPage() {
         <div className="absolute top-1/3 right-[8%] w-[520px] h-[520px] bg-sky-200/35 rounded-full blur-[90px] pointer-events-none animate-pulse-glow" />
 
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             {/* Left: Editorial Content with Downward Entrance Cascade */}
             <div
-              className="lg:col-span-7 space-y-3 sm:space-y-3.5 lg:space-y-3.5 xl:space-y-4 will-change-transform"
+              className="lg:col-span-6 space-y-3.5 sm:space-y-4 will-change-transform"
               style={{
                 transform: isHeroEntered ? "translateY(0px)" : "translateY(24px)",
                 opacity: isHeroEntered ? 1 : 0,
@@ -342,7 +342,7 @@ export default function ServicesPage() {
               </h1>
 
               {/* Subtext */}
-              <p className="text-xs sm:text-sm lg:text-[14px] text-[#475569] leading-relaxed max-w-xl font-normal">
+              <p className="pl-3.5 border-l-2 border-[#164666]/30 text-xs sm:text-sm lg:text-[14px] text-[#475569] leading-relaxed max-w-xl font-normal">
                 {cms.hero.subheadline}
               </p>
 
@@ -350,7 +350,7 @@ export default function ServicesPage() {
               <div className="pt-1 flex flex-wrap items-center gap-3">
                 <button
                   onClick={() => setIsQuoteOpen(true)}
-                  className="btn-shimmer-sweep px-5 sm:px-6 py-3 sm:py-3.5 bg-[#164666] hover:bg-[#0f344d] text-white font-medium text-xs sm:text-sm rounded-[10px] flex items-center justify-center gap-2 shadow-md shadow-[#164666]/25 hover:shadow-[0_8px_24px_rgba(22,70,102,0.32)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.99] cursor-pointer group"
+                  className="btn-shimmer-sweep px-5 sm:px-6 py-3 sm:py-3.5 bg-[#164666] hover:bg-[#0f344d] text-white font-medium text-xs sm:text-sm rounded-full flex items-center justify-center gap-2 shadow-md shadow-[#164666]/25 hover:shadow-[0_8px_24px_rgba(22,70,102,0.32)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.99] cursor-pointer group"
                 >
                   <span>{cms.hero.primaryCtaText}</span>
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -358,7 +358,7 @@ export default function ServicesPage() {
 
                 <a
                   href={`tel:${cleanPhone}`}
-                  className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white hover:bg-slate-50/90 text-[#0f172a] font-medium text-xs sm:text-sm rounded-[10px] border border-[#d4e3ee] hover:border-[#164666] text-center transition-all shadow-xs flex items-center gap-2 hover:shadow-md hover:scale-[1.01]"
+                  className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white hover:bg-slate-50/90 text-[#0f172a] font-medium text-xs sm:text-sm rounded-full border border-[#d4e3ee] hover:border-[#164666] text-center transition-all shadow-xs flex items-center gap-2 hover:shadow-md hover:scale-[1.01]"
                 >
                   <Phone className="w-4 h-4 text-[#164666]" />
                   <span>{cms.hero.secondaryCtaText}</span>
@@ -367,29 +367,29 @@ export default function ServicesPage() {
 
               {/* Trust Indicators Strip */}
               {cms.hero.trustIndicators && cms.hero.trustIndicators.length > 0 && (
-                <div className="pt-3.5 sm:pt-4 border-t border-[#c8d9e6]/70 flex flex-wrap items-center gap-y-3 gap-x-4 sm:gap-x-5 text-[#092232] relative z-20">
+                <div className="pt-2 grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-[#092232] relative z-20">
                   {cms.hero.trustIndicators.map((item, idx) => (
-                    <React.Fragment key={item.id || idx}>
-                      {idx > 0 && <div className="hidden sm:block w-[1px] h-7 bg-slate-200/90" />}
-                      <div className="group/trust flex items-center gap-2.5 px-3 py-1.5 -mx-3 -my-1.5 rounded-xl transition-all duration-300 hover:bg-white/90 hover:shadow-[0_4px_16px_rgba(18,65,95,0.08)] hover:-translate-y-0.5 cursor-default">
-                        {renderTrustIcon(item.icon)}
-                        <div className="leading-tight">
-                          <div className="font-bold text-xs sm:text-[13px] text-[#092232]">
-                            {item.line1}
-                          </div>
-                          <div className="text-[11px] sm:text-xs text-[#64748b]">
-                            {item.line2}
-                          </div>
+                    <div
+                      key={item.id || idx}
+                      className="group/trust flex items-center gap-2 bg-white/80 backdrop-blur-md border border-white/95 px-2.5 py-2 rounded-2xl shadow-2xs transition-all duration-300 hover:bg-white hover:shadow-md hover:-translate-y-0.5 cursor-default"
+                    >
+                      {renderTrustIcon(item.icon)}
+                      <div className="leading-tight min-w-0">
+                        <div className="font-bold text-[11px] sm:text-xs text-[#092232] truncate">
+                          {item.line1}
+                        </div>
+                        <div className="text-[10px] text-[#64748b] truncate">
+                          {item.line2}
                         </div>
                       </div>
-                    </React.Fragment>
+                    </div>
                   ))}
                 </div>
               )}
             </div>
 
             {/* Right: Branded Architectural Luxury Showcase */}
-            <div className="lg:col-span-5 relative flex items-center justify-center lg:justify-end">
+            <div className="lg:col-span-6 relative flex items-center justify-center lg:justify-end">
               <ServicesHeroVisual image={cms.hero?.image} alt={cms.hero?.imageAlt} />
             </div>
           </div>

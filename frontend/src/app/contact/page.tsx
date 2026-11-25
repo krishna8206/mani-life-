@@ -248,70 +248,32 @@ export default function ContactPage() {
       <CosmeticAmbientBackground />
 
       {/* ======================================================== */}
-      {/* 1. HERO SECTION (THEMED WITH SITE DESIGN SYSTEM)         */}
+      {/* 1. UNIFIED CONTACT US & ENQUIRY FORM SECTION (2 COLUMNS) */}
       {/* ======================================================== */}
-      <section className="relative w-full pt-20 pb-16 sm:pt-24 sm:pb-20 text-center overflow-hidden border-b border-sky-200/40">
-        {/* Background Hero Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
-          style={{ backgroundImage: `url('${cms.hero.backgroundImage || "/images/contact-hero.webp"}')` }}
-        />
-        {/* Luxury Deep Ocean / Navy Dual-Tone Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a192f]/80 via-[#10364f]/75 to-[#0f172a]/90 backdrop-blur-[1px]" />
-
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 space-y-4">
-          {/* Brand Micro-header with decorative horizontal bars */}
-          <div className="flex items-center justify-center gap-2.5">
-            <span className="w-8 h-[1.5px] bg-sky-300/60" />
-            <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-sky-200">
-              {cms.hero.kicker}
-            </span>
-            <span className="w-8 h-[1.5px] bg-sky-300/60" />
-          </div>
-
-          {/* Master Headline in Playfair Serif with Italic Accent */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-cormorant font-semibold text-white tracking-tight leading-[1.08]">
-            {cms.hero.headlinePart1}{" "}
-            <span className="font-cormorant font-semibold text-sky-200">
-              {cms.hero.headlineHighlight}
-            </span>
-          </h1>
-
-          {/* Subtitle */}
-          <p className="text-sm sm:text-base md:text-lg text-slate-200 max-w-2xl mx-auto font-normal leading-relaxed">
-            {cms.hero.subheadline}
-          </p>
-        </div>
-      </section>
-
-      {/* ======================================================== */}
-      {/* 2. CONTACT INFO & ENQUIRY FORM SECTION (2 COLUMNS)       */}
-      {/* ======================================================== */}
-      <section className="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="pt-20 pb-16 sm:pt-24 sm:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           
           {/* ──────────────────────────────────────────────────────── */}
-          {/* LEFT COLUMN: Contact Info                                */}
+          {/* LEFT COLUMN: Single Unified Contact Us Header & Details  */}
           {/* ──────────────────────────────────────────────────────── */}
-          <div className="lg:col-span-5 space-y-8">
-            {/* Column Header matching Site's Signature Style */}
-            <div className="space-y-2">
+          <div className="lg:col-span-5 space-y-6">
+            {/* Single Unified Page Header */}
+            <div className="space-y-2.5">
               <div className="flex items-center gap-2.5">
-                <span className="w-8 h-[1.5px] bg-[#4a728e]" />
-                <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
-                  {cms.channels.eyebrow}
+                <span className="w-7 h-[1.5px] bg-[#164666] shrink-0" />
+                <span className="text-[9.5px] sm:text-[10px] uppercase tracking-[0.13em] font-semibold text-[#164666] sm:whitespace-nowrap">
+                  {cms.hero.kicker}
                 </span>
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-cormorant font-semibold text-[#091e2f] leading-[1.12] tracking-tight">
-                {cms.channels.title}{" "}
-                <span className="font-cormorant font-semibold text-[#164666]">
-                  {cms.channels.highlight}
+              <h1 className="text-4xl sm:text-5xl lg:text-[3.15rem] font-cormorant font-semibold text-[#091e2f] leading-[1.06] tracking-tight">
+                {cms.hero.headlinePart1}{" "}
+                <span className="italic font-semibold text-[#164666]">
+                  {cms.hero.headlineHighlight}
                 </span>
-              </h2>
-              <div className="w-16 h-1 bg-[#1b628b] rounded-full mt-2 mb-3" />
-              <p className="text-sm sm:text-[15px] text-[#64748b] leading-relaxed font-normal whitespace-pre-line">
-                {cms.channels.description}
+              </h1>
+              <div className="w-12 h-[2.5px] bg-[#164666] rounded-full" />
+              <p className="text-sm sm:text-[15px] text-slate-600 leading-relaxed font-normal pt-0.5">
+                {cms.hero.subheadline}
               </p>
             </div>
 

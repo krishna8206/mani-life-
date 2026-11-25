@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { CheckCircle2, FlaskConical, ShieldCheck, Sparkles } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 export interface QualityStep {
   step: string;
@@ -88,16 +88,16 @@ export function QualityTracePipeline({
   }, []);
 
   return (
-    <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+    <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
       {/* --- LEFT: ATELIER LABORATORY IMAGE WITH OPTICAL SCROLL PARALLAX --- */}
-      <div className="lg:col-span-5 flex justify-center">
+      <div className="lg:col-span-5 flex">
         <div
-          className={`relative w-full max-w-md lg:max-w-none transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          className={`relative w-full h-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
             isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-[0.97]"
           }`}
         >
           {/* Outer Luxury Shadow & Border Shell */}
-          <div className="relative aspect-[4/3] w-full rounded-3xl overflow-hidden border border-slate-200/90 bg-white shadow-2xl shadow-sky-950/15 group">
+          <div className="relative h-[340px] sm:h-[400px] lg:h-full lg:min-h-[520px] w-full rounded-3xl overflow-hidden border border-slate-200/90 bg-white shadow-2xl shadow-sky-950/15 group">
             {/* Parallax Inner Container */}
             <div
               className="relative w-full h-full scale-[1.08] transition-transform duration-100 ease-out will-change-transform"
@@ -108,34 +108,13 @@ export function QualityTracePipeline({
                 alt={imageAlt || "Analytical cosmetic laboratory testing and sterile cleanroom validation"}
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 480px"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 520px"
+                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
 
             {/* Specular Diagonal Sheen Sweep on Hover */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[160%] skew-x-[-25deg] group-hover:translate-x-[220%] transition-transform duration-1000 ease-out pointer-events-none" />
-
-            {/* Bottom Glass Overlay Badge */}
-            <div className="absolute bottom-3 left-3 right-3 p-3 rounded-2xl bg-white/85 backdrop-blur-md border border-white/80 shadow-md flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-[#164666] text-white flex items-center justify-center shrink-0">
-                  <FlaskConical className="w-4 h-4 text-sky-200" />
-                </div>
-                <div>
-                  <div className="text-[11px] sm:text-xs font-bold text-[#0f172a] leading-tight">
-                    Cleanroom Compounding Suite
-                  </div>
-                  <div className="text-[10px] text-[#64748b]">
-                    ISO Class 7 &bull; WHO-GMP Compliant
-                  </div>
-                </div>
-              </div>
-              <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Audited 2026</span>
-              </span>
-            </div>
           </div>
         </div>
       </div>

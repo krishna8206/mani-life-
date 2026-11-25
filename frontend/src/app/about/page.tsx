@@ -402,10 +402,10 @@ export default function AboutPage() {
                 transition: "transform 850ms cubic-bezier(0.16, 1, 0.3, 1) 100ms, opacity 850ms ease-out 100ms",
               }}
             >
-              {/* Brand Micro-header with Glowing Pill */}
-              <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-white/80 border border-sky-200/80 shadow-2xs backdrop-blur-xs">
-                <span className="w-2 h-2 rounded-full bg-[#164666]" />
-                <span className="text-[10.5px] sm:text-xs uppercase tracking-[0.22em] font-semibold text-[#164666]">
+              {/* Brand Micro-header: Editorial Left-Rule */}
+              <div className="flex items-center gap-2.5">
+                <span className="w-7 h-[1.5px] bg-[#164666] shrink-0" />
+                <span className="text-[10.5px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-[#164666]">
                   {data.hero.kicker}
                 </span>
               </div>

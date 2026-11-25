@@ -29,11 +29,6 @@ import {
   ShoppingCart,
   Send,
 } from "lucide-react";
-import {
-  servicesData,
-  oemProcessStages,
-  formulaModulationSteps,
-} from "@/data/services";
 import QuoteModal from "@/components/QuoteModal";
 import CleanroomScrollProgress from "@/components/CleanroomScrollProgress";
 import ServicePrecisionJourney from "@/components/ServicePrecisionJourney";
@@ -80,115 +75,91 @@ const renderModulationIcon = (
   }
 };
 
-const defaultServicesCms = {
+interface ServicesCmsData {
   hero: {
-    kicker: "CERTIFIED COSMETICS MANUFACTURER · AHMEDABAD, INDIA",
-    headlinePart1: "Our Services.",
-    headlineHighlight1: "Crafting Your Brand’s",
-    headlineHighlight2: "Future.",
-    subheadline:
-      "Mani Lifestyle crafts custom, innovative cosmetics solutions — turning ideas tailored to your exact requirements from concept to finished skincare, haircare, and personal care formulations.",
-    primaryCtaText: "Request Custom Formulation Quote",
-    secondaryCtaText: "Call +91 97246 81096",
-    phone: "+91 97246 81096",
-    trustIndicators: [
-      { id: "1", line1: "Low 500 MOQ", line2: "(Startups & Salons)", icon: "FlaskConical" },
-      { id: "2", line1: "500+ Stock", line2: "Formulas", icon: "Layers" },
-      { id: "3", line1: "ISO 22716 &", line2: "WHO-GMP", icon: "ShieldCheck" },
-      { id: "4", line1: "100% Client", line2: "IP Protection", icon: "Leaf" },
-    ],
-  },
+    kicker: string;
+    headlinePart1: string;
+    headlineHighlight1: string;
+    headlineHighlight2: string;
+    subheadline: string;
+    primaryCtaText: string;
+    secondaryCtaText: string;
+    phone: string;
+    image?: string;
+    imageAlt?: string;
+    trustIndicators: Array<{
+      id: string;
+      line1: string;
+      line2: string;
+      icon: string;
+    }>;
+  };
   precisionJourney: {
-    eyebrow: "MANUFACTURING CAPABILITIES",
-    title: "Four Precision Models for",
-    highlight: "Beauty Brands",
-    description:
-      "Tailored production frameworks designed around your capital requirements, brand maturity, and retail roll-out velocity.",
-    services: servicesData,
-  },
+    eyebrow: string;
+    title: string;
+    highlight: string;
+    description: string;
+    services: Array<{
+      id: string;
+      slug: string;
+      title: string;
+      tagline: string;
+      shortDesc: string;
+      fullDesc: string;
+      features: string[];
+      deliverables: string[];
+      suitableFor: string[];
+      timeline: string;
+      moq: string;
+      image: string;
+    }>;
+  };
   lifecycleStages: {
-    eyebrow: "END-TO-END MANUFACTURING LIFECYCLE",
-    title: "Complete OEM &",
-    highlight: "ODM Services",
-    description:
-      "We turn your ideas that are tailored to your requirements and shape them from concept to a custom skin care product.",
-    stages: oemProcessStages,
-  },
+    eyebrow: string;
+    title: string;
+    highlight: string;
+    description: string;
+    stages: Array<{
+      step: string;
+      title: string;
+      description: string;
+      image: string;
+      highlights: string[];
+    }>;
+  };
   formulaModulation: {
-    eyebrow: "FORMULA MODULATION",
-    title: "From Your Idea to a",
-    highlight: "Perfect Formula",
-    description:
-      "We make the process simple, transparent, and collaborative — so you get a formula that truly fits your brand.",
+    eyebrow: string;
+    title: string;
+    highlight: string;
+    description: string;
     centerDisc: {
-      kicker: "YOUR VISION",
-      title: "OUR FORMULATION",
-      description: "A seamless journey from concept to creation, backed by expertise at every step.",
-    },
-    steps: [
-      {
-        stepNumber: "01",
-        stepLabel: "STEP 1",
-        title: "Clarify Customer Demand",
-        description: "We understand your brand goals, target market and specific requirements.",
-        icon: "MessagesSquare",
-      },
-      {
-        stepNumber: "02",
-        stepLabel: "STEP 2",
-        title: "Fill in Detailed Proofing Form",
-        description: "Share your preferences for texture, ingredients, fragrance, packaging and more.",
-        icon: "FileEdit",
-      },
-      {
-        stepNumber: "03",
-        stepLabel: "STEP 3",
-        title: "Provide Proofing Sample",
-        description: "We develop and send initial samples based on your requirements for testing.",
-        icon: "FlaskConical",
-      },
-      {
-        stepNumber: "04",
-        stepLabel: "STEP 4",
-        title: "Sample Feedback & Confirmation",
-        description: "You review the samples and share your feedback. We refine the formula until it’s approved.",
-        icon: "Star",
-      },
-      {
-        stepNumber: "05",
-        stepLabel: "STEP 5",
-        title: "Sample Adjustment",
-        description: "We fine-tune the formula based on your feedback for the perfect result.",
-        icon: "SlidersHorizontal",
-      },
-      {
-        stepNumber: "06",
-        stepLabel: "STEP 6",
-        title: "Quotation & Place Order",
-        description: "Once confirmed, we share the quotation and proceed with production.",
-        icon: "ShoppingCart",
-      },
-    ],
-  },
+      kicker: string;
+      title: string;
+      description: string;
+    };
+    steps: Array<{
+      stepNumber: string;
+      stepLabel: string;
+      title: string;
+      description: string;
+      icon: string;
+    }>;
+  };
   consultationCta: {
-    eyebrow: "Premier Indian Contract Manufacturing Partner",
-    heading: "Ready to Build Your Dream",
-    highlight: "Personal Care Brand Together?",
-    description:
-      "Whether you want to launch with proven stock formulations or engineer bespoke cosmeceuticals, Mani Lifestyle is your certified manufacturing partner.",
-    primaryCtaText: "Request Custom Quote & Formulation Samples",
-    secondaryCtaText: "Schedule Plant Tour (+91 97246 81096)",
-    phone: "+91 97246 81096",
-    trustPoints: [
-      "Immediate NDA Protection",
-      "24-Hour Technical Feasibility Response",
-      "Direct Factory Pricing",
-    ],
-  },
-};
+    eyebrow: string;
+    heading: string;
+    highlight: string;
+    description: string;
+    primaryCtaText: string;
+    secondaryCtaText: string;
+    phone: string;
+    trustPoints: string[];
+  };
+}
 
 export default function ServicesPage() {
-  const [cms, setCms] = useState(defaultServicesCms);
+  const [cms, setCms] = useState<ServicesCmsData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [isHeroEntered, setIsHeroEntered] = useState(false);
 
@@ -197,57 +168,20 @@ export default function ServicesPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Fetch dynamic CMS data from MongoDB Atlas
+  // Fetch dynamic CMS data strictly from Admin / MongoDB Atlas
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/services-page`)
+    fetch(`${API_BASE_URL}/api/services-page`, { cache: "no-store" })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.hero) {
-          setCms((prev) => ({
-            ...prev,
-            ...data,
-            hero: { ...prev.hero, ...(data.hero || {}) },
-            precisionJourney: {
-              ...prev.precisionJourney,
-              ...(data.precisionJourney || {}),
-              services:
-                data.precisionJourney?.services && data.precisionJourney.services.length > 0
-                  ? data.precisionJourney.services
-                  : prev.precisionJourney.services,
-            },
-            lifecycleStages: {
-              ...prev.lifecycleStages,
-              ...(data.lifecycleStages || {}),
-              stages:
-                data.lifecycleStages?.stages && data.lifecycleStages.stages.length > 0
-                  ? data.lifecycleStages.stages
-                  : prev.lifecycleStages.stages,
-            },
-            formulaModulation: {
-              ...prev.formulaModulation,
-              ...(data.formulaModulation || {}),
-              centerDisc: {
-                ...prev.formulaModulation.centerDisc,
-                ...(data.formulaModulation?.centerDisc || {}),
-              },
-              steps:
-                data.formulaModulation?.steps && data.formulaModulation.steps.length > 0
-                  ? data.formulaModulation.steps
-                  : prev.formulaModulation.steps,
-            },
-            consultationCta: {
-              ...prev.consultationCta,
-              ...(data.consultationCta || {}),
-              trustPoints:
-                data.consultationCta?.trustPoints && data.consultationCta.trustPoints.length > 0
-                  ? data.consultationCta.trustPoints
-                  : prev.consultationCta.trustPoints,
-            },
-          }));
+          setCms(data);
         }
       })
       .catch((err) => {
-        console.warn("Using default services data fallback:", err);
+        console.error("Failed to fetch services CMS data:", err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -255,17 +189,14 @@ export default function ServicesPage() {
   const [slideDirection, setSlideDirection] = useState<"next" | "prev">("next");
   const [isPaused, setIsPaused] = useState(false);
 
-  const stages =
-    cms.lifecycleStages?.stages && cms.lifecycleStages.stages.length > 0
-      ? cms.lifecycleStages.stages
-      : oemProcessStages;
-  const safeProcessIndex = Math.min(activeProcessIndex, stages.length - 1);
-  const activeStage = stages[safeProcessIndex] || stages[0];
+  const stages = cms?.lifecycleStages?.stages || [];
+  const safeProcessIndex = stages.length > 0 ? Math.min(activeProcessIndex, stages.length - 1) : 0;
+  const activeStage = stages[safeProcessIndex];
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto-play slider with smooth 5-second rotation
   useEffect(() => {
-    if (isPaused) {
+    if (isPaused || stages.length === 0) {
       if (timerRef.current) clearTimeout(timerRef.current);
       return;
     }
@@ -282,22 +213,38 @@ export default function ServicesPage() {
   }, [safeProcessIndex, isPaused, stages.length]);
 
   const handleSelectStage = (idx: number) => {
+    if (stages.length === 0) return;
     setSlideDirection(idx > safeProcessIndex ? "next" : "prev");
     setActiveProcessIndex(idx);
   };
 
   const handleNextStage = () => {
+    if (stages.length === 0) return;
     setSlideDirection("next");
     setActiveProcessIndex((prev) => (prev + 1) % stages.length);
   };
 
   const handlePrevStage = () => {
+    if (stages.length === 0) return;
     setSlideDirection("prev");
     setActiveProcessIndex((prev) => (prev === 0 ? stages.length - 1 : prev - 1));
   };
 
-  const cleanPhone = (cms.hero?.phone || "+91 97246 81096").replace(/[^0-9]/g, "");
-  const ctaPhone = (cms.consultationCta?.phone || "+91 97246 81096").replace(/[^0-9]/g, "");
+  if (isLoading || !cms) {
+    return (
+      <div className="min-h-[100dvh] bg-gradient-to-b from-[#ffffff] via-[#f4f9fc] to-[#e6f2f9] flex items-center justify-center px-4">
+        <div className="flex flex-col items-center gap-3 text-center">
+          <div className="w-8 h-8 rounded-full border-2 border-[#164666]/20 border-t-[#164666] animate-spin" />
+          <p className="text-xs uppercase tracking-[0.2em] font-semibold text-[#164666]/70">
+            Loading Services...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  const cleanPhone = (cms.hero?.phone || "").replace(/[^0-9]/g, "");
+  const ctaPhone = (cms.consultationCta?.phone || "").replace(/[^0-9]/g, "");
   const whatsappUrl = `https://wa.me/${ctaPhone}?text=Hi%2C%20I%20would%20like%20to%20inquire%20about%20cosmetics%20manufacturing%20services.`;
 
   // Orbit desktop node coordinates along 215px circle centered at (550, 260)
@@ -443,7 +390,7 @@ export default function ServicesPage() {
 
             {/* Right: Branded Architectural Luxury Showcase */}
             <div className="lg:col-span-5 relative flex items-center justify-center lg:justify-end">
-              <ServicesHeroVisual />
+              <ServicesHeroVisual image={cms.hero?.image} alt={cms.hero?.imageAlt} />
             </div>
           </div>
         </div>

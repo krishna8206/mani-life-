@@ -48,6 +48,8 @@ export interface IServicesPage extends Document {
     primaryCtaText: string;
     secondaryCtaText: string;
     phone: string;
+    image?: string;
+    imageAlt?: string;
     trustIndicators: ITrustIndicator[];
   };
   precisionJourney: {
@@ -104,6 +106,11 @@ const ServicesPageSchema = new Schema<IServicesPage>(
       primaryCtaText: { type: String, default: 'Request Custom Formulation Quote' },
       secondaryCtaText: { type: String, default: 'Call +91 97246 81096' },
       phone: { type: String, default: '+91 97246 81096' },
+      image: { type: String, default: '/images/hero-serums.jpg' },
+      imageAlt: {
+        type: String,
+        default: 'Mani Lifestyle - Bespoke Cosmetics Formulations & Private Label Manufacturing',
+      },
       trustIndicators: [
         {
           id: { type: String },

@@ -3,7 +3,12 @@
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 
-export default function ServicesHeroVisual() {
+interface ServicesHeroVisualProps {
+  image?: string;
+  alt?: string;
+}
+
+export default function ServicesHeroVisual({ image, alt }: ServicesHeroVisualProps = {}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [rotate, setRotate] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
@@ -143,14 +148,20 @@ export default function ServicesHeroVisual() {
               className="relative w-full h-full scale-[1.05] transition-transform duration-100 ease-out will-change-transform"
               style={{ transform: `translateY(${parallaxY}px)` }}
             >
-              <Image
-                src="/images/hero-serums.jpg"
-                alt="Mani Lifestyle - Bespoke Cosmetics Formulations & Private Label Manufacturing"
-                fill
-                priority
-                className="object-cover object-center scale-100 transition-transform duration-700 ease-out group-hover:scale-106"
-                sizes="(max-width: 1024px) 100vw, 45vw"
-              />
+              {image ? (
+                <Image
+                  src={image}
+                  alt={alt || "Mani Lifestyle - Bespoke Cosmetics Formulations & Private Label Manufacturing"}
+                  fill
+                  priority
+                  className="object-cover object-center scale-100 transition-transform duration-700 ease-out group-hover:scale-106"
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-sky-50 via-white to-sky-100/60 flex items-center justify-center text-xs text-slate-400">
+                  No hero image configured
+                </div>
+              )}
             </div>
 
             {/* Clean soft ambient highlight across top glass rim */}

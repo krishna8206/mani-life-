@@ -48,6 +48,11 @@ const ServicesPageSchema = new mongoose_1.Schema({
         primaryCtaText: { type: String, default: 'Request Custom Formulation Quote' },
         secondaryCtaText: { type: String, default: 'Call +91 97246 81096' },
         phone: { type: String, default: '+91 97246 81096' },
+        image: { type: String, default: '/images/hero-serums.jpg' },
+        imageAlt: {
+            type: String,
+            default: 'Mani Lifestyle - Bespoke Cosmetics Formulations & Private Label Manufacturing',
+        },
         trustIndicators: [
             {
                 id: { type: String },

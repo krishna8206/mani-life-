@@ -64,6 +64,8 @@ const defaultCmsData = {
     primaryCtaText: 'Request Custom Formulation Quote',
     secondaryCtaText: 'Call +91 97246 81096',
     phone: '+91 97246 81096',
+    image: '/images/hero-serums.jpg',
+    imageAlt: 'Mani Lifestyle - Bespoke Cosmetics Formulations & Private Label Manufacturing',
     trustIndicators: [
       { id: '1', line1: 'Low 500 MOQ', line2: '(Startups & Salons)', icon: 'FlaskConical' },
       { id: '2', line1: '500+ Stock', line2: 'Formulas', icon: 'Layers' },
@@ -848,6 +850,15 @@ export default function ServicesAdminPage() {
                         setCms({ ...cms, hero: { ...cms.hero, phone: e.target.value } })
                       }
                       className="w-full bg-[#06131f] border border-[#14334d] rounded-xl px-3.5 py-2.5 text-slate-100 focus:outline-none focus:border-sky-500"
+                    />
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <ImageUploadInput
+                      label="Hero Arch Showcase Image"
+                      value={cms.hero.image || '/images/hero-serums.jpg'}
+                      onChange={(url) => setCms({ ...cms, hero: { ...cms.hero, image: url } })}
+                      folder="mani-lifestyle/services"
                     />
                   </div>
                 </div>

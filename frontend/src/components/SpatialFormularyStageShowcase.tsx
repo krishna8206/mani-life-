@@ -4,15 +4,10 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import {
   ArrowRight,
-  Send,
-  ShieldCheck,
   Sparkles,
   FlaskConical,
   Microscope,
   Layers,
-  Play,
-  Pause,
-  RotateCcw,
 } from "lucide-react";
 
 interface SpatialFormularyStageShowcaseProps {
@@ -43,11 +38,9 @@ export default function SpatialFormularyStageShowcase({
 }: SpatialFormularyStageShowcaseProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [manualProgress, setManualProgress] = useState<number | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [hoveredPod, setHoveredPod] = useState<number | null>(null);
 
-  const effectiveProgress = manualProgress !== null ? manualProgress : scrollProgress;
+  const effectiveProgress = scrollProgress;
 
   // 60fps hardware-accelerated scroll progress calculation
   useEffect(() => {
@@ -70,11 +63,6 @@ export default function SpatialFormularyStageShowcase({
           const clamped = Math.min(Math.max(rawProgress, 0), 1);
 
           setScrollProgress(clamped);
-
-          // If user scrolls manually, return to scroll control
-          if (manualProgress !== null && !isPlaying) {
-            setManualProgress(null);
-          }
           ticking = false;
         });
         ticking = true;
@@ -84,27 +72,7 @@ export default function SpatialFormularyStageShowcase({
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [manualProgress, isPlaying]);
-
-  // Auto-play demo mode loop
-  useEffect(() => {
-    if (!isPlaying) return;
-
-    let animFrame: number;
-    let startTime: number | null = null;
-    const duration = 4000; // 4s smooth loop
-
-    const loop = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
-      const progress = (elapsed % duration) / duration;
-      setManualProgress(progress);
-      animFrame = requestAnimationFrame(loop);
-    };
-
-    animFrame = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(animFrame);
-  }, [isPlaying]);
+  }, []);
 
   // =========================================================================
   // HARMONIOUS 3D UNCAP ANIMATION FOR ALL 3 HERO PRODUCTS
@@ -144,7 +112,7 @@ export default function SpatialFormularyStageShowcase({
     <div ref={containerRef} className="relative w-full h-[225vh] bg-[#f4f8fc]">
       {/* Sticky Full-Viewport Presentation Stage: Perfectly Centered */}
       <section className="sticky top-0 w-full h-screen flex flex-col justify-center py-2 sm:py-3 overflow-hidden border-b border-slate-200/80">
-        
+
         {/* Soft Ambient Laboratory Daylight Background Glows */}
         <div className="absolute top-1/4 left-1/4 w-[850px] h-[550px] bg-sky-100/40 rounded-full blur-[140px] pointer-events-none" />
         <div className="absolute -bottom-10 right-1/4 w-[650px] h-[450px] bg-blue-100/35 rounded-full blur-[130px] pointer-events-none" />
@@ -180,73 +148,104 @@ export default function SpatialFormularyStageShowcase({
         </svg>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto flex flex-col justify-center">
-          
+
           {/* Main Asymmetrical Stage Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-7 xl:gap-9 items-center">
-            
+
             {/* ========================================================= */}
-            {/* LEFT COLUMN (Col 4): Headline, Trust Stepper & Primary CTA */}
+            {/* LEFT COLUMN (Col 4): Editorial Dossier, KPI Strip & CTA   */}
             {/* ========================================================= */}
             <div className="lg:col-span-4 flex flex-col justify-between py-1">
-              
-              {/* Eyebrow & Headline */}
+
+              {/* Frosted Pill Eyebrow, Editorial Headline & Accented Brief */}
               <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="w-7 h-[1.5px] bg-[#164666]" />
-                  <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.25em] font-semibold text-[#164666]">
+                <div className="flex items-center gap-2.5 mb-2.5">
+                  <span className="w-7 h-[1.5px] bg-[#164666] shrink-0" />
+                  <span className="text-[9.5px] sm:text-[10px] uppercase tracking-[0.16em] font-semibold text-[#164666] leading-snug">
                     {data?.eyebrow || 'Core Specializations • Third-Party Manufacturing'}
                   </span>
                 </div>
 
-                <h2 className="text-2xl sm:text-3xl lg:text-[2.65rem] font-cormorant font-semibold text-[#091e2f] leading-[1.1] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-cormorant font-semibold text-[#091e2f] leading-[1.08] tracking-tight">
                   {data?.title || (
                     <>
                       Our 3 Hero Product{' '}
-                      <span className="font-cormorant font-semibold text-[#164666]">Categories.</span>
+                      <span className="italic font-semibold text-[#164666]">Categories.</span>
                     </>
                   )}
                 </h2>
 
-                <p className="mt-2 text-xs sm:text-[12px] text-slate-600 leading-relaxed font-normal max-w-md">
+                <p className="mt-2.5 pl-3 border-l-2 border-[#164666]/30 text-xs sm:text-[12px] text-slate-600 leading-relaxed font-normal max-w-md">
                   {data?.desc ||
                     'Proprietary formulation, in-house cleanroom R&D compounding, and certified contract bottling — engineered for instant market performance and ready to bottle for your brand.'}
                 </p>
               </div>
 
-              {/* Minimal 3-Step Laboratory Trust Nodes */}
-              <div className="relative my-3.5 sm:my-4 pl-1">
-                <div className="absolute left-4.5 top-3.5 bottom-4 w-px border-l-2 border-dashed border-sky-300/70" />
+              {/* 3-Column Bento KPI Strip */}
+              <div className="grid grid-cols-3 gap-2 my-3">
+                <div className="bg-white/80 backdrop-blur-md border border-white/95 rounded-xl px-2.5 py-2 shadow-2xs">
+                  <div className="text-sm sm:text-[15px] font-cormorant font-bold text-[#091e2f] leading-none">
+                    600+
+                  </div>
+                  <div className="text-[9.5px] font-medium text-slate-500 mt-0.5 leading-tight">
+                    Validated Recipes
+                  </div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-md border border-white/95 rounded-xl px-2.5 py-2 shadow-2xs">
+                  <div className="text-sm sm:text-[15px] font-cormorant font-bold text-[#164666] leading-none">
+                    WHO-GMP
+                  </div>
+                  <div className="text-[9.5px] font-medium text-slate-500 mt-0.5 leading-tight">
+                    Pilot Cleanroom
+                  </div>
+                </div>
+                <div className="bg-white/80 backdrop-blur-md border border-white/95 rounded-xl px-2.5 py-2 shadow-2xs">
+                  <div className="text-sm sm:text-[15px] font-cormorant font-bold text-[#091e2f] leading-none">
+                    500 Units
+                  </div>
+                  <div className="text-[9.5px] font-medium text-slate-500 mt-0.5 leading-tight">
+                    Starting MOQ
+                  </div>
+                </div>
+              </div>
 
-                <div className="space-y-2.5 relative z-10">
-                  {(data?.trustNodes?.length
-                    ? data.trustNodes
-                    : [
-                        { id: '1', title: 'Formulation Expertise', desc: 'Custom active compounding • 600+ validated recipes', icon: 'FlaskConical' },
-                        { id: '2', title: 'In-House R&D Cleanroom', desc: 'WHO-GMP pilot lab • Precision stability testing', icon: 'Microscope' },
-                        { id: '3', title: 'Third-Party Manufacturing', desc: 'Turnkey contract bottling • Starting at 500 units MOQ', icon: 'Layers' },
-                      ]
-                  ).map((node, nIdx) => (
-                    <div
-                      key={node.id || nIdx}
-                      onClick={() => onOpenQuote(node.title)}
-                      className="group flex items-center gap-3 cursor-pointer select-none"
-                    >
-                      <div className="w-8.5 h-8.5 rounded-full bg-white/95 backdrop-blur-md border border-white shadow-xs flex items-center justify-center text-[#164666] group-hover:scale-108 group-hover:shadow-md transition-all duration-300 shrink-0">
-                        {nIdx === 0 && <FlaskConical className="w-3.5 h-3.5 text-[#164666]" />}
-                        {nIdx === 1 && <Microscope className="w-3.5 h-3.5 text-[#164666]" />}
-                        {nIdx >= 2 && <Layers className="w-3.5 h-3.5 text-[#164666]" />}
+              {/* Interactive Glassmorphic Capability Cards */}
+              <div className="space-y-2 mb-3.5">
+                {(data?.trustNodes?.length
+                  ? data.trustNodes
+                  : [
+                    { id: '1', title: 'Formulation Expertise', desc: 'Custom active compounding • 600+ validated recipes', icon: 'FlaskConical' },
+                    { id: '2', title: 'In-House R&D Cleanroom', desc: 'WHO-GMP pilot lab • Precision stability testing', icon: 'Microscope' },
+                    { id: '3', title: 'Third-Party Manufacturing', desc: 'End-to-end Indian contract bottling • Starting at 500 units MOQ', icon: 'Layers' },
+                  ]
+                ).map((node, nIdx) => (
+                  <div
+                    key={node.id || nIdx}
+                    onClick={() => onOpenQuote(node.title)}
+                    className="group flex items-center gap-2.5 px-3 py-2 rounded-2xl bg-white/75 hover:bg-white/95 backdrop-blur-md border border-white/90 hover:border-sky-200/80 shadow-2xs hover:shadow-md transition-all duration-300 cursor-pointer select-none"
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-8 h-8 rounded-xl bg-sky-50/90 border border-sky-100/80 flex items-center justify-center text-[#164666] group-hover:bg-[#164666] group-hover:text-white transition-colors duration-300 shrink-0">
+                        {nIdx === 0 && <FlaskConical className="w-3.5 h-3.5" />}
+                        {nIdx === 1 && <Microscope className="w-3.5 h-3.5" />}
+                        {nIdx >= 2 && <Layers className="w-3.5 h-3.5" />}
                       </div>
-                      <div>
-                        <div className="text-xs sm:text-[12.5px] font-semibold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-tight">
-                          {node.title}
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[9px] font-bold tracking-wider text-sky-600/80">
+                            0{nIdx + 1}
+                          </span>
+                          <div className="text-xs font-semibold text-[#0f172a] group-hover:text-[#164666] transition-colors leading-tight truncate">
+                            {node.title}
+                          </div>
                         </div>
-                        <div className="text-[10px] text-slate-500 font-normal">
-                          {node.desc}
+                        <div className="text-[10px] text-slate-500 font-normal truncate mt-0.5">
+                          {node.desc?.replace(/\bTurnkey\b/gi, "End-to-end Indian")}
                         </div>
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
 
               {/* Bottom Primary CTA Button */}
@@ -266,10 +265,10 @@ export default function SpatialFormularyStageShowcase({
             {/* RIGHT STAGE (Col 8): Clean Organic Pods (Full Uncut Bases, Zero Halos)    */}
             {/* ========================================================================= */}
             <div className="lg:col-span-8 flex flex-col justify-center">
-              
+
               {/* The 3 Organic Pods Grid */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 lg:gap-4.5 items-stretch w-full">
-                
+
                 {/* ----------------------------------------------------------------- */}
                 {/* POD 01: FACE SERUMS (Full Rounded Base, Thread-Unscrew Lift)      */}
                 {/* ----------------------------------------------------------------- */}
@@ -325,7 +324,7 @@ export default function SpatialFormularyStageShowcase({
                   {/* Middle Stage: Complete Bottle with Full Rounded Glass Base (Zero Cutoff) */}
                   <div className="relative z-10 w-full h-64 sm:h-68 flex items-end justify-center px-3 pb-3 overflow-visible">
                     <div className="relative w-40 h-64 flex items-end justify-center">
-                      
+
                       {/* 1. Unbranded Crystal Glass Body with Complete Rounded Base (z-20) */}
                       <div
                         className="absolute bottom-1 left-1/2 -translate-x-1/2 z-20"
@@ -377,18 +376,18 @@ export default function SpatialFormularyStageShowcase({
                         className="absolute left-1/2 -translate-x-1/2 transition-transform ease-out will-change-transform z-30 pointer-events-none"
                         style={{
                           bottom: "142px",
-                          width: "74px",
-                          height: "60px",
+                          width: "66px",
+                          height: "84px",
                           transform: `translateY(-${capLiftDistance}px) rotate(${capRotation}deg)`,
                           transformOrigin: "center bottom",
                         }}
                       >
                         <div className="relative w-full h-full">
                           <Image
-                            src="/images/v5-face-serum-cap.png"
+                            src="/images/hero-face-serum-cap.png"
                             alt="Face Serum Dropper Cap"
                             fill
-                            sizes="74px"
+                            sizes="66px"
                             className="object-contain drop-shadow-[0_10px_16px_rgba(15,23,42,0.2)]"
                             priority
                           />
@@ -399,7 +398,7 @@ export default function SpatialFormularyStageShowcase({
                           <div
                             className="absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full pointer-events-none transition-all ease-out z-25"
                             style={{
-                              top: `${115 + dropletFall}px`,
+                              top: `${139 + dropletFall}px`,
                               background:
                                 "radial-gradient(circle at 35% 35%, #fef08a 0%, #f59e0b 60%, #b45309 100%)",
                               boxShadow:
@@ -415,19 +414,15 @@ export default function SpatialFormularyStageShowcase({
                   </div>
 
                   {/* Bottom Action Area */}
-                  <div className="relative z-10 p-3.5 sm:p-4 pt-0 flex items-center justify-between">
+                  <div className="relative z-10 p-3.5 sm:p-4 pt-0 flex items-center justify-end">
                     <div
-                      className={`w-7.5 h-7.5 rounded-full border border-white/90 flex items-center justify-center transition-all duration-300 shadow-xs ${
-                        hoveredPod === 1
-                          ? "bg-[#0f3554] text-white scale-110 shadow-md"
-                          : "bg-white/80 backdrop-blur-md text-slate-700 hover:bg-white"
-                      }`}
+                      className={`w-7.5 h-7.5 rounded-full border border-white/90 flex items-center justify-center transition-all duration-300 shadow-xs ${hoveredPod === 1
+                        ? "bg-[#0f3554] text-white scale-110 shadow-md"
+                        : "bg-white/80 backdrop-blur-md text-slate-700 hover:bg-white"
+                        }`}
                     >
                       <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                     </div>
-                    <span className="text-[10px] font-medium text-slate-500 group-hover:text-[#164666] transition-colors">
-                      View Formulation &rarr;
-                    </span>
                   </div>
                 </div>
 
@@ -486,7 +481,7 @@ export default function SpatialFormularyStageShowcase({
                   {/* Middle Stage: Complete Amber Bottle with Full Glass Base */}
                   <div className="relative z-10 w-full h-64 sm:h-68 flex items-end justify-center px-3 pb-3 overflow-visible">
                     <div className="relative w-40 h-64 flex items-end justify-center">
-                      
+
                       {/* 1. Unbranded Amber Glass Body with Complete Rounded Base (z-20, NO Sticker) */}
                       <div
                         className="absolute bottom-1 left-1/2 -translate-x-1/2 z-20"
@@ -538,18 +533,18 @@ export default function SpatialFormularyStageShowcase({
                         className="absolute left-1/2 -translate-x-1/2 transition-transform ease-out will-change-transform z-30 pointer-events-none"
                         style={{
                           bottom: "144px",
-                          width: "72px",
-                          height: "58px",
+                          width: "76px",
+                          height: "82px",
                           transform: `translateY(-${capLiftDistance}px) rotate(${capRotation}deg)`,
                           transformOrigin: "center bottom",
                         }}
                       >
                         <div className="relative w-full h-full">
                           <Image
-                            src="/images/v5-hair-serum-cap.png"
+                            src="/images/hero-hair-serum-cap.png"
                             alt="Hair Serum Dropper Cap"
                             fill
-                            sizes="72px"
+                            sizes="76px"
                             className="object-contain drop-shadow-[0_10px_16px_rgba(15,23,42,0.2)]"
                             priority
                           />
@@ -560,7 +555,7 @@ export default function SpatialFormularyStageShowcase({
                           <div
                             className="absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full pointer-events-none transition-all ease-out z-25"
                             style={{
-                              top: `${116 + dropletFall * 0.9}px`,
+                              top: `${140 + dropletFall * 0.9}px`,
                               background:
                                 "radial-gradient(circle at 35% 35%, #fef3c7 0%, #d97706 65%, #92400e 100%)",
                               boxShadow:
@@ -575,19 +570,15 @@ export default function SpatialFormularyStageShowcase({
                     </div>
                   </div>
 
-                  <div className="relative z-10 p-3.5 sm:p-4 pt-0 flex items-center justify-between">
+                  <div className="relative z-10 p-3.5 sm:p-4 pt-0 flex items-center justify-end">
                     <div
-                      className={`w-7.5 h-7.5 rounded-full border border-white/90 flex items-center justify-center transition-all duration-300 shadow-xs ${
-                        hoveredPod === 2
-                          ? "bg-[#059669] text-white scale-110 shadow-md"
-                          : "bg-white/80 backdrop-blur-md text-slate-700 hover:bg-white"
-                      }`}
+                      className={`w-7.5 h-7.5 rounded-full border border-white/90 flex items-center justify-center transition-all duration-300 shadow-xs ${hoveredPod === 2
+                        ? "bg-[#059669] text-white scale-110 shadow-md"
+                        : "bg-white/80 backdrop-blur-md text-slate-700 hover:bg-white"
+                        }`}
                     >
                       <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                     </div>
-                    <span className="text-[10px] font-medium text-slate-500 group-hover:text-[#059669] transition-colors">
-                      View Formulation &rarr;
-                    </span>
                   </div>
                 </div>
 
@@ -646,7 +637,7 @@ export default function SpatialFormularyStageShowcase({
                   {/* Middle Stage: Complete Cyan Bottle (Zero Halos, Zero White Dots, Spring-Loaded Piston Rise) */}
                   <div className="relative z-10 w-full h-64 sm:h-68 flex items-end justify-center px-3 pb-3 overflow-visible">
                     <div className="relative w-40 h-64 flex items-end justify-center">
-                      
+
                       {/* 1. Full Uncut Studio Cyan Glass Body (z-20, Zero Background Box, Complete Base) */}
                       <div
                         className="absolute bottom-1 left-1/2 -translate-x-1/2 z-20"
@@ -710,19 +701,15 @@ export default function SpatialFormularyStageShowcase({
                     </div>
                   </div>
 
-                  <div className="relative z-10 p-3.5 sm:p-4 pt-0 flex items-center justify-between">
+                  <div className="relative z-10 p-3.5 sm:p-4 pt-0 flex items-center justify-end">
                     <div
-                      className={`w-7.5 h-7.5 rounded-full border border-white/90 flex items-center justify-center transition-all duration-300 shadow-xs ${
-                        hoveredPod === 3
-                          ? "bg-[#1b628b] text-white scale-110 shadow-md"
-                          : "bg-white/80 backdrop-blur-md text-slate-700 hover:bg-white"
-                      }`}
+                      className={`w-7.5 h-7.5 rounded-full border border-white/90 flex items-center justify-center transition-all duration-300 shadow-xs ${hoveredPod === 3
+                        ? "bg-[#1b628b] text-white scale-110 shadow-md"
+                        : "bg-white/80 backdrop-blur-md text-slate-700 hover:bg-white"
+                        }`}
                     >
                       <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                     </div>
-                    <span className="text-[10px] font-medium text-slate-500 group-hover:text-[#1b628b] transition-colors">
-                      View Formulation &rarr;
-                    </span>
                   </div>
                 </div>
 
@@ -730,88 +717,6 @@ export default function SpatialFormularyStageShowcase({
 
             </div>
 
-          </div>
-
-          {/* Minimalist 1-Line Third-Party Manufacturing Luxury Glass Trust Seal */}
-          <div className="mt-3.5 sm:mt-4 max-w-5xl mx-auto w-full bg-white/90 backdrop-blur-xl rounded-2xl p-2 sm:p-2.5 border border-white shadow-[0_10px_30px_rgba(22,70,102,0.06),_inset_0_1px_2px_rgba(255,255,255,0.95)] flex flex-col md:flex-row items-center justify-between gap-2 text-center md:text-left">
-            <div className="flex items-center gap-2">
-              <div className="w-7.5 h-7.5 rounded-xl bg-sky-50 border border-sky-100 text-[#164666] flex items-center justify-center shrink-0">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#164666]" strokeWidth={1.8} />
-              </div>
-              <div>
-                <div className="text-[11px] sm:text-xs font-semibold text-[#0f172a]">
-                  Third-Party Formulation &amp; Compounding &bull; Ahmedabad, Gujarat
-                </div>
-                <div className="text-[9.5px] text-slate-500">
-                  WHO-GMP &amp; ISO 22716 Certified &bull; Low 500 Units MOQ &bull; Bench Sample Dispatch
-                </div>
-              </div>
-            </div>
-
-            {/* Interactive Storytelling Controls Bar */}
-            <div className="flex items-center gap-1.5 shrink-0">
-              <button
-                type="button"
-                onClick={() => {
-                  if (isPlaying) {
-                    setIsPlaying(false);
-                  } else {
-                    setManualProgress(0);
-                    setIsPlaying(true);
-                  }
-                }}
-                className={`px-2.5 py-1.5 rounded-xl border text-[10.5px] font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
-                  isPlaying
-                    ? "bg-amber-500 text-white border-amber-600 shadow-sm"
-                    : "bg-[#f0f7fb] hover:bg-[#e1f0fa] text-[#164666] border-[#d9ecf7]"
-                }`}
-                title="Watch uncapping animation play automatically"
-              >
-                {isPlaying ? (
-                  <>
-                    <Pause className="w-3 h-3" />
-                    <span>Pause</span>
-                  </>
-                ) : (
-                  <>
-                    <Play className="w-3 h-3 fill-current" />
-                    <span>Play Storytelling</span>
-                  </>
-                )}
-              </button>
-
-              {manualProgress !== null && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsPlaying(false);
-                    setManualProgress(null);
-                  }}
-                  className="p-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 border border-slate-200 text-xs transition-colors cursor-pointer"
-                  title="Reset to scroll control"
-                >
-                  <RotateCcw className="w-3 h-3" />
-                </button>
-              )}
-
-              <button
-                type="button"
-                onClick={() => onOpenQuote("3 Hero Categories Sample Kit")}
-                className="px-2.5 py-1.5 bg-[#164666] hover:bg-[#10364f] text-white text-[10.5px] font-semibold rounded-xl flex items-center gap-1.5 shadow-xs transition-all hover:scale-[1.02] cursor-pointer"
-              >
-                <Send className="w-3 h-3" />
-                <span>Request Kit</span>
-              </button>
-
-              <a
-                href="https://wa.me/919724681096?text=Hello%20Mani%20Lifestyle,%20I%20am%20interested%20in%20third-party%20manufacturing%20for%20Face%20Serums,%20Hair%20Serums,%20or%20Shampoos."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-2.5 py-1.5 bg-[#f0f7fb] hover:bg-[#e1f0fa] text-[#164666] border border-[#d9ecf7] text-[10.5px] font-semibold rounded-xl transition-colors"
-              >
-                WhatsApp
-              </a>
-            </div>
           </div>
 
         </div>

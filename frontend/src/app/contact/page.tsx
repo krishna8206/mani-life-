@@ -171,6 +171,7 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [copiedType, setCopiedType] = useState<string | null>(null);
 
   useEffect(() => {
@@ -214,31 +215,64 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(null);
 
+    const accessKey =
+      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "1e9cf04e-842e-4f8b-92df-9cbbd224a92f";
     const scriptUrl = cms.enquiryForm.scriptUrl || defaultContactData.enquiryForm.scriptUrl;
 
     try {
-      const data = new FormData();
-      data.append("Full Name", formData.name);
-      data.append("Email Address", formData.email);
-      data.append("Contact Number", formData.phone);
-      data.append("Message", formData.message || "No message provided.");
-      data.append("Source Form", cms.enquiryForm.sourceFormTag || "Contact Us Form");
-
-      // Submit to live Google Apps Script endpoint
-      await fetch(scriptUrl, {
+      // 1. Send enquiry email directly to Marketing@manilifestyle.com via Web3Forms
+      const web3Res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: data,
-        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `New Contact Enquiry from ${formData.name} — Mani Lifestyle`,
+          from_name: "Mani Lifestyle Website",
+          replyto: formData.email,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message || "No message provided.",
+          source: cms.enquiryForm.sourceFormTag || "Contact Us Form",
+        }),
       });
 
-      setIsSubmitting(false);
+      const web3Data = await web3Res.json();
+      if (!web3Res.ok || !web3Data?.success) {
+        throw new Error(web3Data?.message || "Failed to send your enquiry. Please try again.");
+      }
+
+      // 2. Also log to Google Apps Script in the background (non-blocking)
+      if (scriptUrl) {
+        const sheetData = new FormData();
+        sheetData.append("Full Name", formData.name);
+        sheetData.append("Email Address", formData.email);
+        sheetData.append("Contact Number", formData.phone);
+        sheetData.append("Message", formData.message || "No message provided.");
+        sheetData.append("Source Form", cms.enquiryForm.sourceFormTag || "Contact Us Form");
+        fetch(scriptUrl, {
+          method: "POST",
+          body: sheetData,
+          mode: "no-cors",
+        }).catch(() => {});
+      }
+
       setSubmitted(true);
       setFormData({ name: "", email: "", phone: "", message: "" });
-    } catch (err) {
+    } catch (err: unknown) {
+      const msg =
+        err instanceof Error
+          ? err.message
+          : "Unable to send your enquiry right now. Please call +91 97246 81096 or message on WhatsApp.";
       console.error("Submission error:", err);
+      setSubmitError(msg);
+    } finally {
       setIsSubmitting(false);
-      setSubmitted(true);
     }
   };
 
@@ -456,6 +490,12 @@ export default function ContactPage() {
                 {cms.enquiryForm.description}
               </p>
             </div>
+
+            {submitError && (
+              <div className="mb-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-xs sm:text-sm text-rose-700">
+                {submitError}
+              </div>
+            )}
 
             {submitted ? (
               <div className="py-12 text-center space-y-4 animate-in fade-in zoom-in-95 duration-500">

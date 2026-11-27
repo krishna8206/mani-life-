@@ -70,7 +70,7 @@ export const categoryShowcases: Record<string, CategoryShowcase> = {
         },
       ],
       highlights: [
-        "100% Sulfate-Free (SLS/SLES Free) Surfactants",
+        "Sulfate-Free & Gentle Surfactant Options Available",
         "Formulated at pH 5.5 Skin-Identical Balance",
         "Custom Tubes, Foaming Pumps & Silicone Brush Packaging",
         "Pilot Batches Starting from 500 Units",
@@ -163,7 +163,7 @@ export const categoryShowcases: Record<string, CategoryShowcase> = {
         "Pure Cold-Pressed Carrier Oils (Argan, Jojoba, Almond, Sesame)",
         "Active Follicle Stimulants: Pure Rosemary, Redensyl, Biotin",
         "Classical Ayurvedic Taila Paka Vidhi Herb Infusions",
-        "100% Mineral Oil & Paraben Free",
+        "Mineral Oil-Free & Paraben-Free Options Available",
       ],
     },
     productRange: {

@@ -185,10 +185,10 @@ export default function SpatialFormularyStageShowcase({
               <div className="grid grid-cols-3 gap-2 my-3">
                 <div className="bg-white/80 backdrop-blur-md border border-white/95 rounded-xl px-2.5 py-2 shadow-2xs">
                   <div className="text-sm sm:text-[15px] font-cormorant font-bold text-[#091e2f] leading-none">
-                    600+
+                    500+
                   </div>
                   <div className="text-[9.5px] font-medium text-slate-500 mt-0.5 leading-tight">
-                    Validated Recipes
+                    Validated Formulas
                   </div>
                 </div>
                 <div className="bg-white/80 backdrop-blur-md border border-white/95 rounded-xl px-2.5 py-2 shadow-2xs">
@@ -214,7 +214,7 @@ export default function SpatialFormularyStageShowcase({
                 {(data?.trustNodes?.length
                   ? data.trustNodes
                   : [
-                    { id: '1', title: 'Formulation Expertise', desc: 'Custom active compounding • 600+ validated recipes', icon: 'FlaskConical' },
+                    { id: '1', title: 'Formulation Expertise', desc: 'Custom active compounding • 500+ validated formulas', icon: 'FlaskConical' },
                     { id: '2', title: 'In-House R&D Cleanroom', desc: 'WHO-GMP pilot lab • Precision stability testing', icon: 'Microscope' },
                     { id: '3', title: 'Third-Party Manufacturing', desc: 'End-to-end Indian contract bottling • Starting at 500 units MOQ', icon: 'Layers' },
                   ]
@@ -240,7 +240,7 @@ export default function SpatialFormularyStageShowcase({
                           </div>
                         </div>
                         <div className="text-[10px] text-slate-500 font-normal truncate mt-0.5">
-                          {node.desc?.replace(/\bTurnkey\b/gi, "End-to-end Indian")}
+                          {node.desc?.replace(/\bTurnkey\b/gi, "End-to-end Indian").replace(/600\+/g, "500+")}
                         </div>
                       </div>
                     </div>

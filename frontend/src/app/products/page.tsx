@@ -361,13 +361,14 @@ const defaultRangeData = {
 
 export default function ProductsPage() {
   const [cms, setCms] = useState(defaultRangeData);
+  const [isCmsLoaded, setIsCmsLoaded] = useState(false);
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [selectedProductForQuote, setSelectedProductForQuote] = useState<string>("Personal Care Formulations");
   const [searchQuery, setSearchQuery] = useState("");
 
   // Fetch dynamic CMS data from MongoDB Atlas
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/product-range-page`)
+    fetch(`${API_BASE_URL}/api/product-range-page`, { cache: "no-store" })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.hero) {
@@ -397,6 +398,9 @@ export default function ProductsPage() {
       })
       .catch((err) => {
         console.warn("Using default product range data fallback:", err);
+      })
+      .finally(() => {
+        setIsCmsLoaded(true);
       });
   }, []);
 
@@ -517,16 +521,20 @@ export default function ProductsPage() {
             <div className="grid grid-cols-1 min-[860px]:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-8 xl:gap-10 justify-items-center">
               {filteredPersonalCare.map((card, idx) => (
                 <div key={card.id || idx} className="w-full flex justify-center min-w-0">
-                  <TactileCategoryCard
-                    id={card.id}
-                    title={card.title}
-                    archImage={card.archImage}
-                    categorySlug={card.categorySlug}
-                    icon={getCategoryIcon(card.icon)}
-                    items={card.items || []}
-                    priority={idx < 3}
-                    index={idx}
-                  />
+                  {isCmsLoaded ? (
+                    <TactileCategoryCard
+                      id={card.id}
+                      title={card.title}
+                      archImage={card.archImage}
+                      categorySlug={card.categorySlug}
+                      icon={getCategoryIcon(card.icon)}
+                      items={card.items || []}
+                      priority={idx < 3}
+                      index={idx}
+                    />
+                  ) : (
+                    <div className="w-full max-w-[380px] h-[420px] rounded-3xl bg-white/75 border border-slate-200/80 animate-pulse" />
+                  )}
                 </div>
               ))}
             </div>
@@ -539,16 +547,20 @@ export default function ProductsPage() {
           <div className="grid grid-cols-1 min-[860px]:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 lg:gap-8 xl:gap-10 justify-items-center">
             {personalCards.map((card, idx) => (
               <div key={card.id || idx} className="w-full flex justify-center min-w-0">
-                <TactileCategoryCard
-                  id={card.id}
-                  title={card.title}
-                  archImage={card.archImage}
-                  categorySlug={card.categorySlug}
-                  icon={getCategoryIcon(card.icon)}
-                  items={card.items || []}
-                  priority={idx < 3}
-                  index={idx}
-                />
+                {isCmsLoaded ? (
+                  <TactileCategoryCard
+                    id={card.id}
+                    title={card.title}
+                    archImage={card.archImage}
+                    categorySlug={card.categorySlug}
+                    icon={getCategoryIcon(card.icon)}
+                    items={card.items || []}
+                    priority={idx < 3}
+                    index={idx}
+                  />
+                ) : (
+                  <div className="w-full max-w-[380px] h-[420px] rounded-3xl bg-white/75 border border-slate-200/80 animate-pulse" />
+                )}
               </div>
             ))}
           </div>
@@ -610,10 +622,24 @@ export default function ProductsPage() {
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-teal-400/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-2xl mx-auto space-y-4">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-white/10 text-sky-200 border border-white/15 backdrop-blur-md">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>{cms.ctaSection.badge}</span>
-            </span>
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 pb-1">
+              {cms.ctaSection.badge
+                .split("•")
+                .map((item) => item.trim())
+                .filter(Boolean)
+                .map((item, idx) => {
+                  const Icon = idx === 0 ? ShieldCheck : idx === 1 ? FlaskConical : Package;
+                  return (
+                    <span
+                      key={idx}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-wide bg-white/[0.08] hover:bg-white/[0.14] text-sky-100 border border-white/15 backdrop-blur-md transition-colors"
+                    >
+                      <Icon className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
+                      <span>{item}</span>
+                    </span>
+                  );
+                })}
+            </div>
 
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-cormorant font-semibold text-white tracking-tight leading-[1.12]">
               {cms.ctaSection.heading}

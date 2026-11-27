@@ -18,11 +18,11 @@ export default function InnovationPage() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
 
   const cleanStandards = [
-    { name: "Paraben-Free", desc: "No methyl, ethyl, propyl, or butylparabens" },
-    { name: "Sulfate-Free", desc: "No aggressive SLS, SLES, or ALS foaming agents" },
-    { name: "Phthalate-Free", desc: "Zero endocrine-disrupting plasticizers or synthetic fixatives" },
-    { name: "Mineral Oil-Free", desc: "Zero pore-clogging petroleum derivatives or paraffin waxes" },
-    { name: "Formaldehyde Donor-Free", desc: "No DMDM hydantoin or diazolidinyl urea preservatives" },
+    { name: "Paraben-Free Options", desc: "Paraben-free preservative systems available across formulations" },
+    { name: "Sulfate-Free Options", desc: "Mild, sulfate-free cleanser and shampoo options available upon request" },
+    { name: "Phthalate-Free Options", desc: "Phthalate-free fragrance and carrier systems available" },
+    { name: "Plant-Derived Emollient Options", desc: "Mineral oil-free and botanical oil bases available per product brief" },
+    { name: "Formaldehyde Donor-Free", desc: "Modern, gentle broad-spectrum preservation options" },
     { name: "Eco-Silicone Alternatives", desc: "Environmentally friendly, biodegradable plant hemisqualane emollients" },
   ];
 

@@ -71,7 +71,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -133,7 +133,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -195,7 +195,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -257,7 +257,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -319,7 +319,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -381,7 +381,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -444,7 +444,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -505,7 +505,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -567,7 +567,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -629,7 +629,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -691,7 +691,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -753,7 +753,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -815,7 +815,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -877,7 +877,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -939,7 +939,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1001,7 +1001,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1063,7 +1063,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1125,7 +1125,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1187,7 +1187,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1249,7 +1249,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1311,7 +1311,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1373,7 +1373,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1435,7 +1435,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1497,7 +1497,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1559,7 +1559,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1621,7 +1621,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1683,7 +1683,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1745,7 +1745,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1807,7 +1807,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1869,7 +1869,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1931,7 +1931,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -1993,7 +1993,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -2055,7 +2055,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -2117,7 +2117,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -2179,7 +2179,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -2241,7 +2241,7 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
     },
     {
       "title": "Premium Skin-Safe Ingredients",
-      "description": "We formulate with 100% sulfate-free (SLS/SLES free), paraben-free surfactants and certified pure botanical extracts that protect the skin barrier."
+      "description": "Sulfate-free and paraben-free formulation options available using gentle, skin-barrier-friendly surfactants and certified botanical extracts."
     },
     {
       "title": "GMP, ISO 22716, and FDA Certified",
@@ -2266,14 +2266,30 @@ export const faceWashFormulations: Record<string, FormulationDetail> = {
  */
 export function getFormulationDetail(productSlug: string, categorySlug?: string): FormulationDetail | undefined {
   const normalized = productSlug.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-  
-  if (faceWashFormulations[normalized]) {
+
+  const categoryAliasMap: Record<string, string> = {
+    facewash: "cleansers-toners",
+    "hair-oil": "haircare-treatments",
+    serum: "skincare-serums",
+    "skin-cream": "suncare-moisturizers",
+    "essential-oil": "body-bath-wellness",
+    "sheet-masks": "masks-lip-eye",
+  };
+  const resolvedCat = categorySlug
+    ? categoryAliasMap[categorySlug] || categorySlug
+    : undefined;
+  const matchesCategory = (item: FormulationDetail) =>
+    !resolvedCat || item.categorySlug === resolvedCat;
+
+  if (faceWashFormulations[normalized] && matchesCategory(faceWashFormulations[normalized])) {
     return faceWashFormulations[normalized];
   }
 
-  // Fallback: search by partial match
+  // Fallback: search by partial match within the same category only
   const key = Object.keys(faceWashFormulations).find(
-    (k) => k.includes(normalized) || normalized.includes(k)
+    (k) =>
+      matchesCategory(faceWashFormulations[k]) &&
+      (k.includes(normalized) || normalized.includes(k))
   );
   if (key) return faceWashFormulations[key];
 
@@ -2331,7 +2347,7 @@ export function getFormulationDetail(productSlug: string, categorySlug?: string)
       },
       {
         title: "Premium Safe Ingredients",
-        description: `100% free from sulfates, parabens, mineral oils, and controversial synthetic additives.`
+        description: `Custom formulation options available without sulfates, parabens, or mineral oils based on your brand brief.`
       },
       {
         title: "ISO 22716 & WHO-GMP Certified",

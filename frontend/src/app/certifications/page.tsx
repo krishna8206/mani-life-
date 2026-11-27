@@ -60,7 +60,6 @@ const defaultCmsData = {
     phone: "+91 97246 81096",
     trustHighlights: [
       { id: "1", title: "WHO-GMP &", subtitle: "ISO 9001:2015", icon: "ShieldCheck" },
-      { id: "2", title: "Ministry of", subtitle: "AYUSH Licensed", icon: "Award" },
       { id: "3", title: "FDA & FDCA", subtitle: "Export Ready", icon: "Globe2" },
       { id: "4", title: "100% PETA", subtitle: "Animal Test-Free", icon: "Leaf" },
     ],
@@ -115,25 +114,52 @@ const defaultCmsData = {
 
 export default function CertificationsPage() {
   const [cms, setCms] = useState(defaultCmsData);
+  const [isCmsLoaded, setIsCmsLoaded] = useState(false);
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [activeDeckIdx, setActiveDeckIdx] = useState(0);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/certifications`)
+    fetch(`${API_BASE_URL}/api/certifications`, { cache: "no-store" })
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.hero) {
+          const isAyush = (str?: string) => Boolean(str && /ayush/i.test(str));
+          const filteredHighlights = (data.hero?.trustHighlights || defaultCmsData.hero.trustHighlights).filter(
+            (th: { title?: string; subtitle?: string }) => !isAyush(th.title) && !isAyush(th.subtitle)
+          );
+          const rawItems =
+            data.certificationsSection?.items && data.certificationsSection.items.length > 0
+              ? data.certificationsSection.items
+              : defaultCmsData.certificationsSection.items;
+          const filteredItems = rawItems
+            .filter(
+              (c: { id?: string; name?: string; badgeCode?: string }) =>
+                c.id !== "ayush" && !isAyush(c.name) && !isAyush(c.badgeCode)
+            )
+            .map((c: { id?: string; badgeCode?: string; scope?: string }) =>
+              c.id === "fda" || /fdca/i.test(c.badgeCode || "")
+                ? {
+                    ...c,
+                    badgeCode: "FDCA LIC: GC/2040",
+                    scope: /GC\/2040/i.test(c.scope || "")
+                      ? c.scope
+                      : `Mfg. Lic. No.: GC/2040 • ${c.scope || "Cosmetic Facility & Product Registration"}`,
+                  }
+                : c
+            );
+
           setCms((prev) => ({
             ...prev,
             ...data,
-            hero: { ...prev.hero, ...(data.hero || {}) },
+            hero: {
+              ...prev.hero,
+              ...(data.hero || {}),
+              trustHighlights: filteredHighlights,
+            },
             certificationsSection: {
               ...prev.certificationsSection,
               ...(data.certificationsSection || {}),
-              items:
-                data.certificationsSection?.items && data.certificationsSection.items.length > 0
-                  ? data.certificationsSection.items
-                  : prev.certificationsSection.items,
+              items: filteredItems,
             },
             standardsEditorial: {
               ...prev.standardsEditorial,
@@ -154,6 +180,9 @@ export default function CertificationsPage() {
       })
       .catch((err) => {
         console.warn("Using default certifications fallback:", err);
+      })
+      .finally(() => {
+        setIsCmsLoaded(true);
       });
   }, []);
 
@@ -220,10 +249,14 @@ export default function CertificationsPage() {
                 </a>
               </div>
 
-              {/* 4-Tile Frosted Trust Bento Strip */}
+              {/* Frosted Trust Bento Strip */}
               {cms.hero.trustHighlights && cms.hero.trustHighlights.length > 0 && (
                 <div className="pt-2">
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-w-xl">
+                  <div
+                    className={`grid grid-cols-1 ${
+                      cms.hero.trustHighlights.length <= 3 ? "sm:grid-cols-3" : "sm:grid-cols-4"
+                    } gap-2.5 max-w-xl`}
+                  >
                     {cms.hero.trustHighlights.map((th) => (
                       <div
                         key={th.id || th.title}
@@ -311,14 +344,18 @@ export default function CertificationsPage() {
                         <div className="my-4 flex flex-col items-center text-center">
                           <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-b from-white to-sky-50/80 border-2 border-amber-200/80 shadow-[0_10px_25px_rgba(22,70,102,0.10),inset_0_2px_6px_rgba(255,255,255,0.9)] flex items-center justify-center p-3 mb-3.5">
                             <div className="relative w-full h-full">
-                              <Image
-                                src={cert.image}
-                                alt={cert.name}
-                                fill
-                                sizes="112px"
-                                className="object-contain"
-                                priority={idx < 3}
-                              />
+                              {isCmsLoaded ? (
+                                <Image
+                                  src={cert.image}
+                                  alt={cert.name}
+                                  fill
+                                  sizes="112px"
+                                  className="object-contain"
+                                  priority={idx < 3}
+                                />
+                              ) : (
+                                <div className="w-full h-full rounded-full bg-slate-200/60 animate-pulse" />
+                              )}
                             </div>
                           </div>
 
@@ -420,24 +457,37 @@ export default function CertificationsPage() {
             </p>
           </div>
 
-          {/* Certification Badges Showcase Grid with 3D Tilt & Specular Sheen (1:1 Reference Target Design) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4 lg:gap-4 xl:gap-4.5 max-w-[1360px] mx-auto mb-14 sm:mb-16">
-            {cms.certificationsSection.items.map((cert: any, idx) => (
-              <CertificatePlaqueCard
-                key={cert.id || idx}
-                id={cert.id}
-                name={cert.name}
-                authority={cert.authority}
-                scope={cert.scope}
-                importance={cert.importance}
-                badgeCode={cert.badgeCode}
-                image={cert.image}
-                verified={cert.verified}
-                themeKey={cert.themeKey}
-                index={idx}
-                priority={idx < 2}
-              />
-            ))}
+          {/* Certification Badges Showcase Grid with 3D Tilt & Specular Sheen */}
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 ${
+              cms.certificationsSection.items.length <= 4
+                ? "lg:grid-cols-4 max-w-6xl"
+                : "lg:grid-cols-5 max-w-[1360px]"
+            } gap-3.5 sm:gap-4 lg:gap-4 xl:gap-4.5 mx-auto mb-14 sm:mb-16`}
+          >
+            {isCmsLoaded
+              ? cms.certificationsSection.items.map((cert: any, idx) => (
+                  <CertificatePlaqueCard
+                    key={cert.id || idx}
+                    id={cert.id}
+                    name={cert.name}
+                    authority={cert.authority}
+                    scope={cert.scope}
+                    importance={cert.importance}
+                    badgeCode={cert.badgeCode}
+                    image={cert.image}
+                    verified={cert.verified}
+                    themeKey={cert.themeKey}
+                    index={idx}
+                    priority={idx < 2}
+                  />
+                ))
+              : Array.from({ length: 4 }).map((_, idx) => (
+                  <div
+                    key={idx}
+                    className="h-[340px] rounded-3xl bg-white/75 border border-white animate-pulse"
+                  />
+                ))}
           </div>
 
           {/* Authentic Editorial Narrative Box */}

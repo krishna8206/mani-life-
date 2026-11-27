@@ -148,7 +148,7 @@ const defaultAboutState = {
         desc: "Strict adherence to Gujarat FDCA regulatory guidelines, complete microbial and thermal cycling stability assays, and individual batch Certificate of Analysis (COA) verification.",
         icon: "CheckCircle2",
         stats: [
-          { label: "Licensing Body", value: "FDCA Gujarat" },
+          { label: "Licensing Body", value: "FDCA Gujarat (GC/2040)" },
           { label: "Cleanroom Standard", value: "ISO 22716" },
           { label: "Batch Assay", value: "Full COA" },
         ],
@@ -343,6 +343,7 @@ const defaultAboutState = {
 
 export default function AboutPage() {
   const [data, setData] = useState(defaultAboutState);
+  const [isCmsLoaded, setIsCmsLoaded] = useState(false);
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [isHeroEntered, setIsHeroEntered] = useState(false);
 
@@ -354,7 +355,7 @@ export default function AboutPage() {
   useEffect(() => {
     const fetchAboutData = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/about`);
+        const res = await fetch(`${API_BASE_URL}/api/about`, { cache: "no-store" });
         if (res.ok) {
           const json = await res.json();
           if (json && json.hero) {
@@ -375,6 +376,8 @@ export default function AboutPage() {
       } catch (err) {
         // Safe fallback to default data
         console.warn("Using offline/fallback About Us data:", err);
+      } finally {
+        setIsCmsLoaded(true);
       }
     };
     fetchAboutData();
@@ -470,7 +473,11 @@ export default function AboutPage() {
 
             {/* Right Column: Architectural Luxury Elliptical Cleanroom Oculus */}
             <div className="lg:col-span-5 flex justify-center">
-              <AboutHeroVisual image={data.hero.image} alt={data.hero.imageAlt} />
+              {isCmsLoaded ? (
+                <AboutHeroVisual image={data.hero.image} alt={data.hero.imageAlt} />
+              ) : (
+                <div className="w-[320px] sm:w-[345px] lg:w-[365px] h-[440px] sm:h-[475px] rounded-[130px] bg-white/60 border border-sky-200/70 animate-pulse" />
+              )}
             </div>
           </div>
         </div>
@@ -705,13 +712,17 @@ export default function AboutPage() {
             {/* Left Image Showcase */}
             <div className="lg:col-span-5 flex flex-col">
               <div className="relative w-full h-full min-h-[380px] rounded-2xl overflow-hidden border border-slate-200/90 bg-white shadow-lg group">
-                <Image
-                  src={data.infrastructure.image || "/images/quality.png"}
-                  alt={data.infrastructure.imageAlt || "Scientists in modern quality testing laboratory"}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  priority
-                />
+                {isCmsLoaded ? (
+                  <Image
+                    src={data.infrastructure.image || "/images/quality.png"}
+                    alt={data.infrastructure.imageAlt || "Scientists in modern quality testing laboratory"}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    priority
+                  />
+                ) : (
+                  <div className="w-full h-full min-h-[380px] bg-slate-200/70 animate-pulse" />
+                )}
               </div>
             </div>
 

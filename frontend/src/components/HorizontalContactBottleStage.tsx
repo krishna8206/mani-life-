@@ -115,11 +115,12 @@ export default function HorizontalContactBottleStage({
         {/* SECTION HEADER                                                */}
         {/* ------------------------------------------------------------- */}
         <div className="text-center max-w-3xl mx-auto mb-2 sm:mb-3">
-          <div className="inline-flex items-center justify-center gap-2.5 mb-3 px-3.5 py-1 rounded-full bg-white/85 border border-slate-200/80 shadow-2xs backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-[#164666] animate-pulse" />
-            <span className="text-[11px] uppercase tracking-[0.22em] font-semibold text-[#164666]">
+          <div className="flex items-center justify-center gap-2.5 mb-3">
+            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+            <span className="text-[11px] sm:text-xs uppercase tracking-[0.22em] font-semibold text-[#4a728e]">
               {ctaBanner?.eyebrow || "READY TO FORMULATE YOUR NEXT BESTSELLING LINE?"}
             </span>
+            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-[2.9rem] font-cormorant font-semibold text-[#091e2f] leading-[1.14] tracking-tight">

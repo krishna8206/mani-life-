@@ -1188,7 +1188,7 @@ export default function CategoryDetailPage({
                   <div className="flex items-center gap-2">
                     <input
                       type="text"
-                      placeholder="e.g. 100% Sulfate-Free (SLS/SLES Free) Surfactants"
+                      placeholder="e.g. Sulfate-Free Surfactant Options Available"
                       value={newHighlightInput}
                       onChange={(e) => setNewHighlightInput(e.target.value)}
                       onKeyDown={(e) => e.key === 'Enter' && handleAddHighlight()}

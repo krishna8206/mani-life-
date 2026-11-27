@@ -33,11 +33,12 @@ export default function FormulationDetailClient({
 }: FormulationDetailClientProps) {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [data, setData] = useState(formulation);
+  const [isCmsLoaded, setIsCmsLoaded] = useState(false);
   const catSlug = activeCategorySlug || data.categorySlug;
 
   React.useEffect(() => {
     let isMounted = true;
-    fetch(`${API_BASE_URL}/api/products/${formulation.slug}`)
+    fetch(`${API_BASE_URL}/api/products/${formulation.slug}`, { cache: "no-store" })
       .then((res) => {
         if (!res.ok) throw new Error('Product not in live db');
         return res.json();
@@ -91,6 +92,9 @@ export default function FormulationDetailClient({
       })
       .catch(() => {
         // Fallback to static formulation data
+      })
+      .finally(() => {
+        if (isMounted) setIsCmsLoaded(true);
       });
 
     return () => {
@@ -132,15 +136,21 @@ export default function FormulationDetailClient({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left Column: Product Studio Mockup Photo */}
             <div className="lg:col-span-5">
-              <div className="relative rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 p-4 shadow-xl group">
-                <div className="relative w-full h-[380px] sm:h-[460px] rounded-2xl overflow-hidden bg-gradient-to-br from-slate-100 via-slate-50 to-sky-50/40">
-                  <Image
-                    src={data.image}
-                    alt={data.imageAlt}
-                    fill
-                    className="object-cover group-hover:scale-104 transition-transform duration-700 ease-out"
-                    priority
-                  />
+              <div className="relative rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 shadow-xl group">
+                <div className="relative w-full overflow-hidden bg-gradient-to-br from-slate-100 via-slate-50 to-sky-50/40">
+                  {isCmsLoaded ? (
+                    <Image
+                      src={data.image}
+                      alt={data.imageAlt}
+                      width={1000}
+                      height={1000}
+                      sizes="(max-width: 1024px) 100vw, 42vw"
+                      className="w-full h-auto block group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+                      priority
+                    />
+                  ) : (
+                    <div className="w-full aspect-square bg-slate-200/60 animate-pulse" />
+                  )}
                   {/* Floating Badges */}
                   <div className="absolute top-4 left-4 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-md text-[11px] font-semibold text-[#164666] border border-slate-200 shadow-xs">
                     {data.cleanroomBadge || "Ahmedabad Cleanroom Compounding"}

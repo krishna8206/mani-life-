@@ -267,25 +267,38 @@ export default function HomePage() {
 
   // Dynamic CMS Data from MongoDB Atlas (with graceful fallback)
   const [cmsData, setCmsData] = useState<any>(null);
+  const [pageCertifications, setPageCertifications] = useState<any[] | null>(null);
+  const [isCmsLoaded, setIsCmsLoaded] = useState(false);
 
   useEffect(() => {
     const fetchHomeCMS = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/home`, {
-          cache: "no-store",
-        });
-        if (res.ok) {
-          const data = await res.json();
-            if (data && (data.servicesSection || data.hero || data.categoriesSection)) {
-              setCmsData(data);
-            }
+        const [homeRes, certRes] = await Promise.all([
+          fetch(`${API_BASE_URL}/api/home`, { cache: "no-store" }),
+          fetch(`${API_BASE_URL}/api/certifications`, { cache: "no-store" }),
+        ]);
+
+        if (homeRes.ok) {
+          const data = await homeRes.json();
+          if (data && (data.servicesSection || data.hero || data.categoriesSection)) {
+            setCmsData(data);
           }
-        } catch {
-          // Safe offline / fallback operation
         }
-      };
-      fetchHomeCMS();
-    }, []);
+
+        if (certRes.ok) {
+          const certData = await certRes.json();
+          if (certData?.certificationsSection?.items?.length) {
+            setPageCertifications(certData.certificationsSection.items);
+          }
+        }
+      } catch {
+        // Safe offline / fallback operation
+      } finally {
+        setIsCmsLoaded(true);
+      }
+    };
+    fetchHomeCMS();
+  }, []);
 
   const handleOpenQuote = (categoryOrProduct?: any) => {
     if (typeof categoryOrProduct === "string" && categoryOrProduct.trim() !== "") {
@@ -318,7 +331,10 @@ export default function HomePage() {
 
   // Resolved dynamic values
   const heroKicker = cmsData?.hero?.kicker || "Certified Cosmetics Manufacturer • Ahmedabad, India";
-  const heroHeadline = cmsData?.hero?.headline || "Bring Your Beauty Brand to Life.";
+  const heroHeadline =
+    cmsData?.hero?.headline && cmsData.hero.headline !== "Bring Your Beauty Brand to Life."
+      ? cmsData.hero.headline
+      : "Private Label Skincare & Haircare Manufacturer in Ahmedabad";
   const heroSubheadline =
     cmsData?.hero?.subheadline ||
     "Mani Lifestyle is a certified cosmetics manufacturing company based in Ahmedabad, India. We specialize in developing custom and white-label skincare and haircare products for startups, salons, and brands across India.";
@@ -338,9 +354,26 @@ export default function HomePage() {
     desc: "Discover why brands choose Mani Lifestyle for their success.",
   };
 
-  const certifications = cmsData?.certificationsSection?.items?.length
-    ? cmsData.certificationsSection.items
-    : certificationsData;
+  const rawCertifications = pageCertifications?.length ? pageCertifications : certificationsData;
+  const certifications = rawCertifications
+    .filter(
+      (c: any) =>
+        c.id !== "ayush" &&
+        c.id !== "ayush-certified" &&
+        !/ayush/i.test(c.name || "") &&
+        !/ayush/i.test(c.badgeCode || "")
+    )
+    .map((c: any) =>
+      c.id === "fda" || /fdca/i.test(c.badgeCode || "")
+        ? {
+            ...c,
+            badgeCode: "FDCA LIC: GC/2040",
+            scope: /GC\/2040/i.test(c.scope || "")
+              ? c.scope
+              : `Mfg. Lic. No.: GC/2040 • ${c.scope || "Cosmetic Facility & Product Registration"}`,
+          }
+        : c
+    );
   const certificationsHeader = cmsData?.certificationsSection?.header || {
     eyebrow: "Accredited Quality Standards",
     title: "Certified for Quality and Reliability.",
@@ -608,23 +641,36 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4 lg:gap-4 xl:gap-4.5 items-stretch max-w-[1360px] mx-auto">
-            {certifications.map((cert: any, idx: number) => (
-              <CertificatePlaqueCard
-                key={cert.id || idx}
-                id={cert.id}
-                name={cert.name}
-                authority={cert.authority}
-                scope={cert.scope}
-                importance={cert.importance}
-                badgeCode={cert.badgeCode}
-                image={cert.image}
-                verified={cert.verified}
-                themeKey={cert.themeKey}
-                index={idx}
-                priority={idx < 2}
-              />
-            ))}
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 ${
+              certifications.length <= 4
+                ? "lg:grid-cols-4 max-w-6xl"
+                : "lg:grid-cols-5 max-w-[1360px]"
+            } gap-3.5 sm:gap-4 lg:gap-4 xl:gap-4.5 items-stretch mx-auto`}
+          >
+            {isCmsLoaded
+              ? certifications.map((cert: any, idx: number) => (
+                  <CertificatePlaqueCard
+                    key={cert.id || idx}
+                    id={cert.id}
+                    name={cert.name}
+                    authority={cert.authority}
+                    scope={cert.scope}
+                    importance={cert.importance}
+                    badgeCode={cert.badgeCode}
+                    image={cert.image}
+                    verified={cert.verified}
+                    themeKey={cert.themeKey}
+                    index={idx}
+                    priority={idx < 2}
+                  />
+                ))
+              : Array.from({ length: 4 }).map((_, idx) => (
+                  <div
+                    key={idx}
+                    className="h-[340px] rounded-3xl bg-white/75 border border-white animate-pulse"
+                  />
+                ))}
           </div>
         </div>
       </section>
@@ -672,19 +718,26 @@ export default function HomePage() {
 
           {/* Pro-Level Animated Service Cards (Wider Width, Compact Height, 3D Physics & Parallax) */}
           <div ref={servicesSectionRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4.5 sm:gap-5 lg:gap-5.5 xl:gap-6 items-stretch pt-2 max-w-[1380px] mx-auto">
-            {services.map((service: any, index: number) => {
-              const preset = serviceWavePresets[index % serviceWavePresets.length];
-              return (
-                <ServiceOrganicCard
-                  key={service.num || service.id || index}
-                  service={service}
-                  preset={preset}
-                  index={index}
-                  isServicesVisible={isServicesVisible}
-                  onOpenQuote={handleOpenQuote}
-                />
-              );
-            })}
+            {isCmsLoaded
+              ? services.map((service: any, index: number) => {
+                  const preset = serviceWavePresets[index % serviceWavePresets.length];
+                  return (
+                    <ServiceOrganicCard
+                      key={service.num || service.id || index}
+                      service={service}
+                      preset={preset}
+                      index={index}
+                      isServicesVisible={isServicesVisible}
+                      onOpenQuote={handleOpenQuote}
+                    />
+                  );
+                })
+              : Array.from({ length: 4 }).map((_, idx) => (
+                  <div
+                    key={idx}
+                    className="h-[400px] rounded-[36px] bg-white/75 border border-slate-200/70 animate-pulse"
+                  />
+                ))}
           </div>
         </div>
       </section>

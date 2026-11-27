@@ -38,7 +38,7 @@ type TabKey =
 const initialCmsData = {
   hero: {
     kicker: 'Certified Cosmetics Manufacturer • Ahmedabad, India',
-    headline: 'Bring Your Beauty Brand to Life.',
+    headline: 'Private Label Skincare & Haircare Manufacturer in Ahmedabad',
     subheadline:
       'Mani Lifestyle is a certified cosmetics manufacturing company based in Ahmedabad, India. We specialize in developing custom and white-label skincare and haircare products for startups, salons, and brands across India.',
     primaryCtaText: 'Request Custom Formulation Quote',
@@ -58,7 +58,7 @@ const initialCmsData = {
       {
         id: '1',
         title: 'Formulation Expertise',
-        desc: 'Custom active compounding • 600+ validated recipes',
+        desc: 'Custom active compounding • 500+ validated formulas',
         icon: 'FlaskConical',
       },
       {
@@ -200,16 +200,6 @@ const initialCmsData = {
         importance: 'Ethical consumer requirement',
         badgeCode: 'CRUELTY FREE',
         image: 'https://res.cloudinary.com/oeqdmjr7/image/upload/v1795071882/mani-lifestyle/certifications/pjoacrnbn37nwbpp03j1.jpg',
-        verified: true,
-      },
-      {
-        id: 'ayush-certified',
-        name: 'AYUSH Approved Formulations',
-        authority: 'Ministry of AYUSH, Govt of India',
-        scope: 'Licensing for classical and proprietary Ayurvedic cosmetic products.',
-        importance: 'Government verified authenticity',
-        badgeCode: 'AYUSH CERTIFIED',
-        image: 'https://res.cloudinary.com/oeqdmjr7/image/upload/v1795071881/mani-lifestyle/certifications/filhq9fesjeaq79abedi.jpg',
         verified: true,
       },
     ],

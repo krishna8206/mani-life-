@@ -16,12 +16,6 @@ export const defaultCertificationsData = {
         icon: 'ShieldCheck',
       },
       {
-        id: '2',
-        title: 'Ministry of',
-        subtitle: 'AYUSH Licensed',
-        icon: 'Award',
-      },
-      {
         id: '3',
         title: 'FDA & FDCA',
         subtitle: 'Export Ready',
@@ -65,17 +59,6 @@ export const defaultCertificationsData = {
         verified: true,
       },
       {
-        id: 'ayush',
-        name: 'Ministry of AYUSH Licensed',
-        authority: 'Government of India, Drug Licensing Authority',
-        scope: 'Classical & Proprietary Ayurvedic Cosmetic Products',
-        importance:
-          'Authorizes the lawful commercial compounding and export of certified Ayurvedic, herbal, and therapeutic wellness formulations',
-        badgeCode: 'AYUSH LICENSED',
-        image: '/images/certifications/ministry.png',
-        verified: true,
-      },
-      {
         id: 'peta',
         name: 'PETA Animal Test-Free',
         authority: 'People for the Ethical Treatment of Animals',
@@ -90,10 +73,10 @@ export const defaultCertificationsData = {
         id: 'fda',
         name: 'FDA & FDCA Approved',
         authority: 'Food & Drugs Control Administration & US FDA Registered',
-        scope: 'Cosmetic Facility & Product Registration',
+        scope: 'Mfg. Lic. No.: GC/2040 • Cosmetic Facility & Product Registration',
         importance:
-          'Certified compliance with domestic FDCA Gujarat statutory mandates and US FDA facility registration for seamless international distribution',
-        badgeCode: 'FDCA & FDA',
+          'Certified compliance with domestic FDCA Gujarat statutory mandates (Mfg. Lic. No.: GC/2040) and US FDA facility registration for seamless international distribution',
+        badgeCode: 'FDCA LIC: GC/2040',
         image: '/images/certifications/fda.png',
         verified: true,
       },

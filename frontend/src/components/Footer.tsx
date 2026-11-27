@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  Building2,
   Factory,
   Phone,
   Mail,
@@ -64,28 +63,8 @@ export default function Footer() {
               <div className="w-8 h-0.5 bg-sky-400 rounded-full mb-5" />
             </div>
 
-            {/* Corporate Office Address */}
-            <div className="space-y-1.5 text-xs text-slate-400">
-              <div className="flex items-center gap-2 text-slate-200 font-semibold text-[13px]">
-                <Building2 className="w-3.5 h-3.5 text-sky-400" />
-                <span>Corporate Office Address</span>
-              </div>
-              <p className="text-slate-400 leading-relaxed pl-5.5">
-                Assotech Business Cresterra, Tower 4, 6th Floor, Sec 135, Noida, 201301, Uttar Pradesh
-              </p>
-              <div className="pl-5.5 pt-0.5">
-                <a
-                  href="mailto:sales@manilifestyle.com"
-                  className="inline-flex items-center gap-1.5 text-sky-400 hover:text-sky-300 transition-colors"
-                >
-                  <Mail className="w-3 h-3" />
-                  <span>sales@manilifestyle.com</span>
-                </a>
-              </div>
-            </div>
-
             {/* Manufacturing Plant Address */}
-            <div className="space-y-1.5 text-xs text-slate-400 pt-2 border-t border-slate-800/60">
+            <div className="space-y-1.5 text-xs text-slate-400">
               <div className="flex items-center gap-2 text-slate-200 font-semibold text-[13px]">
                 <Factory className="w-3.5 h-3.5 text-sky-400" />
                 <span>Manufacturing Plant Address</span>
@@ -94,6 +73,10 @@ export default function Footer() {
                 Plot No. C5, Road No. 5, Gopal Charan Industrial Hub, Bakrol Bajrang, 382430, Ahmedabad, Gujarat
               </p>
               <div className="pl-5.5 space-y-1 pt-0.5">
+                <div className="flex items-center gap-1.5 text-slate-300">
+                  <ShieldCheck className="w-3 h-3 text-sky-400" />
+                  <span>Mfg. Lic. No.: GC/2040</span>
+                </div>
                 <div className="flex items-center gap-1.5">
                   <Phone className="w-3 h-3 text-sky-400" />
                   <a href="tel:+919724681096" className="text-slate-300 hover:text-white transition-colors">

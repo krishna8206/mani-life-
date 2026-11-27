@@ -74,7 +74,7 @@ const defaultPillars: CorePillar[] = [
     desc: "Strict adherence to Gujarat FDCA regulatory guidelines, complete microbial and thermal cycling stability assays, and individual batch Certificate of Analysis (COA) verification.",
     icon: CheckCircle2,
     stats: [
-      { label: "Licensing Body", value: "FDCA Gujarat" },
+      { label: "Licensing Body", value: "FDCA Gujarat (GC/2040)" },
       { label: "Cleanroom Standard", value: "ISO 22716" },
       { label: "Batch Assay", value: "Full COA" },
     ],

@@ -191,7 +191,7 @@ export async function seedDatabase(force: boolean = false) {
       await HomePage.create({
         hero: {
           kicker: 'Certified Cosmetics Manufacturer • Ahmedabad, India',
-          headline: 'Bring Your Beauty Brand to Life.',
+          headline: 'Private Label Skincare & Haircare Manufacturer in Ahmedabad',
           subheadline:
             'Mani Lifestyle is a certified cosmetics manufacturing company based in Ahmedabad, India. We specialize in developing custom and white-label skincare and haircare products for startups, salons, and brands across India.',
           primaryCtaText: 'Request Custom Formulation Quote',
@@ -209,7 +209,7 @@ export async function seedDatabase(force: boolean = false) {
           desc:
             'Proprietary formulation, in-house cleanroom R&D compounding, and certified contract bottling — engineered for instant market performance and ready to bottle for your brand.',
           trustNodes: [
-            { id: '1', title: 'Formulation Expertise', desc: 'Custom active compounding • 600+ validated recipes', icon: 'FlaskConical' },
+            { id: '1', title: 'Formulation Expertise', desc: 'Custom active compounding • 500+ validated formulas', icon: 'FlaskConical' },
             { id: '2', title: 'In-House R&D Cleanroom', desc: 'WHO-GMP pilot lab • Precision stability testing', icon: 'Microscope' },
             { id: '3', title: 'Third-Party Manufacturing', desc: 'Turnkey contract bottling • Starting at 500 units MOQ', icon: 'Layers' },
           ],
@@ -309,7 +309,7 @@ export async function seedDatabase(force: boolean = false) {
               authority: 'Food & Drugs Control Administration, Gujarat',
               scope: 'Licensed Cosmetic Formulations',
               importance: 'State-certified manufacturing facility',
-              badgeCode: 'FDA / GUJ / COS-119',
+              badgeCode: 'FDCA LIC: GC/2040',
               image: 'https://res.cloudinary.com/oeqdmjr7/image/upload/v1795071881/mani-lifestyle/certifications/kfh1obiypibt3sllktfv.png',
               verified: true,
             },

@@ -66,11 +66,12 @@ export default function CategoryDetailClient({
   };
 
   const [showcase, setShowcase] = useState(fallbackShowcase);
+  const [isCmsLoaded, setIsCmsLoaded] = useState(false);
 
   // Live client-side hydration from MongoDB Atlas
   React.useEffect(() => {
     let isMounted = true;
-    fetch(`${API_BASE_URL}/api/categories/${categoryMeta.slug}`)
+    fetch(`${API_BASE_URL}/api/categories/${categoryMeta.slug}`, { cache: "no-store" })
       .then((res) => {
         if (!res.ok) throw new Error('Failed to load live category');
         return res.json();
@@ -126,6 +127,9 @@ export default function CategoryDetailClient({
       })
       .catch(() => {
         // Fallback gracefully to existing static state
+      })
+      .finally(() => {
+        if (isMounted) setIsCmsLoaded(true);
       });
 
     return () => {
@@ -154,14 +158,16 @@ export default function CategoryDetailClient({
       {/* ======================================================== */}
       <section className="relative w-full h-[340px] sm:h-[400px] lg:h-[440px] flex items-center justify-center overflow-hidden bg-slate-900">
         <div className="absolute inset-0">
-          <Image
-            src={showcase.hero.bgImage}
-            alt={showcase.hero.title}
-            fill
-            className="object-cover object-center scale-102"
-            priority
-            quality={95}
-          />
+          {isCmsLoaded && (
+            <Image
+              src={showcase.hero.bgImage}
+              alt={showcase.hero.title}
+              fill
+              className="object-cover object-center scale-102"
+              priority
+              quality={95}
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/45 backdrop-blur-[0.5px]" />
         </div>
 
@@ -186,15 +192,21 @@ export default function CategoryDetailClient({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             {/* Left Column: Product Showcase Photo */}
             <div className="lg:col-span-5">
-              <div className="relative rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 p-3 shadow-lg group">
-                <div className="relative w-full h-[360px] sm:h-[420px] rounded-2xl overflow-hidden bg-slate-100">
-                  <Image
-                    src={showcase.manufacturerSection.image}
-                    alt={showcase.manufacturerSection.imageAlt}
-                    fill
-                    className="object-cover group-hover:scale-104 transition-transform duration-700 ease-out"
-                    priority
-                  />
+              <div className="relative rounded-3xl overflow-hidden bg-slate-50 border border-slate-200/90 shadow-lg group">
+                <div className="relative w-full overflow-hidden bg-slate-100">
+                  {isCmsLoaded ? (
+                    <Image
+                      src={showcase.manufacturerSection.image}
+                      alt={showcase.manufacturerSection.imageAlt}
+                      width={1000}
+                      height={1000}
+                      sizes="(max-width: 1024px) 100vw, 42vw"
+                      className="w-full h-auto block group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+                      priority
+                    />
+                  ) : (
+                    <div className="w-full aspect-square bg-slate-200/70 animate-pulse" />
+                  )}
                   <div className="absolute top-3.5 left-3.5 px-3 py-1 rounded-lg bg-white/95 backdrop-blur-md text-[11px] font-semibold text-[#164666] border border-slate-200 shadow-xs">
                     {(showcase.manufacturerSection as any).plantBadge || "Ahmedabad Manufacturing Plant"}
                   </div>

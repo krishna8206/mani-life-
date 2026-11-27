@@ -415,7 +415,7 @@ export function CertificatePlaqueCard({
               </div>
               <button
                 onClick={() => setIsDossierOpen(false)}
-                className="p-1.5 rounded-xl hover:bg-slate-100 text-slate-400 hover:text-slate-800 transition-colors"
+                className="p-2.5 sm:p-1.5 rounded-xl hover:bg-slate-100 text-slate-400 hover:text-slate-800 transition-colors shrink-0"
                 aria-label="Close dossier"
               >
                 <X className="w-5 h-5" />
@@ -444,9 +444,9 @@ export function CertificatePlaqueCard({
                 </div>
               )}
 
-              <div className="flex items-center justify-between p-3 bg-emerald-50/70 border border-emerald-200 rounded-2xl text-[11px] text-emerald-800 font-semibold">
+              <div className="flex flex-wrap items-center justify-between gap-2 p-3 bg-emerald-50/70 border border-emerald-200 rounded-2xl text-[11px] text-emerald-800 font-semibold">
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                   Facility Validated &bull; Ahmedabad Plant
                 </span>
                 <span className="font-mono text-emerald-700">Audit Active 2026</span>
@@ -454,7 +454,7 @@ export function CertificatePlaqueCard({
             </div>
 
             {/* Action Footer */}
-            <div className="pt-2 flex items-center justify-end gap-2 border-t border-slate-200">
+            <div className="pt-2 flex flex-wrap items-center justify-end gap-2 border-t border-slate-200">
               <button
                 type="button"
                 onClick={() => setIsDossierOpen(false)}

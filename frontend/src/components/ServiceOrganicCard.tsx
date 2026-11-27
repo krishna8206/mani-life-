@@ -257,7 +257,7 @@ export function ServiceOrganicCard({
               type="button"
               onClick={() => onOpenQuote(service.title)}
               aria-label={`Inquire about ${service.title}`}
-              className="group/btn relative w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#1b628b] hover:bg-[#13496b] text-white flex items-center justify-center shadow-md shadow-[#1b628b]/25 transition-all duration-300 hover:scale-115 active:scale-95 cursor-pointer overflow-hidden shrink-0"
+              className="group/btn relative w-11 h-11 sm:w-10 sm:h-10 rounded-full bg-[#1b628b] hover:bg-[#13496b] text-white flex items-center justify-center shadow-md shadow-[#1b628b]/25 transition-all duration-300 hover:scale-115 active:scale-95 cursor-pointer overflow-hidden shrink-0"
             >
               {/* Button Hover Glow Ripple */}
               <div className="absolute inset-0 bg-white/20 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />

@@ -441,7 +441,7 @@ export default function AboutPage() {
                   href={`https://wa.me/${data.hero.phone.replace(/[^0-9]/g, "")}?text=Hello%20Mani%20Lifestyle,%20I%20would%20like%20to%20learn%20more%20about%20your%20manufacturing%20campus.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 sm:px-6 py-3.5 bg-white hover:bg-slate-50 text-[#164666] border border-slate-200/90 hover:border-[#164666]/40 text-xs sm:text-sm font-semibold rounded-xl shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98]"
+                  className="inline-flex w-full sm:w-auto items-center justify-center text-center gap-2 px-5 sm:px-6 py-3.5 bg-white hover:bg-slate-50 text-[#164666] border border-slate-200/90 hover:border-[#164666]/40 text-xs sm:text-sm font-semibold rounded-xl shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <Phone className="w-4 h-4 text-[#164666]" />
                   <span>{data.hero.secondaryCtaText}</span>
@@ -476,7 +476,7 @@ export default function AboutPage() {
               {isCmsLoaded ? (
                 <AboutHeroVisual image={data.hero.image} alt={data.hero.imageAlt} />
               ) : (
-                <div className="w-[320px] sm:w-[345px] lg:w-[365px] h-[440px] sm:h-[475px] rounded-[130px] bg-white/60 border border-sky-200/70 animate-pulse" />
+                <div className="w-full max-w-[320px] sm:max-w-[345px] lg:max-w-[365px] h-[400px] sm:h-[475px] rounded-[130px] bg-white/60 border border-sky-200/70 animate-pulse" />
               )}
             </div>
           </div>
@@ -492,11 +492,11 @@ export default function AboutPage() {
           <div className="text-center max-w-3xl mx-auto">
             {/* Editorial Eyebrow */}
             <div className="flex items-center justify-center gap-2.5 mb-2.5">
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
               <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
                 {data.whoWeAre.eyebrow}
               </span>
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-cormorant font-semibold text-[#091e2f] leading-[1.12] tracking-tight">
@@ -541,11 +541,11 @@ export default function AboutPage() {
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
             <div className="flex items-center justify-center gap-2.5 mb-2.5">
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
               <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
                 {data.whyWeExist.eyebrow}
               </span>
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-cormorant font-semibold text-[#091e2f] leading-[1.12] tracking-tight">
@@ -577,11 +577,11 @@ export default function AboutPage() {
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
             <div className="flex items-center justify-center gap-2.5 mb-2.5">
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
               <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
                 {data.whatWeDo.eyebrow}
               </span>
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-cormorant font-semibold text-[#091e2f] leading-[1.12] tracking-tight">
@@ -613,11 +613,11 @@ export default function AboutPage() {
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
             <div className="flex items-center justify-center gap-2.5 mb-2.5">
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
               <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
                 {data.productExpertise.eyebrow}
               </span>
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-cormorant font-semibold text-[#091e2f] leading-[1.12] tracking-tight">
@@ -649,11 +649,11 @@ export default function AboutPage() {
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
             <div className="flex items-center justify-center gap-2.5 mb-2.5">
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
               <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
                 {data.vision.eyebrow}
               </span>
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-cormorant font-semibold text-[#091e2f] leading-[1.12] tracking-tight">
@@ -685,11 +685,11 @@ export default function AboutPage() {
           {/* Centered Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
             <div className="flex items-center justify-center gap-2.5 mb-2.5">
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
               <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
                 {data.infrastructure.eyebrow}
               </span>
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-cormorant font-semibold text-[#091e2f] leading-[1.12] tracking-tight">
@@ -765,11 +765,11 @@ export default function AboutPage() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Eyebrow Line */}
           <div className="flex items-center justify-center gap-2.5 mb-2.5">
-            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+            <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
             <span className="text-[11px] sm:text-xs uppercase tracking-[0.22em] font-semibold text-[#4a728e]">
               {data.consultationCta.eyebrow}
             </span>
-            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+            <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
           </div>
 
           {/* Heading */}

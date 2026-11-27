@@ -70,7 +70,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${cormorant.variable} ${cinzel.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#f8fafc] text-[#0f172a] font-sans selection:bg-blue-600 selection:text-white">
+      <body className="min-h-full flex flex-col bg-[#f8fafc] text-[#0f172a] font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden">
         <InitialPreloader />
         <Navbar />
         <main className="flex-1">{children}</main>

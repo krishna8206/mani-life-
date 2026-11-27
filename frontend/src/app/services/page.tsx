@@ -545,12 +545,12 @@ export default function ServicesPage() {
                     )}
 
                     {/* Slider Navigation Controls */}
-                    <div className="pt-4 border-t border-slate-200/70 flex items-center justify-between">
+                    <div className="pt-4 border-t border-slate-200/70 flex flex-wrap items-center justify-between gap-2">
                       {/* Left: Previous & Next Buttons */}
                       <div className="flex items-center gap-2">
                         <button
                           onClick={handlePrevStage}
-                          className="p-2.5 rounded-xl bg-white hover:bg-slate-50 text-[#0f172a] border border-slate-200 transition-all hover:scale-105 cursor-pointer shadow-xs active:scale-95"
+                          className="p-3 sm:p-2.5 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 flex items-center justify-center rounded-xl bg-white hover:bg-slate-50 text-[#0f172a] border border-slate-200 transition-all hover:scale-105 cursor-pointer shadow-xs active:scale-95"
                           aria-label="Previous Stage"
                         >
                           <ChevronLeft className="w-4 h-4" />
@@ -558,7 +558,7 @@ export default function ServicesPage() {
 
                         <button
                           onClick={handleNextStage}
-                          className="p-2.5 rounded-xl bg-white hover:bg-slate-50 text-[#0f172a] border border-slate-200 transition-all hover:scale-105 cursor-pointer shadow-xs active:scale-95"
+                          className="p-3 sm:p-2.5 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 flex items-center justify-center rounded-xl bg-white hover:bg-slate-50 text-[#0f172a] border border-slate-200 transition-all hover:scale-105 cursor-pointer shadow-xs active:scale-95"
                           aria-label="Next Stage"
                         >
                           <ChevronRight className="w-4 h-4" />
@@ -566,18 +566,22 @@ export default function ServicesPage() {
                       </div>
 
                       {/* Center: Dot Indicators */}
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1">
                         {stages.map((_, dotIdx) => (
                           <button
                             key={dotIdx}
                             onClick={() => handleSelectStage(dotIdx)}
-                            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                              dotIdx === safeProcessIndex
-                                ? "w-7 bg-[#164666]"
-                                : "w-2 bg-slate-300 hover:bg-slate-400"
-                            }`}
+                            className="p-2 flex items-center justify-center cursor-pointer"
                             aria-label={`Go to stage ${dotIdx + 1}`}
-                          />
+                          >
+                            <span
+                              className={`block h-2 rounded-full transition-all duration-300 ${
+                                dotIdx === safeProcessIndex
+                                  ? "w-7 bg-[#164666]"
+                                  : "w-2 bg-slate-300 hover:bg-slate-400"
+                              }`}
+                            />
+                          </button>
                         ))}
                       </div>
 

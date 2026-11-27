@@ -124,10 +124,10 @@ export default function InnovationPage() {
             {activeShowcase.map((item) => (
               <div
                 key={item.category}
-                className="p-8 rounded-3xl bg-white border border-[#e2e8f0] shadow-xs space-y-4"
+                className="p-5 sm:p-8 rounded-3xl bg-white border border-[#e2e8f0] shadow-xs space-y-4"
               >
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-xl bg-[#f0f7fb] text-[#164666] border border-[#bae6fd] flex items-center justify-center">
+                  <div className="w-8 h-8 shrink-0 rounded-xl bg-[#f0f7fb] text-[#164666] border border-[#bae6fd] flex items-center justify-center">
                     <FlaskConical className="w-4 h-4 text-[#164666]" />
                   </div>
                   <h3 className="text-lg font-serif font-bold text-[#0f172a]">

@@ -288,7 +288,7 @@ export default function WhyWeExistStage({ pillars: propsPillars }: WhyWeExistSta
                     {pillar.desc}
                   </p>
 
-                  <div className="grid grid-cols-3 gap-2 pt-1">
+                  <div className="grid grid-cols-1 min-[380px]:grid-cols-3 gap-2 pt-1">
                     {pillar.stats.map((stat) => (
                       <div
                         key={stat.label}

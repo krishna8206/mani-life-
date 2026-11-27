@@ -207,10 +207,10 @@ export default function CategoryDetailClient({
                   ) : (
                     <div className="w-full aspect-square bg-slate-200/70 animate-pulse" />
                   )}
-                  <div className="absolute top-3.5 left-3.5 px-3 py-1 rounded-lg bg-white/95 backdrop-blur-md text-[11px] font-semibold text-[#164666] border border-slate-200 shadow-xs">
+                  <div className="absolute top-3.5 left-3.5 max-w-[calc(100%-1.75rem)] truncate px-3 py-1 rounded-lg bg-white/95 backdrop-blur-md text-[11px] font-semibold text-[#164666] border border-slate-200 shadow-xs">
                     {(showcase.manufacturerSection as any).plantBadge || "Ahmedabad Manufacturing Plant"}
                   </div>
-                  <div className="absolute bottom-3.5 right-3.5 px-3 py-1 rounded-lg bg-white/95 backdrop-blur-md text-[11px] font-semibold text-emerald-700 border border-emerald-200 shadow-xs">
+                  <div className="absolute bottom-3.5 right-3.5 max-w-[calc(100%-1.75rem)] truncate px-3 py-1 rounded-lg bg-white/95 backdrop-blur-md text-[11px] font-semibold text-emerald-700 border border-emerald-200 shadow-xs">
                     {(showcase.manufacturerSection as any).moqBadge || "Flexible Low MOQ"}
                   </div>
                 </div>
@@ -222,7 +222,7 @@ export default function CategoryDetailClient({
               <div>
                 {/* Brand Micro-header */}
                 <div className="flex items-center gap-2.5 mb-2.5">
-                  <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+                  <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
                   <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
                     Certified Cosmetics Manufacturer • Ahmedabad, India
                   </span>
@@ -289,11 +289,11 @@ export default function CategoryDetailClient({
           {/* Section Header (Matching Website's Signature Style) */}
           <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
             <div className="flex items-center justify-center gap-2.5 mb-2.5">
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
               <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
                 Proven Cosmetic Formulations • Flexible Low MOQ
               </span>
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-cormorant font-semibold text-[#091e2f] leading-[1.12] tracking-tight">
@@ -340,7 +340,7 @@ export default function CategoryDetailClient({
                         {item.name}
                       </span>
                     </div>
-                    <span className="text-xs text-[#1b628b] opacity-0 group-hover:opacity-100 transition-opacity font-semibold shrink-0">
+                    <span className="text-xs text-[#1b628b] opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity font-semibold shrink-0 ml-2">
                       View Details →
                     </span>
                   </Link>
@@ -349,7 +349,7 @@ export default function CategoryDetailClient({
             </div>
 
             {/* Column 2 */}
-            <div className="divide-y divide-slate-200/80">
+            <div className="divide-y divide-slate-200/80 border-t border-slate-200/80 md:border-t-0">
               {col2.map((item, idx) => {
                 const itemSlug = ("slug" in item && typeof item.slug === "string" ? item.slug : "") || item.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
                 return (
@@ -378,7 +378,7 @@ export default function CategoryDetailClient({
                         {item.name}
                       </span>
                     </div>
-                    <span className="text-xs text-[#1b628b] opacity-0 group-hover:opacity-100 transition-opacity font-semibold shrink-0">
+                    <span className="text-xs text-[#1b628b] opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity font-semibold shrink-0 ml-2">
                       View Details →
                     </span>
                   </Link>
@@ -387,7 +387,7 @@ export default function CategoryDetailClient({
             </div>
 
             {/* Column 3 */}
-            <div className="divide-y divide-slate-200/80">
+            <div className="divide-y divide-slate-200/80 border-t border-slate-200/80 md:border-t-0">
               {col3.map((item, idx) => {
                 const itemSlug = ("slug" in item && typeof item.slug === "string" ? item.slug : "") || item.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
                 return (
@@ -416,7 +416,7 @@ export default function CategoryDetailClient({
                         {item.name}
                       </span>
                     </div>
-                    <span className="text-xs text-[#1b628b] opacity-0 group-hover:opacity-100 transition-opacity font-semibold shrink-0">
+                    <span className="text-xs text-[#1b628b] opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity font-semibold shrink-0 ml-2">
                       View Details →
                     </span>
                   </Link>
@@ -448,11 +448,11 @@ export default function CategoryDetailClient({
           <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-[#164666] via-[#10364f] to-[#164666] text-white text-center shadow-xl shadow-[#164666]/15 space-y-5">
             {/* Brand Micro-header */}
             <div className="flex items-center justify-center gap-2.5">
-              <span className="w-8 h-[1.5px] bg-sky-300/80" />
+              <span className="w-8 h-[1.5px] bg-sky-300/80 shrink-0" />
               <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-sky-200">
                 Ahmedabad Formulation Laboratory & Cleanroom Facility
               </span>
-              <span className="w-8 h-[1.5px] bg-sky-300/80" />
+              <span className="w-8 h-[1.5px] bg-sky-300/80 shrink-0" />
             </div>
 
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif text-white font-normal leading-[1.15] tracking-tight">

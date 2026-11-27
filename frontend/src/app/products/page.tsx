@@ -443,11 +443,11 @@ export default function ProductsPage() {
         <div className="max-w-4xl mx-auto space-y-4">
           {/* Brand Micro-header */}
           <div className="flex items-center justify-center gap-2.5">
-            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+            <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
             <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
               {cms.hero.kicker}
             </span>
-            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+            <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
           </div>
 
           {/* Master Headline */}
@@ -484,7 +484,8 @@ export default function ProductsPage() {
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  aria-label="Clear search"
+                  className="absolute right-1.5 top-1/2 -translate-y-1/2 p-2 text-slate-400 hover:text-slate-600 cursor-pointer"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -498,11 +499,11 @@ export default function ProductsPage() {
       <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 relative z-10 overflow-hidden">
         <div className="text-center mb-10 sm:mb-12 space-y-2">
           <div className="flex items-center justify-center gap-2.5">
-            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+            <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
             <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
               {cms.personalCareSection.eyebrow}
             </span>
-            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+            <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-cormorant font-semibold text-[#091e2f] tracking-tight leading-[1.12]">
             {cms.personalCareSection.title}
@@ -571,11 +572,11 @@ export default function ProductsPage() {
       <section className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pb-20 relative z-10 overflow-hidden">
         <div className="text-center mb-10 sm:mb-12 space-y-2">
           <div className="flex items-center justify-center gap-2.5">
-            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+            <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
             <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
               {cms.skinCareSection.eyebrow}
             </span>
-            <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+            <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-[2.85rem] font-cormorant font-semibold text-[#091e2f] tracking-tight leading-[1.12]">
             {cms.skinCareSection.title}

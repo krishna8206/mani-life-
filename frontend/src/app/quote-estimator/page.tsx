@@ -78,10 +78,10 @@ export default function QuoteEstimatorPage() {
       <section className="py-16 max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Controls Column */}
-          <div className="lg:col-span-7 space-y-8 p-8 bg-white border border-[#e2e8f0] rounded-3xl shadow-xs">
+          <div className="lg:col-span-7 space-y-8 p-5 sm:p-8 bg-white border border-[#e2e8f0] rounded-3xl shadow-xs">
             {/* Step 1: Category */}
             <div className="space-y-3">
-              <label className="text-sm font-bold text-[#0f172a] flex items-center justify-between">
+              <label className="text-sm font-bold text-[#0f172a] flex flex-wrap items-center justify-between gap-2">
                 <span>1. Select Product Category</span>
                 <span className="text-xs text-[#1b628b] font-semibold">Step 1 of 4</span>
               </label>
@@ -105,7 +105,7 @@ export default function QuoteEstimatorPage() {
 
             {/* Step 2: Manufacturing Route */}
             <div className="space-y-3 pt-6 border-t border-[#ece6d9]">
-              <label className="text-sm font-bold text-[#0f172a] flex items-center justify-between">
+              <label className="text-sm font-bold text-[#0f172a] flex flex-wrap items-center justify-between gap-2">
                 <span>2. Select Manufacturing Model</span>
                 <span className="text-xs text-[#1b628b] font-semibold">Step 2 of 4</span>
               </label>
@@ -133,11 +133,11 @@ export default function QuoteEstimatorPage() {
 
             {/* Step 3: Batch Volume Slider */}
             <div className="space-y-3 pt-6 border-t border-[#ece6d9]">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <label className="text-sm font-bold text-[#0f172a]">
                   3. Target Order Batch Size
                 </label>
-                <span className="text-base font-extrabold text-[#1b628b] bg-[#f0f7fb] px-3.5 py-1 rounded-xl border border-[#bae6fd]">
+                <span className="text-sm sm:text-base font-extrabold text-[#1b628b] bg-[#f0f7fb] px-3 py-1 rounded-xl border border-[#bae6fd]">
                   {targetUnits.toLocaleString()} Finished Units
                 </span>
               </div>
@@ -152,10 +152,10 @@ export default function QuoteEstimatorPage() {
                 className="w-full accent-[#164666] cursor-pointer"
               />
 
-              <div className="flex justify-between text-[11px] text-[#8c8273]">
+              <div className="flex justify-between gap-2 text-[11px] text-[#8c8273]">
                 <span>500 (Startup Tier)</span>
-                <span>5,000 Units</span>
-                <span>10,000 Units</span>
+                <span className="hidden min-[420px]:inline">5,000 Units</span>
+                <span className="hidden min-[420px]:inline">10,000 Units</span>
                 <span>25,000+ Units</span>
               </div>
             </div>
@@ -181,8 +181,8 @@ export default function QuoteEstimatorPage() {
 
           {/* Dynamic Estimate Summary Column */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-8 bg-white border border-[#e2e8f0] rounded-3xl shadow-xs space-y-6 sticky top-24">
-              <div className="flex items-center justify-between pb-4 border-b border-[#ece6d9]">
+            <div className="p-5 sm:p-8 bg-white border border-[#e2e8f0] rounded-3xl shadow-xs space-y-6 sticky top-24">
+              <div className="flex items-center justify-between gap-2 pb-4 border-b border-[#ece6d9]">
                 <div>
                   <span className="text-xs font-bold text-[#1b628b] uppercase tracking-wider block">
                     Real-Time Production Scope
@@ -191,31 +191,31 @@ export default function QuoteEstimatorPage() {
                     Estimated Production Profile
                   </h3>
                 </div>
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
               </div>
 
               <div className="space-y-4 text-xs">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="text-[#736d62]">Category:</span>
                   <span className="font-bold text-[#0f172a] text-right">{category}</span>
                 </div>
 
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="text-[#736d62]">Batch Volume:</span>
                   <span className="font-bold text-[#0f172a]">{targetUnits.toLocaleString()} units</span>
                 </div>
 
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="text-[#736d62]">Container:</span>
                   <span className="font-bold text-[#0f172a] text-right truncate max-w-[180px]">{packagingType}</span>
                 </div>
 
                 <div className="p-4 rounded-2xl bg-[#f8fafc] border border-[#bae6fd] space-y-2">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="text-[#736d62]">Bench Sample Dispatch:</span>
                     <span className="font-bold text-[#1b628b]">{sampleLeadTime}</span>
                   </div>
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="text-[#736d62]">Cleanroom Turnaround:</span>
                     <span className="font-bold text-emerald-700">{estimatedTimeline}</span>
                   </div>

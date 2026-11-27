@@ -189,7 +189,7 @@ export default function ServicePrecisionJourney({
       {/* ========================================================================= */}
       {/* 4 EDITORIAL SHOWCASE ROWS WITH STAGGERED ENTRANCES & BUTTERY PARALLAX      */}
       {/* ========================================================================= */}
-      <div className="space-y-28 lg:space-y-36 relative">
+      <div className="space-y-16 sm:space-y-24 lg:space-y-36 relative">
         {displayServices.map((service, index) => {
           const isEven = index % 2 === 1;
           const isVisible = visibleRows[index];
@@ -215,11 +215,10 @@ export default function ServicePrecisionJourney({
               {/* Central Journey Node Anchor (Desktop) — Locks onto the Track Line */}
               <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 items-center justify-center pointer-events-none">
                 <div
-                  className={`w-11 h-11 rounded-full border-2 bg-white flex items-center justify-center font-cormorant text-sm font-bold transition-all duration-500 shadow-md ${
-                    isNodeActive
-                      ? "border-[#1b628b] bg-gradient-to-b from-sky-50 to-white text-[#164666] scale-110 shadow-[0_0_24px_rgba(27,98,139,0.5)] ring-4 ring-sky-200/90"
-                      : "border-slate-300 text-slate-400 scale-95"
-                  }`}
+                  className={`w-11 h-11 rounded-full border-2 bg-white flex items-center justify-center font-cormorant text-sm font-bold transition-all duration-500 shadow-md ${isNodeActive
+                    ? "border-[#1b628b] bg-gradient-to-b from-sky-50 to-white text-[#164666] scale-110 shadow-[0_0_24px_rgba(27,98,139,0.5)] ring-4 ring-sky-200/90"
+                    : "border-slate-300 text-slate-400 scale-95"
+                    }`}
                 >
                   0{index + 1}
                 </div>
@@ -235,34 +234,33 @@ export default function ServicePrecisionJourney({
                     "transform 750ms cubic-bezier(0.16, 1, 0.3, 1), opacity 750ms ease-out",
                 }}
               >
-                <div className="relative w-full aspect-[4/3] max-w-[540px] mx-auto group/media">
+                <div className="relative w-full max-w-[540px] mx-auto group/media">
                   {/* Ambient Atmospheric Cyan Aura */}
                   <div
-                    className={`absolute -inset-4 bg-gradient-to-tr from-sky-300/35 via-teal-200/25 to-transparent rounded-[48px] blur-2xl pointer-events-none -z-10 transition-all duration-700 group-hover/media:scale-110 group-hover/media:opacity-90 ${
-                      isVisible ? "opacity-100" : "opacity-0"
-                    }`}
+                    className={`absolute -inset-4 bg-gradient-to-tr from-sky-300/35 via-teal-200/25 to-transparent rounded-[48px] blur-2xl pointer-events-none -z-10 transition-all duration-700 group-hover/media:scale-110 group-hover/media:opacity-90 ${isVisible ? "opacity-100" : "opacity-0"
+                      }`}
                   />
 
                   {/* Main Asymmetrical Frame with Alternating Directional Sweeps */}
                   <div
-                    className={`relative w-full h-full overflow-hidden border-[3px] border-white/95 shadow-[0_20px_50px_rgba(18,65,95,0.14)] ring-1 ring-sky-300/60 bg-gradient-to-b from-sky-50 to-white transition-all duration-700 group-hover/media:shadow-[0_28px_65px_rgba(18,65,95,0.22)] group-hover/media:-translate-y-1 ${
-                      isEven
-                        ? "rounded-tr-[56px] sm:rounded-tr-[76px] rounded-bl-[56px] sm:rounded-bl-[76px] rounded-tl-2xl sm:rounded-tl-3xl rounded-br-2xl sm:rounded-br-3xl"
-                        : "rounded-tl-[56px] sm:rounded-tl-[76px] rounded-br-[56px] sm:rounded-br-[76px] rounded-tr-2xl sm:rounded-tr-3xl rounded-bl-2xl sm:rounded-bl-3xl"
-                    }`}
+                    className={`relative w-full overflow-hidden border-[3px] border-white/95 shadow-[0_20px_50px_rgba(18,65,95,0.14)] ring-1 ring-sky-300/60 bg-gradient-to-b from-sky-50 to-white transition-all duration-700 group-hover/media:shadow-[0_28px_65px_rgba(18,65,95,0.22)] group-hover/media:-translate-y-1 ${isEven
+                      ? "rounded-tr-[56px] sm:rounded-tr-[76px] rounded-bl-[56px] sm:rounded-bl-[76px] rounded-tl-2xl sm:rounded-tl-3xl rounded-br-2xl sm:rounded-br-3xl"
+                      : "rounded-tl-[56px] sm:rounded-tl-[76px] rounded-br-[56px] sm:rounded-br-[76px] rounded-tr-2xl sm:rounded-tr-3xl rounded-bl-2xl sm:rounded-bl-3xl"
+                      }`}
                   >
-                    {/* Inner Parallax Container (Direct 60fps transform, no conflicting CSS duration) */}
+                    {/* Inner Parallax Container */}
                     <div
-                      className="relative w-full h-full scale-[1.08] will-change-transform"
+                      className="relative w-full will-change-transform"
                       style={{
-                        transform: `translate3d(0, ${parallax}px, 0)`,
+                        transform: `translate3d(0, ${parallax * 0.4}px, 0)`,
                       }}
                     >
                       <Image
                         src={service.image}
                         alt={service.title}
-                        fill
-                        className="object-cover object-center scale-100 transition-transform duration-700 ease-out group-hover/media:scale-106"
+                        width={1000}
+                        height={1000}
+                        className="w-full h-auto block transition-transform duration-700 ease-out group-hover/media:scale-[1.02]"
                         sizes="(max-width: 1024px) 100vw, 50vw"
                       />
                     </div>
@@ -290,20 +288,18 @@ export default function ServicePrecisionJourney({
                 }}
               >
                 {/* Large Editorial Serif Number & Tag */}
-                <div className="flex items-center gap-4">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4">
                   <span
-                    className={`text-4xl sm:text-5xl font-cormorant font-bold transition-all duration-500 inline-block select-none ${
-                      isNodeActive
-                        ? "text-[#164666] -translate-y-0.5"
-                        : "text-[#164666]/25 group-hover:text-[#1b628b]/60"
-                    }`}
+                    className={`text-4xl sm:text-5xl font-cormorant font-bold transition-all duration-500 inline-block select-none ${isNodeActive
+                      ? "text-[#164666] -translate-y-0.5"
+                      : "text-[#164666]/25 group-hover:text-[#1b628b]/60"
+                      }`}
                   >
                     0{index + 1}
                   </span>
                   <span
-                    className={`h-[1px] bg-slate-200/90 transition-all duration-700 ${
-                      isVisible ? "w-12 group-hover:w-16 group-hover:bg-[#1b628b]/40" : "w-0"
-                    }`}
+                    className={`h-[1px] bg-slate-200/90 transition-all duration-700 ${isVisible ? "w-12 group-hover:w-16 group-hover:bg-[#1b628b]/40" : "w-0"
+                      }`}
                   />
                   <span className="text-xs uppercase font-bold tracking-widest text-[#1b628b] transition-colors duration-300">
                     {service.tagline.split("&")[0].trim()}

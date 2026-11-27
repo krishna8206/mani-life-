@@ -458,14 +458,14 @@ export default function HomePage() {
           >
             {/* Brand Micro-header */}
             <div className="flex items-center gap-2.5">
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
               <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
                 {heroKicker}
               </span>
             </div>
 
             {/* Master Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-[2.95rem] xl:text-[3.65rem] 2xl:text-[4.15rem] font-cormorant font-semibold text-[#091e2f] leading-[1.04] tracking-tight">
+            <h1 className="text-[2rem] sm:text-5xl md:text-5xl lg:text-[2.95rem] xl:text-[3.65rem] 2xl:text-[4.15rem] font-cormorant font-semibold text-[#091e2f] leading-[1.08] sm:leading-[1.04] tracking-tight">
               {heroHeadline}
             </h1>
 
@@ -767,7 +767,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4 lg:gap-2.5 xl:gap-3.5 items-stretch">
+          <div className="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4 lg:gap-2.5 xl:gap-3.5 items-stretch">
             {processSteps.map((step: any, idx: number) => (
               <div
                 key={step.step || idx}
@@ -847,7 +847,7 @@ export default function HomePage() {
                     <div className="p-5 sm:p-6 flex flex-col justify-between flex-1">
                       <div>
                         <div className="flex items-center gap-2.5 mb-1.5">
-                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] whitespace-nowrap">
+                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] leading-snug sm:whitespace-nowrap">
                             {coreCategories[0].tagline}
                           </span>
                           <span className="h-[1px] flex-1 bg-slate-300/80" />
@@ -908,7 +908,7 @@ export default function HomePage() {
                     <div className="p-4 sm:p-5 flex flex-col justify-between flex-1">
                       <div>
                         <div className="flex items-center gap-2 mb-1.5">
-                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] whitespace-nowrap">
+                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] leading-snug sm:whitespace-nowrap">
                             {coreCategories[1].tagline}
                           </span>
                           <span className="h-[1px] flex-1 bg-slate-300/80" />
@@ -956,7 +956,7 @@ export default function HomePage() {
                     <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 order-2 sm:order-1">
                       <div>
                         <div className="flex items-center gap-2 mb-1.5">
-                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] whitespace-nowrap">
+                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] leading-snug sm:whitespace-nowrap">
                             {coreCategories[2].tagline}
                           </span>
                           <span className="h-[1px] flex-1 bg-slate-300/80" />
@@ -1020,7 +1020,7 @@ export default function HomePage() {
                     <div className="p-4 sm:p-5 flex flex-col justify-between flex-1 order-2 sm:order-1">
                       <div>
                         <div className="flex items-center gap-2 mb-1.5">
-                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] whitespace-nowrap">
+                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] leading-snug sm:whitespace-nowrap">
                             {coreCategories[3].tagline}
                           </span>
                           <span className="h-[1px] flex-1 bg-slate-300/80" />
@@ -1088,7 +1088,7 @@ export default function HomePage() {
                     <div className="p-4 sm:p-5 flex flex-col justify-between flex-1">
                       <div>
                         <div className="flex items-center gap-2 mb-1.5">
-                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] whitespace-nowrap">
+                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] leading-snug sm:whitespace-nowrap">
                             {coreCategories[4].tagline}
                           </span>
                           <span className="h-[1px] flex-1 bg-slate-300/80" />
@@ -1148,7 +1148,7 @@ export default function HomePage() {
                     <div className="p-5 sm:p-6 flex flex-col justify-between flex-1">
                       <div>
                         <div className="flex items-center gap-2.5 mb-1.5">
-                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] whitespace-nowrap">
+                          <span className="text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] font-semibold text-[#164666] leading-snug sm:whitespace-nowrap">
                             {coreCategories[5].tagline}
                           </span>
                           <span className="h-[1px] flex-1 bg-slate-300/80" />

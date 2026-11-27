@@ -74,11 +74,11 @@ export default async function ServiceDetailPage({
       </section>
 
       {/* Main Content Grid */}
-      <section className="py-16 max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <section className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Left Column: Scope & Deliverables */}
-          <div className="lg:col-span-8 space-y-10">
-            <div className="p-8 rounded-3xl bg-white border border-[#e2e8f0] shadow-xs space-y-6">
+          <div className="lg:col-span-8 space-y-8 sm:space-y-10">
+            <div className="p-5 sm:p-8 rounded-3xl bg-white border border-[#e2e8f0] shadow-xs space-y-6">
               <h2 className="text-2xl font-serif font-bold text-[#0f172a]">
                 Manufacturing Scope & Capabilities
               </h2>
@@ -92,7 +92,7 @@ export default async function ServiceDetailPage({
               </div>
             </div>
 
-            <div className="p-8 rounded-3xl bg-white border border-[#e2e8f0] shadow-xs space-y-4">
+            <div className="p-5 sm:p-8 rounded-3xl bg-white border border-[#e2e8f0] shadow-xs space-y-4">
               <h3 className="text-xl font-serif font-bold text-[#0f172a]">
                 Regulatory & Quality Deliverables Included
               </h3>

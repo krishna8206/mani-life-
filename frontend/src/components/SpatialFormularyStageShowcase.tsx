@@ -109,9 +109,9 @@ export default function SpatialFormularyStageShowcase({
   const shampooLift = easeUncap * 44;
 
   return (
-    <div ref={containerRef} className="relative w-full h-[225vh] bg-[#f4f8fc]">
-      {/* Sticky Full-Viewport Presentation Stage: Perfectly Centered */}
-      <section className="sticky top-0 w-full h-screen flex flex-col justify-center py-2 sm:py-3 overflow-hidden border-b border-slate-200/80">
+    <div ref={containerRef} className="relative w-full h-auto lg:h-[225vh] bg-[#f4f8fc]">
+      {/* Sticky Full-Viewport Presentation Stage on Desktop, Natural Flow on Mobile */}
+      <section className="relative lg:sticky lg:top-0 w-full min-h-0 lg:h-screen flex flex-col justify-center py-10 sm:py-12 lg:py-3 overflow-hidden border-b border-slate-200/80">
 
         {/* Soft Ambient Laboratory Daylight Background Glows */}
         <div className="absolute top-1/4 left-1/4 w-[850px] h-[550px] bg-sky-100/40 rounded-full blur-[140px] pointer-events-none" />
@@ -182,7 +182,7 @@ export default function SpatialFormularyStageShowcase({
               </div>
 
               {/* 3-Column Bento KPI Strip */}
-              <div className="grid grid-cols-3 gap-2 my-3">
+              <div className="grid grid-cols-1 min-[380px]:grid-cols-3 gap-2 my-3">
                 <div className="bg-white/80 backdrop-blur-md border border-white/95 rounded-xl px-2.5 py-2 shadow-2xs">
                   <div className="text-sm sm:text-[15px] font-cormorant font-bold text-[#091e2f] leading-none">
                     500+

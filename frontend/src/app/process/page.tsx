@@ -126,7 +126,7 @@ export default function ProcessPage() {
           {stages.map((stage) => (
             <div
               key={stage.num}
-              className="p-8 bg-white border border-[#e2e8f0] rounded-3xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-start shadow-xs hover:border-[#164666] hover:shadow-lg transition-all"
+              className="p-5 sm:p-8 bg-white border border-[#e2e8f0] rounded-3xl grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start shadow-xs hover:border-[#164666] hover:shadow-lg transition-all"
             >
               <div className="lg:col-span-4 space-y-3">
                 <div className="flex items-center gap-3">
@@ -158,14 +158,14 @@ export default function ProcessPage() {
           ))}
         </div>
 
-        <div className="mt-16 p-8 bg-gradient-to-r from-[#f0f7fb] via-[#f7f0df] to-[#f4ebda] border border-[#e2e8f0] rounded-3xl text-center space-y-4">
+        <div className="mt-12 sm:mt-16 p-5 sm:p-8 bg-gradient-to-r from-[#f0f7fb] via-[#f7f0df] to-[#f4ebda] border border-[#e2e8f0] rounded-3xl text-center space-y-4">
           <h3 className="text-2xl font-serif font-bold text-[#0f172a]">
             Ready to Begin Phase 01 for Your Brand?
           </h3>
           <p className="text-xs text-[#5c554a] max-w-xl mx-auto">
             Contact our Ahmedabad technical team today to initiate your formulation brief. Initial lab bench prototypes are compounded and dispatched within 7 to 10 days.
           </p>
-          <div className="pt-2 flex justify-center gap-4">
+          <div className="pt-2 flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
             <button
               onClick={() => setIsQuoteOpen(true)}
               className="px-6 py-3 gold-button font-bold text-xs rounded-xl shadow-md transition-transform hover:scale-105"

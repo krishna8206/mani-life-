@@ -166,6 +166,19 @@ export default function HorizontalContactBottleStage({
               transformStyle: "preserve-3d",
             }}
           >
+            {/* Mobile-readable label summary (SVG text scales down on <640px) */}
+            <div className="sm:hidden text-center mb-3 px-2 space-y-1">
+              <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#164666]">
+                MANILIFE&reg; FORMULARY
+              </div>
+              <div className="text-lg font-cormorant font-semibold text-[#0f172a]">
+                Direct Formulation &amp; Cleanroom Campus
+              </div>
+              <div className="text-[11px] text-slate-600 font-medium">
+                Ahmedabad Cleanroom Campus &bull; +91 97246 81096 &bull; ISO 22716 GMP
+              </div>
+            </div>
+
             {/* Master Photorealistic Procedural Bottle Vector Canvas */}
             <svg
               viewBox="0 115 1260 365"

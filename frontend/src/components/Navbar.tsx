@@ -170,7 +170,7 @@ export default function Navbar() {
                 setMobileMenuOpen(false);
                 setIsQuoteOpen(true);
               }}
-              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 text-xs font-bold bg-[#164666] hover:bg-[#10364f] text-white rounded-lg shadow-sm active:scale-95 transition-all cursor-pointer whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-2 sm:py-2 min-h-[40px] sm:min-h-0 text-xs font-bold bg-[#164666] hover:bg-[#10364f] text-white rounded-lg shadow-sm active:scale-95 transition-all cursor-pointer whitespace-nowrap"
               aria-label="Request custom quote"
             >
               <Sparkles className="w-3.5 h-3.5 text-sky-200" />
@@ -179,7 +179,7 @@ export default function Navbar() {
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-1.5 sm:p-2 text-[#1e293b] hover:text-[#164666] rounded-lg hover:bg-slate-100 active:scale-95 transition-colors focus:outline-none cursor-pointer"
+              className="p-2.5 sm:p-2 min-w-[44px] min-h-[44px] sm:min-w-0 sm:min-h-0 flex items-center justify-center text-[#1e293b] hover:text-[#164666] rounded-lg hover:bg-slate-100 active:scale-95 transition-colors focus:outline-none cursor-pointer"
               aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileMenuOpen}
             >
@@ -195,9 +195,9 @@ export default function Navbar() {
 
       {/* 2. DEDICATED FULL-SCREEN LUXURY MOBILE DRAWER (Placed OUTSIDE <header> to avoid backdrop-filter containment trap) */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-14 sm:top-16 bottom-0 z-[55] bg-white flex flex-col justify-between overflow-y-auto border-t border-slate-200/90 shadow-2xl">
+        <div className="lg:hidden fixed inset-x-0 top-14 sm:top-16 bottom-0 z-[55] bg-white flex flex-col justify-between overflow-hidden border-t border-slate-200/90 shadow-2xl">
           {/* Scrollable Navigation Links List */}
-          <div className="px-4 py-4 space-y-2 flex-1 overflow-y-auto">
+          <div className="px-4 py-4 space-y-2 flex-1 min-h-0 overflow-y-auto">
             {navigationLinks.map((item) => {
               const isActive = pathname === item.href;
               const hasChildren = Boolean(item.children && item.children.length > 0);
@@ -263,7 +263,7 @@ export default function Navbar() {
                           key={sub.label}
                           href={sub.href}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between p-2.5 rounded-lg text-xs font-semibold text-slate-700 hover:text-[#164666] hover:bg-sky-50 active:bg-sky-100 transition-colors"
+                          className="flex items-center justify-between px-3 py-3 min-h-[44px] rounded-lg text-xs font-semibold text-slate-700 hover:text-[#164666] hover:bg-sky-50 active:bg-sky-100 transition-colors"
                         >
                           <span className="leading-snug">{sub.label}</span>
                           <ArrowRight className="w-3.5 h-3.5 text-[#164666] shrink-0 ml-2" />

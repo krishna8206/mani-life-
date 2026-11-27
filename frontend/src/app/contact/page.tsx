@@ -410,7 +410,7 @@ export default function ContactPage() {
                       className="object-contain"
                     />
                   </div>
-                  <div className="flex-1 space-y-1.5">
+                  <div className="flex-1 min-w-0 space-y-1.5">
                     <span className="text-[11px] font-semibold uppercase tracking-wider text-[#4a728e] block mb-0.5">
                       Official Emails
                     </span>
@@ -418,7 +418,7 @@ export default function ContactPage() {
                       <div key={em.id || eIdx} className="flex items-center justify-between gap-2">
                         <a
                           href={`mailto:${em.email}`}
-                          className="text-xs sm:text-sm font-semibold text-[#164666] hover:text-[#1b628b] hover:underline"
+                          className="text-xs sm:text-sm font-semibold text-[#164666] hover:text-[#1b628b] hover:underline break-all min-w-0"
                         >
                           {em.email}
                         </a>
@@ -426,7 +426,7 @@ export default function ContactPage() {
                           type="button"
                           onClick={() => handleCopy(em.email, `email-${em.id || eIdx}`)}
                           title="Copy Email"
-                          className="p-1 rounded text-slate-400 hover:text-[#164666]"
+                          className="p-2 sm:p-1 rounded text-slate-400 hover:text-[#164666] shrink-0"
                         >
                           {copiedType === `email-${em.id || eIdx}` ? (
                             <Check className="w-3.5 h-3.5 text-emerald-600" />
@@ -681,7 +681,7 @@ export default function ContactPage() {
               {cms.facilityMap.badgeSubtitle}
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <a
                 href={cms.facilityMap.directionsUrl}
                 target="_blank"

@@ -152,10 +152,10 @@ export default function FormulationDetailClient({
                     <div className="w-full aspect-square bg-slate-200/60 animate-pulse" />
                   )}
                   {/* Floating Badges */}
-                  <div className="absolute top-4 left-4 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-md text-[11px] font-semibold text-[#164666] border border-slate-200 shadow-xs">
+                  <div className="absolute top-4 left-4 max-w-[calc(100%-2rem)] truncate px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-md text-[11px] font-semibold text-[#164666] border border-slate-200 shadow-xs">
                     {data.cleanroomBadge || "Ahmedabad Cleanroom Compounding"}
                   </div>
-                  <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-md text-[11px] font-semibold text-emerald-700 border border-emerald-200 shadow-xs">
+                  <div className="absolute bottom-4 right-4 max-w-[calc(100%-2rem)] truncate px-3 py-1.5 rounded-lg bg-white/95 backdrop-blur-md text-[11px] font-semibold text-emerald-700 border border-emerald-200 shadow-xs">
                     {data.moqBadge || "Flexible Low MOQ"}
                   </div>
                 </div>
@@ -167,7 +167,7 @@ export default function FormulationDetailClient({
               <div>
                 {/* Brand Micro-header */}
                 <div className="flex items-center gap-2.5 mb-2.5">
-                  <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+                  <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
                   <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
                     {data.eyebrow || "Certified Cosmetics Manufacturer • Ahmedabad, India"}
                   </span>
@@ -247,11 +247,11 @@ export default function FormulationDetailClient({
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
             <div className="flex items-center justify-center gap-2.5 mb-2.5">
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
               <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#4a728e]">
                 Indian Manufacturing Excellence
               </span>
-              <span className="w-8 h-[1.5px] bg-[#4a728e]" />
+              <span className="w-8 h-[1.5px] bg-[#4a728e] shrink-0" />
             </div>
 
             <h2 className="text-2xl sm:text-3xl lg:text-[2.5rem] font-serif text-[#0f172a] font-normal leading-[1.12] tracking-tight uppercase">
@@ -326,7 +326,7 @@ export default function FormulationDetailClient({
       {relatedFormulations.length > 0 && (
         <section className="py-16 bg-slate-50 border-b border-slate-200/80">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-8">
               <div>
                 <span className="text-xs uppercase tracking-wider text-[#4a728e] font-semibold">
                   More Options in {formulation.categoryTitle}
@@ -337,14 +337,14 @@ export default function FormulationDetailClient({
               </div>
               <Link
                 href={`/products/${catSlug}`}
-                className="text-xs font-semibold text-[#164666] hover:text-[#10364f] flex items-center gap-1"
+                className="text-xs font-semibold text-[#164666] hover:text-[#10364f] flex items-center gap-1 shrink-0"
               >
                 <span>View Full Catalog</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
+            <div className="grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
               {relatedFormulations.map((rel, idx) => (
                 <Link
                   key={idx}
@@ -354,7 +354,7 @@ export default function FormulationDetailClient({
                   <span className="text-xs font-medium text-slate-700 group-hover:text-[#164666] transition-colors truncate">
                     {rel.name}
                   </span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#1b628b] opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-1" />
+                  <ArrowRight className="w-3.5 h-3.5 text-[#1b628b] opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity shrink-0 ml-1" />
                 </Link>
               ))}
             </div>

@@ -243,7 +243,7 @@ export default function CertificationsPage() {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-3 bg-white/90 hover:bg-white text-[#164666] border border-slate-200/90 hover:border-[#164666]/40 text-xs sm:text-sm font-semibold rounded-full shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98]"
+                  className="px-5 py-3 text-center bg-white/90 hover:bg-white text-[#164666] border border-slate-200/90 hover:border-[#164666]/40 text-xs sm:text-sm font-semibold rounded-full shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98]"
                 >
                   {cms.hero.secondaryCtaText}
                 </a>
@@ -316,7 +316,7 @@ export default function CertificationsPage() {
                       onKeyDown={(e) => {
                         if (e.key === "Enter" || e.key === " ") setActiveDeckIdx(idx);
                       }}
-                      className={`absolute w-[275px] sm:w-[310px] rounded-[28px] p-1.5 transition-all duration-500 ease-out cursor-pointer select-none ${
+                      className={`absolute w-[225px] sm:w-[310px] rounded-[24px] sm:rounded-[28px] p-1.5 transition-all duration-500 ease-out cursor-pointer select-none ${
                         isFront
                           ? "bg-gradient-to-b from-white via-[#fcfbf8] to-[#f4f8fc] shadow-[0_24px_55px_-12px_rgba(15,53,84,0.22)] hover:-translate-y-1.5"
                           : "bg-white/90 backdrop-blur-md shadow-[0_14px_30px_-10px_rgba(15,53,84,0.14)] hover:opacity-100"
@@ -389,24 +389,28 @@ export default function CertificationsPage() {
                   type="button"
                   onClick={() => setActiveDeckIdx((prev) => (prev - 1 + totalDeck) % totalDeck)}
                   aria-label="Previous certificate"
-                  className="w-8 h-8 rounded-full bg-white/90 hover:bg-[#164666] text-[#164666] hover:text-white border border-slate-200/90 shadow-xs flex items-center justify-center transition-all cursor-pointer"
+                  className="w-10 h-10 sm:w-8 sm:h-8 rounded-full bg-white/90 hover:bg-[#164666] text-[#164666] hover:text-white border border-slate-200/90 shadow-xs flex items-center justify-center transition-all cursor-pointer"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </button>
 
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-0.5 sm:gap-1.5">
                   {deckItems.map((cert, idx) => (
                     <button
                       key={cert.id || idx}
                       type="button"
                       onClick={() => setActiveDeckIdx(idx)}
                       aria-label={`View ${cert.name}`}
-                      className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                        idx === safeDeckIdx
-                          ? "w-6 bg-[#164666]"
-                          : "w-1.5 bg-slate-300 hover:bg-slate-400"
-                      }`}
-                    />
+                      className="p-1.5 sm:p-0 flex items-center justify-center cursor-pointer"
+                    >
+                      <span
+                        className={`block h-1.5 rounded-full transition-all duration-300 ${
+                          idx === safeDeckIdx
+                            ? "w-6 bg-[#164666]"
+                            : "w-1.5 bg-slate-300 hover:bg-slate-400"
+                        }`}
+                      />
+                    </button>
                   ))}
                 </div>
 
@@ -414,7 +418,7 @@ export default function CertificationsPage() {
                   type="button"
                   onClick={() => setActiveDeckIdx((prev) => (prev + 1) % totalDeck)}
                   aria-label="Next certificate"
-                  className="w-8 h-8 rounded-full bg-white/90 hover:bg-[#164666] text-[#164666] hover:text-white border border-slate-200/90 shadow-xs flex items-center justify-center transition-all cursor-pointer"
+                  className="w-10 h-10 sm:w-8 sm:h-8 rounded-full bg-white/90 hover:bg-[#164666] text-[#164666] hover:text-white border border-slate-200/90 shadow-xs flex items-center justify-center transition-all cursor-pointer"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>

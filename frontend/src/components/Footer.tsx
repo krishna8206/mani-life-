@@ -113,7 +113,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-all duration-200 hover:translate-x-1"
+                    className="group inline-flex items-center gap-1.5 py-1.5 sm:py-0 text-slate-400 hover:text-white transition-all duration-200 hover:translate-x-1"
                   >
                     <ChevronRight className="w-3 h-3 text-slate-600 group-hover:text-sky-400 transition-colors" />
                     <span>{link.label}</span>
@@ -141,7 +141,7 @@ export default function Footer() {
                   <li key={service.label}>
                     <Link
                       href={service.href}
-                      className="group inline-flex items-center gap-1.5 text-slate-400 hover:text-white transition-all duration-200 hover:translate-x-1"
+                      className="group inline-flex items-center gap-1.5 py-1.5 sm:py-0 text-slate-400 hover:text-white transition-all duration-200 hover:translate-x-1"
                     >
                       <ChevronRight className="w-3 h-3 text-slate-600 group-hover:text-sky-400 transition-colors" />
                       <span>{service.label}</span>

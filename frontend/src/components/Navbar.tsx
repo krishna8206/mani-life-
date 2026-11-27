@@ -277,7 +277,7 @@ export default function Navbar() {
           </div>
 
           {/* Sticky Action Footer inside Mobile Drawer */}
-          <div className="p-4 border-t border-slate-200/90 bg-[#f8fafc] space-y-3 shrink-0">
+          <div className="p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] border-t border-slate-200/90 bg-[#f8fafc] space-y-2 shrink-0">
             {/* Primary Call to Action */}
             <button
               type="button"
@@ -285,7 +285,7 @@ export default function Navbar() {
                 setMobileMenuOpen(false);
                 setIsQuoteOpen(true);
               }}
-              className="w-full py-3.5 bg-[#164666] hover:bg-[#10364f] active:scale-[0.98] text-white text-xs font-bold uppercase tracking-wider rounded-xl shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer"
+              className="w-full py-2.5 bg-[#164666] hover:bg-[#10364f] active:scale-[0.98] text-white text-xs font-bold uppercase tracking-wider rounded-xl shadow-md flex items-center justify-center gap-2 transition-all cursor-pointer"
             >
               <Sparkles className="w-4 h-4 text-sky-200" />
               <span>Request Custom Quote</span>
@@ -296,16 +296,16 @@ export default function Navbar() {
             <Link
               href="/quote-estimator"
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full block text-center py-2.5 bg-white text-[#164666] text-xs font-bold rounded-xl border border-sky-200 shadow-2xs hover:bg-sky-50 transition-colors"
+              className="w-full block text-center py-2 bg-white text-[#164666] text-xs font-bold rounded-xl border border-sky-200 shadow-2xs hover:bg-sky-50 transition-colors"
             >
               Interactive MOQ & Cost Estimator
             </Link>
 
             {/* Direct Call & WhatsApp Fast Actions */}
-            <div className="grid grid-cols-2 gap-2 pt-0.5">
+            <div className="grid grid-cols-2 gap-2">
               <a
                 href="tel:+919724681096"
-                className="flex items-center justify-center gap-2 py-2.5 px-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-800 hover:text-[#164666] shadow-2xs active:bg-slate-50"
+                className="flex items-center justify-center gap-2 py-2 px-3 bg-white border border-slate-200 rounded-xl text-xs font-bold text-slate-800 hover:text-[#164666] shadow-2xs active:bg-slate-50"
               >
                 <Phone className="w-4 h-4 text-[#164666]" />
                 <span>Call Plant</span>
@@ -315,7 +315,7 @@ export default function Navbar() {
                 href="https://wa.me/919724681096?text=Hello%20Mani%20Lifestyle,%20I%20am%20interested%20in%20cosmetic%20manufacturing."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 py-2.5 px-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs font-bold text-emerald-800 shadow-2xs active:bg-emerald-100"
+                className="flex items-center justify-center gap-2 py-2 px-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs font-bold text-emerald-800 shadow-2xs active:bg-emerald-100"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-600" />
                 <span>WhatsApp</span>
@@ -323,7 +323,7 @@ export default function Navbar() {
             </div>
 
             {/* Micro Trust Stamp */}
-            <div className="text-center text-[10.5px] text-slate-500 pt-1 font-medium">
+            <div className="text-center text-[10px] text-slate-500 pt-0.5 font-medium">
               Ahmedabad, Gujarat &bull; WHO-GMP &bull; ISO 9001:2015 &bull; 100% Indian Brand
             </div>
           </div>

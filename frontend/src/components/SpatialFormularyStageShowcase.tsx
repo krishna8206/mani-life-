@@ -111,7 +111,7 @@ export default function SpatialFormularyStageShowcase({
   return (
     <div ref={containerRef} className="relative w-full h-auto lg:h-[225vh] bg-[#f4f8fc]">
       {/* Sticky Full-Viewport Presentation Stage on Desktop, Natural Flow on Mobile */}
-      <section className="relative lg:sticky lg:top-0 w-full min-h-0 lg:h-screen flex flex-col justify-center py-10 sm:py-12 lg:py-3 overflow-hidden border-b border-slate-200/80">
+      <section className="relative lg:sticky lg:top-0 w-full min-h-0 lg:h-screen flex flex-col justify-center py-12 sm:py-14 lg:py-3 overflow-hidden border-b border-slate-200/80">
 
         {/* Soft Ambient Laboratory Daylight Background Glows */}
         <div className="absolute top-1/4 left-1/4 w-[850px] h-[550px] bg-sky-100/40 rounded-full blur-[140px] pointer-events-none" />

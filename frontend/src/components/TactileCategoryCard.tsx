@@ -1,9 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useCallback, useEffect } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
 
 function LeafBullet() {
   return (
@@ -21,7 +19,7 @@ export interface TactileCategoryCardProps {
   id: string;
   title: string;
   archImage: string;
-  categorySlug: string;
+  categorySlug?: string;
   icon: React.ComponentType<{ className?: string }>;
   items: string[];
   tag?: string;
@@ -32,14 +30,13 @@ export interface TactileCategoryCardProps {
 export function TactileCategoryCard({
   title,
   archImage,
-  categorySlug,
   icon: IconComponent,
   items,
   tag,
   priority = false,
   index = 0,
 }: TactileCategoryCardProps) {
-  const cardRef = useRef<HTMLAnchorElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const [rotate, setRotate] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(priority);
@@ -94,7 +91,7 @@ export function TactileCategoryCard({
   }, []);
 
 
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -116,13 +113,12 @@ export function TactileCategoryCard({
   }, []);
 
   return (
-    <Link
+    <div
       ref={cardRef}
-      href={`/products/${categorySlug}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative flex items-center justify-center group cursor-pointer select-none w-full max-w-[350px] sm:max-w-[396px] min-h-[280px] h-auto sm:h-[348px] mx-auto transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+      className={`relative flex items-center justify-center group select-none w-full max-w-[350px] sm:max-w-[396px] min-h-[280px] h-auto sm:h-[348px] mx-auto transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         isVisible
           ? "opacity-100 translate-y-0 scale-100"
           : "opacity-0 translate-y-8 scale-[0.97]"
@@ -173,7 +169,7 @@ export function TactileCategoryCard({
 
       {/* --- 2. LUXURY FROSTED CRYSTAL GLASSSIFIED CONTENT BOX --- */}
       <div
-        className="relative -ml-[6%] sm:-ml-6 z-10 rounded-[1.25rem] sm:rounded-[1.85rem] p-3.5 sm:p-5 flex flex-col justify-between transition-all duration-500 ease-out backdrop-blur-xl border overflow-hidden shrink-0 w-[58%] sm:w-[205px] min-h-[248px] sm:h-[308px]"
+        className="relative -ml-[6%] sm:-ml-6 z-10 rounded-[1.25rem] sm:rounded-[1.85rem] p-3.5 sm:p-5 flex flex-col justify-center transition-all duration-500 ease-out backdrop-blur-xl border overflow-hidden shrink-0 w-[58%] sm:w-[205px] min-h-[248px] sm:h-[308px]"
         style={{
           transform: "translateZ(38px)",
           background: isHovered
@@ -219,7 +215,7 @@ export function TactileCategoryCard({
           )}
 
           {/* Bullet Items with Leaf */}
-          <ul className="mt-1.5 sm:mt-2.5 space-y-1 sm:space-y-1.5 text-[11px] sm:text-xs text-[#1e293b] font-medium min-h-[60px] sm:min-h-[86px] flex flex-col justify-start">
+          <ul className="mt-1.5 sm:mt-2.5 space-y-1 sm:space-y-1.5 text-[11px] sm:text-xs text-[#1e293b] font-medium flex flex-col justify-start">
             {items.map((item, idx) => (
               <li
                 key={idx}
@@ -231,18 +227,8 @@ export function TactileCategoryCard({
             ))}
           </ul>
         </div>
-
-        {/* --- 3. MAGNETIC VIEW PRODUCTS ACTION FOOTER --- */}
-        <div className="relative z-10 pt-1.5 sm:pt-2 border-t border-slate-300/45 flex items-center justify-between">
-          <span className="text-[11px] sm:text-xs font-semibold text-[#0a2333] group-hover:text-[#164666] transition-colors duration-200">
-            View Products
-          </span>
-          <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/90 border border-sky-100 group-hover:bg-[#164666] text-[#164666] group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-xs group-hover:shadow-md group-hover:scale-105 shrink-0">
-            <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-          </span>
-        </div>
       </div>
-    </Link>
+    </div>
   );
 }
 

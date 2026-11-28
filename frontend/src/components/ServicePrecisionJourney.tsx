@@ -1,12 +1,10 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import {
   CheckCircle2,
   ArrowRight,
-  ArrowUpRight,
 } from "lucide-react";
 import { servicesData, ServiceDetail } from "@/data/services";
 
@@ -331,7 +329,7 @@ export default function ServicePrecisionJourney({
                   ))}
                 </div>
 
-                {/* Dual Action CTAs */}
+                {/* Action CTA */}
                 <div className="pt-3 flex flex-wrap items-center gap-3">
                   <button
                     onClick={() => setIsQuoteOpen(true)}
@@ -340,14 +338,6 @@ export default function ServicePrecisionJourney({
                     <span>Request Feasibility Quote</span>
                     <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" />
                   </button>
-
-                  <Link
-                    href={`/services/${service.slug}`}
-                    className="px-5 py-3 bg-white hover:bg-slate-50 text-[#0f172a] hover:text-[#164666] font-medium text-xs rounded-lg border border-slate-200 hover:border-[#164666]/60 transition-all duration-300 flex items-center gap-1.5 shadow-xs hover:shadow-md hover:-translate-y-0.5 group/link"
-                  >
-                    <span>Explore Specifications</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-[#1b628b] transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                  </Link>
                 </div>
               </div>
             </div>

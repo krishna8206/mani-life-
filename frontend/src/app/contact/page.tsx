@@ -217,8 +217,11 @@ export default function ContactPage() {
     setIsSubmitting(true);
     setSubmitError(null);
 
-    const accessKey =
-      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "1e9cf04e-842e-4f8b-92df-9cbbd224a92f";
+    const rawKey = (process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "")
+      .trim()
+      .replace(/^["']|["']$/g, "");
+    const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(rawKey);
+    const accessKey = isUuid ? rawKey : "444155b3-93d2-4724-b9fc-ce418b41fce4";
     const scriptUrl = cms.enquiryForm.scriptUrl || defaultContactData.enquiryForm.scriptUrl;
 
     try {
